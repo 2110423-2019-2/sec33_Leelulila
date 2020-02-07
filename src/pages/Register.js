@@ -3,6 +3,6 @@ import React from 'react';
 function RegisterPage() {
     return 
         <div>
-            Hello World!
+            Hello World! Test
         </div>
 }
