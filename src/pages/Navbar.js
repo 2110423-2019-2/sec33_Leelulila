@@ -24,7 +24,7 @@ import Button from '@material-ui/core/Button';
 import Footer from '../components/Footer';
 // import ProfileBar from '../components/ProfileBar';
 
-// import Register from './Register';
+import Register from './Register';
 // import Login from '../page/Login';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
@@ -144,7 +144,7 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           <ListItem><ListItemText><Button href='/'>Home</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/login'>Login</Button></ListItemText></ListItem>
+          {/* <ListItem><ListItemText><Button href='/login'>Login</Button></ListItemText></ListItem> */}
           <ListItem><ListItemText><Button href='/Register'>Register</Button></ListItemText></ListItem>
           {/* <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
         </List>
@@ -157,7 +157,7 @@ export default function PersistentDrawerLeft() {
             <Route exact path="/" component={FirstLanding} />
             {/* <Route path="/login" component={Login} /> */}
 
-            {/* <Route path="/register" component={Register} /> */}
+            <Route path="/register" component={Register} />
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
           </div>
 
