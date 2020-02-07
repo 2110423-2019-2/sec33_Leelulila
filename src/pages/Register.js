@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    width: '20%'
   },
 }));
 
@@ -50,7 +51,7 @@ export default function RegisterPage() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="sm" style={{marginTop:"70px",minHeight:'600px'}}>
+    <Container component="main" maxWidth="sm" style={{marginTop:"70px",minHeight:'520px',paddingBottom:'50px'}}>
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5" style={{marginTop:'5%'}}>
@@ -119,11 +120,11 @@ export default function RegisterPage() {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I want to receive marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
-          <Button
+          <Button 
             type="submit"
             fullWidth
             variant="contained"
