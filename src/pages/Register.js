@@ -7,11 +7,18 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+import Radio from '@material-ui/core/Radio';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import GenderRadio from '../components/GenderRadioButton';
+import DatePicker from '../components/DatePicker';
+import { useForm } from 'react-hook-form'
+import fire from '../config/firebase'
 
 function Copyright() {
   return (
@@ -50,6 +57,59 @@ const useStyles = makeStyles(theme => ({
 export default function RegisterPage() {
   const classes = useStyles();
 
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => {
+
+    var firebaseRef = fire.database().ref('User');
+    var email = data.email;
+    var pass = data.password;
+    var confirmPass = data.confirmPassword;
+    var name = data.firstName;
+    var surname = document.getElementById('sname').value;
+
+    if(email.includes('@') && pass.length >=6 && pass === confirmPass){ 
+
+    console.log('1');
+    var indexofat = email.indexOf('@');
+    var subemail = email.substring(0,indexofat);
+
+    
+    firebaseRef.child(subemail).update({
+      Name:name,
+      Password:pass,
+      Surname:surname,
+      Currentjobcreated:'',
+      Currentjob:'',
+      Historyjob:'',
+      Historyjobcreated:''
+      
+
+    });
+    
+    var firebaseRefbyemail = fire.database().ref(subemail);
+    console.log('2');
+    
+
+    const auth = fire.auth();
+
+    auth.createUserWithEmailAndPassword(document.getElementById('email').value,document.getElementById('pass').value)
+    .then(
+      fire.auth().signOut);
+    //if this line bug want happen next
+    alert("Registration Success!!");
+    
+    
+    this.setState({
+      Checkregister:true
+    })
+
+    
+  }else{
+    alert("Please check your email format and password length must more than 6 character!!");
+  }
+  }
+
   return (
     <Container component="main" maxWidth="sm" style={{marginTop:"70px",minHeight:'520px',paddingBottom:'50px'}}>
       <CssBaseline />
@@ -57,31 +117,8 @@ export default function RegisterPage() {
         <Typography component="h1" variant="h5" style={{marginTop:'5%'}}>
           Register
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)} >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -90,6 +127,7 @@ export default function RegisterPage() {
                 id="email"
                 label="Email Address"
                 name="email"
+                inputRef={register}
                 autoComplete="email"
               />
             </Grid>
@@ -103,6 +141,7 @@ export default function RegisterPage() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,12 +149,44 @@ export default function RegisterPage() {
                 variant="outlined"
                 required
                 fullWidth
-                name="confirm-password"
+                name="confirmPassword"
                 label="Confirm Password"
                 type="password"
                 id="confirm-password"
-                autoComplete="current-password"
+                autoComplete="confirm-password"
+                inputRef={register}
               />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+                inputRef={register}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+                inputRef={register}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                <GenderRadio inputRef={register}/>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                <DatePicker inputRef={register}/>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
