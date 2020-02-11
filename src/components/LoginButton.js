@@ -10,8 +10,8 @@ import { useTheme } from '@material-ui/core/styles';
 import { InputLabel, InputBase, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
-
 export default function ResponsiveDialog() {
+  
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
