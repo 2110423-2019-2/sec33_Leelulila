@@ -15,7 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Createjob from './Createjob';
+import CreateJob from './CreateJob';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 // import Dashboard from './Dashboard';
@@ -23,10 +23,9 @@ import FirstLanding from '../components/FirstLanding';
 import Button from '@material-ui/core/Button';
 // import AboutUs from './AboutUs';
 import Footer from '../components/Footer';
-// import ProfileBar from '../components/ProfileBar';
-
+import ProfileBar from '../components/ProfileBar';
+import Login from '../pages/Login'
 import Register from './Register';
-// import Login from '../page/Login';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -121,14 +120,9 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton> */}
-          <Typography variant="h6">
-            ACTTIME
-          </Typography>
-          <div style={{display:'flex',flexDirection:'row'}} id='proBarRegLog'>
-            <Button href='/Register' variant='outlined' color='inherit'>Register</Button>
-            {/* <Button href='/login' variant='outlined' color='inherit' id='loginBut'>Login</Button> */}
-          </div>
-          {/* <ProfileBar /> */}
+          <Button disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
+          
+          <ProfileBar /> 
         </Toolbar>
 
       </AppBar>
@@ -151,6 +145,8 @@ export default function PersistentDrawerLeft() {
           <ListItem><ListItemText><Button href='/'>Home</Button></ListItemText></ListItem>
           {/* <ListItem><ListItemText><Button href='/login'>Login</Button></ListItemText></ListItem> */}
           <ListItem><ListItemText><Button href='/Register'>Register</Button></ListItemText></ListItem>
+          <ListItem><ListItemText><Button href='/CreateJob'>Register</Button></ListItemText></ListItem>
+
           {/* <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
         </List>
         <Divider />
@@ -160,10 +156,10 @@ export default function PersistentDrawerLeft() {
 
           <div >
             <Route exact path="/" component={FirstLanding} />
-            {/* <Route path="/login" component={Login} /> */}
+            <Route path="/login" component={Login} /> 
 
             <Route path="/register" component={Register} />
-            <Route path="/createjob" component={Createjob}/>
+            <Route path="/createjob" component={CreateJob}/>
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
           </div>
 

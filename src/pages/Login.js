@@ -1,48 +1,64 @@
 import React, { Component } from 'react';
+import  { Redirect } from 'react-router-dom'
+import {Grid,Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
+import fire from '../config/firebase';
+import LoginForm from '../components/LoginForm'
+import { Container } from '@material-ui/core';
 
-class LoginForm extends Component {
+class Login extends Component{
 
-  constructor(props) {
-    super(props);
-    //this.onLogin = this.onLogin.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:{},
+        }
+        
+      }
 
-    /*onLogin() {
-    var email = document.getElementById('email').value;
-    var pass = document.getElementById('pass').value;
-    const auth = fire.auth();
+    componentDidMount(){
+        this.authListener();
+    }
 
-    auth.signInWithEmailAndPassword(email, pass).then((u) => {
+    authListener(){
+        fire.auth().onAuthStateChanged((user) => {
+            if (user){
+                this.setState({ user });
+                this.render();
 
-    }).catch((error) => {
-      alert('Please check your email or password');
-    });
-
-  }*/
-
-
-
-  render() {
-    return (
-      <div>
-        <Grid xs={12} md={4} style={{ minHeight: '400px',marginLeft:'auto',marginRight:'auto',marginTop:'100px'}}>
-          <Grid direction='column' alignItems="center" justify="center" >
-            <h1>Login ACTTIME</h1>
-            <Grid item><TextField size="small" id="email" label="Email" variant="outlined" fullWidth /></Grid>
-            <Grid item><TextField size="small" id="pass" label="Password" type='password' variant="outlined" style={{ marginTop: '10px' }} fullWidth /></Grid>
-            <Grid direction='row' style={{float:'right',marginTop:'10px'}}>
-              <Button variant='outlined' color='primary' href='/register' >Register</Button>
-              <Button variant='contained' color='primary' style={{ marginLeft: '10px' }}>Login</Button>
-            </Grid>
-          </Grid>
-        </Grid>
-      </div>
-    )
+            }else{
+                this.setState({user:null});
+            }
+        })
+    }
 
 
-  }
+    render(){
+        
+        var user = fire.auth().currentUser;
+        
+        if (user){
+            console.log('login');
+            return (<Redirect to='/dashboard' />);
+        }
+        else{
+            console.log('Notlogin');
+            return (<div>
+                <Container>
+                    <h1>Login</h1>
+                    <LoginForm/>
+                </Container>
+            </div>);
+        }
+        
+        
 
+
+
+       
+
+        
+    }
 }
-export default LoginForm;
+
+export default Login;

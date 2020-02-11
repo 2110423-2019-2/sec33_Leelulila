@@ -6,12 +6,14 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Register from './pages/Register'
 
 import './App.css';
+import CreateJob from './pages/CreateJob';
 
 function App() {
   return (
     <div>
     <Navbar/>
-  
+    
+    
     </div>
   );
 }

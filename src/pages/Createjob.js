@@ -4,9 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import fire from '../config/firebase';
 //import LoginForm from '../components/LoginForm'
 //import Dashboard from './Dashboard';
-import CreatejobForm from '../components/CreateJobForm';
+import CreateJobForm from '../components/CreateJobForm';
 
-class Createjob extends Component{
+class CreateJob extends Component{
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ class Createjob extends Component{
         return(
             <div>
                 
-                <CreatejobForm/>
+                <CreateJobForm/>
             </div>
         );
 
@@ -32,4 +32,4 @@ class Createjob extends Component{
 
 
 
-export default Createjob;
+export default CreateJob;
