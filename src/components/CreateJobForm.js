@@ -26,27 +26,27 @@ class CreateJobForm extends Component{
     }
     // this.database = fire.database().ref("ListingJob");
 
-    this.database.on('value', snap =>{
+    // this.database.on('value', snap =>{
         
-        var max = 0;
+    //     var max = 0;
 
-        for (var x in snap.val()){
+    //     for (var x in snap.val()){
             
-            if(x[0]=='J'){
-                var y = parseInt(x.substring(1,));
-                if(y>max){
-                    max=y;
-                }
-            }
-        }
-        max = max+1;
-        this.setState({
-            Workkey:'J'+max.toString()
-        })
-        console.log(this.state.Workkey);
+    //         if(x[0]=='J'){
+    //             var y = parseInt(x.substring(1,));
+    //             if(y>max){
+    //                 max=y;
+    //             }
+    //         }
+    //     }
+    //     max = max+1;
+    //     this.setState({
+    //         Workkey:'J'+max.toString()
+    //     })
+    //     console.log(this.state.Workkey);
         
         
-    })
+    // })
 
     
   }
@@ -187,7 +187,8 @@ class CreateJobForm extends Component{
         );
     }
     return (
-        <Redirect to='/dashboard' />
+        // <Redirect to='/dashboard' />
+        {}
         );
 }
 

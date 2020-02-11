@@ -1,29 +1,19 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './pages/Navbar';
 import Footer from './components/Footer'
 import FirstLanding from './components/FirstLanding'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Register from './pages/Register'
 
 import './App.css';
+import CreateJob from './pages/CreateJob';
 
 function App() {
   return (
     <div>
     <Navbar/>
     
-    <Router>
-
-    <div>
-      <Route exact path="/" component={FirstLanding} />
-      {/*<Route path="/login" component={Login} />*/}
-
-      <Route path="/register" component={Register} />
-      {/* <Route path='/AboutUs' component={AboutUs} /> */}
-    </div>
-
-    </Router>
-    <Footer id='Footer'/>
+    
     </div>
   );
 }
