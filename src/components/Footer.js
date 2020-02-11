@@ -12,7 +12,9 @@ const Footer = () => {
                     <Grid container id="FooterGrid1" item xs={12} sm={12} md={6}>
                         <Grid item md={12} xs={12}><h1 id='white'>About Us</h1></Grid>
                         <Grid id='white' item md={8} xs={12}>
-                            <p> This is the website for finding Job and find people to do activity for social. We create this website because we believe all the people have good in themself if we can encourage them to give love to others.</p>
+                            <p> This is the website for finding jobs and finding people to do activities for social. 
+                                We create this website because we believe all the people have good in themselves
+                                if we can encourage them to give love to others.</p>
                             <h2>COPYRIGHT@ACTTIME2019</h2>
                         </Grid>
                     </Grid>
