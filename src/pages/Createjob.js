@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Grid,Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import fire from '../config/Fire';
+import fire from '../config/firebase';
 //import LoginForm from '../components/LoginForm'
 //import Dashboard from './Dashboard';
-import CreatejobForm from '../components/CreatejobForm';
+import CreatejobForm from '../components/CreateJobForm';
 
 class Createjob extends Component{
 

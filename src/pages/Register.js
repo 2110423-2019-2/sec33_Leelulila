@@ -1,22 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import RegisterForm from '../components/RegisterForm';
-import '../style.css';
-import { Container } from '@material-ui/core';
-
-const Register = () => {
-    return (
-        <div>
-            <Container>
-                <h1>Register for ACTTIME</h1>
-                <RegisterForm/>
-            </Container>
-        </div>
-    );
-};
-
-export default Register;
-=======
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,7 +18,7 @@ import Container from '@material-ui/core/Container';
 import GenderRadio from '../components/GenderRadioButton';
 import DatePicker from '../components/DatePicker';
 import { useForm } from 'react-hook-form'
-import fire from '../config/firebase'
+import fire from '../config/firebase';
 
 function Copyright() {
   return (
@@ -234,4 +216,3 @@ export default function RegisterPage() {
     </Container>
   );
 }
->>>>>>> 17ba52af2024826a0ad9cac585a524369a63736c

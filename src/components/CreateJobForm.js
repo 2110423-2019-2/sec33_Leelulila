@@ -24,7 +24,7 @@ class CreateJobForm extends Component{
         checkCreatejob: false,
         Workkey:''
     }
-    this.database = fire.database().ref("ListingJob");
+    // this.database = fire.database().ref("ListingJob");
 
     this.database.on('value', snap =>{
         
@@ -97,30 +97,9 @@ class CreateJobForm extends Component{
     var begintime = document.getElementById('timebegin').value;
     var endtime = document.getElementById('timeend').value;
     var date = this.state.selectedDate;
-    const auth = fire.auth();
 
-    var firebaseRef = fire.database().ref('ListingJob');
   
-    firebaseRef.child(this.state.Workkey).update({
-        Jobname:jobname,
-        Jobdes:jobdes,
-        Wages:wages,
-        Amount:amount,
-        Currentnumber:0,
-        Currentemployer:'',
-        Date:date,
-        Location:location,
-        Begintime:begintime,
-        Endtime:endtime,
-        Employee:auth.currentUser.email,
-        Workkey:this.state.Workkey,
-        Status:'Wait'
-    }).then(
-        this.setState({
-            checkCreatejob:true,
-        })
-      );
-    alert("Success!!");
+   
     }
 
 

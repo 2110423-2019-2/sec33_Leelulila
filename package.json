@@ -10,18 +10,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-<<<<<<< HEAD
-    "@types/date-fns": "^2.6.0",
     "date-fns": "^2.9.0",
-=======
     "firebase": "^7.8.1",
->>>>>>> 17ba52af2024826a0ad9cac585a524369a63736c
-    "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.8.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1"
+    "react-scripts": "3.3.1",
+    "react-textarea-autosize": "^7.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
