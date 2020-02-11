@@ -15,6 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Createjob from './Createjob';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 // import Dashboard from './Dashboard';
@@ -162,6 +163,7 @@ export default function PersistentDrawerLeft() {
             {/* <Route path="/login" component={Login} /> */}
 
             <Route path="/register" component={Register} />
+            <Route path="/createjob" component={Createjob}/>
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
           </div>
 
