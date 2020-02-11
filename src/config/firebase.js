@@ -1,7 +1,8 @@
 import firebase from 'firebase';
+import config from './config';
 const config = {
     
-        apiKey: "AIzaSyB2TQKuQo1cOqHj6cx3sspul8kAODAm4x0",
+        apiKey: config.firekey,
         authDomain: "se-leelulila.firebaseapp.com",
         databaseURL: "https://se-leelulila.firebaseio.com",
         projectId: "se-leelulila",
