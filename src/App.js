@@ -11,9 +11,7 @@ import CreateJob from './pages/CreateJob';
 function App() {
   return (
     <div>
-    <Navbar/>
-    
-    
+      <Navbar/>    
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from '../config/Fire';
+//import fire from '../config/Fire';
 import ProfileForm from '../components/ProfileForm.js'
 import { Container } from '@material-ui/core';
 

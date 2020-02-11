@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import fire from '../config/Fire';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import ProfilePic from '../pic/socialIcon/Palee4.png';
-import CoverPic from '../pic/socialIcon/cover.jpg';
 import Grid from '@material-ui/core/Grid';
+import EditModal from '../components/EditModal';
 
 
 
@@ -21,74 +16,80 @@ class ProfileForm extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ marginTop: '30px', marginBottom: '30px' }}>
                 <div class='ProfileHeader'>
                     <div class='ProfileImg'>
                         <img src={ProfilePic} />
                     </div>
+                    <h1 style={{ "font-size": '3em', marginLeft: '50px', marginTop: '100px', marginBottom: '100px' }}>Teeti Watanatada</h1>
                 </div>
-
                 <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
                     <CardContent style={{ marginTop: '40px', marginLeft: '40px' }}>
                         <div>
                             <Grid style={{ display: 'flex' }}>
                                 <Grid item md={12}>
-                                    <h1>Teeti Watanatada</h1>
-                                    <p>Chulalongkorn University</p>
-                                    <p>Computer Engineering</p>
-                                    <p>Birth date:</p>
-                                    <p>Gender:</p>
-                                    <p>Email:</p>
+                                    <h4>About Me:</h4>
                                 </Grid>
                                 <Grid item md={1}>
-                                    <Button variant="contained">Edit</Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </CardContent>
-                </Card>  
-                <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
-                    <CardContent style={{ marginLeft: '40px' }}>
-                        <div>
-                            <Grid style={{ display: 'flex' }}>
-                                <Grid item md={12}>
-                                    <p>Education:</p>
-                                </Grid>
-                                <Grid item md={1}>
-                                    <Button variant="contained">Edit</Button>
+                                    <EditModal title="About Me" />
                                 </Grid>
                             </Grid>
                         </div>
                     </CardContent>
                 </Card>
-                <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
-                    <CardContent style={{ marginLeft: '40px' }}>
-                        <div>
-                            <Grid style={{ display: 'flex' }}>
-                                <Grid item md={12}>
-                                    <p>Skill:</p>
-                                </Grid>
-                                <Grid item md={1}>
-                                    <Button variant="contained">Edit</Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </CardContent>
-                </Card>   
-                <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
-                    <CardContent style={{ marginLeft: '40px' }}>
-                        <div>
-                            <Grid style={{ display: 'flex' }}>
-                                <Grid item md={12}>
-                                    <p>About:</p>
-                                </Grid>
-                                <Grid item md={1}>
-                                    <Button variant="contained">Edit</Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </CardContent>
-                </Card>               
+                <Grid style={{ display: 'flex' }}>
+                    <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px' }}>
+                        <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
+                            <CardContent style={{ marginLeft: '40px' }}>
+                                <div>
+                                    <Grid style={{ display: 'flex' }}>
+                                        <Grid item md={9}>                                    
+                                            <i class="fas fa-birthday-cake"></i>
+                                            <h4>Birth date:</h4>
+                                            <h4>Gender:</h4>
+                                            <h4>Email:</h4>
+                                        </Grid>
+                                        <Grid item md={0}>
+                                            <EditModal title='Information' />
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px' }}>
+                        <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
+                            <CardContent style={{ marginLeft: '40px' }}>
+                                <div>
+                                    <Grid style={{ display: 'flex' }}>
+                                        <Grid item md={9}>
+                                            <h4>Education:</h4>
+                                        </Grid>
+                                        <Grid item md={0}>
+                                            <EditModal title='Education' />
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px' }}>
+                        <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
+                            <CardContent style={{ marginLeft: '40px' }}>
+                                <div>
+                                    <Grid style={{ display: 'flex' }}>
+                                        <Grid item md={9}>
+                                            <h4>Skill:</h4>
+                                        </Grid>
+                                        <Grid item md={0}>
+                                            <EditModal title="Skill" />
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             </div>
         );
 
