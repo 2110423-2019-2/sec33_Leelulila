@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer'
 import FirstLanding from './components/FirstLanding'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import Register from './pages/Register'
 
 import './App.css';
 
@@ -17,7 +18,7 @@ function App() {
       <Route exact path="/" component={FirstLanding} />
       {/*<Route path="/login" component={Login} />*/}
 
-      {/* <Route path="/register" component={Register} /> */}
+      <Route path="/register" component={Register} />
       {/* <Route path='/AboutUs' component={AboutUs} /> */}
     </div>
 
