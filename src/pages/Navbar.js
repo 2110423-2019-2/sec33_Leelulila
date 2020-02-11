@@ -24,7 +24,7 @@ import Button from '@material-ui/core/Button';
 import Footer from '../components/Footer';
 // import ProfileBar from '../components/ProfileBar';
 
-// import Register from './Register';
+import Register from './Register';
 // import Login from '../page/Login';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
@@ -111,7 +111,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -119,10 +119,14 @@ export default function PersistentDrawerLeft() {
             className={clsx(classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6">
             ACTTIME
           </Typography>
+          <div style={{display:'flex',flexDirection:'row'}} id='proBarRegLog'>
+            <Button href='/Register' variant='outlined' color='inherit'>Register</Button>
+            {/* <Button href='/login' variant='outlined' color='inherit' id='loginBut'>Login</Button> */}
+          </div>
           {/* <ProfileBar /> */}
         </Toolbar>
 
@@ -157,7 +161,7 @@ export default function PersistentDrawerLeft() {
             <Route exact path="/" component={FirstLanding} />
             {/* <Route path="/login" component={Login} /> */}
 
-            {/* <Route path="/register" component={Register} /> */}
+            <Route path="/register" component={Register} />
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
           </div>
 
