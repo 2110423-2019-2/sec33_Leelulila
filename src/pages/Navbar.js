@@ -24,7 +24,7 @@ import Button from '@material-ui/core/Button';
 // import AboutUs from './AboutUs';
 import Footer from '../components/Footer';
 // import ProfileBar from '../components/ProfileBar';
-
+import Profile from './Profile';
 import Register from './Register';
 // import Login from '../page/Login';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
@@ -160,7 +160,7 @@ export default function PersistentDrawerLeft() {
           <div >
             <Route exact path="/" component={FirstLanding} />
             {/* <Route path="/login" component={Login} /> */}
-
+            <Route path="/profile" component={Profile} />
             <Route path="/register" component={Register} />
             <Route path="/createjob" component={CreateJob}/>
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
