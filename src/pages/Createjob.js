@@ -15,13 +15,9 @@ class CreateJob extends Component{
         }
       }
 
-   
-
-
     render(){
         return(
             <div>
-                
                 <CreateJobForm/>
             </div>
         );
