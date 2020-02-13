@@ -44,7 +44,7 @@ class App extends Component{
 
       return(
           <div>
-              {(<Navbar/>)}
+              {(<Navbar user = {user}/>)}
           </div>
       );
 

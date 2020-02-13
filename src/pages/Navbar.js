@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -161,7 +161,6 @@ export default function PersistentDrawerLeft() {
             <Route path="/login" component={Login} /> 
 
             {/* <Route path="/login" component={Login} /> */}
-            <Route path="/profile" component={Profile} />
             <Route path="/register" component={Register} />
             <Route path="/createjob" component={CreateJob}/>
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
