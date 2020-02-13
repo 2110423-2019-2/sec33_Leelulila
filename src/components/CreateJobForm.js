@@ -10,6 +10,7 @@ import {
     MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import TextareaAutosize from 'react-textarea-autosize';
+import DatePicker from '../components/DatePicker';
 
 class CreateJobForm extends Component{
 
@@ -123,6 +124,14 @@ class CreateJobForm extends Component{
                         </Grid>
                         <Grid style={{ margin: '16px',display:'flex',direction:'column' }}>
                             <h3>Time :</h3>
+                            <DatePicker
+                                id = 'timebegin'
+                                label = "Start time"
+                                type = 'time'
+                                value={this.state.selectedBegintime}
+                                onChange={this.handleBeginTimeChange}
+                                defaultValue = {'10:00'}
+                            />
                             {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
                                     margin="normal"
@@ -138,6 +147,14 @@ class CreateJobForm extends Component{
                              */}
                     
                             <h3>to</h3>
+                            <DatePicker
+                                id = 'timeend'
+                                label = "End time"
+                                type = 'time'
+                                value={this.state.selectedEndtime}
+                                onChange={this.handleEndTimeChange}
+                                defaultValue = {'12:00'}
+                            />
                             {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
                                     margin="normal"
@@ -153,8 +170,15 @@ class CreateJobForm extends Component{
                         </Grid>
                         <Grid style={{ margin: '16px',display:'flex',direction:'column' }}>
                             <h3>Date</h3>
-    
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <DatePicker
+                                id = 'workDate'
+                                label = "Select Work Date"
+                                type = 'date'
+                                value={this.state.selectedDate}
+                                onChange={this.handleDateChange}
+                                defaultValue = {'2020-02-02'}
+                             />
+                            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <Grid>
                                 <KeyboardDatePicker
                                     disableToolbar
@@ -170,7 +194,8 @@ class CreateJobForm extends Component{
                                     }}
                                     /> 
                                 </Grid>
-                            </MuiPickersUtilsProvider>
+                            </MuiPickersUtilsProvider> */}
+
                         </Grid>
                         <Grid style={{ margin: '16px' }}>
                             <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number'  />

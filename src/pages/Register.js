@@ -181,7 +181,11 @@ export default function RegisterPage() {
                 <GenderRadio inputRef={register}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-                <DatePicker inputRef={register}/>
+                <DatePicker 
+                id = 'birthday'
+                label = "Birthday"
+                type = 'date'
+                inputRef={register}/>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel

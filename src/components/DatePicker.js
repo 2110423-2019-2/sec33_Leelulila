@@ -19,13 +19,15 @@ export default function DatePickers(props) {
 
   return (
       <TextField
-        id="date"
-        name = "birthday"
+        id={props.id}
+        name = {props.name}
         variant="outlined"
         required
-        label="Birthday"
-        type="date"
-        defaultValue="2017-05-24"
+        label={props.label}
+        type={props.type}
+        value = {props.value}
+        defaultValue = {props.defaultValue}
+        onChange = {props.onChange}
         className={classes.textField}
         InputLabelProps={{
           shrink: true,
