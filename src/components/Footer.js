@@ -15,7 +15,7 @@ const Footer = () => {
                             <p> This is the website for finding jobs and finding people to do activities for social. 
                                 We create this website because we believe all the people have good in themselves
                                 if we can encourage them to give love to others.</p>
-                            <h2>COPYRIGHT@ACTTIME2019</h2>
+                            <h2>COPYRIGHT@2019</h2>
                         </Grid>
                     </Grid>
                     <Grid id="FooterGrid2" item xs={12} sm={12} md={6}>

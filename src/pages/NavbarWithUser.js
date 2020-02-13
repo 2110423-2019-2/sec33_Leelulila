@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import ProfileBar from '../components/ProfileBar';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 //import Listingjob from './Listingjob';
-//import Createjob from './Createjob';
+import CreateJob from './CreateJob';
 import Footer from '../components/Footer';
 import '../style.css';
 //import Jobowned from './Jobowned';
@@ -140,21 +140,21 @@ export default function PersistentDrawerLeft() {
                 <Divider />
                 <List>
                     <ListItem><ListItemText><Button href='/Dashboard'>Home</Button></ListItemText></ListItem>
-                    {/* <ListItem><ListItemText><Button href='/Createjob'>CreateJob</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/Jobowned'>JobOwned</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/Listingjob'>ListingJob</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
+                    <ListItem><ListItemText><Button href='/Createjob'>CreateJob</Button></ListItemText></ListItem>
+                    {/* <ListItem><ListItemText><Button href='/Jobowned'>JobOwned</Button></ListItemText></ListItem>
+                    <ListItem><ListItemText><Button href='/Listingjob'>ListingJob</Button></ListItemText></ListItem>
+                    <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
                 </List>
                 <Divider />
             </Drawer>
 
             <Router>
                 <div>
-                    {/* <Route exact path="/" component={Landing}/>
-        {/* <Route path="/createjob" component={Createjob}/>
-        <Route path="/listingjob" component={Listingjob}/> */}
-                    {/* <Route path="/dashboard" component={Dashboard}/>
-        <Route path="/jobowned" component={Jobowned}/> */}
+                    {/* <Route exact path="/" component={Landing}/> */}
+                    <Route path="/Createjob" component={CreateJob}/>
+                    {/* <Route path="/listingjob" component={Listingjob}/> */}
+                    {/* <Route path="/dashboard" component={Dashboard}/> */}
+                    {/* <Route path="/jobowned" component={Jobowned}/> */}
 
                 </div>
             </Router>
