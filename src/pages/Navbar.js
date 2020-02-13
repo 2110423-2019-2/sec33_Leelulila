@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+
     }),
   },
   appBarShift: {
@@ -134,7 +135,7 @@ export default function PersistentDrawerLeft(props) {
         anchor="left"
         open={open}
         classes={{
-          paper: classes.drawerPaper,
+          paper: classes.drawerPaper, 
         }}
       >
         <div className={classes.drawerHeader}>
@@ -162,7 +163,6 @@ export default function PersistentDrawerLeft(props) {
 
             {/* <Route path="/login" component={Login} /> */}
             <Route path="/register" component={Register} />
-            <Route path="/createjob" component={CreateJob}/>
             {/* <Route path='/AboutUs' component={AboutUs} /> */}
           </div>
 

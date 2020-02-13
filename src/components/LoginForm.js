@@ -28,7 +28,7 @@ class LoginForm extends Component {
       <div>
         <Grid xs={12} md={4} style={{ minHeight: '400px',marginLeft:'auto',marginRight:'auto',marginTop:'100px'}}>
           <Grid direction='column' alignItems="center" justify="center" >
-            <h1>Login ACTTIME</h1>
+            <h1>Login CU PART-TIME</h1>
             <Grid item><TextField size="small" id="email" label="Email" variant="outlined" fullWidth /></Grid>
             <Grid item><TextField size="small" id="pass" label="Password" type='password' variant="outlined" style={{ marginTop: '10px' }} fullWidth /></Grid>
             <Grid direction='row' style={{float:'right',marginTop:'10px'}}>

@@ -13,7 +13,8 @@ const FirstLanding = () => {
                         <div style={{marginTop:'10%'}}>
                             <h1>WELCOME TO CU PART-TIME!</h1>
                             <h2>Discovering your talent in any career fields as you desire.</h2>
-                            <p>CU PART-TIME is a platform to help you find jobs or activities based on your interests. Developed by a group of students that understand how hard it is to find jobs in real environment. By using this platfrom, you will be working with people who have the same passion in a friendly environment. We are here to improve your experience and skill in career fields. Thank you for choosing CU PART-TIME!
+                            <p>CU PART-TIME is a platform to help you find jobs or activities based on your interests. Developed by a group of students that understand how hard it is to find jobs in real environment. 
+                                By using this platfrom, you will be working with people who have the same passion in a friendly environment. We are here to improve your experience and skill in career fields. Thank you for choosing CU PART-TIME!
                             </p>
                         </div>
                     </Grid>
