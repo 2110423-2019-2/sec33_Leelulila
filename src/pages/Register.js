@@ -66,47 +66,42 @@ export default function RegisterPage() {
     var pass = data.password;
     var confirmPass = data.confirmPassword;
     var name = data.firstName;
-    var surname = document.getElementById('sname').value;
+    var surname = data.lastName;
 
     if(email.includes('@') && pass.length >=6 && pass === confirmPass){ 
 
-    console.log('1');
-    var indexofat = email.indexOf('@');
-    var subemail = email.substring(0,indexofat);
+    // console.log('1');
+    // var indexofat = email.indexOf('@');
+    // var subemail = email.substring(0,indexofat);
 
     
-    firebaseRef.child(subemail).update({
-      Name:name,
-      Password:pass,
-      Surname:surname,
-      Currentjobcreated:'',
-      Currentjob:'',
-      Historyjob:'',
-      Historyjobcreated:''
-      
-
-    });
+    // firebaseRef.child(subemail).update({
+    //   Name:name,
+    //   Password:pass,
+    //   Surname:surname,
+    // });
     
-    var firebaseRefbyemail = fire.database().ref(subemail);
-    console.log('2');
+    // var firebaseRefbyemail = fire.database().ref(subemail);
+    // console.log('2');
     
 
     const auth = fire.auth();
 
-    auth.createUserWithEmailAndPassword(document.getElementById('email').value,document.getElementById('pass').value)
-    .then(
-      fire.auth().signOut);
+    auth.createUserWithEmailAndPassword(email, pass)
+   .catch(function(error) {
+        // Handle Errors here.
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        alert("Registration failed!!");
+        // ...
+      });
     //if this line bug want happen next
-    alert("Registration Success!!");
-    
-    
-    this.setState({
-      Checkregister:true
-    })
+    alert("Registration success");
+    window.location.href = "http://localhost:3000/createjob";
 
     
   }else{
-    alert("Please check your email format and password length must more than 6 character!!");
+    alert("Please check your email format and password length must more than 6 character!! and make sure password equal to confirm password");
   }
   }
 

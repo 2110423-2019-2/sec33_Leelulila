@@ -123,7 +123,7 @@ class CreateJobForm extends Component{
                         </Grid>
                         <Grid style={{ margin: '16px',display:'flex',direction:'column' }}>
                             <h3>Time :</h3>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
                                     margin="normal"
                                     id='timebegin'
@@ -135,10 +135,10 @@ class CreateJobForm extends Component{
                                     }}
                                 />
                             </MuiPickersUtilsProvider>
-                            
+                             */}
                     
                             <h3>to</h3>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
                                     margin="normal"
                                     id='timeend'
@@ -149,7 +149,7 @@ class CreateJobForm extends Component{
                                         'aria-label': 'change time',
                                     }}
                                 />
-                            </MuiPickersUtilsProvider>
+                            </MuiPickersUtilsProvider> */}
                         </Grid>
                         <Grid style={{ margin: '16px',display:'flex',direction:'column' }}>
                             <h3>Date</h3>

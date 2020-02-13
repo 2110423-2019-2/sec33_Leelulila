@@ -7,7 +7,6 @@ import Register from './pages/Register'
 import NavbarWithUser from './pages/NavbarWithUser'
 import fire from './config/firebase'
 import './App.css';
-import CreateJob from './pages/CreateJob';
 
 class App extends Component{
 

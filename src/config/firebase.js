@@ -1,14 +1,15 @@
 import firebase from 'firebase';
+import secret from './config';
 const config = {
     
-        apiKey: "AIzaSyDrtUpa4W3mHtQbgi7oM6l4Fb6O_zzQa1g",
-        authDomain: "actime-63b15.firebaseapp.com",
-        databaseURL: "https://actime-63b15.firebaseio.com",
-        projectId: "actime-63b15",
-        storageBucket: "actime-63b15.appspot.com",
-        messagingSenderId: "233529530601",
-        appId: "1:233529530601:web:ac805adb7aa17eb2e13878",
-        measurementId: "G-388RRBBL2P"
+        apiKey: secret.firekey,
+        authDomain: "se-leelulila.firebaseapp.com",
+        databaseURL: "https://se-leelulila.firebaseio.com",
+        projectId: "se-leelulila",
+        storageBucket: "se-leelulila.appspot.com",
+        messagingSenderId: "235698378552",
+        appId: "1:235698378552:web:aaa99f9ed59f661b0c93cd",
+        measurementId: "G-3S562X2KHV"
       
 };
 
