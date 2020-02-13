@@ -19,6 +19,7 @@ import GenderRadio from '../components/GenderRadioButton';
 import DatePicker from '../components/DatePicker';
 import { useForm } from 'react-hook-form'
 import fire from '../config/firebase';
+import { Redirect } from 'react-router-dom'
 
 function Copyright() {
   return (
@@ -68,49 +69,49 @@ export default function RegisterPage() {
     var name = data.firstName;
     var surname = data.lastName;
 
-    if(email.includes('@') && pass.length >=6 && pass === confirmPass){ 
+    if (email.includes('@') && pass.length >= 6 && pass === confirmPass) {
 
-    // console.log('1');
-    // var indexofat = email.indexOf('@');
-    // var subemail = email.substring(0,indexofat);
+      // console.log('1');
+      // var indexofat = email.indexOf('@');
+      // var subemail = email.substring(0,indexofat);
 
-    
-    // firebaseRef.child(subemail).update({
-    //   Name:name,
-    //   Password:pass,
-    //   Surname:surname,
-    // });
-    
-    // var firebaseRefbyemail = fire.database().ref(subemail);
-    // console.log('2');
-    
 
-    const auth = fire.auth();
+      // firebaseRef.child(subemail).update({
+      //   Name:name,
+      //   Password:pass,
+      //   Surname:surname,
+      // });
 
-    auth.createUserWithEmailAndPassword(email, pass)
-   .catch(function(error) {
-        // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        alert("Registration failed!!");
-        // ...
-      });
-    //if this line bug want happen next
-    alert("Registration success");
-    window.location.href = "http://localhost:3000/createjob";
+      // var firebaseRefbyemail = fire.database().ref(subemail);
+      // console.log('2');
 
-    
-  }else{
-    alert("Please check your email format and password length must more than 6 character!! and make sure password equal to confirm password");
-  }
+
+      const auth = fire.auth();
+
+      auth.createUserWithEmailAndPassword(email, pass)
+        .catch(function (error) {
+          // Handle Errors here.
+          // var errorCode = error.code;
+          // var errorMessage = error.message;
+          alert("Registration failed!!");
+          // ...
+        });
+      //if this line bug want happen next
+      alert("Registration success");
+      return (<Redirect to='/dashboard' />);
+
+
+    } else {
+      alert("Please check your email format and password length must more than 6 character!! and make sure password equal to confirm password");
+    }
   }
 
   return (
-    <Container component="main" maxWidth="sm" style={{marginTop:"70px",minHeight:'520px',paddingBottom:'50px'}}>
+    <Container component="main" maxWidth="sm" style={{ marginTop: "70px", minHeight: '520px', paddingBottom: '50px' }}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5" style={{marginTop:'5%'}}>
-          Register
+        <Typography component="h1" variant="h5" style={{ marginTop: '5%' }}>
+          Sign up for CU PART-TIME
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)} >
           <Grid container spacing={2}>
@@ -178,10 +179,10 @@ export default function RegisterPage() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <GenderRadio inputRef={register}/>
+              <GenderRadio inputRef={register} />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <DatePicker inputRef={register}/>
+              <DatePicker inputRef={register} />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
@@ -190,7 +191,7 @@ export default function RegisterPage() {
               />
             </Grid>
           </Grid>
-          <Button 
+          <Button
             type="submit"
             fullWidth
             variant="contained"

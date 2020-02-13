@@ -12,10 +12,10 @@ const Footer = () => {
                     <Grid container id="FooterGrid1" item xs={12} sm={12} md={6}>
                         <Grid item md={12} xs={12}><h1 id='white'>About Us</h1></Grid>
                         <Grid id='white' item md={8} xs={12}>
-                            <p> This is the website for finding jobs and finding people to do activities for social. 
-                                We create this website because we believe all the people have good in themselves
-                                if we can encourage them to give love to others.</p>
-                            <h2>COPYRIGHT@2019</h2>
+                            <p> This is the website for finding jobs and employing people. 
+                                We create this website because we believe all people have different talents and skills.
+                                We hope that this website can encourage people to find their value.</p>
+                            <h2>© 2020 - Leelulila & CO.</h2>
                         </Grid>
                     </Grid>
                     <Grid id="FooterGrid2" item xs={12} sm={12} md={6}>
