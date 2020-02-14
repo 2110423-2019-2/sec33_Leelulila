@@ -144,14 +144,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <ListItem><ListItemText><Button href='/'>Home</Button></ListItemText></ListItem>
-          {/* <ListItem><ListItemText><Button href='/login'>Login</Button></ListItemText></ListItem> */}
-          <ListItem><ListItemText><Button href='/Register'>Register</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/CreateJob'>Register</Button></ListItemText></ListItem>
-
-          {/* <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
-        </List>
+       
         <Divider />
       </Drawer>
       

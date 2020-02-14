@@ -66,8 +66,6 @@ class CreateJobForm extends Component{
 }
   
     handleDateChange = date => {
-    
-    
         const newdate = this.formatDate(date);
         this.setState({
             selectedDate: newdate
@@ -89,24 +87,20 @@ class CreateJobForm extends Component{
 
 
   onCreatejob(){
-    var jobname = document.getElementById('jobname').value;
-    var jobdes = document.getElementById('jobdescription').value;
-    var wages = document.getElementById('wages').value;
-    var amount = document.getElementById('amount').value;
-    var location = document.getElementById('location').value;
-    var begintime = document.getElementById('timebegin').value;
-    var endtime = document.getElementById('timeend').value;
-    var date = this.state.selectedDate;
-
-  
-   
+    // var jobname = document.getElementById('jobname').value;
+    // var jobdes = document.getElementById('jobdescription').value;
+    // var wages = document.getElementById('wages').value;
+    // var amount = document.getElementById('amount').value;
+    // var location = document.getElementById('location').value;
+    // var begintime = document.getElementById('timebegin').value;
+    // var endtime = document.getElementById('timeend').value;
+    // var date = this.state.selectedDate;
+    console.log("Create Job success");
     }
 
 
 
   render(){
-    console.log(this.Workkey);
-    if(!this.state.checkCreatejob){
         return (
 
             <div style={{ marginTop: '100px', marginBottom: '100px',paddingLeft:'25%' }}>
@@ -123,7 +117,7 @@ class CreateJobForm extends Component{
                         </Grid>
                         <Grid style={{ margin: '16px',display:'flex',direction:'column' }}>
                             <h3>Time :</h3>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
                                     margin="normal"
                                     id='timebegin'
@@ -134,11 +128,11 @@ class CreateJobForm extends Component{
                                         'aria-label': 'change time',
                                     }}
                                 />
-                            </MuiPickersUtilsProvider>
+                            </MuiPickersUtilsProvider> */}
                             
                     
                             <h3>to</h3>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
                                     margin="normal"
                                     id='timeend'
@@ -149,7 +143,7 @@ class CreateJobForm extends Component{
                                         'aria-label': 'change time',
                                     }}
                                 />
-                            </MuiPickersUtilsProvider>
+                            </MuiPickersUtilsProvider> */}
                         </Grid>
                         <Grid style={{ margin: '16px',display:'flex',direction:'column' }}>
                             <h3>Date</h3>
@@ -184,11 +178,6 @@ class CreateJobForm extends Component{
                     </Grid>
                 </form>
             </div>
-        );
-    }
-    return (
-        // <Redirect to='/dashboard' />
-        {}
         );
 }
 
