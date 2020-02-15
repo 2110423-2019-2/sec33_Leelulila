@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
+import { InputLabel, InputBase, Button, Grid , TextareaAutosize} from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 // import fire from '../config/Fire';
 import { Redirect } from 'react-router-dom';
-import {
-    KeyboardDatePicker,
-    KeyboardTimePicker,
-    MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import TextareaAutosize from 'react-textarea-autosize';
+// import TextareaAutosize from 'react-textarea-autosize';
 import DatePicker from '../components/DatePicker';
 
 class CreateJobForm extends Component {
@@ -115,7 +110,7 @@ class CreateJobForm extends Component {
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
                                 <h3>Detail :</h3>
-                                <TextareaAutosize rowsMin={10} rowsMax={10} style={{ width: '100%', height: '100%' }} name='detail' id="jobdescription" label="Detail" />
+                                <TextareaAutosize rowsMin={10} style={{ width: '100%', height: '100%' }} name='detail' id="jobdescription" label="Detail"/>
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Time :</h3>

@@ -10,7 +10,7 @@ class App extends Component{
   constructor(props) {
       super(props);
       this.state = {
-          user:{},
+          user:"",
       }
     }
 
@@ -31,12 +31,13 @@ class App extends Component{
 
   render(){
 
-      var user = fire.auth().currentUser;
+      var user = this.state.user;
 
-      if(user){
+      if (user === "") return null;
+      else if(user){
           return(<div><NavbarWithUser/></div>);
       }
-
+      else
       return(
           <div>
               {(<Navbar user = {user}/>)}
