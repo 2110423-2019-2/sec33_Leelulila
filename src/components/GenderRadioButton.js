@@ -68,10 +68,10 @@ export default function CustomizedRadios(props) {
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>
-      <RadioGroup defaultValue="female" aria-label="gender" name="gender" row id = "gender" >
-        <FormControlLabel value="female" control={<StyledRadio />} label="Female" inputRef={props.inputRef}/>
-        <FormControlLabel value="male" control={<StyledRadio />} label="Male" inputRef={props.inputRef}/>
-        <FormControlLabel value="other" control={<StyledRadio />} label="Other" inputRef={props.inputRef}/>
+      <RadioGroup defaultValue="female" aria-label="gender" name="gender" row>
+        <FormControlLabel value="female" control={<StyledRadio />} label="Female" />
+        <FormControlLabel value="male" control={<StyledRadio />} label="Male" />
+        <FormControlLabel value="other" control={<StyledRadio />} label="Other" />
       </RadioGroup>
     </FormControl>
   );
