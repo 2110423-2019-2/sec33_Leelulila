@@ -1,83 +1,104 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/LoginForm';
 import { Grid, Button, TextField } from '@material-ui/core';
-import JobCard from '../components/JobCard';
-
 import '../style.css';
-import ListingjobForm from '../components/ListingjobForm';
+import ListingJobForm from '../components/ListingJobForm';
+import axios from 'axios';
 
 class Dashboard extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            user: {},
-            listing: [],
+            listing: {},
         }
-        // this.database = fire.database().ref("ListingJob");
         this.renderList = this.renderList.bind(this);
+        
     }
-    // componentDidMount() {
-    //     this.database.on('value', snap => {
-    //         var list2 = this.state.listing;
-    //         for (var x in snap.val()) {
-    //             list2.push(snap.val()[x]);
 
-    //         }
+    
 
-    //         this.setState({
-    //             listing: list2,
-    //         })
+    componentDidMount(){
+        axios.get('http://localhost:9000/getalljob')
+      .then(response => {
+          
+        this.setState({
+            listing: response.data,
+          })
 
-    //     })
-    // }
+          var list2 = [];
+          var j = 'J1';
+
+          for (var x in this.state.listing) {
+              
+              list2.push(this.state.listing[x][j]);
+              var j2 = j.substring(1,2);
+              var count = parseInt(j2);
+              count+=1;
+              j = 'J'+count.toString();
+              
+          }
+        
+          this.setState({
+              listing: list2,
+          })
+          
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+
     renderList(){
-        if (this.state.listing.length==0){
+        if (this.state.listing.length==null){
+            console.log(1);
             return (
                 <h1> dont have any job</h1>
             )
         }
-        return (
-            
+        
+
+        if(this.state.listing[0]['_id'] == null){
+            console.log(this.state.listing);
+            return (
+                
                 this.state.listing.map((notes) => {
+                
                     return (
-                        <div md={12}>
-                            <ListingjobForm
-                                Jobname={notes.Jobname}
-                                Jobdes={notes.Jobdes}
+                        <Grid item xs={4}>
+                            <ListingJobForm
+                                JobName={notes.JobName}
+                                JobDetail={notes.JobDetail}
                                 Wages={notes.Wages}
                                 Amount={notes.Amount}
                                 Date={notes.Date}
-                                Begintime={notes.Begintime}
-                                Endtime={notes.Endtime}
+                                BeginTime={notes.BeginTime}
+                                EndTime={notes.EndTime}
                                 Location={notes.Location}
-                                Employee={notes.Employee}
-                                Workkey={notes.Workkey}
-                                Currentnumber={notes.Currentnumber}
-                                Currentemployer={notes.Currentemployer}
+                                Employer={notes.Employer}
                             />
-                            <br />
-                        </div>
+                        </Grid>
                     )
                 })
             
         )
+        }
+
+        
     }
   
     render() {
-
+        
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
 
                 <h1>Welcome!! User</h1>
                 <h1>Find Job</h1>
-                <TextField id="filled-search" label="Search field" type="search" variant="outlined" fullWidth />
-                <p>heve to make search real time</p>
-                <div style={{ marginTop: '5%' }}>
-                    <h1>Listing Job</h1>
-                    
+                <div>
+                    <Grid container spacing={3}>
+                        {this.renderList()}
+                    </Grid>
                 </div>
-                {this.renderList()}
 
             </div>);
 

@@ -14,9 +14,6 @@ class CreateJob extends Component{
         }
       }
 
-   
-
-
     render(){
         return(
             <div>

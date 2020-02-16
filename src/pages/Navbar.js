@@ -6,28 +6,24 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import CreateJob from './CreateJob';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 // import Dashboard from './Dashboard';
 import FirstLanding from '../components/FirstLanding';
 import Button from '@material-ui/core/Button';
 // import AboutUs from './AboutUs';
 import Footer from '../components/Footer';
+import ProfileBar from '../components/ProfileBar';
+import Login from '../pages/Login'
 // import ProfileBar from '../components/ProfileBar';
-
+import Profile from './Profile';
 import Register from './Register';
-// import Login from '../page/Login';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import Dashboard from './Dashboard';
 
 const drawerWidth = 240;
 
@@ -41,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+
     }),
   },
   appBarShift: {
@@ -89,7 +86,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -121,11 +118,9 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton> */}
-          <Typography variant="h6">
-            ACTTIME
-          </Typography>
+          <Button disableElevation variant='contained' color='primary' href='/'>CU PART-TIME</Button>
           
-          {/* <ProfileBar /> */}
+          <ProfileBar /> 
         </Toolbar>
 
       </AppBar>
@@ -135,7 +130,7 @@ export default function PersistentDrawerLeft() {
         anchor="left"
         open={open}
         classes={{
-          paper: classes.drawerPaper,
+          paper: classes.drawerPaper, 
         }}
       >
         <div className={classes.drawerHeader}>
@@ -152,11 +147,10 @@ export default function PersistentDrawerLeft() {
 
           <div >
             <Route exact path="/" component={FirstLanding} />
-            {/* <Route path="/login" component={Login} /> */}
+            <Route path="/login" component={Login} /> 
 
             <Route path="/register" component={Register} />
-            <Route path="/createjob" component={CreateJob}/>
-            {/* <Route path='/AboutUs' component={AboutUs} /> */}
+            <Route path="/dashboard" component={Dashboard} />
           </div>
 
         </Router>

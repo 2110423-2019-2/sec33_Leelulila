@@ -1,19 +1,25 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Navbar from './pages/Navbar';
-import Footer from './components/Footer'
-import FirstLanding from './components/FirstLanding'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import Register from './pages/Register'
-
+import NavbarWithUser from './pages/NavbarWithUser'
+// import fire from './config/firebase'
 import './App.css';
-import CreateJob from './pages/CreateJob';
 
-function App() {
-  return (
-    <div>
-    <Navbar/>
-    </div>
-  );
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    
+  }
+
+  render(){
+    return (
+      <div>
+      {<Navbar/>}
+      </div>
+    );
+  }
+    
 }
 
 export default App;
