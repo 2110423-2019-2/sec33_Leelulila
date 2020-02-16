@@ -11,6 +11,7 @@ import {
 } from '@material-ui/pickers';
 import TextareaAutosize from 'react-textarea-autosize';
 import DatePicker from '../components/DatePicker';
+import fire from '../config/firebase';
 
 class CreateJobForm extends Component {
 
@@ -88,16 +89,47 @@ class CreateJobForm extends Component {
 
 
 
+    //push data to mongoDB
+    onCreatejob() { 
 
-    onCreatejob() {
-        var jobname = document.getElementById('jobname').value;
-        var jobdes = document.getElementById('jobdescription').value;
-        var wages = document.getElementById('wages').value;
-        var amount = document.getElementById('amount').value;
-        var location = document.getElementById('location').value;
-        var begintime = document.getElementById('timebegin').value;
-        var endtime = document.getElementById('timeend').value;
-        var date = this.state.selectedDate;
+        //get all data from element below
+        var data = {
+            JobName: document.getElementById('jobname').value,
+            JobDetail: document.getElementById('jobdescription').value,
+            Wages: document.getElementById('wages').value,
+            Amount: document.getElementById('amount').value,
+            Location: document.getElementById('location').value,
+            BeginTime: document.getElementById('timebegin').value,
+            EndTime: document.getElementById('timeend').value,
+            Date: document.getElementById('workDate').value,
+            CurrentEmployee: [],
+            Employer: fire.auth().currentUser.email,
+            Status: "Ready"
+        }
+
+        //this function will push data to db
+        this.mongoCreateJob(data);
+        
+    }
+
+
+
+    mongoCreateJob(data) {
+        //send request data to backend /newjob ***pull the lastest backend first***
+        fetch("/newjob", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function (resData) {
+            // console.log(resData);      
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
     render() {
@@ -115,7 +147,7 @@ class CreateJobForm extends Component {
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
                                 <h3>Detail :</h3>
-                                <TextareaAutosize rowsMin={10} rowsMax={10} style={{ width: '100%', height: '100%' }} name='detail' id="jobdescription" label="Detail" />
+                                <textarea rowsMin={10} rowsMax={10} style={{ width: '100%', height: '100px' }} name='detail' id="jobdescription" label="Detail" />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Time :</h3>
@@ -123,8 +155,6 @@ class CreateJobForm extends Component {
                                     id='timebegin'
                                     label="Start time"
                                     type='time'
-                                    value={this.state.selectedBegintime}
-                                    onChange={this.handleBeginTimeChange}
                                     defaultValue={'10:00'}
                                 />
                                 {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -146,8 +176,6 @@ class CreateJobForm extends Component {
                                     id='timeend'
                                     label="End time"
                                     type='time'
-                                    value={this.state.selectedEndtime}
-                                    onChange={this.handleEndTimeChange}
                                     defaultValue={'12:00'}
                                 />
                                 {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -169,8 +197,6 @@ class CreateJobForm extends Component {
                                     id='workDate'
                                     label="Select Work Date"
                                     type='date'
-                                    value={this.state.selectedDate}
-                                    onChange={this.handleDateChange}
                                     defaultValue={'2020-02-02'}
                                 />
                                 {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
