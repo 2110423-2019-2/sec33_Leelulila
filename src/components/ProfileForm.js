@@ -13,10 +13,7 @@ class ProfileForm extends Component {
     }
 
     componentDidMount() {        
-        console.log("new");
     }
-    
-
 
     render() {
         return (
@@ -32,11 +29,11 @@ class ProfileForm extends Component {
                         <div>
                             <Grid style={{ display: 'flex' }}>
                                 <Grid item md={12}>
-                                    <h4>About Me:</h4>
+                                    <h4>About:</h4>
                                     <p>{this.props.about}</p>
                                 </Grid>
                                 <Grid item md={1}>
-                                    <EditModal title="About Me"/>
+                                    <EditModal title="About" value ={this.props.about}/>
                                 </Grid>
                             </Grid>
                         </div>
@@ -55,7 +52,7 @@ class ProfileForm extends Component {
                                             <h4>Email:</h4><p>{this.props.email}</p>
                                         </Grid>
                                         <Grid item md={0}>
-                                            <EditModal title='Information' />
+                                            <EditModal many = {true} title={['Birth date','Gender','Email']} value ={[this.props.birthdate,this.props.gender,this.props.email]}/>
                                         </Grid>
                                     </Grid>
                                 </div>
@@ -72,7 +69,7 @@ class ProfileForm extends Component {
                                             <p>{this.props.education}</p>
                                         </Grid>
                                         <Grid item md={0}>
-                                            <EditModal title='Education' />
+                                            <EditModal title='Education' value ={this.props.education}/>
                                         </Grid>
                                     </Grid>
                                 </div>
@@ -89,7 +86,7 @@ class ProfileForm extends Component {
                                             <p>{this.props.skill}</p>
                                         </Grid>
                                         <Grid item md={0}>
-                                            <EditModal title="Skill" />
+                                            <EditModal title="Skill" value ={this.props.skill} />
                                         </Grid>
                                     </Grid>
                                 </div>
