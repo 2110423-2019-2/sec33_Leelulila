@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
 import Navbar from './pages/Navbar';
-import Footer from './components/Footer'
-import FirstLanding from './components/FirstLanding'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import Register from './pages/Register'
 import NavbarWithUser from './pages/NavbarWithUser'
 import fire from './config/firebase'
 import './App.css';
@@ -20,8 +17,6 @@ class App extends Component{
   componentDidMount(){
       this.authListener();
   }
-
-  
 
   authListener(){
       fire.auth().onAuthStateChanged((user) => {

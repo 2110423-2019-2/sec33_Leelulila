@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import fire from '../config/firebase';
 
 class LoginForm extends Component {
