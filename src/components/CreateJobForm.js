@@ -112,10 +112,12 @@ class CreateJobForm extends Component {
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Jobname : </h3>
                                 <TextField name='Jobname' id="jobname" variant="outlined" margin='dense' style={{ marginLeft: '20px' }} />
+                                <h3 style = {{"padding-left": "20px" }}>Number of Employee :</h3>
+                            <TextField name='people' id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
-                                <h3>Detail :</h3>
-                                <TextareaAutosize rowsMin={10} rowsMax={10} style={{ width: '100%', height: '100%' }} name='detail' id="jobdescription" label="Detail" />
+                                <h3>Details :</h3>
+                                <TextField multiline={true} rows={5} name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Time :</h3>
@@ -125,7 +127,7 @@ class CreateJobForm extends Component {
                                     type='time'
                                     value={this.state.selectedBegintime}
                                     onChange={this.handleBeginTimeChange}
-                                    defaultValue={'10:00'}
+                                    defaultValue={'00:00'}
                                 />
                                 {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
@@ -148,7 +150,7 @@ class CreateJobForm extends Component {
                                     type='time'
                                     value={this.state.selectedEndtime}
                                     onChange={this.handleEndTimeChange}
-                                    defaultValue={'12:00'}
+                                    defaultValue={'00:00'}
                                 />
                                 {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardTimePicker
@@ -162,9 +164,10 @@ class CreateJobForm extends Component {
                                     }}
                                 />
                             </MuiPickersUtilsProvider> */}
+                            <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
-                                <h3>Date</h3>
+                                <h3>Date :</h3>
                                 <DatePicker
                                     id='workDate'
                                     label="Select Work Date"
@@ -190,13 +193,12 @@ class CreateJobForm extends Component {
                                     /> 
                                 </Grid>
                             </MuiPickersUtilsProvider> */}
-
+                                <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}}/>
                             </Grid>
-                            <Grid style={{ margin: '16px' }}>
+                            {/* <Grid style={{ margin: '16px' }}>
                                 <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' />
-                                <TextField name='people' id='amount' label="Limited Person" variant="outlined" type='number' style={{ marginLeft: '16px' }} />
                                 <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '16px' }} />
-                            </Grid>
+                            </Grid> */}
 
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
                                 <Button variant="contained" color="primary" onClick={this.onCreatejob} >Submit</Button>
