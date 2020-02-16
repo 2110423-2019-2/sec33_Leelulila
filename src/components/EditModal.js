@@ -9,7 +9,7 @@ function rand() {
 }
 
 function getModalStyle() {
-    const top = 50 ;
+    const top = 50;
     const left = 50;
 
     return {
@@ -17,6 +17,20 @@ function getModalStyle() {
         left: `${left}%`,
         transform: `translate(-${top}%, -${left}%)`,
     };
+}
+
+function update() {
+    console.log('change')
+    let self = this;
+    fetch("/user/101", {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json; charset=UTF-8'},
+        body: {'education':'aaaaaaa'}
+    }).then(function (data) {
+        console.log('innnnnnn')
+    }).catch(function (err) {
+        console.log(err);
+    });
 }
 
 const useStyles = makeStyles(theme => ({
@@ -30,10 +44,10 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         '& .MuiTextField-root': {
-          margin: theme.spacing(1),
-          width: 300,
+            margin: theme.spacing(1),
+            width: 300,
         },
-      },
+    },
 }));
 
 
@@ -45,8 +59,10 @@ export default function SimpleModal(props) {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState('before');
 
-    const handleChange = event => {
-        setValue(event.target.value);
+    const handleChange = () => {
+        update();
+        console.log('upppppp')
+        setOpen(false);
     };
 
     const handleOpen = () => {
@@ -62,7 +78,7 @@ export default function SimpleModal(props) {
             {/* <button type="button" onClick={handleOpen}>
                 Edit
       </button> */}
-            <Button variant='contained' size='small' style={{marginTop:'10px'}} onClick={handleOpen} color='grey' >Edit</Button>
+            <Button variant='contained' size='small' style={{ marginTop: '10px' }} onClick={handleOpen} color='grey' >Edit</Button>
 
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -73,17 +89,17 @@ export default function SimpleModal(props) {
                 <div style={modalStyle} className={classes.paper}>
                     <h2 id="simple-modal-title">{props.title}</h2>
                     <p id="simple-modal-description">
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField  
-                            id="standard-multiline-flexible"
-                            multiline
-                            rowsMax="10"
-                            value={value}
-                            onChange={handleChange}
-                        />
-                    </form>
+                        <form className={classes.root} noValidate autoComplete="off">
+                            <TextField
+                                id="standard-multiline-flexible"
+                                multiline
+                                rowsMax="10"
+                                value={value}
+                                onChange={handleChange}
+                            />
+                        </form>
                     </p>
-                    <button style={{ float: "right" }} type="button" onClick={handleClose}>
+                    <button style={{ float: "right" }} type="button" onClick={handleChange}>
                         Save
          </button>
                     <button style={{ float: "right" }} type="button" onClick={handleClose}>
