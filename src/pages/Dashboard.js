@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     componentDidMount(){
         axios.get('http://localhost:9000/getalljob')
-      .then(response => {
+        .then(response => {
           
         this.setState({
             listing: response.data,
@@ -37,12 +37,9 @@ class Dashboard extends Component {
               j = 'J'+count.toString();
               
           }
-        
           this.setState({
               listing: list2,
           })
-          
-        
       })
       .catch((error) => {
         console.log(error);
@@ -91,8 +88,6 @@ class Dashboard extends Component {
         
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
-
-                <h1>Welcome!! User</h1>
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>

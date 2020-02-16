@@ -24,6 +24,8 @@ import CreateJob from './CreateJob';
 import Profile from './Profile'
 import Footer from '../components/Footer';
 import '../style.css';
+import Dashboard from './Dashboard';
+
 //import Jobowned from './Jobowned';
 
 
@@ -155,6 +157,7 @@ export default function PersistentDrawerLeft() {
                     {/* <Route exact path="/" component={Landing}/> */}
                     <Route path="/Createjob" component={CreateJob} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/dashboard" component={Dashboard} />
                     {/* <Route path="/listingjob" component={Listingjob}/> */}
                     {/* <Route path="/dashboard" component={Dashboard}/> */}
                     {/* <Route path="/jobowned" component={Jobowned}/> */}

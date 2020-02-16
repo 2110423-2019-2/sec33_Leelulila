@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
+import { Button } from '@material-ui/core';
+import axios from 'axios';
 
 
 
@@ -41,7 +43,7 @@ class JobCardModal extends Component{
        
           this.openModal = this.openModal.bind(this);
           this.closeModal = this.closeModal.bind(this);
-
+          this.onGetjob = this.onGetjob.bind(this);
         
     }
 
@@ -54,6 +56,36 @@ class JobCardModal extends Component{
         
       
     }
+
+    onGetjob(){
+    //   var employer2 = this.state.employer;
+    //   var email = fire.auth().currentUser.email;
+    //   var indexofat = email.indexOf('@');
+    //   var subemail = email.substring(0,indexofat);
+    //   var firebaseRef = fire.database().ref('ListingJob').child(this.Workkey);
+    //   var firebaseRef2 = fire.database().ref('ListingJob').child(this.Workkey);
+    //   if(!this.Currentemployer.includes(subemail) ){
+    //     firebaseRef.once('value', snap =>{
+        
+    //       var email = fire.auth().currentUser.email;
+    //       var indexofat = email.indexOf('@');
+    //       var subemail = email.substring(0,indexofat);
+  
+    //       var oldemp = snap.val()['Currentemployer'];  
+    //       var newemp2 = oldemp + ',' + subemail;
+    //       var newnum2 = snap.val()['Currentnumber']+1;
+          
+    //       firebaseRef.update({
+    //           Currentnumber:newnum2,
+    //           Currentemployer:newemp2,
+    //       })
+           
+    //     });
+        
+    //   window.location.reload(false);
+    // }
+  }
+
 
 
 
@@ -89,7 +121,7 @@ class JobCardModal extends Component{
                       <p>BeginTime:{this.BeginTime}</p>
                       <p>EndTime:{this.EndTime}</p>
                       <p>Employer:{this.Employer}</p>
-                      <button onClick={this.closeModal}>close</button>
+                      <Button variant="contained" color="primary" onClick={this.onGetjob}>Apply</Button>
 
             </Modal>
         </div>

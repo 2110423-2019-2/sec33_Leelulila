@@ -23,7 +23,6 @@ import Login from '../pages/Login'
 import Profile from './Profile';
 import Register from './Register';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import Dashboard from './Dashboard';
 
 const drawerWidth = 240;
 
@@ -150,7 +149,7 @@ export default function PersistentDrawerLeft(props) {
             <Route path="/login" component={Login} /> 
 
             <Route path="/register" component={Register} />
-            <Route path="/dashboard" component={Dashboard} />
+            
           </div>
 
         </Router>
