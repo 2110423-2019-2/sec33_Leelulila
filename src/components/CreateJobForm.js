@@ -4,6 +4,7 @@ import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 // import fire from '../config/Fire';
 import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import {
     KeyboardDatePicker,
     KeyboardTimePicker,
@@ -24,33 +25,9 @@ class CreateJobForm extends Component {
             selectedBegintime: null,
             selectedEndtime: null,
             checkCreatejob: false,
-            Workkey: ''
+            Workkey: '',
+            redirect: false
         }
-        // this.database = fire.database().ref("ListingJob");
-
-        // this.database.on('value', snap =>{
-
-        //     var max = 0;
-
-        //     for (var x in snap.val()){
-
-        //         if(x[0]=='J'){
-        //             var y = parseInt(x.substring(1,));
-        //             if(y>max){
-        //                 max=y;
-        //             }
-        //         }
-        //     }
-        //     max = max+1;
-        //     this.setState({
-        //         Workkey:'J'+max.toString()
-        //     })
-        //     console.log(this.state.Workkey);
-
-
-        // })
-
-
     }
 
     formatDate(date) {
@@ -104,7 +81,8 @@ class CreateJobForm extends Component {
 
     //push data to mongoDB
     onCreatejob() { 
-
+        alert("Your job is being added!")
+        
         //get all data from element below
         var data = {
             JobName: document.getElementById('jobname').value,
@@ -123,6 +101,7 @@ class CreateJobForm extends Component {
         //this function will push data to db
         this.mongoCreateJob(data);
         
+        this.setState({ redirect: true });
     }
 
 
@@ -145,10 +124,15 @@ class CreateJobForm extends Component {
         }).catch(function (err) {
             console.log(err);
         });
+        
     }
 
     render() {
-        console.log(this.state.checkCreatejob);
+        const { redirect } = this.state;
+        console.log(this.Workkey);
+        if (redirect) {
+            return <Redirect to='/Dashboard'/>;
+          }
         if (!this.state.checkCreatejob) {
             return (
 
@@ -176,19 +160,6 @@ class CreateJobForm extends Component {
                                     // onChange={this.handleBeginTimeChange}
                                     defaultValue={'00:00'}
                                 />
-                                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    id='timebegin'
-                                    label="Time picker"
-                                    value={this.state.selectedBegintime}
-                                    onChange={this.handleBeginTimeChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change time',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider>
-                             */}
 
                                 <h3>to</h3>
                                 <DatePicker
@@ -199,18 +170,6 @@ class CreateJobForm extends Component {
                                     // onChange={this.handleEndTimeChange}
                                     defaultValue={'00:00'}
                                 />
-                                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    id='timeend'
-                                    label="Time picker"
-                                    value={this.state.selectedEndtime}
-                                    onChange={this.handleEndTimeChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change time',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider> */}
                             <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
@@ -221,42 +180,17 @@ class CreateJobForm extends Component {
                                     type='date'
                                     defaultValue={'2020-02-02'}
                                 />
-                                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid>
-                                <KeyboardDatePicker
-                                    disableToolbar
-                                    variant="inline"
-                                    format="MM/dd/yyyy"
-                                    margin="normal"
-                                    id="date-picker-inline"
-                                    label="Select Work Date"
-                                    value={this.state.selectedDate}
-                                    onChange={this.handleDateChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                    /> 
-                                </Grid>
-                            </MuiPickersUtilsProvider> */}
                                 <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}}/>
                             </Grid>
-                            {/* <Grid style={{ margin: '16px' }}>
-                                <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' />
-                                <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '16px' }} />
-                            </Grid> */}
-
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
                                 <Button variant="contained" color="primary" onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>
                 </div>
+                
             );
         }
-        return (
-            <Redirect to='/dashboard' />
-            
-        );
     }
 
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  { Redirect } from 'react-router-dom'
+import  {withRouter} from 'react-router-dom'
 import {Grid,Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fire from '../config/firebase';
@@ -36,10 +36,10 @@ class Login extends Component{
     render(){
         
         var user = fire.auth().currentUser;
+    
         
         if (user){
             console.log('login');
-            return (<Redirect to='/dashboard' />);
         }
         else{
             console.log('Notlogin');
@@ -61,4 +61,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default withRouter(Login);
