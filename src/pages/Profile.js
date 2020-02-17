@@ -9,8 +9,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [],
-    }
+      user: []}
     this.getProfile.bind(this);
   }
 
@@ -33,7 +32,7 @@ class Profile extends Component {
     var user = fire.auth().currentUser;
     let self = this;
     console.log("/user/" + user.email)
-    fetch("/user/101", {
+    fetch("/useremail/"+user.email, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).then(function (response) {
@@ -44,6 +43,7 @@ class Profile extends Component {
     }).then(function (jsonData) {
       self.setState({ user: jsonData });
       console.log(self.state.user)
+      console.log(self.state.user.skill)
     }).catch(function (err) {
       console.log(err);
     });
@@ -53,30 +53,31 @@ class Profile extends Component {
     return (
       <div>
         <Container>
-          {this.state.user._id &&
-            this.state.user.name &&
-            this.state.user.surname &&
-            this.state.user.age &&
+          {(this.state.user._id ||
+            this.state.user.firstName ||
+            this.state.user.lastName ||
+            this.state.user.age ||
             this.state.user.email &&
-            this.state.user.phone &&
-            this.state.user.gender &&
-            this.state.user.birthdate &&
-            this.state.user.education &&
-            this.state.user.about &&
-            this.state.user.skill &&
+            this.state.user.phone ||
+            this.state.user.gender ||
+            this.state.user.birthday ||
+            this.state.user.education ||
+            this.state.user.about ||
+            this.state.user.skill )&&
             <ProfileForm
               _id={this.state.user._id}
-              name={this.state.user.name}
-              surname={this.state.user.surname}
+              firstName={this.state.user.firstName}
+              lastName={this.state.user.lastName}
               age={this.state.user.age}
               email={this.state.user.email}
               phone={this.state.user.phone}
               gender={this.state.user.gender}
-              birthdate={this.state.user.birthdate}
+              birthday={this.state.user.birthday}
               education={this.state.user.education}
               about={this.state.user.about}
               skill={this.state.user.skill}
-            />}
+            />}            
+            
         </Container>
       </div>
     );
