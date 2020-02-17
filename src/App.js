@@ -5,12 +5,12 @@ import NavbarWithUser from './pages/NavbarWithUser'
 import fire from './config/firebase'
 import './App.css';
 
-class App extends Component{
+class App extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-          user:"",
+          user: "",
       }
     }
 
@@ -28,12 +28,11 @@ class App extends Component{
       })
   }
 
-
   render(){
 
-      var user = this.state.user;
+      var user = fire.auth().currentUser;
 
-      if (user === "") return null;
+      if (this.state.user === "") return null;
       else if(user){
           return(<div><NavbarWithUser/></div>);
       }
@@ -46,6 +45,7 @@ class App extends Component{
 
       
   }
+    
 }
 
 export default App;

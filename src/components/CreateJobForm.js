@@ -45,8 +45,6 @@ class CreateJobForm extends Component {
     }
 
     handleDateChange = date => {
-
-
         const newdate = this.formatDate(date);
         this.setState({
             selectedDate: newdate
@@ -62,6 +60,21 @@ class CreateJobForm extends Component {
         this.setState({
             selectedEndtime: time
         })
+    }       
+ 
+   
+
+
+  onCreatejob(){
+    // var jobname = document.getElementById('jobname').value;
+    // var jobdes = document.getElementById('jobdescription').value;
+    // var wages = document.getElementById('wages').value;
+    // var amount = document.getElementById('amount').value;
+    // var location = document.getElementById('location').value;
+    // var begintime = document.getElementById('timebegin').value;
+    // var endtime = document.getElementById('timeend').value;
+    // var date = this.state.selectedDate;
+    console.log("Create Job success");
     }
 
 
@@ -105,7 +118,9 @@ class CreateJobForm extends Component {
             }
             return response.json();
         }).then(function (resData) {
-            // console.log(resData);      
+            // console.log(resData); 
+            alert("Success!!");
+           
         }).catch(function (err) {
             console.log(err);
         });

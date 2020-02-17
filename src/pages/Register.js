@@ -5,7 +5,7 @@ import GenderRadioButton from '../components/GenderRadioButton';
 import DatePicker from '../components/DatePicker';
 import { useForm } from 'react-hook-form';
 import fire from '../config/firebase';
-import { Redirect } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 
 
@@ -33,7 +33,9 @@ const useStyles = makeStyles(theme => ({
 export default function RegisterPage() {
   const classes = useStyles();
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
+
+  var history = useHistory();
 
   const onSubmit = data => {
     console.log(data)
@@ -171,7 +173,7 @@ export default function RegisterPage() {
     auth.createUserWithEmailAndPassword(email, pass)
     .then(u => {
       alert("Registration success");
-      return (<Redirect to='/dashboard' />); 
+      auth.signOut();
     })
       .catch(function (error) {
         switch (error.code) {
@@ -201,6 +203,7 @@ export default function RegisterPage() {
             }
             return response.json();
         }).then(function(resData) {
+            history.push("/");
             // console.log(resData);      
         }).catch(function(err) {
             console.log(err);

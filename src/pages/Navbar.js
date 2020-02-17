@@ -117,7 +117,7 @@ export default function PersistentDrawerLeft(props) {
           >
             <MenuIcon />
           </IconButton> */}
-          <Button disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
+          <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px'}} disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
           
           <ProfileBar /> 
         </Toolbar>
@@ -138,14 +138,7 @@ export default function PersistentDrawerLeft(props) {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <ListItem><ListItemText><Button href='/'>Home</Button></ListItemText></ListItem>
-          {/* <ListItem><ListItemText><Button href='/login'>Login</Button></ListItemText></ListItem> */}
-          <ListItem><ListItemText><Button href='/Register'>Register</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/CreateJob'>Register</Button></ListItemText></ListItem>
-
-          {/* <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
-        </List>
+       
         <Divider />
       </Drawer>
       
@@ -155,9 +148,8 @@ export default function PersistentDrawerLeft(props) {
             <Route exact path="/" component={FirstLanding} />
             <Route path="/login" component={Login} /> 
 
-            {/* <Route path="/login" component={Login} /> */}
             <Route path="/register" component={Register} />
-            {/* <Route path='/AboutUs' component={AboutUs} /> */}
+            
           </div>
 
         </Router>

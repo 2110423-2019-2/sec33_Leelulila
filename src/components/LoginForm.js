@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, Grid } from '@material-ui/core';
 import fire from '../config/firebase';
+import  {withRouter} from 'react-router-dom'
 
 class LoginForm extends Component {
 
@@ -16,7 +17,7 @@ class LoginForm extends Component {
     const auth = fire.auth();
 
     auth.signInWithEmailAndPassword(email, pass).then((u) => {
-
+      this.props.history.push('/Dashboard');
     }).catch((error) => {
       alert('Please check your email or password');
     });
@@ -44,4 +45,4 @@ class LoginForm extends Component {
   }
 
 }
-export default LoginForm;
+export default withRouter(LoginForm);
