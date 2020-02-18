@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
-import DateFnsUtils from '@date-io/date-fns';
 // import fire from '../config/Fire';
 import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import {
-    KeyboardDatePicker,
-    KeyboardTimePicker,
-    MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import TextareaAutosize from 'react-textarea-autosize';
 import DatePicker from '../components/DatePicker';
 import fire from '../config/firebase';
 
@@ -142,13 +134,13 @@ class CreateJobForm extends Component {
                         <Grid xs={12} md={8}>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Jobname : </h3>
-                                <TextField name='Jobname' id="jobname" variant="outlined" margin='dense' style={{ marginLeft: '20px' }} />
+                                <TextField name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px' }} />
                                 <h3 style = {{"padding-left": "20px" }}>Number of Employee :</h3>
-                            <TextField name='people' id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px'}} />
+                            <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
                                 <h3>Details :</h3>
-                                <TextField multiline={true} rows={5} name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
+                                <TextField multiline={true} rows={5} color="secondary" name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Time :</h3>
@@ -170,7 +162,7 @@ class CreateJobForm extends Component {
                                     // onChange={this.handleEndTimeChange}
                                     defaultValue={'00:00'}
                                 />
-                            <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
+                            <TextField name='location' color="secondary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Date :</h3>
@@ -179,11 +171,12 @@ class CreateJobForm extends Component {
                                     label="Select Work Date"
                                     type='date'
                                     defaultValue={'2020-02-02'}
+                                    
                                 />
-                                <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}}/>
+                                <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
-                                <Button variant="contained" color="primary" onClick={this.onCreatejob} >Submit</Button>
+                                <Button variant="outlined" color="secondary" onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>
