@@ -9,7 +9,7 @@ const FirstLanding = () => {
                     <Grid container item sm={12} md={6} xl={6} style={{marginTop:'20px'}}>
                         <img id='picFirstLanding' src={firstPic} width='600' height='400' style={{ marginLeft: "20%" }}/>
                     </Grid>
-                    <Grid item sm={12} md={6} xl={6} style={{padding:'10px'}}>
+                    <Grid item sm={12} md={6} xl={6} style={{paddingRight:'10px'}}>
                         <div style={{marginTop:'10%'}}>
                             <h1>WELCOME TO CU PART-TIME!</h1>
                             <h2>Discovering your talent in any career fields as you desire.</h2>
