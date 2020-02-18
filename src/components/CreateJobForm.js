@@ -89,11 +89,16 @@ class CreateJobForm extends Component {
             Employer: fire.auth().currentUser.email,
             Status: "Ready"
         }
-
+        if(data.JobName =='' || data.JobDetail=='' || data.Wages=='' || data.Amount=='' || data.Location==''){
+            alert("Please fill the Empty Box")
+        }
+        else{
         //this function will push data to db
         this.mongoCreateJob(data);
         
         this.setState({ redirect: true });
+        }
+        
     }
 
 
