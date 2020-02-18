@@ -1,38 +1,13 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
-import Radio from '@material-ui/core/Radio';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography, makeStyles} from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import GenderRadio from '../components/GenderRadioButton';
+import GenderRadioButton from '../components/GenderRadioButton';
 import DatePicker from '../components/DatePicker';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 import fire from '../config/firebase';
-import { Redirect } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -58,48 +33,24 @@ const useStyles = makeStyles(theme => ({
 export default function RegisterPage() {
   const classes = useStyles();
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
+
+  var history = useHistory();
 
   const onSubmit = data => {
-
-    var firebaseRef = fire.database().ref('User');
+    console.log(data)
     var email = data.email;
     var pass = data.password;
     var confirmPass = data.confirmPassword;
     var name = data.firstName;
     var surname = data.lastName;
+    var gender = data.gender;
+    var birthday = data.birthday;
 
     if (email.includes('@') && pass.length >= 6 && pass === confirmPass) {
 
-      // console.log('1');
-      // var indexofat = email.indexOf('@');
-      // var subemail = email.substring(0,indexofat);
-
-
-      // firebaseRef.child(subemail).update({
-      //   Name:name,
-      //   Password:pass,
-      //   Surname:surname,
-      // });
-
-      // var firebaseRefbyemail = fire.database().ref(subemail);
-      // console.log('2');
-
-
-      const auth = fire.auth();
-
-      auth.createUserWithEmailAndPassword(email, pass)
-        .catch(function (error) {
-          // Handle Errors here.
-          // var errorCode = error.code;
-          // var errorMessage = error.message;
-          alert("Registration failed!!");
-          // ...
-        });
-      //if this line bug want happen next
-      alert("Registration success");
-      return (<Redirect to='/dashboard' />);
-
+      fireRegister(email, pass);
+      mongoRegister(data);
 
     } else {
       alert("Please check your email format and password length must more than 6 character!! and make sure password equal to confirm password");
@@ -179,14 +130,15 @@ export default function RegisterPage() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <GenderRadio inputRef={register} />
+              <GenderRadioButton inputRef = {register}/>
             </Grid>
             <Grid item xs={12} sm={6}>
                 <DatePicker 
-                id = 'birthday'
-                label = "Birthday"
-                type = 'date'
-                inputRef={register}/>
+                  id = 'birthday'
+                  name = 'birthday'
+                  label = "Birthday"
+                  type = 'date'
+                  inputRef={register}/>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
@@ -201,6 +153,7 @@ export default function RegisterPage() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{backgroundColor:'#32441c'}}
           >
             Sign Up
           </Button>
@@ -215,4 +168,46 @@ export default function RegisterPage() {
       </div>
     </Container>
   );
+
+  function fireRegister(email, pass) {
+    const auth = fire.auth();
+    auth.createUserWithEmailAndPassword(email, pass)
+    .then(u => {
+      alert("Registration success");
+      auth.signOut();
+    })
+      .catch(function (error) {
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            alert(`Email address ${email} already in use.`);
+          // case 'auth/invalid-email':
+          //   alert(`Email address ${email} is invalid.`);
+          // case 'auth/operation-not-allowed':
+          //   alert(`Error during sign up.`);
+          // case 'auth/weak-password':
+          //   alert('Password is not strong enough. Add additional characters including special characters and numbers.');
+          default:
+            console.log(error.message);
+        }
+      });
+  }
+
+  function mongoRegister(data){
+        // console.log(data)
+        fetch("/newuser", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            if (response.status >= 400) {
+              throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(resData) {
+            history.push("/");
+            // console.log(resData);      
+        }).catch(function(err) {
+            console.log(err);
+        });
+  }
 }

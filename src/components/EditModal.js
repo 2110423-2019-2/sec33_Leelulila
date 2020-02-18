@@ -3,13 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Profile from '../pages/Profile';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
 }
 
 function getModalStyle() {
-    const top = 50 ;
+    const top = 50;
     const left = 50;
 
     return {
@@ -18,6 +19,7 @@ function getModalStyle() {
         transform: `translate(-${top}%, -${left}%)`,
     };
 }
+
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -30,10 +32,10 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         '& .MuiTextField-root': {
-          margin: theme.spacing(1),
-          width: 300,
+            margin: theme.spacing(1),
+            width: 300,
         },
-      },
+    },
 }));
 
 
@@ -43,13 +45,35 @@ export default function SimpleModal(props) {
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState('before');
+    const [value, setValue] = React.useState(props.value);    
 
-    const handleChange = event => {
-        setValue(event.target.value);
+    const handleChange = (event) => {
+        setValue(event.target.value)
+    };
+
+    const handlesave = () => {        
+            var v = document.getElementById(props.title).value;
+            var data = {}
+            var k = props.title.toLowerCase()
+            data[k] = v
+            let self = this;   
+            fetch("/user/"+props._id, {
+                method: 'PUT',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(function (response) {
+                window.location.reload()
+            }).catch(function (err) {
+                console.log(err);
+            });
+            console.log('upppppp')
+            setOpen(false);
     };
 
     const handleOpen = () => {
+        console.log("vaaaaaaaaaaaaaaaaaaaaaaa")
+        console.log(props.value)
+        //console.log(props.value[0])
         setOpen(true);
     };
 
@@ -57,12 +81,13 @@ export default function SimpleModal(props) {
         setOpen(false);
     };
 
+    
     return (
         <div>
             {/* <button type="button" onClick={handleOpen}>
                 Edit
       </button> */}
-            <Button variant='contained' size='small' style={{marginTop:'10px'}} onClick={handleOpen} color='grey' >Edit</Button>
+            <Button variant='contained' size='small' style={{ marginTop: '10px' }} onClick={handleOpen} color='grey' >Edit</Button>
 
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -73,17 +98,17 @@ export default function SimpleModal(props) {
                 <div style={modalStyle} className={classes.paper}>
                     <h2 id="simple-modal-title">{props.title}</h2>
                     <p id="simple-modal-description">
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField  
-                            id="standard-multiline-flexible"
-                            multiline
-                            rowsMax="10"
-                            value={value}
-                            onChange={handleChange}
-                        />
-                    </form>
+                        <form className={classes.root} noValidate autoComplete="off">
+                            <TextField
+                                id={props.title}
+                                multiline
+                                rowsMax="10"
+                                value={value}
+                                onChange={handleChange}
+                            />
+                        </form>
                     </p>
-                    <button style={{ float: "right" }} type="button" onClick={handleClose}>
+                    <button style={{ float: "right" }} type="button" onClick={handlesave}>
                         Save
          </button>
                     <button style={{ float: "right" }} type="button" onClick={handleClose}>
@@ -92,5 +117,6 @@ export default function SimpleModal(props) {
                 </div>
             </Modal>
         </div>
+
     );
 }

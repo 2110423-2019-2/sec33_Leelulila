@@ -24,6 +24,8 @@ import CreateJob from './CreateJob';
 import Profile from './Profile'
 import Footer from '../components/Footer';
 import '../style.css';
+import Dashboard from './Dashboard';
+
 //import Jobowned from './Jobowned';
 
 
@@ -85,6 +87,15 @@ const useStyles = makeStyles(theme => ({
         }),
         marginLeft: 0,
     },
+    toolbarStyle: {
+        background: '#E3495A',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
+      },
 }));
 
 export default function PersistentDrawerLeft() {
@@ -109,7 +120,7 @@ export default function PersistentDrawerLeft() {
                     [classes.appBarShift]: open,
                 })}
             >
-                <Toolbar>
+                <Toolbar className={classes.toolbarStyle}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -119,7 +130,7 @@ export default function PersistentDrawerLeft() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px'}} disableElevation variant='contained' color='primary' href='/Dashboard' >CU PART-TIME</Button>
+                    <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px',backgroundColor:'#E3495A'}} disableElevation variant='contained' color='primary' href='/Dashboard' >CU PART-TIME</Button>
                     <ProfileBar />
                 </Toolbar>
 
@@ -155,6 +166,7 @@ export default function PersistentDrawerLeft() {
                     {/* <Route exact path="/" component={Landing}/> */}
                     <Route path="/Createjob" component={CreateJob} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/dashboard" component={Dashboard} />
                     {/* <Route path="/listingjob" component={Listingjob}/> */}
                     {/* <Route path="/dashboard" component={Dashboard}/> */}
                     {/* <Route path="/jobowned" component={Jobowned}/> */}

@@ -4,6 +4,7 @@ import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 // import fire from '../config/Fire';
 import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import {
     KeyboardDatePicker,
     KeyboardTimePicker,
@@ -11,6 +12,7 @@ import {
 } from '@material-ui/pickers';
 import TextareaAutosize from 'react-textarea-autosize';
 import DatePicker from '../components/DatePicker';
+import fire from '../config/firebase';
 
 class CreateJobForm extends Component {
 
@@ -23,33 +25,9 @@ class CreateJobForm extends Component {
             selectedBegintime: null,
             selectedEndtime: null,
             checkCreatejob: false,
-            Workkey: ''
+            Workkey: '',
+            redirect: false
         }
-        // this.database = fire.database().ref("ListingJob");
-
-        // this.database.on('value', snap =>{
-
-        //     var max = 0;
-
-        //     for (var x in snap.val()){
-
-        //         if(x[0]=='J'){
-        //             var y = parseInt(x.substring(1,));
-        //             if(y>max){
-        //                 max=y;
-        //             }
-        //         }
-        //     }
-        //     max = max+1;
-        //     this.setState({
-        //         Workkey:'J'+max.toString()
-        //     })
-        //     console.log(this.state.Workkey);
-
-
-        // })
-
-
     }
 
     formatDate(date) {
@@ -67,8 +45,6 @@ class CreateJobForm extends Component {
     }
 
     handleDateChange = date => {
-
-
         const newdate = this.formatDate(date);
         this.setState({
             selectedDate: newdate
@@ -84,24 +60,79 @@ class CreateJobForm extends Component {
         this.setState({
             selectedEndtime: time
         })
+    }       
+ 
+   
+
+
+  onCreatejob(){
+    // var jobname = document.getElementById('jobname').value;
+    // var jobdes = document.getElementById('jobdescription').value;
+    // var wages = document.getElementById('wages').value;
+    // var amount = document.getElementById('amount').value;
+    // var location = document.getElementById('location').value;
+    // var begintime = document.getElementById('timebegin').value;
+    // var endtime = document.getElementById('timeend').value;
+    // var date = this.state.selectedDate;
+    console.log("Create Job success");
     }
 
 
 
+    //push data to mongoDB
+    onCreatejob() { 
+        alert("Your job is being added!")
+        
+        //get all data from element below
+        var data = {
+            JobName: document.getElementById('jobname').value,
+            JobDetail: document.getElementById('jobdescription').value,
+            Wages: document.getElementById('wages').value,
+            Amount: document.getElementById('amount').value,
+            Location: document.getElementById('location').value,
+            BeginTime: document.getElementById('timebegin').value,
+            EndTime: document.getElementById('timeend').value,
+            Date: document.getElementById('workDate').value,
+            CurrentEmployee: [],
+            Employer: fire.auth().currentUser.email,
+            Status: "Ready"
+        }
 
-    onCreatejob() {
-        var jobname = document.getElementById('jobname').value;
-        var jobdes = document.getElementById('jobdescription').value;
-        var wages = document.getElementById('wages').value;
-        var amount = document.getElementById('amount').value;
-        var location = document.getElementById('location').value;
-        var begintime = document.getElementById('timebegin').value;
-        var endtime = document.getElementById('timeend').value;
-        var date = this.state.selectedDate;
+        //this function will push data to db
+        this.mongoCreateJob(data);
+        
+        this.setState({ redirect: true });
+    }
+
+
+
+    mongoCreateJob(data) {
+        //send request data to backend /newjob ***pull the lastest backend first***
+        fetch("/newjob", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function (resData) {
+            // console.log(resData); 
+            alert("Success!!");
+           
+        }).catch(function (err) {
+            console.log(err);
+        });
+        
     }
 
     render() {
+        const { redirect } = this.state;
         console.log(this.Workkey);
+        if (redirect) {
+            return <Redirect to='/Dashboard'/>;
+          }
         if (!this.state.checkCreatejob) {
             return (
 
@@ -112,10 +143,12 @@ class CreateJobForm extends Component {
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Jobname : </h3>
                                 <TextField name='Jobname' id="jobname" variant="outlined" margin='dense' style={{ marginLeft: '20px' }} />
+                                <h3 style = {{"padding-left": "20px" }}>Number of Employee :</h3>
+                            <TextField name='people' id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
-                                <h3>Detail :</h3>
-                                <TextareaAutosize rowsMin={10} rowsMax={10} style={{ width: '100%', height: '100%' }} name='detail' id="jobdescription" label="Detail" />
+                                <h3>Details :</h3>
+                                <TextField multiline={true} rows={5} name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Time :</h3>
@@ -123,93 +156,41 @@ class CreateJobForm extends Component {
                                     id='timebegin'
                                     label="Start time"
                                     type='time'
-                                    value={this.state.selectedBegintime}
-                                    onChange={this.handleBeginTimeChange}
-                                    defaultValue={'10:00'}
+                                    // value={this.state.selectedBegintime}
+                                    // onChange={this.handleBeginTimeChange}
+                                    defaultValue={'00:00'}
                                 />
-                                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    id='timebegin'
-                                    label="Time picker"
-                                    value={this.state.selectedBegintime}
-                                    onChange={this.handleBeginTimeChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change time',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider>
-                             */}
 
                                 <h3>to</h3>
                                 <DatePicker
                                     id='timeend'
                                     label="End time"
                                     type='time'
-                                    value={this.state.selectedEndtime}
-                                    onChange={this.handleEndTimeChange}
-                                    defaultValue={'12:00'}
+                                    // value={this.state.selectedEndtime}
+                                    // onChange={this.handleEndTimeChange}
+                                    defaultValue={'00:00'}
                                 />
-                                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <KeyboardTimePicker
-                                    margin="normal"
-                                    id='timeend'
-                                    label="Time picker"
-                                    value={this.state.selectedEndtime}
-                                    onChange={this.handleEndTimeChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change time',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider> */}
+                            <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
-                                <h3>Date</h3>
+                                <h3>Date :</h3>
                                 <DatePicker
                                     id='workDate'
                                     label="Select Work Date"
                                     type='date'
-                                    value={this.state.selectedDate}
-                                    onChange={this.handleDateChange}
                                     defaultValue={'2020-02-02'}
                                 />
-                                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid>
-                                <KeyboardDatePicker
-                                    disableToolbar
-                                    variant="inline"
-                                    format="MM/dd/yyyy"
-                                    margin="normal"
-                                    id="date-picker-inline"
-                                    label="Select Work Date"
-                                    value={this.state.selectedDate}
-                                    onChange={this.handleDateChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                    /> 
-                                </Grid>
-                            </MuiPickersUtilsProvider> */}
-
+                                <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}}/>
                             </Grid>
-                            <Grid style={{ margin: '16px' }}>
-                                <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' />
-                                <TextField name='people' id='amount' label="Limited Person" variant="outlined" type='number' style={{ marginLeft: '16px' }} />
-                                <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '16px' }} />
-                            </Grid>
-
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
                                 <Button variant="contained" color="primary" onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>
                 </div>
+                
             );
         }
-        return (
-            // <Redirect to='/dashboard' />
-            {}
-        );
     }
 
 }

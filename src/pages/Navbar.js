@@ -84,14 +84,15 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0,
   },
   toolbarStyle: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: '#E3495A',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
     height: 48,
     padding: '0 30px',
-  }
+  },
+
 }));
 
 export default function PersistentDrawerLeft(props) {
@@ -126,9 +127,9 @@ export default function PersistentDrawerLeft(props) {
           >
             <MenuIcon />
           </IconButton> */}
-          <Button disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
-
-          <ProfileBar />
+          <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px',backgroundColor:'#E3495A'}} disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
+          
+          <ProfileBar /> 
         </Toolbar>
 
       </AppBar>
@@ -147,14 +148,7 @@ export default function PersistentDrawerLeft(props) {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <ListItem><ListItemText><Button href='/'>Home</Button></ListItemText></ListItem>
-          {/* <ListItem><ListItemText><Button href='/login'>Login</Button></ListItemText></ListItem> */}
-          <ListItem><ListItemText><Button href='/Register'>Register</Button></ListItemText></ListItem>
-          <ListItem><ListItemText><Button href='/CreateJob'>Register</Button></ListItemText></ListItem>
-
-          {/* <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
-        </List>
+       
         <Divider />
       </Drawer>
 
@@ -164,10 +158,9 @@ export default function PersistentDrawerLeft(props) {
           <Route exact path="/" component={FirstLanding} />
           <Route path="/login" component={Login} />
 
-          {/* <Route path="/login" component={Login} /> */}
-          <Route path="/register" component={Register} />
-          {/* <Route path='/AboutUs' component={AboutUs} /> */}
-        </div>
+            <Route path="/register" component={Register} />
+            
+          </div>
 
       </Router>
       <Footer id='Footer' />
