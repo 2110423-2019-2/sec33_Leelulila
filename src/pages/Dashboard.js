@@ -75,7 +75,7 @@ class Dashboard extends Component {
                                 EndTime={notes[0].EndTime}
                                 Location={notes[0].Location}
                                 Employer={notes[0].Employer}
-                                CurrentEmployee={}
+                                CurrentEmployee={notes[0].CurrentEmployee}
                                 WorkKey={notes[1][0]}
                             />
                         </Grid>
