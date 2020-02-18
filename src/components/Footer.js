@@ -7,7 +7,7 @@ import youtubeIcon from '../pic/socialIcon/youtubeIcon.png';
 const Footer = () => {
     return (
         <div>
-            <Paper square elevation={0} fullWidth style={{ backgroundColor: 'Black' }}>
+            <Paper square elevation={0} fullWidth style={{ backgroundColor: '#552c2a' }}>
                 <Grid container spacing={2} id='FooterGrid'>
                     <Grid container id="FooterGrid1" item xs={12} sm={12} md={6}>
                         <Grid item md={12} xs={12}><h1 id='white'>About Us</h1></Grid>
