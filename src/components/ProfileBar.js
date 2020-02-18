@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import  { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import fire from '../config/firebase';
 import '../style.css';
@@ -20,14 +20,15 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 class ProfileBar extends Component {
-    
-    
+
+
     constructor(props) {
         super(props);
         this.state = {
             user: {},
         }
         this.isLogin = props.isLogin;
+        this.getProfile.bind(this);
     }
 
     componentDidMount() {
@@ -38,30 +39,49 @@ class ProfileBar extends Component {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({ user });
+                this.getProfile();
             } else {
                 this.setState({ user: null });
             }
         })
     }
 
-    onLogout() {
-        fire.auth().signOut();
-        return(<Redirect to='/' />)
+    getProfile() {
+        var user = fire.auth().currentUser;
+        let self = this;
+        console.log("/user/" + user.email)
+        fetch("/useremail/" + user.email, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function (jsonData) {
+            self.setState({ user: jsonData });
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
-    render(){
+    onLogout() {
+        fire.auth().signOut();
+        return (<Redirect to='/' />)
+    }
+
+    render() {
         var user = fire.auth().currentUser;
 
-        
+        if (user) {
+            return (<div style={{ display: 'flex', flexDirection: 'row' }} id='profileNavName'>
+                <h3>{this.state.user.firstName}</h3>
+                <Button variant="outlined" color="inherit" style={{ marginLeft: '15px' }}
+                    onClick={this.onLogout} href='/' size='small' >Logout</Button>
 
-        if(user){
-            return(<div style={{display:'flex',flexDirection:'row'}} id='profileNavName'>
-                <h3>{fire.auth().currentUser.email}</h3>
-                <Button variant="outlined" color="inherit" style={{marginLeft:'10px'}}  
-                onClick={this.onLogout} href='/' size='small' >Logout</Button>
             </div>);
         }
-        return(<div style={{display:'flex',flexDirection:'row'}} id='proBarRegLog'>
+        return (<div style={{ display: 'flex', flexDirection: 'row' }} id='proBarRegLog'>
             <Button href='/Register' variant='outlined' color='inherit'>Register</Button>
             <Button href='/login' variant='outlined' color='inherit' id='loginBut'>Login</Button>
         </div>);

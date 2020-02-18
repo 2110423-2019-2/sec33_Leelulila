@@ -73,7 +73,6 @@ class CreateJobForm extends Component {
 
     //push data to mongoDB
     onCreatejob() { 
-        alert("Your job is being added!")
         
         //get all data from element below
         var data = {
@@ -93,10 +92,11 @@ class CreateJobForm extends Component {
             alert("Please fill the Empty Box")
         }
         else{
-        //this function will push data to db
-        this.mongoCreateJob(data);
+            alert("Your job is being added!")
+            //this function will push data to db
+            this.mongoCreateJob(data);
         
-        this.setState({ redirect: true });
+            this.setState({ redirect: true });
         }
         
     }
@@ -181,7 +181,7 @@ class CreateJobForm extends Component {
                                 <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
-                                <Button variant="outlined" color="primary" onClick={this.onCreatejob} >Submit</Button>
+                                <Button variant="contained" color='primary' style={{backgroundColor: '#32441c'}} onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>
