@@ -78,14 +78,24 @@ class ListingJobForm extends Component {
     //   var subemail = email.substring(0,indexofat);
         
         return(
-          <Card id="ListingJobForm" style={{marginBottom:'20px', height: '250px'}}>
+          <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
             <div>
               <Grid style={{display:'flex'}}>
-                <Grid item md={10}>
-                    <h2>Title : {this.JobName}</h2>
-                    <p>Wages:{this.Wages}</p>
-                    <p>Location:{this.Location}</p>
-                    <p>Date:{this.Date}</p>
+                <Grid item md={12}>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <h2>Title : {this.JobName}</h2>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Wages:{this.Wages}</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Location:{this.Location}</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Date:{this.Date}</p>
+                    </div>
+                    
+                    
                 </Grid>
                
               </Grid>       
