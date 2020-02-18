@@ -91,6 +91,34 @@ class JobCardModal extends Component{
 
 
   render(){
+    if(fire.auth().currentUser.email == this.Employer){
+          return(
+            <div>
+                <button onClick={this.openModal}>More Detail</button>
+                    <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                    >
+                          <h2>Owner</h2>
+                          <h2>Title : {this.JobName}</h2>
+                          <h3>Description : {this.JobDetail}</h3>
+                          <p>Wages:{this.Wages}</p>
+                          <p>Location:{this.Location}</p>
+                          <p>Date:{this.Date}</p>
+                          <p>Time : {this.BeginTime} - {this.EndTime}</p>
+                          <p>Employer:{this.Employer}</p>
+
+                </Modal>
+            </div>
+        )
+    } 
+    
+    
+    
+    
     return(
         <div>
             <button onClick={this.openModal}>More Detail</button>
@@ -102,7 +130,7 @@ class JobCardModal extends Component{
                 contentLabel="Example Modal"
                 >
     
-                      <h1>Title : {this.JobName}</h1>
+                      <h2>Title : {this.JobName}</h2>
                       <h3>Description : {this.JobDetail}</h3>
                       <p>Wages:{this.Wages}</p>
                       <p>Location:{this.Location}</p>

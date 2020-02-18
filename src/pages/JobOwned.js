@@ -32,6 +32,7 @@ class JobOwned extends Component {
               for (var x in this.state.listing) {
                     
                     var email = fire.auth().currentUser.email;
+                    console.log(this.state.listing[x]['job']['Employer']);
                     if(this.state.listing[x]['job']['Employer'] == email){
                         list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
               }
@@ -41,6 +42,7 @@ class JobOwned extends Component {
           this.setState({
               listing: list2,
           })
+          console.log(this.state.listing);
       })
       .catch((error) => {
         console.log(error);
@@ -48,7 +50,6 @@ class JobOwned extends Component {
     }
 
     renderList(){
-        console.log(this.state.listing);
         if (this.state.listing.length==null){
             
             return (
@@ -57,8 +58,7 @@ class JobOwned extends Component {
         }
         
 
-        if(this.state.listing[0]['_id'] == null){
-            console.log(this.state.listing);
+        else if(this.state.listing[0]['_id'] == null){
             return (
                 
                 this.state.listing.map((notes) => {

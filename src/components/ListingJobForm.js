@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
 import JobCardModal from '../components/JobCardModal'
-
+import fire from '../config/firebase';
 import Modal from '@material-ui/core/Modal';
 
 
@@ -14,7 +14,6 @@ class ListingJobForm extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.JobName = props.JobName;
     this.JobDetail = props.JobDetail;
     this.Wages = props.Wages;
@@ -76,7 +75,40 @@ class ListingJobForm extends Component {
     //   var email = fire.auth().currentUser.email;
     //   var indexofat = email.indexOf('@');
     //   var subemail = email.substring(0,indexofat);
-        
+    if(fire.auth().currentUser.email == this.Employer){
+          return(
+            <Card id="ListingJobForm" style={{marginBottom:'20px', height: '250px'}}>
+              <div>
+                <Grid style={{display:'flex'}}>
+                  <Grid item md={10}>
+                      <h2>Owner</h2>
+                      <h2>Title : {this.JobName}</h2>
+                      <p>Wages:{this.Wages}</p>
+                      <p>Location:{this.Location}</p>
+                      <p>Date:{this.Date}</p>
+                  </Grid>
+                
+                </Grid>       
+                <JobCardModal
+                  JobName={this.JobName}
+                  JobDetail={this.JobDetail}                        
+                  Wages={this.Wages}
+                  Amount={this.Amount}
+                  Date={this.Date}
+                  BeginTime={this.BeginTime}
+                  EndTime={this.EndTime}
+                  Location={this.Location}
+                  Employer={this.Employer}
+                  WorkKey={this.WorkKey}
+                  // Currentemployer={this.Currentemployer}
+                  />
+                
+              </div>
+            </Card>
+          );
+
+    }
+
         return(
           <Card id="ListingJobForm" style={{marginBottom:'20px', height: '250px'}}>
             <div>

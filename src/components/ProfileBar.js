@@ -48,6 +48,7 @@ class ProfileBar extends Component {
 
     getProfile() {
         var user = fire.auth().currentUser;
+        console.log(user);
         let self = this;
         console.log("/user/" + user.email)
         fetch("/useremail/" + user.email, {

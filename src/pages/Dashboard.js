@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core';
 import '../style.css';
-import ListingJobForm from '../components/ListingJobForm';
+import ListingJobForm from '../components/ListingJobForm'
+import fire from '../config/firebase';
+
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -12,7 +14,6 @@ class Dashboard extends Component {
             listing: {},
         }
         this.renderList = this.renderList.bind(this);
-        
     }
 
     
