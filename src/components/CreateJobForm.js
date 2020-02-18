@@ -129,20 +129,20 @@ class CreateJobForm extends Component {
             return (
 
                 <div style={{ marginTop: '100px', marginBottom: '100px', paddingLeft: '25%' }}>
-                    <h1>Create Job</h1>
+                    <h1>   Create Job</h1>
                     <form>
                         <Grid xs={12} md={8}>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
-                                <h3>Jobname : </h3>
-                                <TextField name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px' }} />
+                                <h3> Jobname : </h3>
+                                <TextField name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px' ,width: '300px'}} />
                                 <h3 style = {{"padding-left": "20px" }}>Number of Employee :</h3>
-                            <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px'}} />
+                            <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px' ,width: '178px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
                                 <h3>Details :</h3>
                                 <TextField multiline={true} rows={5} color="secondary" name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
                             </Grid>
-                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
+                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column' , marginTop: '40px'}}>
                                 <h3>Time :</h3>
                                 <DatePicker
                                     id='timebegin'
@@ -176,7 +176,7 @@ class CreateJobForm extends Component {
                                 <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
-                                <Button variant="outlined" color="secondary" onClick={this.onCreatejob} >Submit</Button>
+                                <Button variant="outlined" onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>

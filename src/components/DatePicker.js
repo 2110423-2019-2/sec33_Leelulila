@@ -29,6 +29,8 @@ export default function DatePickers(props) {
         defaultValue = {props.defaultValue}
         onChange = {props.onChange}
         className={classes.textField}
+        color = 'secondary'  
+        size = 'normal'      
         InputLabelProps={{
           shrink: true,
         }}
