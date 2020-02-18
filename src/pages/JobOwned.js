@@ -3,8 +3,10 @@ import { Grid, Button, TextField } from '@material-ui/core';
 import '../style.css';
 import ListingJobForm from '../components/ListingJobForm';
 import axios from 'axios';
+import fire from '../config/firebase';
+import JobOwnedForm from '../components/JobOwnedForm';
 
-class Dashboard extends Component {
+class JobOwned extends Component {
 
     constructor(props) {
         super(props);
@@ -21,23 +23,24 @@ class Dashboard extends Component {
         axios.get('http://localhost:9000/getalljob')
         .then(response => {
           
-        this.setState({
-            listing: response.data,
-          })
-
-          var list2 = [];
-
-          for (var x in this.state.listing) {
-              console.log(this.state.listing[x]['job']['Employer']);
-              list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
-            
+            this.setState({
+                listing: response.data,
+              })
+    
+              var list2 = [];
+    
+              for (var x in this.state.listing) {
+                    
+                    var email = fire.auth().currentUser.email;
+                    if(this.state.listing[x]['job']['Employer'] == email){
+                        list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+              }
+          
               
           }
           this.setState({
               listing: list2,
           })
-          console.log(this.state.listing)
-
       })
       .catch((error) => {
         console.log(error);
@@ -45,24 +48,24 @@ class Dashboard extends Component {
     }
 
     renderList(){
+        console.log(this.state.listing);
         if (this.state.listing.length==null){
-            console.log(1);
+            
             return (
-                <h1> dont have any job</h1>
+                <h2>You don't have any job right now</h2>
             )
         }
         
-        
 
-        else if(this.state.listing[0]['_id'] == null){
+        if(this.state.listing[0]['_id'] == null){
             console.log(this.state.listing);
             return (
                 
                 this.state.listing.map((notes) => {
-                console.log(notes[0].JobName);
+                
                     return (
-                        <Grid item xs={4}>
-                            <ListingJobForm
+                        <Grid item xs={4} >
+                            <JobOwnedForm
                                 JobName={notes[0].JobName}
                                 JobDetail={notes[0].JobDetail}
                                 Wages={notes[0].Wages}
@@ -88,9 +91,9 @@ class Dashboard extends Component {
         
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
-                <h1>Find Job</h1>
+                <h1>Job Management</h1>
                 <div>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} >
                         {this.renderList()}
                     </Grid>
                 </div>
@@ -103,4 +106,4 @@ class Dashboard extends Component {
 
 
 
-export default Dashboard;
+export default JobOwned;

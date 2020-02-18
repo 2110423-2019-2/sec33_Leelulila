@@ -176,7 +176,13 @@ class CreateJobForm extends Component {
                                 <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
+<<<<<<< HEAD
                                 <Button variant="contained" color='primary' style={{backgroundColor: '#32441c'}} onClick={this.onCreatejob} >Submit</Button>
+||||||| merged common ancestors
+                                <Button variant="outlined" onClick={this.onCreatejob} >Submit</Button>
+=======
+                                <Button variant="outlined" color="primary" onClick={this.onCreatejob} >Submit</Button>
+>>>>>>> a40ef3d24fb810e5f854b2336b8a4608f2f6664f
                             </Grid>
                         </Grid>
                     </form>
