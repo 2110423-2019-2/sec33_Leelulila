@@ -24,6 +24,7 @@ class ListingJobForm extends Component {
     this.EndTime = props.EndTime;
     this.Location = props.Location;
     this.Employer = props.Employer;
+    this.WorkKey = props.WorkKey;
 
 
     this.state = {
@@ -98,6 +99,7 @@ class ListingJobForm extends Component {
                 EndTime={this.EndTime}
                 Location={this.Location}
                 Employer={this.Employer}
+                WorkKey={this.WorkKey}
                 // Currentemployer={this.Currentemployer}
                 />
                
@@ -122,7 +124,8 @@ ListingJobForm.propTypes = {
     BeginTime: PropTypes.string,
     EndTime: PropTypes.string,
     Location: PropTypes.string,
-    Employer: PropTypes.string
+    Employer: PropTypes.string,
+    WorkKey: PropTypes.string
     // Status: PropTypes.string
     // this.JobName = props.JobName;
     // this.JobDetail = props.JobDetail;

@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
+import fire from '../config/firebase';
 
 
 
@@ -34,6 +35,7 @@ class JobCardModal extends Component{
         this.EndTime = props.EndTime;
         this.Location = props.Location;
         this.Employer = props.Employer;
+        this.WorkKey = props.WorkKey;
         // this.Currentnumber = props.Currentnumber;
         // this.Currentemployer = props.Currentemployer;
 
@@ -47,44 +49,31 @@ class JobCardModal extends Component{
         
     }
 
-    componentDidMount(){
-      axios.get('http://localhost:9000/getalljob')
-    .then(response => {
-        
-      
-        })
-        
-      
-    }
+    
 
     onGetjob(){
-    //   var employer2 = this.state.employer;
-    //   var email = fire.auth().currentUser.email;
-    //   var indexofat = email.indexOf('@');
-    //   var subemail = email.substring(0,indexofat);
-    //   var firebaseRef = fire.database().ref('ListingJob').child(this.Workkey);
-    //   var firebaseRef2 = fire.database().ref('ListingJob').child(this.Workkey);
-    //   if(!this.Currentemployer.includes(subemail) ){
-    //     firebaseRef.once('value', snap =>{
-        
-    //       var email = fire.auth().currentUser.email;
-    //       var indexofat = email.indexOf('@');
-    //       var subemail = email.substring(0,indexofat);
-  
-    //       var oldemp = snap.val()['Currentemployer'];  
-    //       var newemp2 = oldemp + ',' + subemail;
-    //       var newnum2 = snap.val()['Currentnumber']+1;
-          
-    //       firebaseRef.update({
-    //           Currentnumber:newnum2,
-    //           Currentemployer:newemp2,
-    //       })
-           
-    //     });
-        
-    //   window.location.reload(false);
-    // }
-  }
+      var email = fire.auth().currentUser.email;
+      var data = {Email: email};
+      fetch("/job/addemployee/" + this.WorkKey, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    }).then(function(response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+    }).then(function(resData) {
+        // history.push("/");
+        // console.log(resData);      
+    }).catch(function(err) {
+        console.log(err);
+    });
+}
+      // axios.put('http://localhost:9000/job/addemployee/' + this.WorkKey, obj)
+      //   .then(alert("Success")  )
+
+      
 
 
 
@@ -118,8 +107,7 @@ class JobCardModal extends Component{
                       <p>Wages:{this.Wages}</p>
                       <p>Location:{this.Location}</p>
                       <p>Date:{this.Date}</p>
-                      <p>BeginTime:{this.BeginTime}</p>
-                      <p>EndTime:{this.EndTime}</p>
+                      <p>Time : {this.BeginTime} - {this.EndTime}</p>
                       <p>Employer:{this.Employer}</p>
                       <Button variant="contained" color="primary" onClick={this.onGetjob}>Apply</Button>
 
