@@ -27,7 +27,7 @@ const Footer = () => {
                         </Grid>
                         <Grid item id='white'>
                             <h2>Address: </h2>
-                            <p>254 Phayathai Rd, Wang Mai, Pathum Wan District, Bangkok 10330<br/>Call : xxx-xxx-xxx</p>
+                            <p>254 Phayathai Rd., Wang Mai, Pathum Wan District, Bangkok 10330<br/>Call : 080-778-890</p>
                             
                         </Grid>
 
