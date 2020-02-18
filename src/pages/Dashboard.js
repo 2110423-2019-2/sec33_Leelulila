@@ -29,8 +29,10 @@ class Dashboard extends Component {
           var list2 = [];
 
           for (var x in this.state.listing) {
-              console.log(this.state.listing[x]['job']['Employer']);
-              list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+            if(this.state.listing[x]['job']['Status']=="Ready"){
+                    list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+            }
+              
             
               
           }
@@ -73,7 +75,8 @@ class Dashboard extends Component {
                                 EndTime={notes[0].EndTime}
                                 Location={notes[0].Location}
                                 Employer={notes[0].Employer}
-                                WorkKey={notes[1]}
+                                CurrentEmployee={}
+                                WorkKey={notes[1][0]}
                             />
                         </Grid>
                     )

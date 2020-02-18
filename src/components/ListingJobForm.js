@@ -31,64 +31,39 @@ class ListingJobForm extends Component {
 
     }
 
-    // this.onGetjob = this.onGetjob.bind(this);
-
-
 
   }
   
   
-  
-//   onGetjob(){
-//       var employer2 = this.state.employer;
-//       var email = fire.auth().currentUser.email;
-//       var indexofat = email.indexOf('@');
-//       var subemail = email.substring(0,indexofat);
-//       var firebaseRef = fire.database().ref('ListingJob').child(this.Workkey);
-//       var firebaseRef2 = fire.database().ref('ListingJob').child(this.Workkey);
-//       if(!this.Currentemployer.includes(subemail) ){
-//         firebaseRef.once('value', snap =>{
-        
-//           var email = fire.auth().currentUser.email;
-//           var indexofat = email.indexOf('@');
-//           var subemail = email.substring(0,indexofat);
-  
-//           var oldemp = snap.val()['Currentemployer'];  
-//           var newemp2 = oldemp + ',' + subemail;
-//           var newnum2 = snap.val()['Currentnumber']+1;
-          
-//           firebaseRef.update({
-//               Currentnumber:newnum2,
-//               Currentemployer:newemp2,
-//           })
-           
-//         });
-        
-//       window.location.reload(false);
-//     }
-//   }
+
+
 
   render(){
-    
-    
-
-    //   var email = fire.auth().currentUser.email;
-    //   var indexofat = email.indexOf('@');
-    //   var subemail = email.substring(0,indexofat);
+ 
     if(fire.auth().currentUser.email == this.Employer){
           return(
-            <Card id="ListingJobForm" style={{marginBottom:'20px', height: '250px'}}>
-              <div>
-                <Grid style={{display:'flex'}}>
-                  <Grid item md={10}>
-                      <h2>Owner</h2>
-                      <h2>Title : {this.JobName}</h2>
-                      <p>Wages:{this.Wages}</p>
-                      <p>Location:{this.Location}</p>
-                      <p>Date:{this.Date}</p>
-                  </Grid>
+            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
+            <div>
+              <Grid style={{display:'flex'}}>
+                <Grid item md={12}>
                 
-                </Grid>       
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <h2>(Owner)Title : {this.JobName}</h2>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Wages:{this.Wages}</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Location:{this.Location}</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Date:{this.Date}</p>
+                    </div>
+                    
+                    
+                </Grid>
+               
+              </Grid>        
                 <JobCardModal
                   JobName={this.JobName}
                   JobDetail={this.JobDetail}                        
@@ -110,14 +85,24 @@ class ListingJobForm extends Component {
     }
 
         return(
-          <Card id="ListingJobForm" style={{marginBottom:'20px', height: '250px'}}>
+          <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
             <div>
               <Grid style={{display:'flex'}}>
-                <Grid item md={10}>
-                    <h2>Title : {this.JobName}</h2>
-                    <p>Wages:{this.Wages}</p>
-                    <p>Location:{this.Location}</p>
-                    <p>Date:{this.Date}</p>
+                <Grid item md={12}>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <h2>Title : {this.JobName}</h2>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Wages:{this.Wages}</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Location:{this.Location}</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <p>Date:{this.Date}</p>
+                    </div>
+                    
+                    
                 </Grid>
                
               </Grid>       
@@ -157,8 +142,8 @@ ListingJobForm.propTypes = {
     EndTime: PropTypes.string,
     Location: PropTypes.string,
     Employer: PropTypes.string,
-    WorkKey: PropTypes.string
-    // Status: PropTypes.string
+    WorkKey: PropTypes.string,
+    Status: PropTypes.string
     // this.JobName = props.JobName;
     // this.JobDetail = props.JobDetail;
     // this.Wages = props.Wages;

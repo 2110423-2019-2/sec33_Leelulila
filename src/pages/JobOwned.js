@@ -12,6 +12,7 @@ class JobOwned extends Component {
         super(props);
         this.state = {
             listing: {},
+            ready:false,
         }
         this.renderList = this.renderList.bind(this);
         
@@ -41,6 +42,7 @@ class JobOwned extends Component {
           }
           this.setState({
               listing: list2,
+              ready:true,
           })
           console.log(this.state.listing);
       })
@@ -50,39 +52,42 @@ class JobOwned extends Component {
     }
 
     renderList(){
-        if (this.state.listing.length==null){
+        console.log(this.state.ready);
+        if(this.state.ready){
+            if (this.state.listing.length==0){
+                return (
+                    <h2>You don't have any job right now</h2>
+                );
+            }
             
-            return (
-                <h2>You don't have any job right now</h2>
+    
+            else if(this.state.listing[0]['_id'] == null){
+                return (
+                    
+                    this.state.listing.map((notes) => {
+                    
+                        return (
+                            <Grid item xs={4} >
+                                <JobOwnedForm
+                                    JobName={notes[0].JobName}
+                                    JobDetail={notes[0].JobDetail}
+                                    Wages={notes[0].Wages}
+                                    Amount={notes[0].Amount}
+                                    Date={notes[0].Date}
+                                    BeginTime={notes[0].BeginTime}
+                                    EndTime={notes[0].EndTime}
+                                    Location={notes[0].Location}
+                                    Employer={notes[0].Employer}
+                                    WorkKey={notes[1]}
+                                />
+                            </Grid>
+                        )
+                    })
+                
             )
+            }
         }
         
-
-        else if(this.state.listing[0]['_id'] == null){
-            return (
-                
-                this.state.listing.map((notes) => {
-                
-                    return (
-                        <Grid item xs={4} >
-                            <JobOwnedForm
-                                JobName={notes[0].JobName}
-                                JobDetail={notes[0].JobDetail}
-                                Wages={notes[0].Wages}
-                                Amount={notes[0].Amount}
-                                Date={notes[0].Date}
-                                BeginTime={notes[0].BeginTime}
-                                EndTime={notes[0].EndTime}
-                                Location={notes[0].Location}
-                                Employer={notes[0].Employer}
-                                WorkKey={notes[1]}
-                            />
-                        </Grid>
-                    )
-                })
-            
-        )
-        }
 
         
     }
