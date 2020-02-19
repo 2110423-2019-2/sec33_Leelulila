@@ -97,48 +97,50 @@ class JobCardModal extends Component {
   render() {
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <div>
-          <Grid item xs={12} md={8} style={{ justifyItems:'center',justifyContent:'center',alignContent:'center',alignItems:'center' }}><Button variant="contained" color='secondary' style={{textAlign:'center',
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingLeft:40,
-          paddingRight:40,
-          marginTop:10,
-          height:40,width: 200 }} onClick={this.openModal}>More Detail</Button></Grid>
-            
-              <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  style={customStyles}
-                  
-                  contentLabel="Example Modal"
-                  >
-      
-                        <h2>Title : {this.JobName}</h2>
-                        <h3>Description : {this.JobDetail}</h3>
-                        <p>Wages:{this.Wages}</p>
-                        <p>Location:{this.Location}</p>
-                        <p>Date:{this.Date}</p>
-                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
-                        <p>Employer:{this.Employer}</p>
-                        <Button variant="contained" disabled>Already Apply</Button>
-              </Modal>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='secondary' style={{
+            textAlign: 'center',
+            paddingLeft: 40,
+            paddingRight: 40,
+            marginTop: 10,
+            height: 40,
+            width: 180,
+            justifyContent: 'center'
+          }} onClick={this.openModal}>More Detail</Button></Grid>
+
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+
+            contentLabel="Example Modal"
+          >
+
+            <h2>Title : {this.JobName}</h2>
+            <h3>Description : {this.JobDetail}</h3>
+            <p>Wages:{this.Wages}</p>
+            <p>Location:{this.Location}</p>
+            <p>Date:{this.Date}</p>
+            <p>Time : {this.BeginTime} - {this.EndTime}</p>
+            <p>Employer:{this.Employer}</p>
+            <Button variant="contained" disabled>Already Apply</Button>
+          </Modal>
         </div>
       )
     }
 
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
       return (
-        <div>
-          <Grid item xs={12} md={8} style={{ alignContent: 'center', alignItems: 'center' }}><Button variant="contained" color='secondary' style={{
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='secondary' style={{
             textAlign: 'center',
-            justifyContent: 'center',
-            alignItems: 'center',
             paddingLeft: 40,
             paddingRight: 40,
             marginTop: 10,
-            height: 40
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center'
           }} onClick={this.openModal}>More Detail</Button></Grid>
 
           <Modal
@@ -166,15 +168,15 @@ class JobCardModal extends Component {
 
 
     return (
-      <div>
-        <Grid item xs={12} md={8} style={{ justifyItems: 'center', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}><Button variant="contained" color='secondary' style={{
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='secondary' style={{
           textAlign: 'center',
-          justifyContent: 'center',
-          alignItems: 'center',
           paddingLeft: 40,
           paddingRight: 40,
           marginTop: 10,
-          height: 40, width: 200
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center'
         }} onClick={this.openModal}>More Detail</Button></Grid>
 
         <Modal
