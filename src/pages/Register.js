@@ -6,6 +6,7 @@ import DatePicker from '../components/DatePicker';
 import { useForm } from 'react-hook-form';
 import fire from '../config/firebase';
 import {useHistory} from 'react-router-dom'
+import validator from 'validator';
 
 
 
@@ -40,20 +41,25 @@ export default function RegisterPage() {
   const onSubmit = data => {
     console.log(data)
     var email = data.email;
-    var pass = data.password;
-    var confirmPass = data.confirmPassword;
+    var password = data.password;
+    var confirmPassword = data.confirmPassword;
     var name = data.firstName;
     var surname = data.lastName;
     var gender = data.gender;
     var birthday = data.birthday;
 
-    if (email.includes('@') && pass.length >= 6 && pass === confirmPass) {
-
-      fireRegister(email, pass);
-      mongoRegister(data);
-
+    if (email === '' || password === '' || confirmPassword === '' || name === '' || surname === '' || gender === '' || birthday === '') {
+      alert('Please fill in the information completely!!')
+    }
+    else if (!validator.isEmail(email)) {
+      alert("Invalid Email!. Please check your email format")
+    } else if (password.length < 6) {
+      alert("Your password must more than 6 characters!!")
+    } else if (password !== confirmPassword) {
+      alert("The confirm password does not match!!")
     } else {
-      alert("Please check your email format and password length must more than 6 character!! and make sure password equal to confirm password");
+      fireRegister(email, password);
+      mongoRegister(data);
     }
   }
 
@@ -61,7 +67,7 @@ export default function RegisterPage() {
     <Container component="main" maxWidth="sm" style={{ marginTop: "70px", minHeight: '520px', paddingBottom: '50px' }}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5" style={{ marginTop: '5%' }}>
+        <Typography component="h1" variant="h5" style={{ marginTop: "5%", fontWeight: "bold" }}>
           Sign up for CU PART-TIME
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)} >
