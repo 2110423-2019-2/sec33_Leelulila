@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     },
   },
   checkedIcon: {
-    backgroundColor: '#137cbd',
+    backgroundColor: '#eb2d78',
     backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
     '&:before': {
       display: 'block',
@@ -43,7 +43,7 @@ const useStyles = makeStyles({
       content: '""',
     },
     'input:hover ~ &': {
-      backgroundColor: '#106ba3',
+      backgroundColor: '#eb2d78',
     },
   },
 });
@@ -56,7 +56,7 @@ function StyledRadio(props) {
     <Radio
       className={classes.root}
       disableRipple
-      color="default"
+      color="secondary"
       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       icon={<span className={classes.icon} />}
       {...props}
