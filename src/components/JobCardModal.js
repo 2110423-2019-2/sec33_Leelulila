@@ -14,7 +14,8 @@ const customStyles = {
       right                 : 'auto',
       bottom                : 'auto',
       marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
+      transform             : 'translate(-50%, -50%)',
+      justifyContent        : 'center',
       
     }
 
@@ -40,8 +41,9 @@ class JobCardModal extends Component{
         this.Location = props.Location;
         this.Employer = props.Employer;
         this.WorkKey = props.WorkKey;
+        console.log(this.WorkKey);
         // this.Currentnumber = props.Currentnumber;
-        // this.Currentemployer = props.Currentemployer;
+        this.CurrentEmployee = props.CurrentEmployee;
 
         this.state = {
             modalIsOpen: false
@@ -67,10 +69,8 @@ class JobCardModal extends Component{
           throw new Error("Bad response from server");
         }
         return response.json();
-    }).then(function(resData) {
-        // history.push("/");
-        // console.log(resData);      
-    }).catch(function(err) {
+    }).then(window.location.reload(false))
+    .catch(function(err) {
         console.log(err);
     });
 }
@@ -95,15 +95,49 @@ class JobCardModal extends Component{
 
 
   render(){
-    return(
+    if(fire.auth().currentUser.email == this.Employer){
+          return(
+            <div>
+          <Grid item md={12} style={{ alignContent:'center',alignItems:'center' }}><button variant="contained" color='primary' style={{textAlign:'center',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingLeft:40,
+          paddingRight:40,
+          marginTop:10,
+          height:40,backgroundColor: 'white'}} onClick={this.openModal}>More Detail</button></Grid>
+            
+              <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  style={customStyles}
+                  
+                  contentLabel="Example Modal"
+                  >
+                        <h2>Owner</h2>
+                        <h2>Title : {this.JobName}</h2>
+                        <h3>Description : {this.JobDetail}</h3>
+                        <p>Wages:{this.Wages}</p>
+                        <p>Location:{this.Location}</p>
+                        <p>Date:{this.Date}</p>
+                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
+                        <p>Employer:{this.Employer}</p>
+
+              </Modal>
+        </div>
+        )
+    } 
+    
+    else if(this.CurrentEmployee.includes(fire.auth().currentUser.email)){
+      return(
         <div>
           <Grid item md={12} style={{ alignContent:'center',alignItems:'center' }}><button variant="contained" color='primary' style={{textAlign:'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft:40,
-    paddingRight:40,
-    marginTop:10,
-    height:40,backgroundColor: 'white'}} onClick={this.openModal}>More Detail</button></Grid>
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingLeft:40,
+          paddingRight:40,
+          marginTop:10,
+          height:40,backgroundColor: 'white'}} onClick={this.openModal}>More Detail</button></Grid>
             
               <Modal
                   isOpen={this.state.modalIsOpen}
@@ -114,14 +148,48 @@ class JobCardModal extends Component{
                   contentLabel="Example Modal"
                   >
       
-                        <h1>Title : {this.JobName}</h1>
+                        <h2>Title : {this.JobName}</h2>
                         <h3>Description : {this.JobDetail}</h3>
                         <p>Wages:{this.Wages}</p>
                         <p>Location:{this.Location}</p>
                         <p>Date:{this.Date}</p>
                         <p>Time : {this.BeginTime} - {this.EndTime}</p>
                         <p>Employer:{this.Employer}</p>
-                        <Button variant="contained" color="primary" onClick={this.onGetjob}>Apply</Button>
+                        <Button variant="contained" disabled>Already Apply</Button>
+              </Modal>
+        </div>
+    )
+    
+    }
+    
+    
+    return(
+        <div>
+          <Grid item xs={12} md={8} style={{ justifyItems:'center',justifyContent:'center',alignContent:'center',alignItems:'center' }}><Button variant="contained" color='secondary' style={{textAlign:'center',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingLeft:40,
+          paddingRight:40,
+          marginTop:10,
+          height:40,width: 200}} onClick={this.openModal}>More Detail</Button></Grid>
+            
+              <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  style={customStyles}
+                  
+                  contentLabel="Example Modal"
+                  >
+      
+                        <h2>Title : {this.JobName}</h2>
+                        <h3>Description : {this.JobDetail}</h3>
+                        <p>Wages:{this.Wages}</p>
+                        <p>Location:{this.Location}</p>
+                        <p>Date:{this.Date}</p>
+                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
+                        <p>Employer:{this.Employer}</p>
+                        <Button variant="contained" color='secondary' onClick={this.onGetjob}>Apply</Button>
 
               </Modal>
         </div>

@@ -69,6 +69,7 @@ export default function RegisterPage() {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
+                color="secondary"
                 required
                 fullWidth
                 id="email"
@@ -81,6 +82,7 @@ export default function RegisterPage() {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
+                color="secondary"
                 required
                 fullWidth
                 name="password"
@@ -94,6 +96,7 @@ export default function RegisterPage() {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
+                color="secondary"
                 required
                 fullWidth
                 name="confirmPassword"
@@ -108,6 +111,7 @@ export default function RegisterPage() {
               <TextField
                 autoComplete="fname"
                 name="firstName"
+                color="secondary"
                 variant="outlined"
                 required
                 fullWidth
@@ -120,6 +124,7 @@ export default function RegisterPage() {
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
+                color="secondary"
                 required
                 fullWidth
                 id="lastName"

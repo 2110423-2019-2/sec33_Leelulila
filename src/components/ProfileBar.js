@@ -48,6 +48,7 @@ class ProfileBar extends Component {
 
     getProfile() {
         var user = fire.auth().currentUser;
+        console.log(user);
         let self = this;
         console.log("/user/" + user.email)
         fetch("/useremail/" + user.email, {
@@ -74,9 +75,9 @@ class ProfileBar extends Component {
         var user = fire.auth().currentUser;
 
         if (user) {
-            return (<div style={{ display: 'flex', flexDirection: 'row' }} id='profileNavName'>
+            return (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'right'}} id='profileNavName'>
                 <h3>{this.state.user.firstName}</h3>
-                <Button variant="outlined" color="inherit" style={{ marginLeft: '15px' }}
+                <Button variant="outlined" color="inherit" style={{ marginLeft: '15px'}}
                     onClick={this.onLogout} href='/' size='small' >Logout</Button>
 
             </div>);

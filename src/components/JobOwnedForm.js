@@ -5,6 +5,7 @@ import { styled } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -22,6 +23,7 @@ class JobOwnedForm extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
+    this.CurrentEmployee = props.CurrentEmployee;
 
     this.state = {
       checkgetjobalready: false,
@@ -38,12 +40,10 @@ class JobOwnedForm extends Component {
   
   
     onDeletejob(){
-      // var email = fire.auth().currentUser.email;
-      // var indexofat = email.indexOf('@');
-      // var firebaseRef = fire.database().ref('ListingJob')
-      
-      // firebaseRef.child(this.Workkey).remove();
-      //   console.log('delete success');
+      fetch("/job/" + this.WorkKey, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    }).then(window.location.reload(false))
       // window.location.reload(false);
     
       
