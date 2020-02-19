@@ -11,6 +11,9 @@ import Modal from '@material-ui/core/Modal';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
+import StarsIcon from '@material-ui/icons/Stars';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import BeenhereIcon from '@material-ui/icons/Beenhere';
 
 
 class ListingJobForm extends Component {
@@ -43,13 +46,14 @@ class ListingJobForm extends Component {
     { console.log(this.CurrentEmployee) }
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
+        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#86c6f6', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <h2>(Owner)Title : {this.JobName}</h2>
+                  <StarsIcon style={{ fontSize: 'xx-large', color: '#FFFB00' }} />
+                  <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <MonetizationOnOutlinedIcon />
@@ -63,7 +67,7 @@ class ListingJobForm extends Component {
                   <EventOutlinedIcon />
                   <p> : {this.Date}</p>
                 </div>
-              
+
                 <JobCardModal
                   JobName={this.JobName}
                   JobDetail={this.JobDetail}
@@ -89,12 +93,13 @@ class ListingJobForm extends Component {
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
       return (
 
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e5b1ea', opacity: '80%', borderRadius: '10%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <h2>(Already Apply)Title : {this.JobName}</h2>
+                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#ad16ac' }} />
+                  <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <MonetizationOnOutlinedIcon />
@@ -140,7 +145,8 @@ class ListingJobForm extends Component {
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <h2>Title : {this.JobName}</h2>
+                  <AddCircleIcon color='secondary' style={{ fontSize: 'xx-large' }} />
+                  <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <MonetizationOnOutlinedIcon />
