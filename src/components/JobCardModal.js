@@ -98,16 +98,17 @@ class JobCardModal extends Component {
     if (fire.auth().currentUser.email == this.Employer) {
       return (
         <div>
-          <Grid item xs={6} style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}>
+          <Grid item xs={12} md={8} alignItems='center' style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}>
             {/* <Grid style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}> */}
               <Button variant="contained" color='secondary' style={{
                 textAlign: 'center',
                 justify: 'center',
-                alignSelf: 'center',
+                alignItems: 'center',
                 paddingLeft: 40,
                 paddingRight: 40,
                 marginTop: 10,
-                height: 40
+                height: 40,
+                width: 180
               }} onClick={this.openModal}>More Detail</Button></Grid>
 
             <Modal
@@ -136,7 +137,7 @@ class JobCardModal extends Component {
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
       return (
         <div>
-          <Grid item md={12} style={{ alignContent: 'center', alignItems: 'center' }}><Button variant="contained" color='secondary' style={{
+          <Grid item xs={12} md={8} style={{ alignContent: 'center', alignItems: 'center' }}><Button variant="contained" color='secondary' style={{
             textAlign: 'center',
             justifyContent: 'center',
             alignItems: 'center',

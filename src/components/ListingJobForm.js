@@ -43,10 +43,10 @@ class ListingJobForm extends Component {
 
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
+        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Grid item xs={12} style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Grid style={{ justifyContent: 'center', alignItems: 'center' }}>
 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <h2>(Owner)Title : {this.JobName}</h2>
@@ -91,7 +91,7 @@ class ListingJobForm extends Component {
       return (
         <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
           <div>
-            <Grid style={{ display: 'flex' }}>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <h2>(Already Apply)Title : {this.JobName}</h2>
@@ -109,23 +109,23 @@ class ListingJobForm extends Component {
                   <p> : {this.Date}</p>
                 </div>
 
-
+                <JobCardModal
+                  JobName={this.JobName}
+                  JobDetail={this.JobDetail}
+                  Wages={this.Wages}
+                  Amount={this.Amount}
+                  Date={this.Date}
+                  BeginTime={this.BeginTime}
+                  EndTime={this.EndTime}
+                  Location={this.Location}
+                  Employer={this.Employer}
+                  WorkKey={this.WorkKey}
+                  CurrentEmployee={this.CurrentEmployee}
+                />
               </Grid>
 
             </Grid>
-            <JobCardModal
-              JobName={this.JobName}
-              JobDetail={this.JobDetail}
-              Wages={this.Wages}
-              Amount={this.Amount}
-              Date={this.Date}
-              BeginTime={this.BeginTime}
-              EndTime={this.EndTime}
-              Location={this.Location}
-              Employer={this.Employer}
-              WorkKey={this.WorkKey}
-              CurrentEmployee={this.CurrentEmployee}
-            />
+
 
           </div>
         </Card>
@@ -133,49 +133,50 @@ class ListingJobForm extends Component {
 
     }
 
-    return (
-      <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
-        <div>
-          <Grid style={{ display: 'flex' }}>
-            <Grid item md={12}>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <h2>Title : {this.JobName}</h2>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <MonetizationOnOutlinedIcon />
-                <p> : {this.Wages} ฿</p>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <LocationOnOutlinedIcon />
-                <p> : {this.Location}</p>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <EventOutlinedIcon />
-                <p> : {this.Date}</p>
-              </div>
+    else {
+      return (
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+          <div>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item md={12}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <h2>Title : {this.JobName}</h2>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <MonetizationOnOutlinedIcon />
+                  <p> : {this.Wages} ฿</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <LocationOnOutlinedIcon />
+                  <p> : {this.Location}</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <EventOutlinedIcon />
+                  <p> : {this.Date}</p>
+                </div>
+                <JobCardModal
+                  JobName={this.JobName}
+                  JobDetail={this.JobDetail}
+                  Wages={this.Wages}
+                  Amount={this.Amount}
+                  Date={this.Date}
+                  BeginTime={this.BeginTime}
+                  EndTime={this.EndTime}
+                  Location={this.Location}
+                  Employer={this.Employer}
+                  WorkKey={this.WorkKey}
+                  CurrentEmployee={this.CurrentEmployee}
+                />
 
+              </Grid>
 
             </Grid>
 
-          </Grid>
-          <JobCardModal
-            JobName={this.JobName}
-            JobDetail={this.JobDetail}
-            Wages={this.Wages}
-            Amount={this.Amount}
-            Date={this.Date}
-            BeginTime={this.BeginTime}
-            EndTime={this.EndTime}
-            Location={this.Location}
-            Employer={this.Employer}
-            WorkKey={this.WorkKey}
-            CurrentEmployee={this.CurrentEmployee}
-          />
 
-        </div>
-      </Card>
-    );
-
+          </div>
+        </Card>
+      );
+    }
   }
 
 
