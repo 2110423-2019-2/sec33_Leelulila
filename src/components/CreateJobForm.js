@@ -73,7 +73,7 @@ class CreateJobForm extends Component {
 
     //push data to mongoDB
     onCreatejob() { 
-        
+        let timer = null;
         //get all data from element below
         var data = {
             JobName: document.getElementById('jobname').value,
@@ -95,13 +95,13 @@ class CreateJobForm extends Component {
             alert("Your job is being added!")
             //this function will push data to db
             this.mongoCreateJob(data);
-        
+            timer = setTimeout(() => this.setState({redirect: true}), 500)
             
         }
         
     }
 
-  
+
 
     mongoCreateJob(data) {
         //send request data to backend /newjob ***pull the lastest backend first***
@@ -114,9 +114,11 @@ class CreateJobForm extends Component {
                 throw new Error("Bad response from server");
             }
             return response.json();
-        }).then(this.setState({
-            redirect: true 
-        })).catch(function (err) {
+        }).then(function (resData) {
+            // console.log(resData); 
+            alert("Success!!");
+           
+        }).catch(function (err) {
             console.log(err);
         });
         
@@ -151,6 +153,8 @@ class CreateJobForm extends Component {
                                     id='timebegin'
                                     label="Start time"
                                     type='time'
+                                    // value={this.state.selectedBegintime}
+                                    // onChange={this.handleBeginTimeChange}
                                     defaultValue={'00:00'}
                                 />
 
@@ -159,6 +163,8 @@ class CreateJobForm extends Component {
                                     id='timeend'
                                     label="End time"
                                     type='time'
+                                    // value={this.state.selectedEndtime}
+                                    // onChange={this.handleEndTimeChange}
                                     defaultValue={'00:00'}
                                 />
                             <TextField name='location' color="secondary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
@@ -174,7 +180,7 @@ class CreateJobForm extends Component {
                                 />
                                 <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}} />
                             </Grid>
-                            <Grid style={{ margin: '32px', right: '0px', display:'flex',justifyContent:'center'}}>
+                            <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
                                 <Button variant="contained" color='primary' style={{backgroundColor: '#32441c'}} onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
