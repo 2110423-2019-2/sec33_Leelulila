@@ -79,6 +79,7 @@ class JobOwned extends Component {
                                     Location={notes[0].Location}
                                     Employer={notes[0].Employer}
                                     WorkKey={notes[1]}
+                                    CurrentEmployee={notes[0].CurrentEmployee}
                                 />
                             </Grid>
                         )
@@ -87,6 +88,7 @@ class JobOwned extends Component {
             )
             }
         }
+        return(<h1>Loading...</h1>);
         
 
         

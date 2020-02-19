@@ -52,7 +52,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Container>
+        <Container style = {{marginTop:'100px'}}>
           {(this.state.user._id ||
             this.state.user.firstName ||
             this.state.user.lastName ||

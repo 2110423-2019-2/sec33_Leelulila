@@ -27,6 +27,7 @@ class ListingJobForm extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
+    this.CurrentEmployee = props.CurrentEmployee;
 
 
     this.state = {
@@ -38,14 +39,11 @@ class ListingJobForm extends Component {
   }
 
 
-
-
-
   render() {
 
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: '#8ed3c4', opacity: '80%', borderRadius: '10%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
           <div>
             <Grid style={{ display: 'flex' }}>
               <Grid item md={12}>
@@ -54,10 +52,58 @@ class ListingJobForm extends Component {
                   <h2>(Owner)Title : {this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <p>Wages:{this.Wages}</p>
+                  <MonetizationOnOutlinedIcon/>
+                  <p> :{this.Wages}</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <p>Location:{this.Location}</p>
+                  <LocationOnOutlinedIcon/>
+                  <p> :{this.Location}</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <EventOutlinedIcon/>
+                  <p> :{this.Date}</p>
+                </div>
+
+
+              </Grid>
+
+            </Grid>
+            <JobCardModal
+              JobName={this.JobName}
+              JobDetail={this.JobDetail}
+              Wages={this.Wages}
+              Amount={this.Amount}
+              Date={this.Date}
+              BeginTime={this.BeginTime}
+              EndTime={this.EndTime}
+              Location={this.Location}
+              Employer={this.Employer}
+              WorkKey={this.WorkKey}
+              CurrentEmployee={this.CurrentEmployee}
+            />
+
+          </div>
+        </Card>
+      );
+
+    }
+
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
+      return (
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+          <div>
+            <Grid style={{ display: 'flex' }}>
+              <Grid item md={12}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <h2>(Already Apply)Title : {this.JobName}</h2>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <MonetizationOnOutlinedIcon/>
+                  <p> :{this.Wages}</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <LocationOnOutlinedIcon/>
+                  <p> :{this.Location}</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <p>Date:{this.Date}</p>
@@ -78,7 +124,7 @@ class ListingJobForm extends Component {
               Location={this.Location}
               Employer={this.Employer}
               WorkKey={this.WorkKey}
-            // Currentemployer={this.Currentemployer}
+              CurrentEmployee={this.CurrentEmployee}
             />
 
           </div>
@@ -88,42 +134,43 @@ class ListingJobForm extends Component {
     }
 
     return (
-      <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e8c4d0', opacity: '80%', borderRadius: '10%', justifyContent: 'center' }}>
+      <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
         <div>
-          <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', justifyItems: 'center' }}>
-            <Grid item xs={6} style={{ justifyContent: 'center', justifyItems: 'center', alignItems: 'center' }}>
+          <Grid style={{ display: 'flex' }}>
+            <Grid item md={12}>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <h2>Title: {this.JobName}</h2>
+                <h2>Title : {this.JobName}</h2>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <MonetizationOnOutlinedIcon/>
-                <p> : {this.Wages} ฿</p>
+                <p> :{this.Wages}</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <LocationOnOutlinedIcon/>
-                <p> : {this.Location}</p>
+                <p> :{this.Location}</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <EventOutlinedIcon/>
-                <p> : {this.Date}</p>
+                <p> :{this.Date}</p>
               </div>
 
-              <JobCardModal
-                JobName={this.JobName}
-                JobDetail={this.JobDetail}
-                Wages={this.Wages}
-                Amount={this.Amount}
-                Date={this.Date}
-                BeginTime={this.BeginTime}
-                EndTime={this.EndTime}
-                Location={this.Location}
-                Employer={this.Employer}
-                WorkKey={this.WorkKey}
-              // Currentemployer={this.Currentemployer}
-              />
+
             </Grid>
 
           </Grid>
+          <JobCardModal
+            JobName={this.JobName}
+            JobDetail={this.JobDetail}
+            Wages={this.Wages}
+            Amount={this.Amount}
+            Date={this.Date}
+            BeginTime={this.BeginTime}
+            EndTime={this.EndTime}
+            Location={this.Location}
+            Employer={this.Employer}
+            WorkKey={this.WorkKey}
+            CurrentEmployee={this.CurrentEmployee}
+          />
 
         </div>
       </Card>
