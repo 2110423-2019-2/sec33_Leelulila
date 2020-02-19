@@ -43,45 +43,44 @@ class ListingJobForm extends Component {
 
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
           <div>
-            <Grid style={{ display: 'flex' }}>
-              <Grid item md={12}>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item xs={12} style={{ justifyContent: 'center', alignItems: 'center' }}>
 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <h2>(Owner)Title : {this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <MonetizationOnOutlinedIcon/>
-                  <p> :{this.Wages}</p>
+                  <MonetizationOnOutlinedIcon />
+                  <p> : {this.Wages} ฿</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <LocationOnOutlinedIcon/>
-                  <p> :{this.Location}</p>
+                  <LocationOnOutlinedIcon />
+                  <p> : {this.Location}</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <EventOutlinedIcon/>
-                  <p> :{this.Date}</p>
+                  <EventOutlinedIcon />
+                  <p> : {this.Date}</p>
                 </div>
 
+                <JobCardModal
+                  JobName={this.JobName}
+                  JobDetail={this.JobDetail}
+                  Wages={this.Wages}
+                  Amount={this.Amount}
+                  Date={this.Date}
+                  BeginTime={this.BeginTime}
+                  EndTime={this.EndTime}
+                  Location={this.Location}
+                  Employer={this.Employer}
+                  WorkKey={this.WorkKey}
+                  CurrentEmployee={this.CurrentEmployee}
+                />
 
               </Grid>
 
             </Grid>
-            <JobCardModal
-              JobName={this.JobName}
-              JobDetail={this.JobDetail}
-              Wages={this.Wages}
-              Amount={this.Amount}
-              Date={this.Date}
-              BeginTime={this.BeginTime}
-              EndTime={this.EndTime}
-              Location={this.Location}
-              Employer={this.Employer}
-              WorkKey={this.WorkKey}
-              CurrentEmployee={this.CurrentEmployee}
-            />
-
           </div>
         </Card>
       );
@@ -90,7 +89,7 @@ class ListingJobForm extends Component {
 
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
           <div>
             <Grid style={{ display: 'flex' }}>
               <Grid item md={12}>
@@ -98,15 +97,16 @@ class ListingJobForm extends Component {
                   <h2>(Already Apply)Title : {this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <MonetizationOnOutlinedIcon/>
-                  <p> :{this.Wages}</p>
+                  <MonetizationOnOutlinedIcon />
+                  <p> : {this.Wages} ฿</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <LocationOnOutlinedIcon/>
-                  <p> :{this.Location}</p>
+                  <LocationOnOutlinedIcon />
+                  <p> : {this.Location}</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <p>Date:{this.Date}</p>
+                  <EventOutlinedIcon />
+                  <p> : {this.Date}</p>
                 </div>
 
 
@@ -134,7 +134,7 @@ class ListingJobForm extends Component {
     }
 
     return (
-      <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+      <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
         <div>
           <Grid style={{ display: 'flex' }}>
             <Grid item md={12}>
@@ -142,16 +142,16 @@ class ListingJobForm extends Component {
                 <h2>Title : {this.JobName}</h2>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <MonetizationOnOutlinedIcon/>
-                <p> :{this.Wages}</p>
+                <MonetizationOnOutlinedIcon />
+                <p> : {this.Wages} ฿</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <LocationOnOutlinedIcon/>
-                <p> :{this.Location}</p>
+                <LocationOnOutlinedIcon />
+                <p> : {this.Location}</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <EventOutlinedIcon/>
-                <p> :{this.Date}</p>
+                <EventOutlinedIcon />
+                <p> : {this.Date}</p>
               </div>
 
 

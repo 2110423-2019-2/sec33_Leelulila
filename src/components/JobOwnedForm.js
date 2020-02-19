@@ -65,7 +65,7 @@ class JobOwnedForm extends Component {
     //   var subemail = email.substring(0,indexofat);
         
         return(
-          <Card id="ListingJobForm" style={{marginBottom:'20px', height: '250px'}}>
+          <Card id="ListingJobForm" style={{marginBottom:'20px', height: '270px'}}>
             <div>
               <Grid style={{display:'flex'}}>
                 <Grid item md={10}>

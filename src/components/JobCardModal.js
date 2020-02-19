@@ -8,191 +8,201 @@ import fire from '../config/firebase';
 
 
 const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)',
-      justifyContent        : 'center',
-      
-    }
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    justifyContent: 'center',
 
-        
-    
-  };
+  }
+
+
+
+};
 //   Modal.setAppElement('#yourAppElement')
 
-   
-  // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 
-class JobCardModal extends Component{
+// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 
-    constructor(props) {
-        super(props);
-        this.JobName = props.JobName
-        this.JobDetail = props.JobDetail;
-        this.Wages = props.Wages;
-        this.Amount = props.Amount
-        this.Date = props.Date;
-        this.BeginTime = props.BeginTime;
-        this.EndTime = props.EndTime;
-        this.Location = props.Location;
-        this.Employer = props.Employer;
-        this.WorkKey = props.WorkKey;
-        console.log(this.WorkKey);
-        // this.Currentnumber = props.Currentnumber;
-        this.CurrentEmployee = props.CurrentEmployee;
+class JobCardModal extends Component {
 
-        this.state = {
-            modalIsOpen: false
-          };
-       
-          this.openModal = this.openModal.bind(this);
-          this.closeModal = this.closeModal.bind(this);
-          this.onGetjob = this.onGetjob.bind(this);
-        
-    }
+  constructor(props) {
+    super(props);
+    this.JobName = props.JobName
+    this.JobDetail = props.JobDetail;
+    this.Wages = props.Wages;
+    this.Amount = props.Amount
+    this.Date = props.Date;
+    this.BeginTime = props.BeginTime;
+    this.EndTime = props.EndTime;
+    this.Location = props.Location;
+    this.Employer = props.Employer;
+    this.WorkKey = props.WorkKey;
+    console.log(this.WorkKey);
+    // this.Currentnumber = props.Currentnumber;
+    this.CurrentEmployee = props.CurrentEmployee;
 
-    
+    this.state = {
+      modalIsOpen: false
+    };
 
-    onGetjob(){
-      var email = fire.auth().currentUser.email;
-      var data = {Email: email};
-      fetch("/job/addemployee/" + this.WorkKey, {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    }).then(function(response) {
-        if (response.status >= 400) {
-          throw new Error("Bad response from server");
-        }
-        return response.json();
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.onGetjob = this.onGetjob.bind(this);
+
+  }
+
+
+
+  onGetjob() {
+    var email = fire.auth().currentUser.email;
+    var data = { Email: email };
+    fetch("/job/addemployee/" + this.WorkKey, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
     }).then(window.location.reload(false))
-    .catch(function(err) {
+      .catch(function (err) {
         console.log(err);
-    });
-}
-      // axios.put('http://localhost:9000/job/addemployee/' + this.WorkKey, obj)
-      //   .then(alert("Success")  )
-
-      
+      });
+  }
+  // axios.put('http://localhost:9000/job/addemployee/' + this.WorkKey, obj)
+  //   .then(alert("Success")  )
 
 
 
 
-    openModal() {
-        this.setState({modalIsOpen: true});
-      }
-     
-     
-     
-      closeModal() {
-        this.setState({modalIsOpen: false});
-      }
-   
 
 
-  render(){
-    if(fire.auth().currentUser.email == this.Employer){
-          return(
-            <div>
-          <Grid item md={12} style={{ alignContent:'center',alignItems:'center' }}><button variant="contained" color='primary' style={{textAlign:'center',
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingLeft:40,
-          paddingRight:40,
-          marginTop:10,
-          height:40,backgroundColor: 'white'}} onClick={this.openModal}>More Detail</button></Grid>
-            
-              <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  style={customStyles}
-                  
-                  contentLabel="Example Modal"
-                  >
-                        <h2>Owner</h2>
-                        <h2>Title : {this.JobName}</h2>
-                        <h3>Description : {this.JobDetail}</h3>
-                        <p>Wages:{this.Wages}</p>
-                        <p>Location:{this.Location}</p>
-                        <p>Date:{this.Date}</p>
-                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
-                        <p>Employer:{this.Employer}</p>
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
 
-              </Modal>
-        </div>
-        )
-    } 
-    
-    else if(this.CurrentEmployee.includes(fire.auth().currentUser.email)){
-      return(
+
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
+
+
+  render() {
+    if (fire.auth().currentUser.email == this.Employer) {
+      return (
         <div>
-          <Grid item md={12} style={{ alignContent:'center',alignItems:'center' }}><button variant="contained" color='primary' style={{textAlign:'center',
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingLeft:40,
-          paddingRight:40,
-          marginTop:10,
-          height:40,backgroundColor: 'white'}} onClick={this.openModal}>More Detail</button></Grid>
-            
-              <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  style={customStyles}
-                  
-                  contentLabel="Example Modal"
-                  >
-      
-                        <h2>Title : {this.JobName}</h2>
-                        <h3>Description : {this.JobDetail}</h3>
-                        <p>Wages:{this.Wages}</p>
-                        <p>Location:{this.Location}</p>
-                        <p>Date:{this.Date}</p>
-                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
-                        <p>Employer:{this.Employer}</p>
-                        <Button variant="contained" disabled>Already Apply</Button>
-              </Modal>
+          <Grid item xs={6} style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}>
+            {/* <Grid style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}> */}
+              <Button variant="contained" color='secondary' style={{
+                textAlign: 'center',
+                justify: 'center',
+                alignSelf: 'center',
+                paddingLeft: 40,
+                paddingRight: 40,
+                marginTop: 10,
+                height: 40,
+                width: 180
+              }} onClick={this.openModal}>More Detail</Button></Grid>
+
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={customStyles}
+
+              contentLabel="Example Modal"
+            >
+              <h2>Owner</h2>
+              <h2>Title : {this.JobName}</h2>
+              <h3>Description : {this.JobDetail}</h3>
+              <p>Wages:{this.Wages}</p>
+              <p>Location:{this.Location}</p>
+              <p>Date:{this.Date}</p>
+              <p>Time : {this.BeginTime} - {this.EndTime}</p>
+              <p>Employer:{this.Employer}</p>
+
+            </Modal>
+            {/* </Grid> */}
         </div>
-    )
-    
+      )
     }
-    
-    
-    return(
+
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
+      return (
         <div>
-          <Grid item xs={12} md={8} style={{ justifyItems:'center',justifyContent:'center',alignContent:'center',alignItems:'center' }}><Button variant="contained" color='secondary' style={{textAlign:'center',
+          <Grid item md={12} style={{ alignContent: 'center', alignItems: 'center' }}><Button variant="contained" color='secondary' style={{
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingLeft: 40,
+            paddingRight: 40,
+            marginTop: 10,
+            height: 40
+          }} onClick={this.openModal}>More Detail</Button></Grid>
+
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+
+            contentLabel="Example Modal"
+          >
+
+            <h2>Title : {this.JobName}</h2>
+            <h3>Description : {this.JobDetail}</h3>
+            <p>Wages:{this.Wages}</p>
+            <p>Location:{this.Location}</p>
+            <p>Date:{this.Date}</p>
+            <p>Time : {this.BeginTime} - {this.EndTime}</p>
+            <p>Employer:{this.Employer}</p>
+            <Button variant="contained" disabled>Already Apply</Button>
+          </Modal>
+        </div>
+      )
+
+    }
+
+
+    return (
+      <div>
+        <Grid item xs={12} md={8} style={{ justifyItems: 'center', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}><Button variant="contained" color='secondary' style={{
+          textAlign: 'center',
           justifyContent: 'center',
           alignItems: 'center',
-          paddingLeft:40,
-          paddingRight:40,
-          marginTop:10,
-          height:40,width: 200}} onClick={this.openModal}>More Detail</Button></Grid>
-            
-              <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  style={customStyles}
-                  
-                  contentLabel="Example Modal"
-                  >
-      
-                        <h2>Title : {this.JobName}</h2>
-                        <h3>Description : {this.JobDetail}</h3>
-                        <p>Wages:{this.Wages}</p>
-                        <p>Location:{this.Location}</p>
-                        <p>Date:{this.Date}</p>
-                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
-                        <p>Employer:{this.Employer}</p>
-                        <Button variant="contained" color='secondary' onClick={this.onGetjob}>Apply</Button>
+          paddingLeft: 40,
+          paddingRight: 40,
+          marginTop: 10,
+          height: 40, width: 200
+        }} onClick={this.openModal}>More Detail</Button></Grid>
 
-              </Modal>
-        </div>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+
+          contentLabel="Example Modal"
+        >
+
+          <h2>Title : {this.JobName}</h2>
+          <h3>Description : {this.JobDetail}</h3>
+          <p>Wages:{this.Wages}</p>
+          <p>Location:{this.Location}</p>
+          <p>Date:{this.Date}</p>
+          <p>Time : {this.BeginTime} - {this.EndTime}</p>
+          <p>Employer:{this.Employer}</p>
+          <Button variant="contained" color='secondary' onClick={this.onGetjob}>Apply</Button>
+
+        </Modal>
+      </div>
     )
 
   }
