@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Button, Grid } from '@material-ui/core';
 import axios from 'axios';
 import fire from '../config/firebase';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 
 
 
@@ -110,22 +111,21 @@ class JobCardModal extends Component {
           }} onClick={this.openModal}>More Detail</Button></Grid>
 
           <Modal
+            md={12}
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             style={customStyles}
-
             contentLabel="Example Modal"
           >
 
             <h2>Title : {this.JobName}</h2>
             <h3>Description : {this.JobDetail}</h3>
-            <p>Wages:{this.Wages}</p>
-            <p>Location:{this.Location}</p>
-            <p>Date:{this.Date}</p>
+            <p>Wages : {this.Wages} ฿</p>
+            <p>Location : {this.Location}</p>
+            <p>Date : {this.Date}</p>
             <p>Time : {this.BeginTime} - {this.EndTime}</p>
-            <p>Employer:{this.Employer}</p>
-            <Button variant="contained" disabled>Already Apply</Button>
+            <Button variant="contained" disabled>Owned</Button>
           </Modal>
         </div>
       )
@@ -156,11 +156,11 @@ class JobCardModal extends Component {
 
             <h2>Title : {this.JobName}</h2>
             <h3>Description : {this.JobDetail}</h3>
-            <p>Wages:{this.Wages}</p>
-            <p>Location:{this.Location}</p>
-            <p>Date:{this.Date}</p>
+            <p>Wages : {this.Wages} ฿</p>
+            <p>Location : {this.Location}</p>
+            <p>Date : {this.Date}</p>
             <p>Time : {this.BeginTime} - {this.EndTime}</p>
-            <p>Employer:{this.Employer}</p>
+            <p>Employer : {this.Employer}</p>
             <Button variant="contained" disabled>Already Apply</Button>
           </Modal>
         </div>
@@ -186,17 +186,16 @@ class JobCardModal extends Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-
           contentLabel="Example Modal"
         >
 
           <h2>Title : {this.JobName}</h2>
           <h3>Description : {this.JobDetail}</h3>
-          <p>Wages:{this.Wages}</p>
-          <p>Location:{this.Location}</p>
-          <p>Date:{this.Date}</p>
+          <p>Wages : {this.Wages} ฿</p>
+          <p>Location:  {this.Location}</p>
+          <p>Date : {this.Date}</p>
           <p>Time : {this.BeginTime} - {this.EndTime}</p>
-          <p>Employer:{this.Employer}</p>
+          <p>Employer : {this.Employer}</p>
           <Button variant="contained" color='secondary' onClick={this.onGetjob}>Apply</Button>
 
         </Modal>

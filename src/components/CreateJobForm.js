@@ -139,7 +139,7 @@ class CreateJobForm extends Component {
                         <Grid xs={12} md={8}>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3> Jobname : </h3>
-                                <TextField inputProps={{ maxLength: 20 }} name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '300px' }} />
+                                <TextField inputProps={{ maxLength: 30 }} name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '300px' }} />
                                 <h3 style={{ "padding-left": "20px" }}>Number of Employee :</h3>
                                 <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{ marginLeft: '16px', width: '178px' }} />
                             </Grid>

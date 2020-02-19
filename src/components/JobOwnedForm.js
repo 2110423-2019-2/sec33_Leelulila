@@ -74,12 +74,9 @@ class JobOwnedForm extends Component {
             <Grid item md={10}>
               <h2>Title : {this.JobName}</h2>
               <p>Detail : {this.JobDetail}</p>
-              <div style={{ justifyContent: 'left', alignItems: 'left' }}>
-                <MonetizationOnOutlinedIcon />
-                <p> : {this.Wages} ฿</p>
-              </div>
+              <p>Wages : {this.Wages} ฿</p>
               <p>Location : {this.Location}</p>
-              <p>Date :{this.Date}</p>
+              <p>Date : {this.Date}</p>
               <p>Time : {this.BeginTime} - {this.EndTime}</p>
             </Grid>
             <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '50%', marginRight: '20px' }}>Delete</Button>
