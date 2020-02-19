@@ -40,7 +40,7 @@ class ListingJobForm extends Component {
 
 
   render() {
-
+    {console.log(this.CurrentEmployee)}
     if (fire.auth().currentUser.email == this.Employer) {
       return (
         <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
@@ -86,10 +86,10 @@ class ListingJobForm extends Component {
       );
 
     }
-
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>

@@ -98,38 +98,32 @@ class JobCardModal extends Component {
     if (fire.auth().currentUser.email == this.Employer) {
       return (
         <div>
-          <Grid item xs={12} md={8} alignItems='center' style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}>
-            {/* <Grid style={{ alignContent: 'center', alignItems: 'center', justify:'center' }}> */}
-              <Button variant="contained" color='secondary' style={{
-                textAlign: 'center',
-                justify: 'center',
-                alignItems: 'center',
-                paddingLeft: 40,
-                paddingRight: 40,
-                marginTop: 10,
-                height: 40,
-                width: 180
-              }} onClick={this.openModal}>More Detail</Button></Grid>
-
-            <Modal
-              isOpen={this.state.modalIsOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
-              style={customStyles}
-
-              contentLabel="Example Modal"
-            >
-              <h2>Owner</h2>
-              <h2>Title : {this.JobName}</h2>
-              <h3>Description : {this.JobDetail}</h3>
-              <p>Wages:{this.Wages}</p>
-              <p>Location:{this.Location}</p>
-              <p>Date:{this.Date}</p>
-              <p>Time : {this.BeginTime} - {this.EndTime}</p>
-              <p>Employer:{this.Employer}</p>
-
-            </Modal>
-            {/* </Grid> */}
+          <Grid item xs={12} md={8} style={{ justifyItems:'center',justifyContent:'center',alignContent:'center',alignItems:'center' }}><Button variant="contained" color='secondary' style={{textAlign:'center',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingLeft:40,
+          paddingRight:40,
+          marginTop:10,
+          height:40,width: 200 }} onClick={this.openModal}>More Detail</Button></Grid>
+            
+              <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  style={customStyles}
+                  
+                  contentLabel="Example Modal"
+                  >
+      
+                        <h2>Title : {this.JobName}</h2>
+                        <h3>Description : {this.JobDetail}</h3>
+                        <p>Wages:{this.Wages}</p>
+                        <p>Location:{this.Location}</p>
+                        <p>Date:{this.Date}</p>
+                        <p>Time : {this.BeginTime} - {this.EndTime}</p>
+                        <p>Employer:{this.Employer}</p>
+                        <Button variant="contained" disabled>Already Apply</Button>
+              </Modal>
         </div>
       )
     }
