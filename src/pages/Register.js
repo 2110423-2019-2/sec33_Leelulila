@@ -9,7 +9,6 @@ import {useHistory} from 'react-router-dom'
 import validator from 'validator';
 
 
-
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -170,7 +169,7 @@ export default function RegisterPage() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -185,7 +184,8 @@ export default function RegisterPage() {
     auth.createUserWithEmailAndPassword(email, pass)
     .then(u => {
       alert("Registration success");
-      auth.signOut();
+      window.location.href="/Dashboard";
+      // auth.signOut();
     })
       .catch(function (error) {
         switch (error.code) {
