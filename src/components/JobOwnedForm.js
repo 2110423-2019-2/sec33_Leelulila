@@ -23,6 +23,7 @@ class JobOwnedForm extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
+    this.CurrentEmployee = props.CurrentEmployee;
 
     this.state = {
       checkgetjobalready: false,

@@ -24,6 +24,7 @@ class ListingJobForm extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
+    this.CurrentEmployee = props.CurrentEmployee;
 
 
     this.state = {
@@ -39,7 +40,7 @@ class ListingJobForm extends Component {
 
 
   render(){
- 
+
     if(fire.auth().currentUser.email == this.Employer){
           return(
             <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
@@ -75,7 +76,7 @@ class ListingJobForm extends Component {
                   Location={this.Location}
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
-                  // Currentemployer={this.Currentemployer}
+                  CurrentEmployee={this.CurrentEmployee}
                   />
                 
               </div>
@@ -83,46 +84,89 @@ class ListingJobForm extends Component {
           );
 
     }
+    
+    else if(this.CurrentEmployee.includes(fire.auth().currentUser.email)){
+      return(
+        <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
+          <div>
+            <Grid style={{display:'flex'}}>
+              <Grid item md={12}>
+                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                    <h2>(Already Apply)Title : {this.JobName}</h2>
+                  </div>
+                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                    <p>Wages:{this.Wages}</p>
+                  </div>
+                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                    <p>Location:{this.Location}</p>
+                  </div>
+                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                    <p>Date:{this.Date}</p>
+                  </div>
+                  
+                  
+              </Grid>
+            
+            </Grid>       
+            <JobCardModal
+              JobName={this.JobName}
+              JobDetail={this.JobDetail}                        
+              Wages={this.Wages}
+              Amount={this.Amount}
+              Date={this.Date}
+              BeginTime={this.BeginTime}
+              EndTime={this.EndTime}
+              Location={this.Location}
+              Employer={this.Employer}
+              WorkKey={this.WorkKey}
+              CurrentEmployee={this.CurrentEmployee}
+                        />
+            
+          </div>
+        </Card>
+      );
+        
+    }
 
-        return(
-          <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
-            <div>
-              <Grid style={{display:'flex'}}>
-                <Grid item md={12}>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <h2>Title : {this.JobName}</h2>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <p>Wages:{this.Wages}</p>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <p>Location:{this.Location}</p>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <p>Date:{this.Date}</p>
-                    </div>
-                    
-                    
-                </Grid>
-               
-              </Grid>       
-              <JobCardModal
-                JobName={this.JobName}
-                JobDetail={this.JobDetail}                        
-                Wages={this.Wages}
-                Amount={this.Amount}
-                Date={this.Date}
-                BeginTime={this.BeginTime}
-                EndTime={this.EndTime}
-                Location={this.Location}
-                Employer={this.Employer}
-                WorkKey={this.WorkKey}
-                // Currentemployer={this.Currentemployer}
-                />
-               
-            </div>
-          </Card>
-        );
+          return(
+            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
+              <div>
+                <Grid style={{display:'flex'}}>
+                  <Grid item md={12}>
+                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                        <h2>Title : {this.JobName}</h2>
+                      </div>
+                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                        <p>Wages:{this.Wages}</p>
+                      </div>
+                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                        <p>Location:{this.Location}</p>
+                      </div>
+                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                        <p>Date:{this.Date}</p>
+                      </div>
+                      
+                      
+                  </Grid>
+                
+                </Grid>       
+                <JobCardModal
+                  JobName={this.JobName}
+                  JobDetail={this.JobDetail}                        
+                  Wages={this.Wages}
+                  Amount={this.Amount}
+                  Date={this.Date}
+                  BeginTime={this.BeginTime}
+                  EndTime={this.EndTime}
+                  Location={this.Location}
+                  Employer={this.Employer}
+                  WorkKey={this.WorkKey}
+                  CurrentEmployee={this.CurrentEmployee}
+                  />
+                
+              </div>
+            </Card>
+          );
       
   }
 

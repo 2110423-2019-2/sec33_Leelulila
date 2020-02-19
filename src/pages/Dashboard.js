@@ -12,6 +12,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             listing: {},
+            ready:false,
         }
         this.renderList = this.renderList.bind(this);
     }
@@ -38,6 +39,7 @@ class Dashboard extends Component {
           }
           this.setState({
               listing: list2,
+              ready:true,
           })
           console.log(this.state.listing)
 
@@ -48,42 +50,42 @@ class Dashboard extends Component {
     }
 
     renderList(){
-        if (this.state.listing.length==null){
-            console.log(1);
-            return (
-                <h1> dont have any job</h1>
-            )
-        }
-        
-        
-
-        else if(this.state.listing[0]['_id'] == null){
-            console.log(this.state.listing);
-            return (
-                
-                this.state.listing.map((notes) => {
-                console.log(notes[0].JobName);
+        if(this.state.ready){
+                if (this.state.listing.length==null){
+                    console.log(1);
                     return (
-                        <Grid item xs={4}>
-                            <ListingJobForm
-                                JobName={notes[0].JobName}
-                                JobDetail={notes[0].JobDetail}
-                                Wages={notes[0].Wages}
-                                Amount={notes[0].Amount}
-                                Date={notes[0].Date}
-                                BeginTime={notes[0].BeginTime}
-                                EndTime={notes[0].EndTime}
-                                Location={notes[0].Location}
-                                Employer={notes[0].Employer}
-                                CurrentEmployee={notes[0].CurrentEmployee}
-                                WorkKey={notes[1][0]}
-                            />
-                        </Grid>
+                        <h1> dont have any job</h1>
                     )
-                })
-            
-        )
+                }
+                
+                else if(this.state.listing[0]['_id'] == null){
+                    console.log(this.state.listing);
+                    return (
+                        
+                        this.state.listing.map((notes) => {
+                        console.log(notes[0].JobName);
+                            return (
+                                <Grid item xs={4}>
+                                    <ListingJobForm
+                                        JobName={notes[0].JobName}
+                                        JobDetail={notes[0].JobDetail}
+                                        Wages={notes[0].Wages}
+                                        Amount={notes[0].Amount}
+                                        Date={notes[0].Date}
+                                        BeginTime={notes[0].BeginTime}
+                                        EndTime={notes[0].EndTime}
+                                        Location={notes[0].Location}
+                                        Employer={notes[0].Employer}
+                                        CurrentEmployee={notes[0].CurrentEmployee}
+                                        WorkKey={notes[1][0]}
+                                    />
+                                </Grid>
+                            )
+                        })
+                     )
+                }
         }
+        return(<h1>Loading...</h1>)
 
         
     }
