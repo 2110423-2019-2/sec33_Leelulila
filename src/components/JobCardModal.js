@@ -131,13 +131,13 @@ class JobCardModal extends Component{
     else if(this.CurrentEmployee.includes(fire.auth().currentUser.email)){
       return(
         <div>
-          <Grid item md={12} style={{ alignContent:'center',alignItems:'center' }}><button variant="contained" color='primary' style={{textAlign:'center',
+          <Grid item xs={12} md={8} style={{ justifyItems:'center',justifyContent:'center',alignContent:'center',alignItems:'center' }}><Button variant="contained" color='secondary' style={{textAlign:'center',
           justifyContent: 'center',
           alignItems: 'center',
           paddingLeft:40,
           paddingRight:40,
           marginTop:10,
-          height:40,backgroundColor: 'white'}} onClick={this.openModal}>More Detail</button></Grid>
+          height:40,width: 200 }} onClick={this.openModal}>More Detail</Button></Grid>
             
               <Modal
                   isOpen={this.state.modalIsOpen}

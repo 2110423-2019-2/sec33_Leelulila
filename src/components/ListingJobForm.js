@@ -40,7 +40,7 @@ class ListingJobForm extends Component {
 
 
   render() {
-
+    {console.log(this.CurrentEmployee)}
     if (fire.auth().currentUser.email == this.Employer) {
       return (
         <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
@@ -87,9 +87,9 @@ class ListingJobForm extends Component {
       );
 
     }
-
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
       return (
+
         <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '250px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
           <div>
             <Grid style={{ display: 'flex' }}>
