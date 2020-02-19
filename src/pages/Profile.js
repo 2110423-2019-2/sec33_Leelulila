@@ -43,7 +43,7 @@ class Profile extends Component {
     }).then(function (jsonData) {
       self.setState({ user: jsonData });
       console.log(self.state.user)
-      console.log(self.state.user.skill)
+      console.log(self.state.user.firstName)
     }).catch(function (err) {
       console.log(err);
     });

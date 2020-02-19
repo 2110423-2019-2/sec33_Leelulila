@@ -33,8 +33,8 @@ class LoginForm extends Component {
             <Grid item><TextField size="small" id="email" label="Email" variant="outlined" fullWidth /></Grid>
             <Grid item><TextField size="small" id="pass" label="Password" type='password' variant="outlined" style={{ marginTop: '10px' }} fullWidth /></Grid>
             <Grid direction='row' style={{float:'right',marginTop:'10px'}}>
-              <Button variant='outlined' color='primary' href='/register' >Register</Button>
-              <Button variant='contained' color='primary' style={{ marginLeft: '10px' }} flip onClick={this.onLogin}>Login</Button>
+              <Button variant='outlined' color='#32441c' href='/register' >Register</Button>
+              <Button variant='contained' color='primary' style={{ marginLeft: '10px', backgroundColor:'#32441c' }} flip onClick={this.onLogin}>Login</Button>
             </Grid>
           </Grid>
         </Grid>

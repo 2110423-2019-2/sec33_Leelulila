@@ -29,7 +29,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexDirection:'column',
+    flexDirection: 'column',
 
   },
   appBar: {
@@ -83,6 +83,16 @@ const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
+  toolbarStyle: {
+    background: '#E3495A',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+
 }));
 
 export default function PersistentDrawerLeft(props) {
@@ -107,7 +117,7 @@ export default function PersistentDrawerLeft(props) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.toolbarStyle}>
           {/* <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -117,7 +127,7 @@ export default function PersistentDrawerLeft(props) {
           >
             <MenuIcon />
           </IconButton> */}
-          <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px'}} disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
+          <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px',backgroundColor:'#E3495A'}} disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
           
           <ProfileBar /> 
         </Toolbar>
@@ -129,7 +139,7 @@ export default function PersistentDrawerLeft(props) {
         anchor="left"
         open={open}
         classes={{
-          paper: classes.drawerPaper, 
+          paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
@@ -141,19 +151,19 @@ export default function PersistentDrawerLeft(props) {
        
         <Divider />
       </Drawer>
-      
+
       <Router>
 
-          <div >
-            <Route exact path="/" component={FirstLanding} />
-            <Route path="/login" component={Login} /> 
+        <div >
+          <Route exact path="/" component={FirstLanding} />
+          <Route path="/login" component={Login} />
 
             <Route path="/register" component={Register} />
             
           </div>
 
-        </Router>
-      <Footer id='Footer'/>
+      </Router>
+      <Footer id='Footer' />
     </div>
   );
 }

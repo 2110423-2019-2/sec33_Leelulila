@@ -7,7 +7,7 @@ import youtubeIcon from '../pic/socialIcon/youtubeIcon.png';
 const Footer = () => {
     return (
         <div>
-            <Paper square elevation={0} fullWidth style={{ backgroundColor: 'Black' }}>
+            <Paper square elevation={0} fullWidth style={{ backgroundColor: '#552c2a' }}>
                 <Grid container spacing={2} id='FooterGrid'>
                     <Grid container id="FooterGrid1" item xs={12} sm={12} md={6}>
                         <Grid item md={12} xs={12}><h1 id='white'>About Us</h1></Grid>
@@ -27,7 +27,7 @@ const Footer = () => {
                         </Grid>
                         <Grid item id='white'>
                             <h2>Address: </h2>
-                            <p>254 Phayathai Rd, Wang Mai, Pathum Wan District, Bangkok 10330<br/>Call : xxx-xxx-xxx</p>
+                            <p>254 Phayathai Rd., Wang Mai, Pathum Wan District, Bangkok 10330<br/>Call : 080-778-890</p>
                             
                         </Grid>
 

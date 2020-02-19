@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core';
 import '../style.css';
-import ListingJobForm from '../components/ListingJobForm';
+import ListingJobForm from '../components/ListingJobForm'
+import fire from '../config/firebase';
+
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -10,9 +12,9 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             listing: {},
+            ready:false,
         }
         this.renderList = this.renderList.bind(this);
-        
     }
 
     
@@ -26,20 +28,21 @@ class Dashboard extends Component {
           })
 
           var list2 = [];
-          var j = 'J1';
 
           for (var x in this.state.listing) {
+            if(this.state.listing[x]['job']['Status']=="Ready"){
+                    list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+            }
               
-              list2.push(this.state.listing[x][j]);
-              var j2 = j.substring(1,2);
-              var count = parseInt(j2);
-              count+=1;
-              j = 'J'+count.toString();
+            
               
           }
           this.setState({
               listing: list2,
+              ready:true,
           })
+          console.log(this.state.listing)
+
       })
       .catch((error) => {
         console.log(error);
@@ -47,39 +50,42 @@ class Dashboard extends Component {
     }
 
     renderList(){
-        if (this.state.listing.length==null){
-            console.log(1);
-            return (
-                <h1> dont have any job</h1>
-            )
-        }
-        
-
-        if(this.state.listing[0]['_id'] == null){
-            console.log(this.state.listing);
-            return (
-                
-                this.state.listing.map((notes) => {
-                
+        if(this.state.ready){
+                if (this.state.listing.length==null){
+                    console.log(1);
                     return (
-                        <Grid item xs={4}>
-                            <ListingJobForm
-                                JobName={notes.JobName}
-                                JobDetail={notes.JobDetail}
-                                Wages={notes.Wages}
-                                Amount={notes.Amount}
-                                Date={notes.Date}
-                                BeginTime={notes.BeginTime}
-                                EndTime={notes.EndTime}
-                                Location={notes.Location}
-                                Employer={notes.Employer}
-                            />
-                        </Grid>
+                        <h1> dont have any job</h1>
                     )
-                })
-            
-        )
+                }
+                
+                else if(this.state.listing[0]['_id'] == null){
+                    console.log(this.state.listing);
+                    return (
+                        
+                        this.state.listing.map((notes) => {
+                        console.log(notes[0].JobName);
+                            return (
+                                <Grid item xs={4}>
+                                    <ListingJobForm
+                                        JobName={notes[0].JobName}
+                                        JobDetail={notes[0].JobDetail}
+                                        Wages={notes[0].Wages}
+                                        Amount={notes[0].Amount}
+                                        Date={notes[0].Date}
+                                        BeginTime={notes[0].BeginTime}
+                                        EndTime={notes[0].EndTime}
+                                        Location={notes[0].Location}
+                                        Employer={notes[0].Employer}
+                                        CurrentEmployee={notes[0].CurrentEmployee}
+                                        WorkKey={notes[1][0]}
+                                    />
+                                </Grid>
+                            )
+                        })
+                     )
+                }
         }
+        return(<h1>Loading...</h1>)
 
         
     }

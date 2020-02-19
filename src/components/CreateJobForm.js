@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
-import DateFnsUtils from '@date-io/date-fns';
 // import fire from '../config/Fire';
 import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import {
-    KeyboardDatePicker,
-    KeyboardTimePicker,
-    MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import TextareaAutosize from 'react-textarea-autosize';
 import DatePicker from '../components/DatePicker';
 import fire from '../config/firebase';
 
@@ -81,7 +73,6 @@ class CreateJobForm extends Component {
 
     //push data to mongoDB
     onCreatejob() { 
-        alert("Your job is being added!")
         
         //get all data from element below
         var data = {
@@ -97,14 +88,20 @@ class CreateJobForm extends Component {
             Employer: fire.auth().currentUser.email,
             Status: "Ready"
         }
-
-        //this function will push data to db
-        this.mongoCreateJob(data);
+        if(data.JobName =='' || data.JobDetail=='' || data.Wages=='' || data.Amount=='' || data.Location==''){
+            alert("Please fill the Empty Box")
+        }
+        else{
+            alert("Your job is being added!")
+            //this function will push data to db
+            this.mongoCreateJob(data);
         
-        this.setState({ redirect: true });
+            
+        }
+        
     }
 
-
+  
 
     mongoCreateJob(data) {
         //send request data to backend /newjob ***pull the lastest backend first***
@@ -117,11 +114,9 @@ class CreateJobForm extends Component {
                 throw new Error("Bad response from server");
             }
             return response.json();
-        }).then(function (resData) {
-            // console.log(resData); 
-            alert("Success!!");
-           
-        }).catch(function (err) {
+        }).then(this.setState({
+            redirect: true 
+        })).catch(function (err) {
             console.log(err);
         });
         
@@ -137,27 +132,25 @@ class CreateJobForm extends Component {
             return (
 
                 <div style={{ marginTop: '100px', marginBottom: '100px', paddingLeft: '25%' }}>
-                    <h1>Create Job</h1>
+                    <h1>   Create Job</h1>
                     <form>
                         <Grid xs={12} md={8}>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
-                                <h3>Jobname : </h3>
-                                <TextField name='Jobname' id="jobname" variant="outlined" margin='dense' style={{ marginLeft: '20px' }} />
+                                <h3> Jobname : </h3>
+                                <TextField name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px' ,width: '300px'}} />
                                 <h3 style = {{"padding-left": "20px" }}>Number of Employee :</h3>
-                            <TextField name='people' id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px'}} />
+                            <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px' ,width: '178px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
                                 <h3>Details :</h3>
-                                <TextField multiline={true} rows={5} name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
+                                <TextField multiline={true} rows={5} color="secondary" name='detail' id="jobdescription" variant="outlined" margin='dense' style = {{width: 794}}/>
                             </Grid>
-                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
+                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column' , marginTop: '40px'}}>
                                 <h3>Time :</h3>
                                 <DatePicker
                                     id='timebegin'
                                     label="Start time"
                                     type='time'
-                                    // value={this.state.selectedBegintime}
-                                    // onChange={this.handleBeginTimeChange}
                                     defaultValue={'00:00'}
                                 />
 
@@ -166,11 +159,9 @@ class CreateJobForm extends Component {
                                     id='timeend'
                                     label="End time"
                                     type='time'
-                                    // value={this.state.selectedEndtime}
-                                    // onChange={this.handleEndTimeChange}
                                     defaultValue={'00:00'}
                                 />
-                            <TextField name='location' id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
+                            <TextField name='location' color="secondary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Date :</h3>
@@ -179,11 +170,12 @@ class CreateJobForm extends Component {
                                     label="Select Work Date"
                                     type='date'
                                     defaultValue={'2020-02-02'}
+                                    
                                 />
-                                <TextField name='wages' id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}}/>
+                                <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{marginLeft:'27px'}} />
                             </Grid>
                             <Grid style={{ margin: '16px', right: '0px', float: 'right' }}>
-                                <Button variant="contained" color="primary" onClick={this.onCreatejob} >Submit</Button>
+                                <Button variant="contained" color='primary' style={{backgroundColor: '#32441c'}} onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>

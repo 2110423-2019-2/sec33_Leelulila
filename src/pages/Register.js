@@ -153,6 +153,7 @@ export default function RegisterPage() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{backgroundColor:'#32441c'}}
           >
             Sign Up
           </Button>

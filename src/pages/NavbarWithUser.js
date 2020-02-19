@@ -25,8 +25,7 @@ import Profile from './Profile'
 import Footer from '../components/Footer';
 import '../style.css';
 import Dashboard from './Dashboard';
-
-//import Jobowned from './Jobowned';
+import JobOwned from './JobOwned';
 
 
 const drawerWidth = 240;
@@ -87,6 +86,15 @@ const useStyles = makeStyles(theme => ({
         }),
         marginLeft: 0,
     },
+    toolbarStyle: {
+        background: '#E3495A',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
+      },
 }));
 
 export default function PersistentDrawerLeft() {
@@ -111,7 +119,7 @@ export default function PersistentDrawerLeft() {
                     [classes.appBarShift]: open,
                 })}
             >
-                <Toolbar>
+                <Toolbar className={classes.toolbarStyle}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -121,7 +129,7 @@ export default function PersistentDrawerLeft() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px'}} disableElevation variant='contained' color='primary' href='/Dashboard' >CU PART-TIME</Button>
+                    <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px',backgroundColor:'#E3495A'}} disableElevation variant='contained' color='primary' href='/Dashboard' >CU PART-TIME</Button>
                     <ProfileBar />
                 </Toolbar>
 
@@ -145,6 +153,7 @@ export default function PersistentDrawerLeft() {
                     <ListItem><ListItemText><Button href='/Dashboard'>Home</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Profile'>Profile</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Createjob'>CreateJob</Button></ListItemText></ListItem>
+                    <ListItem><ListItemText><Button href='/JobOwned'>JobOwned</Button></ListItemText></ListItem>
                     {/* <ListItem><ListItemText><Button href='/Jobowned'>JobOwned</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Listingjob'>ListingJob</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
@@ -160,7 +169,7 @@ export default function PersistentDrawerLeft() {
                     <Route path="/dashboard" component={Dashboard} />
                     {/* <Route path="/listingjob" component={Listingjob}/> */}
                     {/* <Route path="/dashboard" component={Dashboard}/> */}
-                    {/* <Route path="/jobowned" component={Jobowned}/> */}
+                    <Route path="/jobowned" component={JobOwned}/>
 
                 </div>
             </Router>
