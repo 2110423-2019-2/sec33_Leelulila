@@ -107,8 +107,7 @@ class JobCardModal extends Component {
                 paddingLeft: 40,
                 paddingRight: 40,
                 marginTop: 10,
-                height: 40,
-                width: 180
+                height: 40
               }} onClick={this.openModal}>More Detail</Button></Grid>
 
             <Modal
