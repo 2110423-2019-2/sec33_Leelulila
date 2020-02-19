@@ -6,7 +6,6 @@ import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
 
-
 class RegisterForm extends Component {
 
   constructor(props) {
