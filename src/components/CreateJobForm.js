@@ -88,7 +88,7 @@ class CreateJobForm extends Component {
             Employer: fire.auth().currentUser.email,
             Status: "Ready"
         }
-        if(data.JobName =='' || data.JobDetail=='' || data.Wages=='' || data.Amount=='' || data.Location==''){
+        if(data.JobName.length == 0 || data.JobDetail.length == 0 || data.Wages.length == 0 || data.Amount.length == 0 || data.Location.length == 0){
             alert("Please fill the Empty Box")
         }
         else{
@@ -134,12 +134,12 @@ class CreateJobForm extends Component {
             return (
 
                 <div style={{ marginTop: '100px', marginBottom: '100px', paddingLeft: '25%' }}>
-                    <h1>   Create Job</h1>
+                    <h1>Create Job</h1>
                     <form>
                         <Grid xs={12} md={8}>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3> Jobname : </h3>
-                                <TextField name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px' ,width: '300px'}} />
+                                <TextField inputProps={{maxLength: 20}} name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px' ,width: '300px'}} />
                                 <h3 style = {{"padding-left": "20px" }}>Number of Employee :</h3>
                             <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{marginLeft:'16px' ,width: '178px'}} />
                             </Grid>
