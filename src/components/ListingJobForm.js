@@ -43,13 +43,15 @@ class ListingJobForm extends Component {
 
     if(fire.auth().currentUser.email == this.Employer){
           return(
-            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
+            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '300px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
             <div>
               <Grid style={{display:'flex'}}>
                 <Grid item md={12}>
-                
                     <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <h2>(Owner)Title : {this.JobName}</h2>
+                      <h3>Owner</h3>
+                    </div>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                      <h3>Title : {this.JobName}</h3>
                     </div>
                     <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
                       <p>Wages:{this.Wages}</p>
@@ -87,12 +89,15 @@ class ListingJobForm extends Component {
     
     else if(this.CurrentEmployee.includes(fire.auth().currentUser.email)){
       return(
-        <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
+        <Card id="ListingJobForm" style={{marginBottom:'10px', height: '300px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
           <div>
             <Grid style={{display:'flex'}}>
               <Grid item md={12}>
                   <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                    <h2>(Already Apply)Title : {this.JobName}</h2>
+                    <h3>Already Applied</h3>
+                  </div>
+                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                    <h3>Title : {this.JobName}</h3>
                   </div>
                   <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
                     <p>Wages:{this.Wages}</p>
@@ -129,12 +134,12 @@ class ListingJobForm extends Component {
     }
 
           return(
-            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '250px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
+            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '300px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
               <div>
                 <Grid style={{display:'flex'}}>
                   <Grid item md={12}>
                       <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <h2>Title : {this.JobName}</h2>
+                        <h3>Title : {this.JobName}</h3>
                       </div>
                       <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
                         <p>Wages:{this.Wages}</p>

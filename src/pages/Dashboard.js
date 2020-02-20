@@ -93,7 +93,7 @@ class Dashboard extends Component {
     render() {
         
         return (
-            <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
+            <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>
