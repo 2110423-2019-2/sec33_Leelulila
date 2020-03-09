@@ -22,6 +22,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 //import Listingjob from './Listingjob';
 import CreateJob from './CreateJob';
 import Profile from './Profile'
+import Schedule from './Schedule'
 import Footer from '../components/Footer';
 import '../style.css';
 import Dashboard from './Dashboard';
@@ -151,7 +152,8 @@ export default function PersistentDrawerLeft() {
                 <Divider />
                 <List>
                     <ListItem><ListItemText><Button href='/Dashboard'>Home</Button></ListItemText></ListItem>
-                    <ListItem><ListItemText><Button href='/Profile'>Profile</Button></ListItemText></ListItem>
+                    <ListItem><ListItemText><Button href='/Profile'>Profile</Button></ListItemText></ListItem>                    
+                    <ListItem><ListItemText><Button href='/Schedule'>My Schedule</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Createjob'>CreateJob</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/JobOwned'>JobOwned</Button></ListItemText></ListItem>
                     {/* <ListItem><ListItemText><Button href='/Jobowned'>JobOwned</Button></ListItemText></ListItem>
@@ -166,6 +168,7 @@ export default function PersistentDrawerLeft() {
                     {/* <Route exact path="/" component={Landing}/> */}
                     <Route path="/Createjob" component={CreateJob} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/Schedule" component={Schedule} />
                     <Route path="/dashboard" component={Dashboard} />
                     {/* <Route path="/listingjob" component={Listingjob}/> */}
                     {/* <Route path="/dashboard" component={Dashboard}/> */}
