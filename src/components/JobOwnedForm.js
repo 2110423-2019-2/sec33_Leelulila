@@ -9,7 +9,8 @@ import axios from 'axios';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
-
+import EmployeeListModal from '../components/EmployeeListModal';
+import EditJobOwnedForm from '../components/EditJobOwnedForm';
 
 class JobOwnedForm extends Component {
 
@@ -110,13 +111,18 @@ class JobOwnedForm extends Component {
               <p>Date : {this.Date}</p>
               <p>Time : {this.BeginTime} - {this.EndTime}</p>
             </Grid>
+            
             <Grid>
-            <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '50%', marginRight: '20px' }}>Delete</Button>
-            <form id="checkoutForm" method="POST" action="/charge">
-            <input type="hidden" name="omiseToken"/>
-            <input type="hidden" name="omiseSource"/>
-            <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>
-            </form>
+              <EmployeeListModal WorkKey={this.WorkKey} />
+              <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }} >Delete</Button>
+              <form id="checkoutForm" method="POST" action="/charge">
+                <input type="hidden" name="omiseToken"/>
+                <input type="hidden" name="omiseSource"/>
+                <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>
+              </form>
+              <Grid item md={0}>
+                <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
+              </Grid>
             </Grid>
           </Grid>
 

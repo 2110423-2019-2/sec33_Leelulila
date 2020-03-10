@@ -81,6 +81,7 @@ class JobOwned extends Component {
                                     WorkKey={notes[1]}
                                     CurrentEmployee={notes[0].CurrentEmployee}
                                 />
+                                
                             </Grid>
                         )
                     })

@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
     renderList(){
         if(this.state.ready){
-                if (this.state.listing.length==null){
+                if (this.state.listing.length==0){
                     console.log(1);
                     return (
                         <h1> dont have any job</h1>
