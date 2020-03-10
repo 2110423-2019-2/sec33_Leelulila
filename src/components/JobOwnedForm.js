@@ -12,7 +12,6 @@ import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import EmployeeListModal from '../components/EmployeeListModal';
 import EditJobOwnedForm from '../components/EditJobOwnedForm';
 
-
 class JobOwnedForm extends Component {
 
   constructor(props) {
@@ -41,6 +40,20 @@ class JobOwnedForm extends Component {
 
   }
 
+  async componentDidMount(){
+    const {OmiseCard} = window;
+    await OmiseCard.configure({
+      publicKey: 'pkey_test_5j5o0s8kryw3qyaiifp'
+    });
+    // await OmiseCard.configureButton('#checkout-button', {
+    //   amount: this.props.Wages*100,
+    //   currency: 'THB',
+    //   buttonLabel: 'Pay'
+    // });
+    
+    await OmiseCard.attach();
+  }
+
 
 
   onDeletejob() {
@@ -51,7 +64,25 @@ class JobOwnedForm extends Component {
     // window.location.reload(false);
   }
 
-
+  onPay(event) {
+    event.preventDefault();
+    const {OmiseCard} = window;
+    var form = document.querySelector("#checkoutForm");
+    OmiseCard.open({
+      amount: this.Wages*this.Amount*100,
+      currency: "THB",
+      defaultPaymentMethod: "credit_card",
+      onCreateTokenSuccess: (nonce) => {
+          if (nonce.startsWith("tokn_")) {
+              form.omiseToken.value = nonce;
+          } else {
+              form.omiseSource.value = nonce;
+          };
+          console.log(nonce)
+        form.submit();
+      }
+    });
+  }
 
   // onStartjob(){
   //   var firebaseRef = fire.database().ref('ListingJob')
@@ -82,9 +113,13 @@ class JobOwnedForm extends Component {
             </Grid>
             
             <Grid>
-              <EmployeeListModal
-              WorkKey={this.WorkKey} />
+              <EmployeeListModal WorkKey={this.WorkKey} />
               <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }} >Delete</Button>
+              <form id="checkoutForm" method="POST" action="/charge">
+                <input type="hidden" name="omiseToken"/>
+                <input type="hidden" name="omiseSource"/>
+                <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>
+              </form>
               <Grid item md={0}>
                 <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
               </Grid>
