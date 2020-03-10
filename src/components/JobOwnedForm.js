@@ -11,7 +11,6 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 
 
-
 class JobOwnedForm extends Component {
 
   constructor(props) {
@@ -40,6 +39,20 @@ class JobOwnedForm extends Component {
 
   }
 
+  async componentDidMount(){
+    const {OmiseCard} = window;
+    await OmiseCard.configure({
+      publicKey: 'pkey_test_5j5o0s8kryw3qyaiifp'
+    });
+    // await OmiseCard.configureButton('#checkout-button', {
+    //   amount: this.props.Wages*100,
+    //   currency: 'THB',
+    //   buttonLabel: 'Pay'
+    // });
+    
+    await OmiseCard.attach();
+  }
+
 
 
   onDeletejob() {
@@ -48,8 +61,26 @@ class JobOwnedForm extends Component {
       headers: { 'Content-Type': 'application/json' },
     }).then(window.location.reload(false))
     // window.location.reload(false);
+  }
 
-
+  onPay(event) {
+    event.preventDefault();
+    const {OmiseCard} = window;
+    var form = document.querySelector("#checkoutForm");
+    OmiseCard.open({
+      amount: this.Wages*this.Amount*100,
+      currency: "THB",
+      defaultPaymentMethod: "credit_card",
+      onCreateTokenSuccess: (nonce) => {
+          if (nonce.startsWith("tokn_")) {
+              form.omiseToken.value = nonce;
+          } else {
+              form.omiseSource.value = nonce;
+          };
+          console.log(nonce)
+        form.submit();
+      }
+    });
   }
 
   // onStartjob(){
@@ -79,8 +110,14 @@ class JobOwnedForm extends Component {
               <p>Date : {this.Date}</p>
               <p>Time : {this.BeginTime} - {this.EndTime}</p>
             </Grid>
+            <Grid>
             <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '50%', marginRight: '20px' }}>Delete</Button>
-
+            <form id="checkoutForm" method="POST" action="/charge">
+            <input type="hidden" name="omiseToken"/>
+            <input type="hidden" name="omiseSource"/>
+            <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>
+            </form>
+            </Grid>
           </Grid>
 
 
