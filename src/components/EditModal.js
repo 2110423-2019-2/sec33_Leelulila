@@ -84,9 +84,6 @@ export default function SimpleModal(props) {
     
     return (
         <div>
-            {/* <button type="button" onClick={handleOpen}>
-                Edit
-      </button> */}
             <Button variant='contained' size='small' style={{ marginTop: '10px' }} onClick={handleOpen} color='grey' >Edit</Button>
 
             <Modal
