@@ -7,25 +7,32 @@ const localizer = momentLocalizer(moment)
 
 const dummyEvents = [
   {
+    // get from Back-end
     allDay: false,
-    end: new Date('December 09, 2017 20:00:00'),
-    start: new Date('December 09, 2017 06:00:00'),
+    end: new Date('March 11, 2020 20:00:00'),
+    start: new Date('March 11, 2020 06:00:00'),
     title: 'hi',
+  },
+
+  {
+    // get from Back-end
+    end: new Date('March 12, 2020 20:00:00'),
+    start: new Date('March 12, 2020 06:00:00'),
+    title: 'test',
   }
 ]
 
-const MyCalendar =() => {
-  console.log('calendar test')
-  return(<div>
+const MyCalendar = () => {
+  return (<div>
     <Calendar
       localizer={localizer}
       events={dummyEvents}
-      startAccessor="12/1/20"
-      endAccessor="5/12/20"
-      style={{ height: 500}}
+      // startAccessor="12/1/20"
+      // endAccessor="5/12/20"
+      style={{ height: 500 }}
     />
   </div>)
-  
-  }
 
-  export default MyCalendar;
+}
+
+export default MyCalendar;
