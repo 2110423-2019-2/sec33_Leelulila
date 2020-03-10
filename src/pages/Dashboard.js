@@ -60,8 +60,8 @@ class Dashboard extends Component {
                 
                 else if(this.state.listing[0]['_id'] == null){
                     console.log(this.state.listing);
+
                     return (
-                        
                         this.state.listing.map((notes) => {
                         console.log(notes[0].JobName);
                             return (
