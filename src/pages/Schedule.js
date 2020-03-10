@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import fire from '../config/firebase';
 import Grid from '@material-ui/core/Grid';
 import JobListCard from '../components/JobListCard';
-import Calendar from '../components/Calendar'
+//import Calendar from '../components/Calendar'
+import JobList from '../components/JobList';
 import { Container } from '@material-ui/core';
+import MyCalendar from '../components/myCalendar';
 
 class Profile extends Component {
 
@@ -55,8 +57,8 @@ class Profile extends Component {
         return (
             <div > 
                 <Grid style={{ display: 'flex' }}>
-                    <Grid item sm={8} style={{ marginLeft: '5px', marginRight: '5px' }}>
-                    <Calendar/>    
+                    <Grid item sm={8} style={{ marginLeft: '5px', marginRight: '5px' , marginTop: '100px'}}>
+                    <MyCalendar/>   
                     </Grid>
                     <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px', marginTop: '5px' }}>
                     <JobListCard currentJob = {this.state.user.currentJob} pendingJob = {this.state.user.pendingJob} id = {'idkrub'}/>
