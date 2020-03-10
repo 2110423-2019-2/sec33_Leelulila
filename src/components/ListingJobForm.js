@@ -8,6 +8,12 @@ import { Redirect } from 'react-router-dom';
 import JobCardModal from '../components/JobCardModal'
 import fire from '../config/firebase';
 import Modal from '@material-ui/core/Modal';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
+import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
+import StarsIcon from '@material-ui/icons/Stars';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import BeenhereIcon from '@material-ui/icons/Beenhere';
 
 
 class ListingJobForm extends Component {
@@ -34,42 +40,37 @@ class ListingJobForm extends Component {
 
 
   }
-  
-  
 
 
+  render() {
+    { console.log(this.CurrentEmployee) }
+    if (fire.auth().currentUser.email == this.Employer) {
+      return (
+        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#86c6f6', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
+          <div>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item md={12}>
 
-  render(){
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <StarsIcon style={{ fontSize: 'xx-large', color: '#FFFB00' }} />
+                  <h2>{this.JobName}</h2>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <MonetizationOnOutlinedIcon />
+                  <p> : {this.Wages} ฿</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <LocationOnOutlinedIcon />
+                  <p> : {this.Location}</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <EventOutlinedIcon />
+                  <p> : {this.Date}</p>
+                </div>
 
-    if(fire.auth().currentUser.email == this.Employer){
-          return(
-            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '300px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
-            <div>
-              <Grid style={{display:'flex'}}>
-                <Grid item md={12}>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <h3>Owner</h3>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <h3>Title : {this.JobName}</h3>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <p>Wages:{this.Wages}</p>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <p>Location:{this.Location}</p>
-                    </div>
-                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                      <p>Date:{this.Date}</p>
-                    </div>
-                    
-                    
-                </Grid>
-               
-              </Grid>        
                 <JobCardModal
                   JobName={this.JobName}
-                  JobDetail={this.JobDetail}                        
+                  JobDetail={this.JobDetail}
                   Wages={this.Wages}
                   Amount={this.Amount}
                   Date={this.Date}
@@ -79,85 +80,43 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-                  />
-                
-              </div>
-            </Card>
-          );
+                />
 
-    }
-    
-    else if(this.CurrentEmployee.includes(fire.auth().currentUser.email)){
-      return(
-        <Card id="ListingJobForm" style={{marginBottom:'10px', height: '300px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
-          <div>
-            <Grid style={{display:'flex'}}>
-              <Grid item md={12}>
-                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                    <h3>Already Applied</h3>
-                  </div>
-                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                    <h3>Title : {this.JobName}</h3>
-                  </div>
-                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                    <p>Wages:{this.Wages}</p>
-                  </div>
-                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                    <p>Location:{this.Location}</p>
-                  </div>
-                  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                    <p>Date:{this.Date}</p>
-                  </div>
-                  
-                  
               </Grid>
-            
-            </Grid>       
-            <JobCardModal
-              JobName={this.JobName}
-              JobDetail={this.JobDetail}                        
-              Wages={this.Wages}
-              Amount={this.Amount}
-              Date={this.Date}
-              BeginTime={this.BeginTime}
-              EndTime={this.EndTime}
-              Location={this.Location}
-              Employer={this.Employer}
-              WorkKey={this.WorkKey}
-              CurrentEmployee={this.CurrentEmployee}
-                        />
-            
+
+            </Grid>
           </div>
         </Card>
       );
-        
-    }
 
-          return(
-            <Card id="ListingJobForm" style={{marginBottom:'10px', height: '300px', backgroundColor:'pink', opacity:'80%' , borderRadius:'10%'}}>
-              <div>
-                <Grid style={{display:'flex'}}>
-                  <Grid item md={12}>
-                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <h3>Title : {this.JobName}</h3>
-                      </div>
-                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <p>Wages:{this.Wages}</p>
-                      </div>
-                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <p>Location:{this.Location}</p>
-                      </div>
-                      <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <p>Date:{this.Date}</p>
-                      </div>
-                      
-                      
-                  </Grid>
-                
-                </Grid>       
+    }
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
+      return (
+
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e5b1ea', opacity: '80%', borderRadius: '10%' }}>
+          <div>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item md={12}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#ad16ac' }} />
+                  <h2>{this.JobName}</h2>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <MonetizationOnOutlinedIcon />
+                  <p> : {this.Wages} ฿</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <LocationOnOutlinedIcon />
+                  <p> : {this.Location}</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <EventOutlinedIcon />
+                  <p> : {this.Date}</p>
+                </div>
+
                 <JobCardModal
                   JobName={this.JobName}
-                  JobDetail={this.JobDetail}                        
+                  JobDetail={this.JobDetail}
                   Wages={this.Wages}
                   Amount={this.Amount}
                   Date={this.Date}
@@ -167,40 +126,91 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-                  />
-                
-              </div>
-            </Card>
-          );
-      
+                />
+              </Grid>
+
+            </Grid>
+
+
+          </div>
+        </Card>
+      );
+
+    }
+
+    else {
+      return (
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+          <div>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item md={12}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <AddCircleIcon color='secondary' style={{ fontSize: 'xx-large' }} />
+                  <h2>{this.JobName}</h2>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <MonetizationOnOutlinedIcon />
+                  <p> : {this.Wages} ฿</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <LocationOnOutlinedIcon />
+                  <p> : {this.Location}</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <EventOutlinedIcon />
+                  <p> : {this.Date}</p>
+                </div>
+                <JobCardModal
+                  JobName={this.JobName}
+                  JobDetail={this.JobDetail}
+                  Wages={this.Wages}
+                  Amount={this.Amount}
+                  Date={this.Date}
+                  BeginTime={this.BeginTime}
+                  EndTime={this.EndTime}
+                  Location={this.Location}
+                  Employer={this.Employer}
+                  WorkKey={this.WorkKey}
+                  CurrentEmployee={this.CurrentEmployee}
+                />
+
+              </Grid>
+
+            </Grid>
+
+
+          </div>
+        </Card>
+      );
+    }
   }
 
 
 
-  
+
 
 }
 
 ListingJobForm.propTypes = {
-    JobName: PropTypes.string,
-    JobDetail: PropTypes.string,
-    Wages: PropTypes.string,
-    Amount: PropTypes.string,
-    Date: PropTypes.string,
-    BeginTime: PropTypes.string,
-    EndTime: PropTypes.string,
-    Location: PropTypes.string,
-    Employer: PropTypes.string,
-    WorkKey: PropTypes.string,
-    Status: PropTypes.string
-    // this.JobName = props.JobName;
-    // this.JobDetail = props.JobDetail;
-    // this.Wages = props.Wages;
-    // this.Amount = props.Amount;
-    // this.Date = props.Date;
-    // this.BeginTime = props.BeginTime;
-    // this.EndTime = props.EndTime;
-    // this.Location = props.Location;
-    // this.Employer = props.Employer;
+  JobName: PropTypes.string,
+  JobDetail: PropTypes.string,
+  Wages: PropTypes.string,
+  Amount: PropTypes.string,
+  Date: PropTypes.string,
+  BeginTime: PropTypes.string,
+  EndTime: PropTypes.string,
+  Location: PropTypes.string,
+  Employer: PropTypes.string,
+  WorkKey: PropTypes.string,
+  Status: PropTypes.string
+  // this.JobName = props.JobName;
+  // this.JobDetail = props.JobDetail;
+  // this.Wages = props.Wages;
+  // this.Amount = props.Amount;
+  // this.Date = props.Date;
+  // this.BeginTime = props.BeginTime;
+  // this.EndTime = props.EndTime;
+  // this.Location = props.Location;
+  // this.Employer = props.Employer;
 }
 export default ListingJobForm;
