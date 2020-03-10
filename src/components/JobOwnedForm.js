@@ -9,6 +9,7 @@ import axios from 'axios';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
+import EmployeeListModal from '../components/EmployeeListModal';
 
 
 
@@ -48,9 +49,9 @@ class JobOwnedForm extends Component {
       headers: { 'Content-Type': 'application/json' },
     }).then(window.location.reload(false))
     // window.location.reload(false);
-
-
   }
+
+
 
   // onStartjob(){
   //   var firebaseRef = fire.database().ref('ListingJob')
@@ -79,8 +80,11 @@ class JobOwnedForm extends Component {
               <p>Date : {this.Date}</p>
               <p>Time : {this.BeginTime} - {this.EndTime}</p>
             </Grid>
-            <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '50%', marginRight: '20px' }}>Delete</Button>
-
+            <Grid>
+              <EmployeeListModal
+              WorkKey={this.WorkKey} />
+              <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>
+            </Grid>
           </Grid>
 
 
