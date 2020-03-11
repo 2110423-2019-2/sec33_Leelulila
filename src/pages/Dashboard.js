@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button, TextField } from '@material-ui/core';
+import { Grid, Button, TextField, Input } from '@material-ui/core';
 import '../style.css';
 import ListingJobForm from '../components/ListingJobForm'
 import fire from '../config/firebase';
@@ -13,40 +13,64 @@ class Dashboard extends Component {
         this.state = {
             listing: {},
             ready:false,
+            search:""
         }
         this.renderList = this.renderList.bind(this);
     }
 
+    onChange = e =>{
+        this.setState({search: e.target.value});
+    }
     
 
-    componentDidMount(){
+
+    componentDidMount() {
+        this.getalljob()
+        this.getProfile()
+    }
+
+    getalljob() {
         axios.get('http://localhost:9000/getalljob')
-        .then(response => {
-          
-        this.setState({
-            listing: response.data,
-          })
+            .then(response => {
+                this.setState({
+                    listing: response.data,
+                })
+                var list2 = [];
+                for (var x in this.state.listing) {
+                    if (this.state.listing[x]['job']['Status'] == "Ready") {
+                        list2.push([this.state.listing[x]['job'], [this.state.listing[x]['_id']]]);
+                    }
+                }
+                this.setState({
+                    listing: list2,
+                    ready: true,
+                })
+                console.log(this.state.listing)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
-          var list2 = [];
-
-          for (var x in this.state.listing) {
-            if(this.state.listing[x]['job']['Status']=="Ready"){
-                    list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+    getProfile() {
+        var user = fire.auth().currentUser;
+        let self = this;
+        console.log("/user/" + user.email)
+        fetch("/useremail/" + user.email, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
             }
-              
-            
-              
-          }
-          this.setState({
-              listing: list2,
-              ready:true,
-          })
-          console.log(this.state.listing)
-
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+            return response.json();
+        }).then(function (jsonData) {
+            self.setState({ user: jsonData });
+            console.log(self.state)
+            console.log(self.state.user)
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
     renderList(){
@@ -60,10 +84,22 @@ class Dashboard extends Component {
                 
                 else if(this.state.listing[0]['_id'] == null){
                     console.log(this.state.listing);
-
+                    var result =[];
+                    if(this.state.search == "") {
+                        result=this.state.listing;
+                    }
+                    else {
+                        result = this.state.listing.filter(note=>note[0].JobName.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1)
+                        
+                    }
+                    //console.log(result);
                     return (
-                        this.state.listing.map((notes) => {
-                        console.log(notes[0].CurrentAcceptedEmployee);
+                        result.map((notes, key) => {
+                        console.log(result);
+                        console.log("eieie")
+                        //console.log(this.state.listing)
+
+                            
                             return (
                                 <Grid item xs={4}>
                                     <ListingJobForm
@@ -79,22 +115,26 @@ class Dashboard extends Component {
                                         CurrentEmployee={notes[0].CurrentEmployee}
                                         CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
                                         WorkKey={notes[1][0]}
+                                        search={this.state.search}
+                                
                                     />
                                 </Grid>
                             )
+                        console.log("success")
                         })
                      )
                 }
         }
-        return(<h1>Loading...</h1>)
+        return (<h1>Loading...</h1>)
 
-        
+
     }
-  
+
     render() {
-        
+
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
+                <Input label="Search Job" onChange={this.onChange} />
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>

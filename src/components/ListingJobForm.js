@@ -19,6 +19,7 @@ class ListingJobForm extends Component {
 
   constructor(props) {
     super(props);
+    
     this.JobName = props.JobName;
     this.JobDetail = props.JobDetail;
     this.Wages = props.Wages;
@@ -32,14 +33,60 @@ class ListingJobForm extends Component {
     this.CurrentEmployee = props.CurrentEmployee;
     this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
 
-
+    console.log(this.JobName + "created ")
 
     this.state = {
       checkgetjobalready: false,
-
+      currentJobs: [],
+      dayandtime: {}
     }
+  }
 
+  componentDidMount() {
+    try {
+      var l = this.props.currentJob;
+      console.log('type')
+      console.log(typeof (l))
+      var i;
+      for (i = 0; i < l.length; i++) {
+        this.getJobByID(l[i])
+      }
+    }
+    catch (err) {
+      window.location.reload()
+    }    
+  }
 
+  CreateDictDayTime() {
+
+  }
+
+  getJobByID(id) {
+    let self = this;
+    fetch("/job/" + id, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+    }).then(function (jsonData) {
+      console.log(jsonData['job'] + 'intgetjob')
+      self.state.currentJobs.push(jsonData['job'])
+      self.setState({ ready: true })
+      if(self.state.dayandtime[jsonData['job']['Date']]==null)
+      {
+        self.state.dayandtime[jsonData['job']['Date']]=[]
+      }
+      var tuple = []
+      tuple = [jsonData['job']['BeginTime'], jsonData['job']['EndTime']]
+      self.state.dayandtime[jsonData['job']['Date']].push(tuple)
+      console.log('state')
+      console.log(self.state)
+    }).catch(function (err) {
+      console.log(err);
+    })
   }
 
 
@@ -80,6 +127,7 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
+                  DayAndTime = {this.state.dayandtime}
                 />
 
               </Grid>
@@ -90,7 +138,7 @@ class ListingJobForm extends Component {
       );
 
     }
-    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email) ) {
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email)) {
       return (
 
         <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e5b1ea', opacity: '80%', borderRadius: '10%' }}>
@@ -126,6 +174,7 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
+                  DayAndTime = {this.state.dayandtime}
                 />
               </Grid>
 
@@ -172,6 +221,7 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
+                  DayAndTime = {this.state.dayandtime}
                 />
 
               </Grid>
