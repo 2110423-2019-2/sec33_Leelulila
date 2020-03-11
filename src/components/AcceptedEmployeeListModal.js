@@ -6,7 +6,12 @@ import axios from 'axios';
 import AcceptedEmployeeListTable from './AcceptedEmployeeListTable'
 import fire from '../config/firebase';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import SendIcon from '@material-ui/icons/Send';
 
 
 const customStyles = {
@@ -24,6 +29,39 @@ const customStyles = {
 
 
 };
+
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})(props => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+    
+  />
+));
+
+const StyledMenuItem = withStyles(theme => ({
+
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
 //   Modal.setAppElement('#yourAppElement')
 
 
@@ -142,8 +180,11 @@ class AcceptedEmployeeListModal extends Component {
 
    
       return (
-        <div>
-            <Button variant="contained" color="primary" onClick={this.openModal} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Employee</Button>
+        <StyledMenuItem>
+           <ListItemIcon>
+                <SendIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Employee" onClick={this.openModal} />
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -157,7 +198,7 @@ class AcceptedEmployeeListModal extends Component {
             />
            
           </Modal>
-        </div>
+        </StyledMenuItem>
       )
 
     

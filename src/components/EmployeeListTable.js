@@ -24,6 +24,11 @@ class EmployeeListTable extends Component {
 
    }
 
+
+   
+
+
+
    onDeclineEmployee(email) {
 
       var data = { Email: email };
