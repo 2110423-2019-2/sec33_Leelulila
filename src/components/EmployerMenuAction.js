@@ -104,14 +104,10 @@ export default function CustomizedMenus(props) {
           <ListItemText primary="Delete" onClick={() => onDeletejob(props.WorkKey)}/>
         </StyledMenuItem>
         <StyledMenuItem>
-<<<<<<< HEAD
             <ListItemIcon>
                 <SendIcon fontSize="small" />
             </ListItemIcon>
           <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey,props.CurrentAcceptedEmployee.length)} />
-=======
-          <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey)} />
->>>>>>> 94320324a9cde81cef14021149cbb9633b336f40
         </StyledMenuItem>
         <EmployeeListModal WorkKey={props.WorkKey} Amount={props.Amount}/>
         <AcceptedEmployeeListModal WorkKey={props.WorkKey}/>
