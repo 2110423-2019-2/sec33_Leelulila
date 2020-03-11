@@ -101,7 +101,8 @@ export default function CustomizedMenus(props) {
         </StyledMenuItem>
         <EmployeeListModal WorkKey={props.WorkKey}/>
         <AcceptedEmployeeListModal WorkKey={props.WorkKey}/>
-        <EditJobOwnedForm _id = {props._id} wages={props.Wages} detail={props.JobDetail} location={props.Location} workDate={props.Date} timeBegin={props.BeginTime} timeEnd={props.EndTime}/>
+        {console.log(props.WorkKey[0])};
+        <EditJobOwnedForm _id = {props._id} Wages={props.Wages} Detail={props.JobDetail} Location={props.Location} WorkDate={props.Date} TimeBegin={props.BeginTime} TimeEnd={props.EndTime} WorkKey={props.WorkKey[0]}/>
       </StyledMenu>
     </div>
   );
