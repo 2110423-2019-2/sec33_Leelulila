@@ -81,13 +81,13 @@ class EmployeeListModal extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
-    console.log(this.WorkKey);
     // this.Currentnumber = props.Currentnumber;
-    this.CurrentEmployee = props.CurrentEmployee;
+
 
     this.state = {
       modalIsOpen: false,
-      listing:[]
+      listing:[],
+      CurrentAcceptedEmployee:[],
     };
     
 
@@ -100,29 +100,24 @@ class EmployeeListModal extends Component {
     
     axios.get('http://localhost:9000/job/'+ this.WorkKey[0])
     .then(response => {
-        console.log(response.data.job.CurrentEmployee)
+        console.log(response.data.job);
         this.setState({
             listing: response.data.job.CurrentEmployee,
+            CurrentAcceptedEmployee: response.data.job.CurrentAcceptedEmployee,
           })
-          
+          console.log(this.state.CurrentAcceptedEmployee);
           var list2=[]
           for (var x in this.state.listing) {
-            console.log(x)
-            console.log(this.state.listing[x])
-            console.log(this.state.listing)
             axios.get('http://localhost:9000/useremail/'+ this.state.listing[x])
             .then(response => {
-              console.log(response.data)
               list2.push([response.data.firstName,response.data.lastName,response.data.gender,response.data.email])
             })
           
-            console.log(this.state.listing)
            
       }
             this.setState({
               listing: list2,
             })
-            console.log(this.state.listing)
   })
   .catch((error) => {
     console.log(error);
@@ -177,8 +172,7 @@ class EmployeeListModal extends Component {
 
   render() {
    
-
-   
+    
       return (
         <StyledMenuItem>
           <ListItemIcon>
@@ -196,12 +190,19 @@ class EmployeeListModal extends Component {
             <EmployeeListTable
             EmployeeList={this.state.listing}
             WorkKey={this.WorkKey}
+            Amount={this.Amount}
+            CurrentAcceptedEmployee={this.state.CurrentAcceptedEmployee}
             />
            
           </Modal>
           </StyledMenuItem>
 
       )
+    
+
+   
+   
+      
 
     
 

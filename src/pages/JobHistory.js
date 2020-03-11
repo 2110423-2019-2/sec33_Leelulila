@@ -4,9 +4,9 @@ import '../style.css';
 import ListingJobForm from '../components/ListingJobForm';
 import axios from 'axios';
 import fire from '../config/firebase';
-import JobOwnedForm from '../components/JobOwnedForm';
+import JobHistoryForm from '../components/JobHistoryForm';
 
-class JobOwned extends Component {
+class JobHistory extends Component {
 
     constructor(props) {
         super(props);
@@ -24,27 +24,26 @@ class JobOwned extends Component {
         axios.get('http://localhost:9000/getalljob')
         .then(response => {
           
-            this.setState({
-                listing: response.data,
-              })
-    
-              var list2 = [];
-    
-              for (var x in this.state.listing) {
-                    
-                    var email = fire.auth().currentUser.email;
-                    console.log(this.state.listing[x]['job']['Employer']);
-                    if(this.state.listing[x]['job']['Employer'] == email && (this.state.listing[x]['job']['Status']=='Confirm' || this.state.listing[x]['job']['Status']=='Ready')){
-                        list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
-              }
-          
+        this.setState({
+            listing: response.data,
+          })
+
+          var list2 = [];
+
+          for (var x in this.state.listing) {
+            if(this.state.listing[x]['job']['Status']=="Finish"){
+                    list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+            }
+              
+            
               
           }
           this.setState({
               listing: list2,
               ready:true,
           })
-          console.log(this.state.listing);
+          console.log(this.state.listing)
+
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +66,7 @@ class JobOwned extends Component {
                     this.state.listing.map((notes) => {
                         return (
                             <Grid item xs={4} >
-                                <JobOwnedForm
+                                <JobHistoryForm
                                     JobName={notes[0].JobName}
                                     JobDetail={notes[0].JobDetail}
                                     Wages={notes[0].Wages}
@@ -81,7 +80,6 @@ class JobOwned extends Component {
                                     Status={notes[0].Status}
                                     WorkKey={notes[1]}
                                     CurrentEmployee={notes[0].CurrentEmployee}
-                                    CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
                                 />
                                 
                             </Grid>
@@ -101,7 +99,7 @@ class JobOwned extends Component {
         
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
-                <h1>Job Management</h1>
+                <h1>Job History</h1>
                 <div>
                     <Grid container spacing={3} >
                         {this.renderList()}
@@ -116,4 +114,4 @@ class JobOwned extends Component {
 
 
 
-export default JobOwned;
+export default JobHistory;

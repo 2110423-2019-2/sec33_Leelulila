@@ -11,6 +11,7 @@ import SendIcon from '@material-ui/icons/Send';
 import EmployeeListModal from './EmployeeListModal';
 import AcceptedEmployeeListModal from './AcceptedEmployeeListModal';
 import EditJobOwnedForm from './EditJobOwnedForm';
+import { Alert } from 'antd';
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -52,15 +53,21 @@ function onDeletejob(WorkKey) {
     // window.location.reload(false);
   }
 
-function onConfirm(WorkKey){
-
+function onConfirm(WorkKey,Num){
+    console.log(Num);
     var data = { Status: 'Confirm' };
-
-    fetch("/jobstatus/" + WorkKey, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }).then(window.location.reload(false));
+    if(Num>0){
+        fetch("/jobstatus/" + WorkKey, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          }).then(window.location.reload(false));
+    }
+    else{
+        alert("No Employee In Job");
+    }
+    
+    
   }
 
 
@@ -103,9 +110,9 @@ export default function CustomizedMenus(props) {
             <ListItemIcon>
                 <SendIcon fontSize="small" />
             </ListItemIcon>
-          <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey)} />
+          <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey,props.CurrentAcceptedEmployee.length)} />
         </StyledMenuItem>
-        <EmployeeListModal WorkKey={props.WorkKey}/>
+        <EmployeeListModal WorkKey={props.WorkKey} Amount={props.Amount}/>
         <AcceptedEmployeeListModal WorkKey={props.WorkKey}/>
         <EditJobOwnedForm _id = {props._id} wages={props.Wages} detail={props.JobDetail} location={props.Location} workDate={props.Date} timeBegin={props.BeginTime} timeEnd={props.EndTime}/>
       </StyledMenu>

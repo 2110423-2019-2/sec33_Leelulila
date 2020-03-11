@@ -25,7 +25,7 @@ class JobOwnedForm extends Component {
     this.Status = props.Status;
     this.WorkKey = props.WorkKey;
     this.CurrentEmployee = props.CurrentEmployee;
-
+    this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
     this.state = {
       checkgetjobalready: false,
       balance: 0
@@ -89,9 +89,7 @@ class JobOwnedForm extends Component {
           fetch("/wallet/job/" + this.WorkKey, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-          }).then(
-            window.location.reload(false)
-            )
+          })
           // console.log(nonce)
           // form.jobID.value = this.WorkKey;
           // form.submit();
@@ -106,22 +104,16 @@ class JobOwnedForm extends Component {
       window.location.reload(false)
     )
   }
+
+  
+
+
   }
 
-  // onStartjob(){
-  //   var firebaseRef = fire.database().ref('ListingJob')
-
-  //   firebaseRef.child(this.Workkey).update({
-  //     Status:'In Duty'
-  //   })
-  //   window.location.reload(false);
-  // }
+  
 
 
   render() {
-    //   var email = fire.auth().currentUser.email;
-    //   var indexofat = email.indexOf('@');
-    //   var subemail = email.substring(0,indexofat);
     console.log(this.status)
     if(this.Status == 'Ready'){
       return (
@@ -146,7 +138,9 @@ class JobOwnedForm extends Component {
                 location={this.props.Location} 
                 workDate={this.props.Date} 
                 timeBegin={this.props.BeginTime} 
-                timeEnd={this.props.EndTime}/>
+                timeEnd={this.props.EndTime}
+                Amount={this.Amount}
+                CurrentAcceptedEmployee={this.CurrentAcceptedEmployee}/>
                
               </Grid>
             </Grid>
@@ -156,36 +150,40 @@ class JobOwnedForm extends Component {
         </Card>
       );
     }
-
-    return (
-      <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
-        <div>
-          <Grid style={{ display: 'flex' }}>
-            <Grid item md={10}>
-              <h2>Start</h2>
-              <h2>Title : {this.JobName}</h2>
-              <p>Detail : {this.JobDetail}</p>
-              <p>Wages : {this.Wages} ฿</p>
-              <p>Location : {this.Location}</p>
-              <p>Date : {this.Date}</p>
-              <p>Time : {this.BeginTime} - {this.EndTime}</p>
-            </Grid>
-            
-            <Grid>
-                <form id="checkoutForm" >
-                <input type="hidden" name="omiseToken"/>
-                <input type="hidden" name="omiseSource"/>
-                <input type="hidden" name="jobID"/>
-                {(this.CurrentEmployee.length > 0) && <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>}
-              </form>
+    else if(this.Status == 'Confirm'){
+      return (
+        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
+          <div>
+            <Grid style={{ display: 'flex' }}>
+              <Grid item md={10}>
+                <h2>Start</h2>
+                <h2>Title : {this.JobName}</h2>
+                <p>Detail : {this.JobDetail}</p>
+                <p>Wages : {this.Wages} ฿</p>
+                <p>Location : {this.Location}</p>
+                <p>Date : {this.Date}</p>
+                <p>Time : {this.BeginTime} - {this.EndTime}</p>
+              </Grid>
               
+              <Grid>
+                  <form id="checkoutForm" >
+                  <input type="hidden" name="omiseToken"/>
+                  <input type="hidden" name="omiseSource"/>
+                  <input type="hidden" name="jobID"/>
+                  {(this.CurrentAcceptedEmployee.length > 0) && <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>}
+                </form>
+                
+              </Grid>
             </Grid>
-          </Grid>
+  
+  
+          </div>
+        </Card>
+      );
+      return({});
+    }
 
-
-        </div>
-      </Card>
-    );
+    
 
     
 

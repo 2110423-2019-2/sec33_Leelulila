@@ -13,7 +13,8 @@ class EmployeeListTable extends Component {
       console.log(props)
       this.WorkKey = props.WorkKey
       this.EmployeeList = props.EmployeeList;
-
+      this.Amount = props.Amount;
+      this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
       this.state = {
          EmployeeList: this.EmployeeList,
 
@@ -66,11 +67,27 @@ class EmployeeListTable extends Component {
          var lname = Employee[1]
          var sex = Employee[2]
          var email = Employee[3]
-         console.log(fname)
+         console.log(this.CurrentedAcceptEmployee)
 
 
+         if(this.CurrentAcceptedEmployee.length < this.Amount){
+            return (
 
-
+               <tr style={{ paddingLeft: '200px' }}>
+                  <td>
+                     <IconButton onClick={() => this.onViewProfile(email)}>
+                        <AccountCircleIcon />
+                     </IconButton>
+                  </td>
+                     <td>{fname}</td>
+                     <td>{lname}</td>
+                     <td>{sex}</td>
+                     {console.log(email)}
+                     <td><Button variant="contained" color="primary" onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
+                     <td><Button variant="contained" color="secondary" onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
+               </tr>
+            )
+         }
          return (
 
             <tr style={{ paddingLeft: '200px' }}>
@@ -83,10 +100,13 @@ class EmployeeListTable extends Component {
                   <td>{lname}</td>
                   <td>{sex}</td>
                   {console.log(email)}
-                  <td><Button variant="contained" color="primary" onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
-                  <td><Button variant="contained" color="secondary" onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
+                  <td><Button variant="contained" color="primary" disabled onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
+                  <td><Button variant="contained" color="secondary" disabled onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
             </tr>
          )
+
+
+         
       })
    }
 
