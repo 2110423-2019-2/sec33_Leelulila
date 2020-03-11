@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import { Grid, Button, Badge, IconButton, List, ListItem, ListItemIcon, ListItemText, Collapse } from '@material-ui/core';
+import MailIcon from '@material-ui/icons/Mail';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import fire from '../config/firebase';
@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
     },
 }));
+
 class ProfileBar extends Component {
 
 
@@ -26,9 +27,11 @@ class ProfileBar extends Component {
         super(props);
         this.state = {
             user: {},
+            open: false
         }
         this.isLogin = props.isLogin;
         this.getProfile.bind(this);
+        this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -38,12 +41,16 @@ class ProfileBar extends Component {
     authListener() {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
-                this.setState({ user });
+                // this.setState({ user });
                 this.getProfile();
             } else {
-                this.setState({ user: null });
+                // this.setState({ user: null });
             }
         })
+    }
+
+    handleClick() {
+        this.setState({ open: !this.state.open });
     }
 
     getProfile() {
@@ -73,12 +80,18 @@ class ProfileBar extends Component {
 
     render() {
         var user = fire.auth().currentUser;
-        console.log(this.state.user)
-
         if (user) {
             return (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'right'}} id='profileNavName'>
+                { this.state.user.notification !==undefined && 
+                <IconButton onClick ={()=>this.handleClick()} style={{ marginTop: '0px',marginRight: '15px', fontSize: '1rem'}}>
+                    <Badge  style={{ fontSize: '1rem'}} badgeContent={ this.state.user.notification.length} color="primary">
+                            <MailIcon style = {{color: 'white'}}/>
+                    </Badge>
+                </IconButton>
+                }
                 <Button variant="outlined" color="inherit" style={{ marginRight: '15px', fontSize: '1rem'}} size='small' >{this.state.user.wallet || 0} ฿</Button>
                 <h3>{this.state.user.firstName}</h3>
+                
                 <Button variant="outlined" color="inherit" style={{ marginLeft: '15px'}}
                     onClick={this.onLogout} href='/' size='small' >Logout</Button>
 
