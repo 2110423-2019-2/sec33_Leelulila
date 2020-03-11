@@ -70,10 +70,10 @@ class ProfileBar extends Component {
     }
 
     handleClose() {
-        var updatedUser = this.state.user;
-        updatedUser.notification = this.state.user.notification.filter(n=>n.status < 1);
+        // var updatedUser = this.state.user;
+        // updatedUser.notification = this.state.user.notification.filter(n=>n.status < 1);
         this.setState({ 
-            user: updatedUser,
+            // user: updatedUser,
             open: !this.state.open,
             
         });
