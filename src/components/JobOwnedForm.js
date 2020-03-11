@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
 import { InputLabel, InputBase, Card, Grid, Button } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import '../style.css';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import EmployeeListModal from '../components/EmployeeListModal';
+import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
+
+
 import EditJobOwnedForm from '../components/EditJobOwnedForm';
 
 class JobOwnedForm extends Component {
@@ -25,17 +22,20 @@ class JobOwnedForm extends Component {
     this.EndTime = props.EndTime;
     this.Location = props.Location;
     this.Employer = props.Employer;
+    this.Status = props.Status;
     this.WorkKey = props.WorkKey;
     this.CurrentEmployee = props.CurrentEmployee;
 
     this.state = {
       checkgetjobalready: false,
+      balance: 0
 
     }
 
     // this.onGetjob = this.onGetjob.bind(this);
 
     this.onDeletejob = this.onDeletejob.bind(this);
+    this.getProfile.bind(this);
     // this.onStartjob = this.onStartjob.bind(this);
 
   }
@@ -45,15 +45,27 @@ class JobOwnedForm extends Component {
     await OmiseCard.configure({
       publicKey: 'pkey_test_5j5o0s8kryw3qyaiifp'
     });
-    // await OmiseCard.configureButton('#checkout-button', {
-    //   amount: this.props.Wages*100,
-    //   currency: 'THB',
-    //   buttonLabel: 'Pay'
-    // });
     
     await OmiseCard.attach();
+    await this.getProfile()
   }
 
+  getProfile() {
+    let self = this;
+    fetch("/useremail/" + this.Employer, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    }).then(function (response) {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+    }).then(function (jsonData) {
+        self.setState({ balance: jsonData.wallet });
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
 
 
   onDeletejob() {
@@ -64,12 +76,24 @@ class JobOwnedForm extends Component {
     // window.location.reload(false);
   }
 
+  onConfirm(){
+
+    var data = { Status: 'Confirm' };
+
+    fetch("/jobstatus/" + this.WorkKey, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(window.location.reload(false));
+  }
+
   onPay(event) {
     event.preventDefault();
+    if (this.state.balance < this.Wages*this.Amount){
     const {OmiseCard} = window;
     var form = document.querySelector("#checkoutForm");
     OmiseCard.open({
-      amount: this.Wages*this.Amount*100,
+      amount: ((this.Wages*this.Amount)-this.state.balance)*100,
       currency: "THB",
       defaultPaymentMethod: "credit_card",
       onCreateTokenSuccess: (nonce) => {
@@ -78,10 +102,26 @@ class JobOwnedForm extends Component {
           } else {
               form.omiseSource.value = nonce;
           };
-          console.log(nonce)
-        form.submit();
+          fetch("/wallet/job/" + this.WorkKey, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+          }).then(
+            window.location.reload(false)
+            )
+          // console.log(nonce)
+          // form.jobID.value = this.WorkKey;
+          // form.submit();
       }
     });
+  }
+  else{
+    fetch("/wallet/job/" + this.WorkKey, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(
+      window.location.reload(false)
+    )
+  }
   }
 
   // onStartjob(){
@@ -98,12 +138,46 @@ class JobOwnedForm extends Component {
     //   var email = fire.auth().currentUser.email;
     //   var indexofat = email.indexOf('@');
     //   var subemail = email.substring(0,indexofat);
+    console.log(this.status)
+    if(this.Status == 'Ready'){
+      return (
+        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
+          <div>
+            <Grid style={{ display: 'flex' }}>
+              <Grid item md={10}>
+                <h2>Title : {this.JobName}</h2>
+                <p>Detail : {this.JobDetail}</p>
+                <p>Wages : {this.Wages} ฿</p>
+                <p>Location : {this.Location}</p>
+                <p>Date : {this.Date}</p>
+                <p>Time : {this.BeginTime} - {this.EndTime}</p>
+              </Grid>
+              
+              <Grid>
+                <EmployeeListModal
+                WorkKey={this.WorkKey} />
+                <AcceptedEmployeeListModal
+                WorkKey={this.WorkKey} />
+                <Grid item xs={6}>
+                  <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
+                  <Button variant="contained" color="primary" onClick={this.onConfirm} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Confirm</Button>            
+                  <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>            
+                </Grid>
+              </Grid>
+            </Grid>
+  
+  
+          </div>
+        </Card>
+      );
+    }
 
     return (
       <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
         <div>
           <Grid style={{ display: 'flex' }}>
             <Grid item md={10}>
+              <h2>Confirm</h2>
               <h2>Title : {this.JobName}</h2>
               <p>Detail : {this.JobDetail}</p>
               <p>Wages : {this.Wages} ฿</p>
@@ -113,16 +187,13 @@ class JobOwnedForm extends Component {
             </Grid>
             
             <Grid>
-              <EmployeeListModal WorkKey={this.WorkKey} />
-              <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }} >Delete</Button>
-              <form id="checkoutForm" method="POST" action="/charge">
+                <form id="checkoutForm" >
                 <input type="hidden" name="omiseToken"/>
                 <input type="hidden" name="omiseSource"/>
-                <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>
+                <input type="hidden" name="jobID"/>
+                {(this.CurrentEmployee.length > 0) && <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>}
               </form>
-              <Grid item md={0}>
-                <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
-              </Grid>
+              
             </Grid>
           </Grid>
 
@@ -130,6 +201,8 @@ class JobOwnedForm extends Component {
         </div>
       </Card>
     );
+
+    
 
   }
 

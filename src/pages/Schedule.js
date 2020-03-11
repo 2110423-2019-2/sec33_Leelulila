@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from '../config/firebase';
 import Grid from '@material-ui/core/Grid';
 import JobListCard from '../components/JobListCard';
+import PendingJobListCard from '../components/PendingJobListCard';
 //import Calendar from '../components/Calendar'
 import JobList from '../components/JobList';
 import { Container } from '@material-ui/core';
@@ -50,23 +51,24 @@ class Profile extends Component {
     })
   }
 
-  render() {
-    if (this.state.user.currentJob === undefined && this.state.user.pendingJob === undefined) return null
-    else
-      console.log(this.state.user.currentJob + ' propstransfer')
-    return (
-      <div >
-        <Grid style={{ display: 'flex' }}>
-          <Grid item sm={8} style={{ marginLeft: '5px', marginRight: '5px', marginTop: '100px', display: 'flex', justifyContent: 'center' }}>
-            <MyCalendar currentJob={this.state.user.currentJob} />
-          </Grid>
-          <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px', marginTop: '5px' }}>
-            <JobListCard currentJob={this.state.user.currentJob} pendingJob={this.state.user.pendingJob} id={'idkrub'} />
-          </Grid>
-        </Grid>
-      </div>);
-
-  }
+    render() {
+        if (this.state.user.currentJob === undefined || this.state.user.pendingJob === undefined) return null
+        else
+        console.log(this.state.user.pendingJob+' propstransfer')
+        return (
+            <div > 
+                <Grid style={{ display: 'flex' }}>
+                    <Grid item sm={8} style={{ marginLeft: '5px', marginRight: '5px' , marginTop: '100px'}}>
+                    <MyCalendar/>   
+                    </Grid>
+                    <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px', marginTop: '5px' }}>
+                    <JobListCard currentJob = {this.state.user.currentJob} id = {'idkrub'}/>
+                    <PendingJobListCard pendingJob = {this.state.user.pendingJob} id = {'idkrub'}/>
+                    </Grid>                    
+                </Grid>
+            </div>);
+        
+    }
 }
 
 export default Profile;
