@@ -66,8 +66,7 @@ class Dashboard extends Component {
                 }
                 this.setState({
                     db: list2,
-                    listing:list2, //del
-                    ready: true, //change to fault
+                    ready: false, 
                 })
                 console.log(this.state.listing)
             })
