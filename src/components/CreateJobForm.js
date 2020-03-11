@@ -85,6 +85,7 @@ class CreateJobForm extends Component {
             EndTime: document.getElementById('timeend').value,
             Date: document.getElementById('workDate').value,
             CurrentEmployee: [],
+            CurrentAcceptedEmployee: [],
             Employer: fire.auth().currentUser.email,
             Status: "Ready"
         }

@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
 import { Button, Grid } from '@material-ui/core';
 import axios from 'axios';
-import EmployeeListTable from './EmployeeListTable'
+import AcceptedEmployeeListTable from './AcceptedEmployeeListTable'
 import fire from '../config/firebase';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 
@@ -29,7 +29,7 @@ const customStyles = {
 
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 
-class EmployeeListModal extends Component {
+class AcceptedEmployeeListModal extends Component {
 
   constructor(props) {
     super(props);
@@ -62,9 +62,9 @@ class EmployeeListModal extends Component {
     
     axios.get('http://localhost:9000/job/'+ this.WorkKey[0])
     .then(response => {
-        console.log(response.data.job.CurrentEmployee)
+        console.log(response.data.job.CurrentAcceptedEmployee)
         this.setState({
-            listing: response.data.job.CurrentEmployee,
+            listing: response.data.job.CurrentAcceptedEmployee,
           })
           
           var list2=[]
@@ -143,7 +143,7 @@ class EmployeeListModal extends Component {
    
       return (
         <div>
-            <Button variant="contained" color="primary" onClick={this.openModal} style={{ height: '40px', marginTop: '50%', marginRight: '20px' }}>Applicant</Button>
+            <Button variant="contained" color="primary" onClick={this.openModal} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Employee</Button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -152,9 +152,8 @@ class EmployeeListModal extends Component {
             contentLabel="Example Modal"
           >
             {console.log(this.state.listing)}
-            <EmployeeListTable
+            <AcceptedEmployeeListTable
             EmployeeList={this.state.listing}
-            WorkKey={this.WorkKey}
             />
            
           </Modal>
@@ -167,4 +166,4 @@ class EmployeeListModal extends Component {
 
 
 }
-export default EmployeeListModal;
+export default AcceptedEmployeeListModal;

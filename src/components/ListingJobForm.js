@@ -31,6 +31,8 @@ class ListingJobForm extends Component {
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
     this.CurrentEmployee = props.CurrentEmployee;
+    this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
+
 
 
     this.state = {
@@ -43,7 +45,6 @@ class ListingJobForm extends Component {
 
 
   render() {
-    { console.log(this.CurrentEmployee) }
     if (fire.auth().currentUser.email == this.Employer) {
       return (
         <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#86c6f6', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
@@ -90,7 +91,7 @@ class ListingJobForm extends Component {
       );
 
     }
-    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email) ) {
       return (
 
         <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e5b1ea', opacity: '80%', borderRadius: '10%' }}>

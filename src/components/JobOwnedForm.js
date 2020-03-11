@@ -10,6 +10,7 @@ import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutline
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import EmployeeListModal from '../components/EmployeeListModal';
+import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
 
 
 
@@ -82,6 +83,8 @@ class JobOwnedForm extends Component {
             </Grid>
             <Grid>
               <EmployeeListModal
+              WorkKey={this.WorkKey} />
+              <AcceptedEmployeeListModal
               WorkKey={this.WorkKey} />
               <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>
             </Grid>
