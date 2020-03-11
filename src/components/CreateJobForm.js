@@ -140,13 +140,13 @@ class CreateJobForm extends Component {
                         <Grid xs={12} md={8}>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3> Jobname : </h3>
-                                <TextField inputProps={{ maxLength: 30 }} name='Jobname' id="jobname" color="secondary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '300px' }} />
+                                <TextField inputProps={{ maxLength: 30 }} name='Jobname' id="jobname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '300px' }} />
                                 <h3 style={{ "padding-left": "20px" }}>Number of Employee :</h3>
-                                <TextField name='people' color="secondary" id='amount' label="Limited Person" variant="outlined" type='number' style={{ marginLeft: '16px', width: '178px' }} />
+                                <TextField name='people' color="primary" id='amount' label="Limited Person" variant="outlined" type='number' style={{ marginLeft: '16px', width: '178px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px' }}>
                                 <h3>Details :</h3>
-                                <TextField multiline={true} rows={5} color="secondary" name='detail' id="jobdescription" variant="outlined" margin='dense' style={{ width: 794 }} />
+                                <TextField multiline={true} rows={5} color="primary" name='detail' id="jobdescription" variant="outlined" margin='dense' style={{ width: 794 }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column', marginTop: '40px' }}>
                                 <h3>Time :</h3>
@@ -166,9 +166,9 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={'08:00'}
+                                    defaultValue={'09:00'}
                                 />
-                                <TextField name='location' color="secondary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
+                                <TextField name='location' color="primary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
                             <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                                 <h3>Date :</h3>
@@ -179,10 +179,10 @@ class CreateJobForm extends Component {
                                     defaultValue={'2020-02-02'}
 
                                 />
-                                <TextField name='wages' color="secondary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{ marginLeft: '27px' }} />
+                                <TextField name='wages' color="primary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{ marginLeft: '27px' }} />
                             </Grid>
                             <Grid style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
-                                <Button variant="contained" color='primary' style={{ backgroundColor: '#32441c' }} onClick={this.onCreatejob} >Submit</Button>
+                                <Button variant="contained" color='primary' style={{ backgroundColor: '#2a3649' }} onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
                     </form>

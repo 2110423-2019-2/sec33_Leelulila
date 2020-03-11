@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import Navbar from './pages/Navbar';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import NavbarWithUser from './pages/NavbarWithUser'
@@ -7,45 +7,49 @@ import './App.css';
 
 class App extends Component {
 
-  constructor(props) {
-      super(props);
-      this.state = {
-          user: "",
-      }
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: "",
+        }
     }
 
-  componentDidMount(){
-      this.authListener();
-  }
+    componentDidMount() {
+        this.authListener();
+    }
 
-  authListener(){
-      fire.auth().onAuthStateChanged((user) => {
-          if (user){
-              this.setState({ user });
-          }else{
-              this.setState({user:null});
-          }
-      })
-  }
+    authListener() {
+        fire.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ user });
+            } else {
+                this.setState({ user: null });
+            }
+        })
+    }
 
-  render(){
+    render() {
 
-      var user = fire.auth().currentUser;
+        var user = fire.auth().currentUser;
 
-      if (this.state.user === "") return null;
-      else if(user){
-          return(<div><NavbarWithUser/></div>);
-      }
+        if (this.state.user === "") return null;
+        else if (user) {
+            return (
+                <div>
+                    <NavbarWithUser />
+                </div>
+            );
+        }
 
-      else return(
-          <div>
-              {(<Navbar user = {user}/>)}
-          </div>
-      );
+        else return (
+            <div>
+                {(<Navbar user={user} />)}
+            </div>
+        );
 
-      
-  }
-    
+
+    }
+
 }
 
 export default App;

@@ -78,15 +78,16 @@ export default function SimpleModal(props) {
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState(props.value);
+    const [value, setValue] = React.useState(props.Value);
     
-    const [detail, setDetail] = React.useState(props.detail);
-    const [wages, setWages] = React.useState(props.wages);
-    const [location, setLocation] = React.useState(props.location);
-    const [workDate, setWorkDate] = React.useState(props.workDate);
-    const [timeBegin, setTimeBegin] = React.useState(props.timeBegin);
-    const [timeEnd, setTimeEnd] = React.useState(props.timeEnd);
-    console.log(detail)
+    const [Detail, setDetail] = React.useState(props.Detail);
+    const [Wages, setWages] = React.useState(props.Wages);
+    const [Location, setLocation] = React.useState(props.Location);
+    const [WorkDate, setWorkDate] = React.useState(props.WorkDate);
+    const [TimeBegin, setTimeBegin] = React.useState(props.TimeBegin);
+    const [TimeEnd, setTimeEnd] = React.useState(props.TimeEnd);
+    const [WorkKey, setWorkKey] = React.useState(props.WorkKey);
+    console.log(props);
 
     // const handleChange = (event) => {
     //     console.log(event)
@@ -101,30 +102,31 @@ export default function SimpleModal(props) {
 
     const handlesave = () => {
             var data = {}        
-            var a = document.getElementById("detail").value;
-            var b = document.getElementById("wages").value;
-            var c = document.getElementById("location").value;
-            var d = document.getElementById("workDate").value;
-            var e = document.getElementById("timeBegin").value;
-            var f = document.getElementById("timeEnd").value;
+            var Detail = document.getElementById("Detail").value;
+            var Wages = document.getElementById("Wages").value;
+            var Location = document.getElementById("Location").value;
+            var WorkDate = document.getElementById("WorkDate").value;
+            var TimeBegin = document.getElementById("TimeBegin").value;
+            var TimeEnd = document.getElementById("TimeEnd").value;
             // var k1 = .toLowerCase()
             // var k2 = props.wages.toLowerCase()
             // var k3 = props.location.toLowerCase()
             // var k4 = props.workDate.toLowerCase()
             // var k5 = props.timeBegin.toLowerCase()
             // var k6 = props.timeEnd.toLowerCase()
-            data["detail"] = a
-            data["wages"] = b
-            data["location"] = c
-            data["workDate"] = d
-            data["timeBegin"] = e
-            data["timeEnd"] = f
+            data["JobDetail"] = Detail
+            data["Wages"] = Wages
+            data["Location"] = Location
+            data["Date"] = WorkDate
+            data["BeginTime"] = TimeBegin
+            data["EndTime"] = TimeEnd
             let self = this;   
-            fetch("/user/"+props._id, {
+            fetch("/jobUpdate/"+WorkKey, {
                 method: 'PUT',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(data)
             }).then(function (response) {
+                console.log(response);
                 window.location.reload()
             }).catch(function (err) {
                 console.log(err);
@@ -146,9 +148,6 @@ export default function SimpleModal(props) {
 
     return (
         <StyledMenuItem>
-            <ListItemIcon>
-                <SendIcon fontSize="small" />
-            </ListItemIcon>
             {/* <button type="button" onClick={handleOpen}>
                 Edit
       </button> */}
@@ -167,51 +166,51 @@ export default function SimpleModal(props) {
                         <h3>Information:</h3>
                             <TextField
                                 label='Edit Detail'
-                                id="detail"
+                                id="Detail"
                                 multiline
                                 rowsMax="10"
-                                defaultValue={detail}
+                                defaultValue={Detail}
                                 // onChange={()handleChange}
                             />
                             <TextField
                                 label='Edit Wages'
-                                id="wages"
+                                id="Wages"
                                 multiline
                                 rowsMax="10"
-                                defaultValue={wages}
+                                defaultValue={Wages}
                                 // onChange={handleChange}
                             />
                             <TextField
                                 label='Edit location'
-                                id="location"
+                                id="Location"
                                 multiline
                                 rowsMax="10"
-                                defaultValue={location}
+                                defaultValue={Location}
                                 // onChange={handleChange}
                             />
                             <h3>Date and Time:</h3>
                                 <DatePicker
-                                    id='workDate'
+                                    id='WorkDate'
                                     label="Edit Work Date"
                                     type='date'
-                                    defaultValue={workDate}
+                                    defaultValue={WorkDate}
 
                             />
                             <DatePicker
-                                    id='timeBegin'
+                                    id='TimeBegin'
                                     label="Edit Start time"
                                     type='time'
                                     // value={this.state.selectedBegintime}
                                     // onChange={this.handleBeginTimeChange}
-                                    defaultValue={timeBegin}
+                                    defaultValue={TimeBegin}
                             />
                             <DatePicker
-                                    id='timeEnd'
+                                    id='TimeEnd'
                                     label="Edit End time"
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={timeEnd}
+                                    defaultValue={TimeEnd}
                             />
                         </form>
                     </p>

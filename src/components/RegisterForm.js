@@ -87,7 +87,7 @@ class RegisterForm extends Component {
           <Grid container direction='column' xs={12} md={6} id="GridRegister" spacing={2}>
             <Grid item><h1>Register</h1></Grid>
             {/* <Grid item><TextField id="user" label="Username" /></Grid> */}
-            <Grid item><TextField name="email" variant="outlined" color="secondary" id="email" fullWidth label="Email" type="email" /></Grid>
+            <Grid item><TextField name="email" variant="outlined" color="primary" id="email" fullWidth label="Email" type="email" /></Grid>
             <Grid item><TextField name="password" variant="outlined" color="secondary" type='password' fullWidth id="pass" label="Password" /></Grid>
             {/* <Grid item><InputBase  type='date' id="standard" label="Date" style={{marginLeft:'10px',marginTop:'10px'}}/></Grid> */}
             <Grid item><TextField name="fname" variant="outlined" color="secondary" id="name" fullWidth label="Name" /></Grid>

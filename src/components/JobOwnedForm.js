@@ -89,10 +89,25 @@ class JobOwnedForm extends Component {
           fetch("/wallet/job/" + this.WorkKey, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+<<<<<<< HEAD
           })
           // console.log(nonce)
           // form.jobID.value = this.WorkKey;
           // form.submit();
+=======
+          }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+          }).then(function (jsonData) {
+            if (jsonData.status === 1) console.log("Notify Users")
+          }).then(
+            window.location.reload(false)
+          ).catch(function (err) {
+            console.log(err);
+          });
+>>>>>>> 94320324a9cde81cef14021149cbb9633b336f40
       }
     });
   }
@@ -100,9 +115,18 @@ class JobOwnedForm extends Component {
     fetch("/wallet/job/" + this.WorkKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+    }).then(function (response) {
+      if (response.status >= 400) {
+          throw new Error("Bad response from server");
+      }
+      return response.json();
+    }).then(function (jsonData) {
+      if (jsonData.status === 1) console.log("Notify Users")
     }).then(
       window.location.reload(false)
-    )
+    ).catch(function (err) {
+      console.log(err);
+    });
   }
 
   

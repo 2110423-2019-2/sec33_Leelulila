@@ -11,7 +11,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import SendIcon from '@material-ui/icons/Send';
 
 
 const customStyles = {
@@ -175,9 +174,6 @@ class EmployeeListModal extends Component {
     
       return (
         <StyledMenuItem>
-          <ListItemIcon>
-                <SendIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText primary="Applicant"  onClick={this.openModal} />
           <Modal
             isOpen={this.state.modalIsOpen}
