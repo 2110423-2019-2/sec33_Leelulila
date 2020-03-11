@@ -23,34 +23,54 @@ class Dashboard extends Component {
     }
     
 
-    componentDidMount(){
+
+    componentDidMount() {
+        this.getalljob()
+        this.getProfile()
+    }
+
+    getalljob() {
         axios.get('http://localhost:9000/getalljob')
-        .then(response => {
-          
-        this.setState({
-            listing: response.data,
-          })
+            .then(response => {
+                this.setState({
+                    listing: response.data,
+                })
+                var list2 = [];
+                for (var x in this.state.listing) {
+                    if (this.state.listing[x]['job']['Status'] == "Ready") {
+                        list2.push([this.state.listing[x]['job'], [this.state.listing[x]['_id']]]);
+                    }
+                }
+                this.setState({
+                    listing: list2,
+                    ready: true,
+                })
+                console.log(this.state.listing)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
-          var list2 = [];
-
-          for (var x in this.state.listing) {
-            if(this.state.listing[x]['job']['Status']=="Ready"){
-                    list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
+    getProfile() {
+        var user = fire.auth().currentUser;
+        let self = this;
+        console.log("/user/" + user.email)
+        fetch("/useremail/" + user.email, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
             }
-              
-            
-              
-          }
-          this.setState({
-              listing: list2,
-              ready:true,
-          })
-          console.log(this.state.listing)
-
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+            return response.json();
+        }).then(function (jsonData) {
+            self.setState({ user: jsonData });
+            console.log(self.state)
+            console.log(self.state.user)
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
     renderList(){
@@ -105,13 +125,13 @@ class Dashboard extends Component {
                      )
                 }
         }
-        return(<h1>Loading...</h1>)
+        return (<h1>Loading...</h1>)
 
-        
+
     }
-  
+
     render() {
-        
+
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
                 <Input label="Search Job" onChange={this.onChange} />

@@ -6,7 +6,12 @@ import axios from 'axios';
 import EmployeeListTable from './EmployeeListTable'
 import fire from '../config/firebase';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import SendIcon from '@material-ui/icons/Send';
 
 
 const customStyles = {
@@ -24,6 +29,39 @@ const customStyles = {
 
 
 };
+
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})(props => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+    
+  />
+));
+
+const StyledMenuItem = withStyles(theme => ({
+
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
 //   Modal.setAppElement('#yourAppElement')
 
 
@@ -142,8 +180,11 @@ class EmployeeListModal extends Component {
 
    
       return (
-        <div>
-            <Button variant="contained" color="primary" onClick={this.openModal} style={{ height: '40px', marginRight: '20px' }}>Applicant</Button>
+        <StyledMenuItem>
+          <ListItemIcon>
+                <SendIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Applicant"  onClick={this.openModal} />
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -158,7 +199,8 @@ class EmployeeListModal extends Component {
             />
            
           </Modal>
-        </div>
+          </StyledMenuItem>
+
       )
 
     

@@ -156,7 +156,7 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedBegintime}
                                     // onChange={this.handleBeginTimeChange}
-                                    defaultValue={'00:00'}
+                                    defaultValue={'08:00'}
                                 />
 
                                 <h3>to</h3>
@@ -166,7 +166,7 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={'00:00'}
+                                    defaultValue={'08:00'}
                                 />
                                 <TextField name='location' color="secondary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>

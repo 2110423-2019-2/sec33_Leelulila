@@ -42,6 +42,7 @@ class JobCardModal extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
+    this.DayAndTime = props.DayAndTime
     console.log(this.WorkKey);
     // this.Currentnumber = props.Currentnumber;
     this.CurrentEmployee = props.CurrentEmployee;
@@ -57,31 +58,69 @@ class JobCardModal extends Component {
   }
 
 
+  intersect(newDate, newBeginTime, newEndTime) {
+    var DayAndTime = this.DayAndTime;
+    var tuple;
+    var day = DayAndTime[newDate]
+    if(day != undefined){
+      var re = false;
+      day.forEach(function(tuple){
+        console.log(newBeginTime,tuple[0],newEndTime,tuple[1])
+        if(newBeginTime<=tuple[0] && newEndTime>=tuple[0]){
+          console.log('left')
+          re = true          
+        }
+        else if(newBeginTime>=tuple[0] && newEndTime<=tuple[1]){
+          console.log('in')
+          re = true          
+        }
+        else if(newBeginTime<=tuple[0] && newEndTime>=tuple[1]){
+          console.log('out')
+          re = true          
+        }
+        else if(newBeginTime<=tuple[1] && newEndTime>=tuple[1]){
+          console.log('right')
+          re = true          
+        }
+      });
+      return re
+    }
+    else{    
+      console.log(day)
+      return false
+    }
+  }
 
   onGetjob() {
-    var email = fire.auth().currentUser.email;
-    var data = { Email: email };
-    fetch("/job/addemployee/" + this.WorkKey, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function (response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    }).then(window.location.reload(false))
-      .catch(function (err) {
-        console.log(err);
-      });
+    var newDate = this.Date
+    var newBeginTime = this.BeginTime
+    var newEndTime = this.EndTime
+    var boo = this.intersect(newDate, newBeginTime, newEndTime);
+    if(!boo){
+      var email = fire.auth().currentUser.email;
+      var data = { Email: email };
+      fetch("/job/addemployee/" + this.WorkKey, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      }).then(window.location.reload(false))
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+    else{
+      alert('You cannot work at another job at the same time!');
+    }
   }
   // axios.put('http://localhost:9000/job/addemployee/' + this.WorkKey, obj)
   //   .then(alert("Success")  )
 
-
-
-
-
+  
 
   openModal() {
     this.setState({ modalIsOpen: true });

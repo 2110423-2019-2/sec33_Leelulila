@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import '../style.css';
 import EmployeeListModal from '../components/EmployeeListModal';
 import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
-
+import EmployerMenuAction from './EmployerMenuAction';
 
 import EditJobOwnedForm from '../components/EditJobOwnedForm';
 
@@ -34,8 +34,6 @@ class JobOwnedForm extends Component {
 
     // this.onGetjob = this.onGetjob.bind(this);
 
-    this.onDeletejob = this.onDeletejob.bind(this);
-    this.onConfirm = this.onConfirm.bind(this);
     this.getProfile.bind(this);
     // this.onStartjob = this.onStartjob.bind(this);
 
@@ -69,24 +67,9 @@ class JobOwnedForm extends Component {
 }
 
 
-  onDeletejob() {
-    fetch("/job/" + this.WorkKey, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    }).then(window.location.reload(false))
-    // window.location.reload(false);
-  }
+ 
 
-  onConfirm(){
-
-    var data = { Status: 'Confirm' };
-
-    fetch("/jobstatus/" + this.WorkKey, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }).then(window.location.reload(false));
-  }
+  
 
   onPay(event) {
     event.preventDefault();
@@ -155,15 +138,16 @@ class JobOwnedForm extends Component {
               </Grid>
               
               <Grid>
-                <EmployeeListModal
-                WorkKey={this.WorkKey} />
-                <AcceptedEmployeeListModal
-                WorkKey={this.WorkKey} />
-                <Grid item xs={6}>
-                  <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime} workKey ={this.props.workKey}/>
-                  <Button variant="contained" color="primary" onClick={this.onConfirm} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Confirm</Button>            
-                  <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>            
-                </Grid>
+                <EmployerMenuAction
+                WorkKey={this.WorkKey}
+                _id = {this.props._id} 
+                wages={this.props.Wages} 
+                detail={this.props.JobDetail} 
+                location={this.props.Location} 
+                workDate={this.props.Date} 
+                timeBegin={this.props.BeginTime} 
+                timeEnd={this.props.EndTime}/>
+               
               </Grid>
             </Grid>
   
@@ -178,7 +162,7 @@ class JobOwnedForm extends Component {
         <div>
           <Grid style={{ display: 'flex' }}>
             <Grid item md={10}>
-              <h2>Confirm</h2>
+              <h2>Start</h2>
               <h2>Title : {this.JobName}</h2>
               <p>Detail : {this.JobDetail}</p>
               <p>Wages : {this.Wages} ฿</p>
@@ -188,8 +172,6 @@ class JobOwnedForm extends Component {
             </Grid>
             
             <Grid>
-            <AcceptedEmployeeListModal
-                WorkKey={this.WorkKey} />
                 <form id="checkoutForm" >
                 <input type="hidden" name="omiseToken"/>
                 <input type="hidden" name="omiseSource"/>

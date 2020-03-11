@@ -5,6 +5,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Profile from '../pages/Profile';
 import DatePicker from '../components/DatePicker';
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import SendIcon from '@material-ui/icons/Send';
 
 function getModalStyle() {
     const top = 50;
@@ -33,6 +39,39 @@ const useStyles = makeStyles(theme => ({
         },
     },
 }));
+
+const StyledMenu = withStyles({
+    paper: {
+      border: '1px solid #d3d4d5',
+    },
+  })(props => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      {...props}
+      
+    />
+  ));
+  
+  const StyledMenuItem = withStyles(theme => ({
+  
+    root: {
+      '&:focus': {
+        backgroundColor: theme.palette.primary.main,
+        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+  }))(MenuItem);
 
 export default function SimpleModal(props) {
     const classes = useStyles();
@@ -109,11 +148,14 @@ export default function SimpleModal(props) {
     };
 
     return (
-        <div>
+        <StyledMenuItem>
+            <ListItemIcon>
+                <SendIcon fontSize="small" />
+            </ListItemIcon>
             {/* <button type="button" onClick={handleOpen}>
                 Edit
       </button> */}
-            <Button variant='contained' size='small' style={{ height: '40px', marginTop: '20%', marginRight: '20px' }} onClick={handleOpen} color='grey' >Edit</Button>
+            <ListItemText primary="Edit" onClick={handleOpen} />
 
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -184,7 +226,7 @@ export default function SimpleModal(props) {
          </button>
                 </div>
             </Modal>
-        </div>
+        </StyledMenuItem>
 
     );
 }
