@@ -7,13 +7,16 @@ const localizer = momentLocalizer(moment)
 
 var dummyEvents = []
 
-function getRandomColor() {
-  var letters = 'ABCDE'.split('');
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * letters.length)];
+var i = 0
+
+function getRandomColor(i) {
+  if (i<0){
+    return '#E0E0E0'
   }
-  return color;
+  else{
+    var colors = ['#FF9999', '#FFCC99', '#FFFF99', '#CCFF99', '#99FF99', '#99FFCC', '#99FFFF', '#99CCFF', '#9999FF', '#CC99FF', '#FF99FF', '#FF99CC']
+    return colors[(i%12)]
+  } 
 }
 
 const eventStyleGetter = (event, start, end, isSelected) => {
@@ -45,26 +48,26 @@ class MyCalendar extends Component {
 
   componentDidMount() {
     var l = this.props.currentJob;
-    console.log(l + 'didmount')
     var i;
     for (i = 0; i < l.length; i++) {
       this.getJobByID(l[i])
+
     }
   }
 
 
   renderList() {
+    dummyEvents = []
     if (this.state.ready) {
       var n = 0
       return (
         this.state.currentJobs.map((notes) => {
           n += 1
-          // return (<JobList  JobName={notes.JobName} JobDetail={notes.JobDetail} 
-          //   Wages={notes.Wages} Location={notes.Location}
-          //    BeginTime={notes.BeginTime} EndTime={notes.EndTime} Date={notes.Date} Employer={notes.Employer}/>)
-          dummyEvents.push({ hexColor: getRandomColor(), end: new Date(notes.Date+' '+notes.EndTime), start: new Date(notes.Date+' '+notes.BeginTime), Title: notes.JobName})
-          console.log(dummyEvents)
+          i = parseInt(notes.BeginTime.slice(0, 2))-1
+          dummyEvents.push({ hexColor: getRandomColor(i), end: new Date(notes.Date + ' ' + notes.EndTime), start: new Date(notes.Date + ' ' + notes.BeginTime), title: notes.JobName })
+          console.log(i)
         })
+
       )
     }
   }
@@ -88,9 +91,9 @@ class MyCalendar extends Component {
   }
 
   render() {
+    { this.renderList() }
     return (
       <div>
-        {this.renderList()}
         <Calendar
           views={['month', 'week']}
           defaultView="month"
