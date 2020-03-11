@@ -13,10 +13,14 @@ class Dashboard extends Component {
         this.state = {
             listing: {},
             ready:false,
+            searcd:""
         }
         this.renderList = this.renderList.bind(this);
     }
 
+    onChange = e =>{
+        this.setState({search: e.target.value});
+    }
     
 
     componentDidMount(){
@@ -79,6 +83,7 @@ class Dashboard extends Component {
                                         CurrentEmployee={notes[0].CurrentEmployee}
                                         CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
                                         WorkKey={notes[1][0]}
+                                        search={this.state.search}
                                     />
                                 </Grid>
                             )
