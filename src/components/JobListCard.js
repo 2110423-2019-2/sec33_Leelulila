@@ -37,10 +37,8 @@ class JobCardList extends Component {
   renderList() {
     if (this.state.ready) {
       console.log(this.state, 'state before map')
-      var n = 0
       return (
         this.state.currentJobs.map((notes) => {
-          n += 1
           console.log(notes)
           return (<JobList JobName={notes.JobName} JobDetail={notes.JobDetail}
             Wages={notes.Wages} Location={notes.Location}
