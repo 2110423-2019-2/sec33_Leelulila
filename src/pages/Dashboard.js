@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button, TextField } from '@material-ui/core';
+import { Grid, Button, TextField, Input } from '@material-ui/core';
 import '../style.css';
 import ListingJobForm from '../components/ListingJobForm'
 import fire from '../config/firebase';
@@ -13,7 +13,7 @@ class Dashboard extends Component {
         this.state = {
             listing: {},
             ready:false,
-            searcd:""
+            search:""
         }
         this.renderList = this.renderList.bind(this);
     }
@@ -64,10 +64,22 @@ class Dashboard extends Component {
                 
                 else if(this.state.listing[0]['_id'] == null){
                     console.log(this.state.listing);
-
+                    var result =[];
+                    if(this.state.search == "") {
+                        result=this.state.listing;
+                    }
+                    else {
+                        result = this.state.listing.filter(note=>note[0].JobName.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1)
+                        
+                    }
+                    //console.log(result);
                     return (
-                        this.state.listing.map((notes) => {
-                        console.log(notes[0].CurrentAcceptedEmployee);
+                        result.map((notes, key) => {
+                        console.log(result);
+                        console.log("eieie")
+                        //console.log(this.state.listing)
+
+                            
                             return (
                                 <Grid item xs={4}>
                                     <ListingJobForm
@@ -84,9 +96,11 @@ class Dashboard extends Component {
                                         CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
                                         WorkKey={notes[1][0]}
                                         search={this.state.search}
+                                
                                     />
                                 </Grid>
                             )
+                        console.log("success")
                         })
                      )
                 }
@@ -100,6 +114,7 @@ class Dashboard extends Component {
         
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
+                <Input label="Search Job" onChange={this.onChange} />
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>

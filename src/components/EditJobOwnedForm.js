@@ -47,6 +47,7 @@ export default function SimpleModal(props) {
     const [workDate, setWorkDate] = React.useState(props.workDate);
     const [timeBegin, setTimeBegin] = React.useState(props.timeBegin);
     const [timeEnd, setTimeEnd] = React.useState(props.timeEnd);
+    const [workKey, setWorkKey] = React.useState(props.workKey);
     console.log(detail)
 
     // const handleChange = (event) => {
@@ -62,26 +63,28 @@ export default function SimpleModal(props) {
 
     const handlesave = () => {
             var data = {}        
-            var a = document.getElementById("detail").value;
-            var b = document.getElementById("wages").value;
-            var c = document.getElementById("location").value;
-            var d = document.getElementById("workDate").value;
-            var e = document.getElementById("timeBegin").value;
-            var f = document.getElementById("timeEnd").value;
+            var detail = document.getElementById("detail").value;
+            var wages = document.getElementById("wages").value;
+            var location = document.getElementById("location").value;
+            var workDate = document.getElementById("workDate").value;
+            var timeBegin = document.getElementById("timeBegin").value;
+            var timeEnd = document.getElementById("timeEnd").value;
+            var workKey = document.getElementById("workKey").value;
             // var k1 = .toLowerCase()
             // var k2 = props.wages.toLowerCase()
             // var k3 = props.location.toLowerCase()
             // var k4 = props.workDate.toLowerCase()
             // var k5 = props.timeBegin.toLowerCase()
             // var k6 = props.timeEnd.toLowerCase()
-            data["detail"] = a
-            data["wages"] = b
-            data["location"] = c
-            data["workDate"] = d
-            data["timeBegin"] = e
-            data["timeEnd"] = f
+            data["detail"] = detail
+            data["wages"] = wages
+            data["location"] = location
+            data["workDate"] = workDate
+            data["timeBegin"] = timeBegin
+            data["timeEnd"] = timeEnd
+            data["workKey"] = workKey
             let self = this;   
-            fetch("/user/"+props._id, {
+            fetch("/jobUpdate/"+props.workKey, {
                 method: 'PUT',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(data)

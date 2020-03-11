@@ -36,7 +36,6 @@ class JobOwnedForm extends Component {
 
     this.onDeletejob = this.onDeletejob.bind(this);
     this.onConfirm = this.onConfirm.bind(this);
-
     this.getProfile.bind(this);
     // this.onStartjob = this.onStartjob.bind(this);
 
@@ -161,7 +160,7 @@ class JobOwnedForm extends Component {
                 <AcceptedEmployeeListModal
                 WorkKey={this.WorkKey} />
                 <Grid item xs={6}>
-                  <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
+                  <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime} workKey ={this.props.workKey}/>
                   <Button variant="contained" color="primary" onClick={this.onConfirm} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Confirm</Button>            
                   <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>            
                 </Grid>
@@ -189,6 +188,8 @@ class JobOwnedForm extends Component {
             </Grid>
             
             <Grid>
+            <AcceptedEmployeeListModal
+                WorkKey={this.WorkKey} />
                 <form id="checkoutForm" >
                 <input type="hidden" name="omiseToken"/>
                 <input type="hidden" name="omiseSource"/>

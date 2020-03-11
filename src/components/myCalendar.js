@@ -45,7 +45,6 @@ class MyCalendar extends Component {
 
   componentDidMount() {
     var l = this.props.currentJob;
-    console.log(l + 'didmount')
     var i;
     for (i = 0; i < l.length; i++) {
       this.getJobByID(l[i])
@@ -59,11 +58,7 @@ class MyCalendar extends Component {
       return (
         this.state.currentJobs.map((notes) => {
           n += 1
-          // return (<JobList  JobName={notes.JobName} JobDetail={notes.JobDetail} 
-          //   Wages={notes.Wages} Location={notes.Location}
-          //    BeginTime={notes.BeginTime} EndTime={notes.EndTime} Date={notes.Date} Employer={notes.Employer}/>)
-          dummyEvents.push({ hexColor: getRandomColor(), end: new Date(notes.Date+' '+notes.EndTime), start: new Date(notes.Date+' '+notes.BeginTime), Title: notes.JobName})
-          console.log(dummyEvents)
+          dummyEvents.push({ hexColor: getRandomColor(), end: new Date(notes.Date+' '+notes.EndTime), start: new Date(notes.Date+' '+notes.BeginTime), title: notes.JobName})
         })
       )
     }

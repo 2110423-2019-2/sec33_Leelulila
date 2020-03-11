@@ -20,6 +20,7 @@ class ListingJobForm extends Component {
 
   constructor(props) {
     super(props);
+    
     this.JobName = props.JobName;
     this.JobDetail = props.JobDetail;
     this.Wages = props.Wages;
@@ -32,8 +33,8 @@ class ListingJobForm extends Component {
     this.WorkKey = props.WorkKey;
     this.CurrentEmployee = props.CurrentEmployee;
     this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
-    this.search = props.search;
 
+    console.log(this.JobName + "created ")
 
     this.state = {
       checkgetjobalready: false,
@@ -45,7 +46,7 @@ class ListingJobForm extends Component {
 
 
   render() {
-    if (fire.auth().currentUser.email == this.Employer && this.search!="" && this.JobName.toLowerCase().indexOf(this.search.toLowerCase()>=0)) {
+    if (fire.auth().currentUser.email == this.Employer) {
       return (
         <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#86c6f6', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
           <div>
@@ -91,7 +92,7 @@ class ListingJobForm extends Component {
       );
 
     }
-    else if ((this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email)) && this.search!="" && this.JobName.toLowerCase().indexOf(this.search.toLowerCase()>=0) ) {
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email) ) {
       return (
 
         <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e5b1ea', opacity: '80%', borderRadius: '10%' }}>
