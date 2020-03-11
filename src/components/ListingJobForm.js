@@ -13,8 +13,7 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import StarsIcon from '@material-ui/icons/Stars';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import BeenhereIcon from '@material-ui/icons/Beenhere';
-
+import BeenhereIcon from '@material-ui/icons/Beenhere'; 
 
 class ListingJobForm extends Component {
 
