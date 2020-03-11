@@ -6,8 +6,6 @@ import axios from 'axios';
 import fire from '../config/firebase';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 
-
-
 const customStyles = {
   content: {
     top: '50%',
@@ -17,12 +15,9 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     justifyContent: 'center',
-
   }
-
-
-
 };
+
 //   Modal.setAppElement('#yourAppElement')
 
 
