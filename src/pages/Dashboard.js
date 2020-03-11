@@ -11,19 +11,38 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listing: {},
+            db:[],
+            listing: [],
             user: [],
             ready:false,
             search:""
         }
         this.renderList = this.renderList.bind(this);
+        
     }
 
     onChange = e =>{
         this.setState({search: e.target.value});
     }
     
+    onSearch(event){
+        event.preventDefault();
+        if (this.state.db.length > this.state.listing.length) 
+        this.setState({
+            listing: this.state.db,
+            ready: true
+        })
+        var result = this.state.db.filter((note)=>{
+            let jName = note[0].JobName.toLowerCase()
+            return jName.indexOf(this.state.search.toLowerCase()) !== -1
+        })
+        // console.log(result)
+        this.setState({
+            listing: result,
+            ready: true
+        })
 
+    }
 
     componentDidMount() {
         this.getalljob()
@@ -43,8 +62,8 @@ class Dashboard extends Component {
                     }
                 }
                 this.setState({
-                    listing: list2,
-                    ready: true,
+                    db: list2,
+                    ready: false,
                 })
                 console.log(this.state.listing)
             })
@@ -85,18 +104,18 @@ class Dashboard extends Component {
                 
                 else if(this.state.listing[0]['_id'] == null){
                     console.log(this.state.listing);
-                    var result =[];
-                    if(this.state.search == "") {
-                        result=this.state.listing;
-                    }
-                    else {
-                        result = this.state.listing.filter(note=>note[0].JobName.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1)
+                    //var result =this.state.listing;
+                    // if(this.state.search == "") {
+                    //     result=this.state.listing;
+                    // }
+                    // else {
+                    //     result = this.state.listing.filter(note=>note[0].JobName.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1)
                         
-                    }
+                    // }
                     //console.log(result);
                     return (
-                        result.map((notes, key) => {
-                        console.log(result);
+                        this.state.listing.map((notes, key) => {
+                        //console.log(result);
                         console.log("eieie")
                         console.log(this.state)
 
@@ -135,7 +154,8 @@ class Dashboard extends Component {
 
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
-                <Input label="Search Job" onChange={this.onChange} />
+                <TextField id="Search" onChange={this.onChange}/>
+                <Button onClick={(event)=>this.onSearch(event)}>Search</Button>
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>
