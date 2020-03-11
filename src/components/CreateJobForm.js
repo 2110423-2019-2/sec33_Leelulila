@@ -85,7 +85,7 @@ class CreateJobForm extends Component {
             EndTime: document.getElementById('timeend').value,
             Date: document.getElementById('workDate').value,
             CurrentEmployee: [],
-            CurrentAcceptedEmployee:[],
+            CurrentAcceptedEmployee: [],
             Employer: fire.auth().currentUser.email,
             Status: "Ready"
         }
@@ -156,7 +156,7 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedBegintime}
                                     // onChange={this.handleBeginTimeChange}
-                                    defaultValue={'00:00'}
+                                    defaultValue={'08:00'}
                                 />
 
                                 <h3>to</h3>
@@ -166,7 +166,7 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={'01:00'}
+                                    defaultValue={'09:00'}
                                 />
                                 <TextField name='location' color="secondary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>

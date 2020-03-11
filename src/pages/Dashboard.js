@@ -63,7 +63,7 @@ class Dashboard extends Component {
 
                     return (
                         this.state.listing.map((notes) => {
-                        console.log(notes[0].JobName);
+                        console.log(notes[0].CurrentAcceptedEmployee);
                             return (
                                 <Grid item xs={4}>
                                     <ListingJobForm
@@ -77,6 +77,7 @@ class Dashboard extends Component {
                                         Location={notes[0].Location}
                                         Employer={notes[0].Employer}
                                         CurrentEmployee={notes[0].CurrentEmployee}
+                                        CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
                                         WorkKey={notes[1][0]}
                                     />
                                 </Grid>
@@ -93,7 +94,7 @@ class Dashboard extends Component {
     render() {
         
         return (
-            <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
+            <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>

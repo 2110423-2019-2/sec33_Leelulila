@@ -13,12 +13,12 @@ import { set } from 'date-fns';
 
 
 
-class JobCardList extends Component {
+class PendingJobCardList extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      currentJobs: [],
+      pendingJobs: [],
       ready: false
     }
     this.getJobByID.bind(this);
@@ -27,7 +27,7 @@ class JobCardList extends Component {
 
 
   componentDidMount() {
-    var l = this.props.currentJob;
+    var l = this.props.pendingJob;
     var i;
     for (i = 0; i < l.length; i++) {
       this.getJobByID(l[i])
@@ -35,11 +35,11 @@ class JobCardList extends Component {
   }
 
   renderList() {
-    if (this.state.ready) {
+    if (this.state.ready & this.state.pendingJobs.length > 0) {
       console.log(this.state, 'state before map')
       var n = 0
       return (
-        this.state.currentJobs.map((notes) => {
+        this.state.pendingJobs.map((notes) => {
           n += 1
           console.log(notes)
           return (<JobList JobName={notes.JobName} JobDetail={notes.JobDetail}
@@ -69,9 +69,8 @@ class JobCardList extends Component {
       return response.json();
     }).then(function (jsonData) {
       console.log(jsonData['job'] + 'intgetjob')
-      self.state.currentJobs.push(jsonData['job'])
+      self.state.pendingJobs.push(jsonData['job'])
       self.setState({ ready: true })
-      console.log(self.state.currentJobs+'222')
     }).catch(function (err) {
       console.log(err);
     })
@@ -81,20 +80,20 @@ class JobCardList extends Component {
     console.log('render')
     console.log(this.state)
     return (
-        <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
-          <Card >
-            <CardContent>
-              <Typography variant='h6' gutterBottom align='center' color='primary'>
-                Your Jobs
+      <div style={{ marginTop: '10px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
+        <Card >
+          <CardContent>
+            <Typography variant='h6' gutterBottom align='center' color='error'>
+              Pending Jobs
             </Typography>
-              {this.renderList()}
-            </CardContent>
-          </Card>
-        </div>
+            {this.renderList()}
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 }
 
 
 
-export default JobCardList;
+export default PendingJobCardList;

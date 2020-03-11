@@ -65,7 +65,6 @@ class JobOwned extends Component {
                 return (
                     
                     this.state.listing.map((notes) => {
-                    
                         return (
                             <Grid item xs={4} >
                                 <JobOwnedForm
@@ -78,6 +77,8 @@ class JobOwned extends Component {
                                     EndTime={notes[0].EndTime}
                                     Location={notes[0].Location}
                                     Employer={notes[0].Employer}
+                                    
+                                    Status={notes[0].Status}
                                     WorkKey={notes[1]}
                                     CurrentEmployee={notes[0].CurrentEmployee}
                                 />
