@@ -12,6 +12,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             listing: {},
+            user: [],
             ready:false,
             search:""
         }
@@ -97,7 +98,7 @@ class Dashboard extends Component {
                         result.map((notes, key) => {
                         console.log(result);
                         console.log("eieie")
-                        //console.log(this.state.listing)
+                        console.log(this.state)
 
                             
                             return (
@@ -115,8 +116,8 @@ class Dashboard extends Component {
                                         CurrentEmployee={notes[0].CurrentEmployee}
                                         CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
                                         WorkKey={notes[1][0]}
-                                        search={this.state.search}
-                                
+                                        currentJob={this.state.user.currentJob}
+                                        search={this.state.search}                                
                                     />
                                 </Grid>
                             )
