@@ -71,6 +71,7 @@ class JobCardList extends Component {
       console.log(jsonData['job'] + 'intgetjob')
       self.state.currentJobs.push(jsonData['job'])
       self.setState({ ready: true })
+      console.log(self.state.currentJobs+'222')
     }).catch(function (err) {
       console.log(err);
     })

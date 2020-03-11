@@ -10,46 +10,46 @@ import MyCalendar from '../components/myCalendar';
 
 class Profile extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            user : [],
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: [],
     }
+  }
 
-    componentDidMount() {
-        this.authListener();
-        this.getProfile();
-    }
+  componentDidMount() {
+    this.authListener();
+    this.getProfile();
+  }
 
-    getProfile() {
-        var user = fire.auth().currentUser;
-        let self = this;
-        fetch("/useremail/" + user.email, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        }).then(function (response) {
-          if (response.status >= 400) {
-            throw new Error("Bad response from server");
-          }
-          return response.json();
-        }).then(function (jsonData) {
-          self.setState({ user: jsonData });
-          return this.state.listing;
-        }).catch(function (err) {
-          console.log(err);
-        });
+  getProfile() {
+    var user = fire.auth().currentUser;
+    let self = this;
+    fetch("/useremail/" + user.email, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
       }
+      return response.json();
+    }).then(function (jsonData) {
+      self.setState({ user: jsonData });
+      return this.state.listing;
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }
 
-    authListener() {
-        fire.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({ user });
-            } else {
-                this.setState({ user: null });
-            }
-        })
-    }
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    })
+  }
 
     render() {
         if (this.state.user.currentJob === undefined || this.state.user.pendingJob === undefined) return null
