@@ -176,7 +176,7 @@ class JobCardModal extends Component {
             height: 40,
             display: 'flex',
             justifyContent: 'center',
-            backgroundColor: '#000000'
+            backgroundColor: '#191e25'
           }} onClick={this.openModal}>More Detail</Button></Grid>
 
           <Modal
@@ -205,14 +205,16 @@ class JobCardModal extends Component {
 
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='secondary' style={{
+        <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='white' style={{
           textAlign: 'center',
           paddingLeft: 40,
           paddingRight: 40,
           marginTop: 10,
           height: 40,
+          color: 'white',
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          backgroundColor: '#725c3b',
         }} onClick={this.openModal}>More Detail</Button></Grid>
 
         <Modal
@@ -230,7 +232,7 @@ class JobCardModal extends Component {
           <p>Date : {this.Date}</p>
           <p>Time : {this.BeginTime} - {this.EndTime}</p>
           <p>Employer : {this.Employer}</p>
-          <Button variant="contained" color='secondary' onClick={this.onGetjob}>Apply</Button>
+          <Button variant="contained" color='primary' onClick={this.onGetjob}>Apply</Button>
 
         </Modal>
       </div>

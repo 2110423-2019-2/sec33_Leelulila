@@ -141,12 +141,12 @@ class ListingJobForm extends Component {
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email)) {
       return (
 
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#C97F97', opacity: '80%', borderRadius: '3%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#ccd9e7', opacity: '80%', borderRadius: '3%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#000000' }} />
+                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#191e25' }} />
                   <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -189,12 +189,12 @@ class ListingJobForm extends Component {
 
     else {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#F1F1F1', opacity: '80%', borderRadius: '3%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e2d9d7', opacity: '80%', borderRadius: '3%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <AddCircleIcon color='secondary' style={{ fontSize: 'xx-large' }} />
+                  <AddCircleIcon style={{ fontSize: 'xx-large', color: '#725c3b' }} />
                   <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
