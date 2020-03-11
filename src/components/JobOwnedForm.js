@@ -22,6 +22,7 @@ class JobOwnedForm extends Component {
     this.EndTime = props.EndTime;
     this.Location = props.Location;
     this.Employer = props.Employer;
+    this.Status = props.Status;
     this.WorkKey = props.WorkKey;
     this.CurrentEmployee = props.CurrentEmployee;
 
@@ -75,6 +76,17 @@ class JobOwnedForm extends Component {
     // window.location.reload(false);
   }
 
+  onConfirm(){
+
+    var data = { Status: 'Confirm' };
+
+    fetch("/jobstatus/" + this.WorkKey, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(window.location.reload(false));
+  }
+
   onPay(event) {
     event.preventDefault();
     if (this.state.balance < this.Wages*this.Amount){
@@ -126,12 +138,46 @@ class JobOwnedForm extends Component {
     //   var email = fire.auth().currentUser.email;
     //   var indexofat = email.indexOf('@');
     //   var subemail = email.substring(0,indexofat);
+    console.log(this.status)
+    if(this.Status == 'Ready'){
+      return (
+        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
+          <div>
+            <Grid style={{ display: 'flex' }}>
+              <Grid item md={10}>
+                <h2>Title : {this.JobName}</h2>
+                <p>Detail : {this.JobDetail}</p>
+                <p>Wages : {this.Wages} ฿</p>
+                <p>Location : {this.Location}</p>
+                <p>Date : {this.Date}</p>
+                <p>Time : {this.BeginTime} - {this.EndTime}</p>
+              </Grid>
+              
+              <Grid>
+                <EmployeeListModal
+                WorkKey={this.WorkKey} />
+                <AcceptedEmployeeListModal
+                WorkKey={this.WorkKey} />
+                <Grid item xs={6}>
+                  <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
+                  <Button variant="contained" color="primary" onClick={this.onConfirm} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Confirm</Button>            
+                  <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>            
+                </Grid>
+              </Grid>
+            </Grid>
+  
+  
+          </div>
+        </Card>
+      );
+    }
 
     return (
       <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
         <div>
           <Grid style={{ display: 'flex' }}>
             <Grid item md={10}>
+              <h2>Confirm</h2>
               <h2>Title : {this.JobName}</h2>
               <p>Detail : {this.JobDetail}</p>
               <p>Wages : {this.Wages} ฿</p>
@@ -141,22 +187,13 @@ class JobOwnedForm extends Component {
             </Grid>
             
             <Grid>
-              <EmployeeListModal
-              WorkKey={this.WorkKey} />
-              <AcceptedEmployeeListModal
-              WorkKey={this.WorkKey} />
-              <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }}>Delete</Button>
-              <EmployeeListModal WorkKey={this.WorkKey} />
-              <Button variant="contained" color="secondary" onClick={this.onDeletejob} style={{ height: '40px', marginTop: '20%', marginRight: '20px' }} >Delete</Button>
-              <form id="checkoutForm" >
+                <form id="checkoutForm" >
                 <input type="hidden" name="omiseToken"/>
                 <input type="hidden" name="omiseSource"/>
                 <input type="hidden" name="jobID"/>
                 {(this.CurrentEmployee.length > 0) && <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>}
               </form>
-              <Grid item md={0}>
-                <EditJobOwnedForm  _id = {this.props._id} wages={this.props.Wages} detail={this.props.JobDetail} location={this.props.Location} workDate={this.props.Date} timeBegin={this.props.BeginTime} timeEnd={this.props.EndTime}/>
-              </Grid>
+              
             </Grid>
           </Grid>
 
@@ -164,6 +201,8 @@ class JobOwnedForm extends Component {
         </div>
       </Card>
     );
+
+    
 
   }
 

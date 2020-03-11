@@ -143,7 +143,7 @@ class EmployeeListModal extends Component {
    
       return (
         <div>
-            <Button variant="contained" color="primary" onClick={this.openModal} style={{ height: '40px', marginTop: '50%', marginRight: '20px' }}>Applicant</Button>
+            <Button variant="contained" color="primary" onClick={this.openModal} style={{ height: '40px', marginRight: '20px' }}>Applicant</Button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
