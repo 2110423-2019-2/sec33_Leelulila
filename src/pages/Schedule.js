@@ -59,7 +59,7 @@ class Profile extends Component {
             <div > 
                 <Grid style={{ display: 'flex' }}>
                     <Grid item sm={8} style={{ marginLeft: '5px', marginRight: '5px' , marginTop: '100px'}}>
-                    <MyCalendar/>   
+                    <MyCalendar currentJob = {this.state.user.currentJob} id = {'idkrub'}/>   
                     </Grid>
                     <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px', marginTop: '5px' }}>
                     <JobListCard currentJob = {this.state.user.currentJob} id = {'idkrub'}/>
