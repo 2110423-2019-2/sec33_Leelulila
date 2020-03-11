@@ -1,29 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment)
 
-const dummyEvents = [
-
-  {
-    // get from Back-end
-    hexColor: getRandomColor(),
-    end: new Date('March 12, 2020 20:00:00'),
-    start: new Date('March 12, 2020 06:00:00'),
-    title: 'test',
-  },
-
-  {
-    // get from Back-end
-    hexColor: getRandomColor(),
-    allDay: false,
-    end: new Date('March 11, 2020 07:00:00'),
-    start: new Date('March 11, 2020 06:00:00'),
-    title: 'Pam hate teemo',
-  },
-]
+var dummyEvents = []
 
 function getRandomColor() {
   var letters = 'ABCDE'.split('');
@@ -70,18 +52,18 @@ class MyCalendar extends Component {
     }
   }
 
-  
+
   renderList() {
-    if (this.state.ready) {      
+    if (this.state.ready) {
       var n = 0
       return (
         this.state.currentJobs.map((notes) => {
-          n+=1
-          console.log(notes)
-          console.log(n)
+          n += 1
           // return (<JobList  JobName={notes.JobName} JobDetail={notes.JobDetail} 
           //   Wages={notes.Wages} Location={notes.Location}
           //    BeginTime={notes.BeginTime} EndTime={notes.EndTime} Date={notes.Date} Employer={notes.Employer}/>)
+          dummyEvents.push({ hexColor: getRandomColor(), end: new Date(notes.Date+' '+notes.EndTime), start: new Date(notes.Date+' '+notes.BeginTime), Title: notes.JobName})
+          console.log(dummyEvents)
         })
       )
     }
@@ -98,7 +80,6 @@ class MyCalendar extends Component {
       }
       return response.json();
     }).then(function (jsonData) {
-      console.log(jsonData['job'] + 'intgetjob')
       self.state.currentJobs.push(jsonData['job'])
       self.setState({ ready: true })
     }).catch(function (err) {
@@ -107,7 +88,6 @@ class MyCalendar extends Component {
   }
 
   render() {
-    console.log(dummyEvents[0].title)
     return (
       <div>
         {this.renderList()}

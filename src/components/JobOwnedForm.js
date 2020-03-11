@@ -35,6 +35,8 @@ class JobOwnedForm extends Component {
     // this.onGetjob = this.onGetjob.bind(this);
 
     this.onDeletejob = this.onDeletejob.bind(this);
+    this.onConfirm = this.onConfirm.bind(this);
+
     this.getProfile.bind(this);
     // this.onStartjob = this.onStartjob.bind(this);
 
