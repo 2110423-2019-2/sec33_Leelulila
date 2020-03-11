@@ -27,6 +27,7 @@ import Footer from '../components/Footer';
 import '../style.css';
 import Dashboard from './Dashboard';
 import JobOwned from './JobOwned';
+import NoEditProfile from './NoEditProfile';
 
 
 const drawerWidth = 240;
@@ -168,6 +169,7 @@ export default function PersistentDrawerLeft() {
                     {/* <Route exact path="/" component={Landing}/> */}
                     <Route path="/Createjob" component={CreateJob} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/noeditprofile" component={NoEditProfile} />
                     <Route path="/Schedule" component={Schedule} />
                     <Route path="/dashboard" component={Dashboard} />
                     {/* <Route path="/listingjob" component={Listingjob}/> */}
