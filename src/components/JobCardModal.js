@@ -6,8 +6,6 @@ import axios from 'axios';
 import fire from '../config/firebase';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 
-
-
 const customStyles = {
   content: {
     top: '50%',
@@ -17,12 +15,9 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     justifyContent: 'center',
-
   }
-
-
-
 };
+
 //   Modal.setAppElement('#yourAppElement')
 
 
@@ -42,6 +37,7 @@ class JobCardModal extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
+    this.DayAndTime = props.DayAndTime
     console.log(this.WorkKey);
     // this.Currentnumber = props.Currentnumber;
     this.CurrentEmployee = props.CurrentEmployee;
@@ -57,31 +53,69 @@ class JobCardModal extends Component {
   }
 
 
+  intersect(newDate, newBeginTime, newEndTime) {
+    var DayAndTime = this.DayAndTime;
+    var tuple;
+    var day = DayAndTime[newDate]
+    if(day != undefined){
+      var re = false;
+      day.forEach(function(tuple){
+        console.log(newBeginTime,tuple[0],newEndTime,tuple[1])
+        if(newBeginTime<=tuple[0] && newEndTime>=tuple[0]){
+          console.log('left')
+          re = true          
+        }
+        else if(newBeginTime>=tuple[0] && newEndTime<=tuple[1]){
+          console.log('in')
+          re = true          
+        }
+        else if(newBeginTime<=tuple[0] && newEndTime>=tuple[1]){
+          console.log('out')
+          re = true          
+        }
+        else if(newBeginTime<=tuple[1] && newEndTime>=tuple[1]){
+          console.log('right')
+          re = true          
+        }
+      });
+      return re
+    }
+    else{    
+      console.log(day)
+      return false
+    }
+  }
 
   onGetjob() {
-    var email = fire.auth().currentUser.email;
-    var data = { Email: email };
-    fetch("/job/addemployee/" + this.WorkKey, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function (response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    }).then(window.location.reload(false))
-      .catch(function (err) {
-        console.log(err);
-      });
+    var newDate = this.Date
+    var newBeginTime = this.BeginTime
+    var newEndTime = this.EndTime
+    var boo = this.intersect(newDate, newBeginTime, newEndTime);
+    if(!boo){
+      var email = fire.auth().currentUser.email;
+      var data = { Email: email };
+      fetch("/job/addemployee/" + this.WorkKey, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      }).then(window.location.reload(false))
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+    else{
+      alert('You cannot work at another job at the same time!');
+    }
   }
   // axios.put('http://localhost:9000/job/addemployee/' + this.WorkKey, obj)
   //   .then(alert("Success")  )
 
-
-
-
-
+  
 
   openModal() {
     this.setState({ modalIsOpen: true });
@@ -142,7 +176,7 @@ class JobCardModal extends Component {
             height: 40,
             display: 'flex',
             justifyContent: 'center',
-            backgroundColor: '#ad16ac'
+            backgroundColor: '#191e25'
           }} onClick={this.openModal}>More Detail</Button></Grid>
 
           <Modal
@@ -171,14 +205,16 @@ class JobCardModal extends Component {
 
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='secondary' style={{
+        <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='white' style={{
           textAlign: 'center',
           paddingLeft: 40,
           paddingRight: 40,
           marginTop: 10,
           height: 40,
+          color: 'white',
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          backgroundColor: '#725c3b',
         }} onClick={this.openModal}>More Detail</Button></Grid>
 
         <Modal
@@ -196,7 +232,7 @@ class JobCardModal extends Component {
           <p>Date : {this.Date}</p>
           <p>Time : {this.BeginTime} - {this.EndTime}</p>
           <p>Employer : {this.Employer}</p>
-          <Button variant="contained" color='secondary' onClick={this.onGetjob}>Apply</Button>
+          <Button variant="contained" color='primary' onClick={this.onGetjob}>Apply</Button>
 
         </Modal>
       </div>

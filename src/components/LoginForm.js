@@ -48,13 +48,13 @@ class LoginForm extends Component {
         <Grid xs={12} md={4} style={{ minHeight: '400px',marginLeft:'auto',marginRight:'auto',marginTop:'100px'}}>
           <Grid direction='column' alignItems="center" justify="center" >
             <h1>Login CU PART-TIME</h1>
-            <Grid item><TextField color="secondary" size="small" id="email" label="Email" variant="outlined" fullWidth /></Grid>
-            <Grid item><TextField color="secondary" size="small" id="pass" label="Password" type='password' variant="outlined" onChange={this.handleChange} onKeyPress={this.onKeyPressed} style={{ marginTop: '10px' }} fullWidth /></Grid>
+            <Grid item><TextField color="primary" size="small" id="email" label="Email" variant="outlined" fullWidth /></Grid>
+            <Grid item><TextField color="primary" size="small" id="pass" label="Password" type='password' variant="outlined" onChange={this.handleChange} onKeyPress={this.onKeyPressed} style={{ marginTop: '10px' }} fullWidth /></Grid>
             <Grid container justify="flex-end">
             
           </Grid>
             <Grid direction='row' style={{float:'right',marginTop:'15px'}}>
-              <Button variant='contained' color='primary' style={{ marginLeft: '10px', backgroundColor:'#32441c', width: '150px' }} flip onClick={this.onLogin}>Login</Button>
+              <Button variant='contained' color='primary' style={{ marginLeft: '10px', backgroundColor:'#2a3649', width: '150px' }} flip onClick={this.onLogin}>Login</Button>
             </Grid>
           </Grid>
           <Grid item style={{ marginTop: '80px' }}>
