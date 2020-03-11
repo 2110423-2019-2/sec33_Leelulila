@@ -149,9 +149,6 @@ export default function SimpleModal(props) {
 
     return (
         <StyledMenuItem>
-            <ListItemIcon>
-                <SendIcon fontSize="small" />
-            </ListItemIcon>
             {/* <button type="button" onClick={handleOpen}>
                 Edit
       </button> */}

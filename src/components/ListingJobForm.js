@@ -93,13 +93,13 @@ class ListingJobForm extends Component {
   render() {
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#86c6f6', opacity: '80%', borderRadius: '10%', alignItems: 'center' }}>
+        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#D1D1D1', opacity: '80%', borderRadius: '3%', alignItems: 'center' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <StarsIcon style={{ fontSize: 'xx-large', color: '#FFFB00' }} />
+                  <StarsIcon style={{ fontSize: 'xx-large', color: '#142f55' }} />
                   <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -141,12 +141,12 @@ class ListingJobForm extends Component {
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email)) {
       return (
 
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#e5b1ea', opacity: '80%', borderRadius: '10%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#C97F97', opacity: '80%', borderRadius: '3%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#ad16ac' }} />
+                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#000000' }} />
                   <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -189,7 +189,7 @@ class ListingJobForm extends Component {
 
     else {
       return (
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: 'pink', opacity: '80%', borderRadius: '10%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#F1F1F1', opacity: '80%', borderRadius: '3%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>

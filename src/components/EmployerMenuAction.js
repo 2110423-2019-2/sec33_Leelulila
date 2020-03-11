@@ -81,7 +81,7 @@ export default function CustomizedMenus(props) {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
+        color="red"
         onClick={handleClick}
       >
         Action
@@ -94,15 +94,9 @@ export default function CustomizedMenus(props) {
         onClose={handleClose}
       >
         <StyledMenuItem>
-            <ListItemIcon>
-                <InboxIcon fontSize="small" />
-            </ListItemIcon>
           <ListItemText primary="Delete" onClick={() => onDeletejob(props.WorkKey)}/>
         </StyledMenuItem>
         <StyledMenuItem>
-            <ListItemIcon>
-                <SendIcon fontSize="small" />
-            </ListItemIcon>
           <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey)} />
         </StyledMenuItem>
         <EmployeeListModal WorkKey={props.WorkKey}/>

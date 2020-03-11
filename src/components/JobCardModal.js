@@ -181,7 +181,7 @@ class JobCardModal extends Component {
             height: 40,
             display: 'flex',
             justifyContent: 'center',
-            backgroundColor: '#ad16ac'
+            backgroundColor: '#000000'
           }} onClick={this.openModal}>More Detail</Button></Grid>
 
           <Modal

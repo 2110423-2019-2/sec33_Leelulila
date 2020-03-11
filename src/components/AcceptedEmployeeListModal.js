@@ -181,9 +181,6 @@ class AcceptedEmployeeListModal extends Component {
    
       return (
         <StyledMenuItem>
-           <ListItemIcon>
-                <SendIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText primary="Employee" onClick={this.openModal} />
           <Modal
             isOpen={this.state.modalIsOpen}

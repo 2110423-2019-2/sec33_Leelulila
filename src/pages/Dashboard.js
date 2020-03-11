@@ -3,6 +3,7 @@ import { Grid, Button, TextField, Input } from '@material-ui/core';
 import '../style.css';
 import ListingJobForm from '../components/ListingJobForm'
 import fire from '../config/firebase';
+import SearchIcon from '@material-ui/icons/Search';
 
 import axios from 'axios';
 
@@ -136,6 +137,7 @@ class Dashboard extends Component {
         return (
             <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
                 <Input label="Search Job" onChange={this.onChange} />
+                <SearchIcon />
                 <h1>Find Job</h1>
                 <div>
                     <Grid container spacing={3}>
