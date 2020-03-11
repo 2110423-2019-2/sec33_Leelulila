@@ -38,7 +38,7 @@ export default function RegisterPage() {
   var history = useHistory();
 
   const onSubmit = data => {
-    console.log(data)
+    //console.log(data)
     var email = data.email;
     var password = data.password;
     var confirmPassword = data.confirmPassword;

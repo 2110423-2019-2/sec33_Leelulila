@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
     renderList(){
         if(this.state.ready){
-                if (this.state.listing.length==null){
+                if (this.state.listing.length==0){
                     console.log(1);
                     return (
                         <h1> dont have any job</h1>
@@ -60,8 +60,8 @@ class Dashboard extends Component {
                 
                 else if(this.state.listing[0]['_id'] == null){
                     console.log(this.state.listing);
+
                     return (
-                        
                         this.state.listing.map((notes) => {
                         console.log(notes[0].CurrentAcceptedEmployee);
                             return (
