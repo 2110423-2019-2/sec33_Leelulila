@@ -104,14 +104,11 @@ export default function CustomizedMenus(props) {
           <ListItemText primary="Delete" onClick={() => onDeletejob(props.WorkKey)}/>
         </StyledMenuItem>
         <StyledMenuItem>
-            <ListItemIcon>
-                <SendIcon fontSize="small" />
-            </ListItemIcon>
           <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey,props.CurrentAcceptedEmployee.length)} />
         </StyledMenuItem>
         <EmployeeListModal WorkKey={props.WorkKey} Amount={props.Amount}/>
         <AcceptedEmployeeListModal WorkKey={props.WorkKey}/>
-        {console.log(props.WorkKey[0])};
+        {console.log(props.WorkKey[0])}
         <EditJobOwnedForm _id = {props._id} Wages={props.Wages} Detail={props.JobDetail} Location={props.Location} WorkDate={props.Date} TimeBegin={props.BeginTime} TimeEnd={props.EndTime} WorkKey={props.WorkKey[0]}/>
       </StyledMenu>
     </div>
