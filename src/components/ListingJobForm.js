@@ -146,7 +146,7 @@ class ListingJobForm extends Component {
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#191e25' }} />
+                  <BeenhereIcon style={{ ontSize: 'xx-large', color: '#142f55' }} />
                   <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -194,7 +194,7 @@ class ListingJobForm extends Component {
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <AddCircleIcon style={{ fontSize: 'xx-large', color: '#725c3b' }} />
+                  <AddCircleIcon style={{ fontSize: 'xx-large', color: '#142f55' }} />
                   <h2>{this.JobName}</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
