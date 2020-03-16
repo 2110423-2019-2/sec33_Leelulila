@@ -28,7 +28,8 @@ class ProfileBar extends Component {
         super(props);
         this.state = {
             user: {},
-            open: false
+            open: false,
+            notiBadge: 0
         }
         this.isLogin = props.isLogin;
         this.getProfile.bind(this);
@@ -75,8 +76,10 @@ class ProfileBar extends Component {
         this.setState({ 
             // user: updatedUser,
             open: !this.state.open,
-            
+            notiBadge: 0
         });
+        // this.render();
+        //window.location.reload(true);
     }
 
     getProfile() {
@@ -93,7 +96,10 @@ class ProfileBar extends Component {
             }
             return response.json();
         }).then(function (jsonData) {
-            self.setState({ user: jsonData });
+            self.setState({ 
+                user: jsonData,
+                notiBadge: jsonData.notification.filter(n=>n.status < 1).length 
+            });
         }).catch(function (err) {
             console.log(err);
         });
@@ -111,7 +117,7 @@ class ProfileBar extends Component {
             return (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'right'}} id='profileNavName'>
                 { this.state.user.notification !==undefined && 
                 <IconButton onClick ={()=>this.handleClick()} style={{ marginTop: '0px',marginRight: '15px', fontSize: '1rem'}}>
-                    <Badge  style={{ fontSize: '1rem'}} badgeContent={this.state.user.notification.filter(n=>n.status < 1).length} color="primary">
+                    <Badge  style={{ fontSize: '1rem'}} badgeContent={this.state.notiBadge} color="primary">
                             <MailIcon style = {{color: 'white'}}/>
                     </Badge>
                 </IconButton>
