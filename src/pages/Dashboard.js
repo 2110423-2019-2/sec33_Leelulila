@@ -35,7 +35,7 @@ class Dashboard extends Component {
             listing: this.state.db,
             ready: true
         })
-        var result = this.state.db.filter((note)=>{
+        let result = this.state.db.filter((note)=>{
             let jName = note[0].JobName.toLowerCase()
             return jName.indexOf(this.state.search.toLowerCase()) !== -1
         })
@@ -125,7 +125,7 @@ class Dashboard extends Component {
 
                             
                             return (
-                                <Grid item xs={4}>
+                                <Grid item xs={4} key = {notes[1][0]}>
                                     <ListingJobForm
                                         JobName={notes[0].JobName}
                                         JobDetail={notes[0].JobDetail}
