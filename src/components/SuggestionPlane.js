@@ -11,7 +11,7 @@ import ListingJobForm from '../components/ListingJobForm'
 
 const gridListStyle = {
     width: 350,
-    height: 'auto',
+    height: 600,
     backgroundColor: '#EEEEEE'
 };
 
@@ -33,9 +33,10 @@ class SuggestionPlane extends Component {
     componentDidMount() {
         var pendingJob = this.state.user['pendingJob']
         var currentJob = this.state.user['currentJob']
+        var jobOwn = this.state.user['jobOwn']
         var jobs = this.state.db
         var userVector = this.state.TFvector
-        console.log(userVector, 'uservector')
+        console.log(jobOwn, 'jobOwn')
         var similarity = require('compute-cosine-similarity');
         var noZrJobs = []
         jobs.forEach(function (job) {
@@ -43,7 +44,7 @@ class SuggestionPlane extends Component {
             if (jobVector != undefined && userVector != undefined) var s = similarity(jobVector, userVector)
             else var s = 0
             job[0]['CosineValue'] = s
-            if (s > 0 && !currentJob.includes(job[1][0]) && !pendingJob.includes(job[1][0])) noZrJobs.push(job)
+            if (s > 0 && !currentJob.includes(job[1][0]) && !pendingJob.includes(job[1][0]) && !jobOwn.includes(job[1][0])) noZrJobs.push(job)
         });
         noZrJobs.sort(function (a, b) {
             return b[0]['CosineValue'] - a[0]['CosineValue']
@@ -97,7 +98,7 @@ class SuggestionPlane extends Component {
     render() {
         return (
             <div >
-                <GridList cellHeight={180} cols={1} style={gridListStyle} >
+                <GridList cellHeight={800} cols={1} style={gridListStyle} >
                     <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
                         <h1></h1>
                     </GridListTile>
