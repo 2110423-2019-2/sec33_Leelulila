@@ -6,8 +6,6 @@ import { Redirect } from 'react-router-dom';
 import DatePicker from '../components/DatePicker';
 import fire from '../config/firebase';
 import CryptoJS from "crypto-js";
-// var AES = require("react-native-crypto-js").AES;
-var AES = require("crypto-js/aes");
 class CreateJobForm extends Component {
 
     constructor(props) {
