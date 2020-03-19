@@ -130,6 +130,13 @@ class CreateJobForm extends Component {
     render() {
         const { redirect } = this.state;
         console.log(this.Workkey);
+        let today = new Date();
+        let currentDate = new Date().toISOString();
+        let currentDay = currentDate.substr(0, 10);
+        let currentTime = today.toTimeString().substr(0,5);
+        today.setHours(today.getHours() + 1);
+        let nextTime = today.toTimeString().substr(0,5);
+
         if (redirect) {
             return <Redirect to='/Dashboard' />;
         }
@@ -158,7 +165,8 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedBegintime}
                                     // onChange={this.handleBeginTimeChange}
-                                    defaultValue={'08:00'}
+                                    defaultValue={currentTime}
+                                    inputProps={{ min: '07:00' }}
                                 />
 
                                 <h3>to</h3>
@@ -168,7 +176,8 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={'09:00'}
+                                    defaultValue={nextTime}
+                                    inputProps={{ min: '08:00' }}
                                 />
                                 <TextField name='location' color="primary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
@@ -178,7 +187,8 @@ class CreateJobForm extends Component {
                                     id='workDate'
                                     label="Select Work Date"
                                     type='date'
-                                    defaultValue={'2020-02-02'}
+                                    defaultValue={currentDay}
+                                    inputProps={{ min: currentDay }}
 
                                 />
                                 <TextField name='wages' color="primary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{ marginLeft: '27px' }} />

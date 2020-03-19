@@ -30,7 +30,7 @@ export default function SimpleDialog(props) {
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Message Box</DialogTitle>
       <List>
-        {notifications.map(noti => (
+        {notifications.slice(0).reverse().map(noti => (
           <ListItem button key={noti}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
