@@ -6,8 +6,14 @@ import { Redirect } from 'react-router-dom';
 import DatePicker from '../components/DatePicker';
 import CheckBox from '../components/CheckBox';
 import fire from '../config/firebase';
+<<<<<<< HEAD
 
 
+||||||| merged common ancestors
+
+=======
+import CryptoJS from "crypto-js";
+>>>>>>> 0cb7a0a627869c39bf7c731ffdb0ff02876eb62a
 class CreateJobForm extends Component {
 
     constructor(props) {
@@ -139,10 +145,12 @@ class CreateJobForm extends Component {
 
     mongoCreateJob(data) {
         //send request data to backend /newjob ***pull the lastest backend first***
+        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+        let sending_data = {data: ciphertext};
         fetch("/newjob", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+            body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
@@ -160,7 +168,20 @@ class CreateJobForm extends Component {
 
     render() {
         const { redirect } = this.state;
+<<<<<<< HEAD
         //console.log(this.Workkey);
+||||||| merged common ancestors
+        console.log(this.Workkey);
+=======
+        console.log(this.Workkey);
+        let today = new Date();
+        let currentDate = new Date().toISOString();
+        let currentDay = currentDate.substr(0, 10);
+        let currentTime = today.toTimeString().substr(0,5);
+        today.setHours(today.getHours() + 1);
+        let nextTime = today.toTimeString().substr(0,5);
+
+>>>>>>> 0cb7a0a627869c39bf7c731ffdb0ff02876eb62a
         if (redirect) {
             return <Redirect to='/Dashboard' />;
         }
@@ -189,7 +210,8 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedBegintime}
                                     // onChange={this.handleBeginTimeChange}
-                                    defaultValue={'08:00'}
+                                    defaultValue={currentTime}
+                                    inputProps={{ min: '07:00' }}
                                 />
 
                                 <h3>to</h3>
@@ -199,7 +221,8 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={'09:00'}
+                                    defaultValue={nextTime}
+                                    inputProps={{ min: '08:00' }}
                                 />
                                 <TextField name='location' color="primary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
@@ -209,7 +232,8 @@ class CreateJobForm extends Component {
                                     id='workDate'
                                     label="Select Work Date"
                                     type='date'
-                                    defaultValue={'2020-02-02'}
+                                    defaultValue={currentDay}
+                                    inputProps={{ min: currentDay }}
 
                                 />
                                 <TextField name='wages' color="primary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{ marginLeft: '27px' }} />

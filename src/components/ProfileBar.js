@@ -78,6 +78,7 @@ class ProfileBar extends Component {
             open: !this.state.open,
             notiBadge: 0
         });
+        this.getProfile();
         // this.render();
         //window.location.reload(true);
     }
