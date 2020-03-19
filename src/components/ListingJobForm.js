@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
 import { InputLabel, InputBase, Card, Grid, Button } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
 import JobCardModal from '../components/JobCardModal'
 import fire from '../config/firebase';
-import Modal from '@material-ui/core/Modal';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
@@ -66,8 +63,7 @@ class ListingJobForm extends Component {
   componentDidMount() {
     try {
       var l = this.props.currentJob;
-      var i;
-      for (i = 0; i < l.length; i++) {
+      for (let i = 0; i < l.length; i++) {
         this.getJobByID(l[i])
       }
     }
@@ -145,7 +141,8 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-                  DayAndTime={this.state.dayandtime}
+                  DayAndTime = {this.state.dayandtime}
+                  CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
                 />
 
               </Grid>
@@ -195,7 +192,8 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-                  DayAndTime={this.state.dayandtime}
+                  DayAndTime = {this.state.dayandtime}
+                  CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
                 />
               </Grid>
 
@@ -245,7 +243,8 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-                  DayAndTime={this.state.dayandtime}
+                  DayAndTime = {this.state.dayandtime}
+                  CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
                 />
 
               </Grid>

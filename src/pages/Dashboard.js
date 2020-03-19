@@ -71,8 +71,7 @@ class Dashboard extends Component {
                 }
                 this.setState({
                     db: list2,
-                    //listing: db\\,
-                    ready: false,
+                    ready: false, 
                 })
             })
             .catch((error) => {
@@ -145,10 +144,10 @@ class Dashboard extends Component {
         }
         return (
             // <h1>Loading...</h1>
-            this.state.db.map((notes, key) => {
+            this.state.db.map((notes) => {
                 console.log(notes[0].TFvector, 'db')
                 return (
-                    <Grid item sm={4}>
+                    <Grid item sm={4} key = {notes[1][0]}>
                         <ListingJobForm
                             JobName={notes[0].JobName}
                             JobDetail={notes[0].JobDetail}

@@ -41,6 +41,7 @@ class JobCardModal extends Component {
     console.log(this.WorkKey);
     // this.Currentnumber = props.Currentnumber;
     this.CurrentEmployee = props.CurrentEmployee;
+    this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
 
     this.state = {
       modalIsOpen: false
@@ -165,7 +166,7 @@ class JobCardModal extends Component {
       )
     }
 
-    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email)) {
+    else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) ||  this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email)) {
       return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center' }}><Button variant="contained" color='secondary' style={{
