@@ -53,25 +53,31 @@ class Blog extends Component {
 
             <div className="container" style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
                 <h1>Blog</h1>
-                <Grid item sm={4} style={{ marginLeft: '5px', marginRight: '5px', marginTop: '5px', direction: 'column' }}>
-                    <CreateBlogModal />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<AccountBoxIcon />}
-                        style={{ marginRight: '30px' }}
-                    >
-                        Your Blog (s)
+                <Grid container>
+                    <Grid item xs={2} style={{ direction: 'column' }}>
+                        <CreateBlogModal />
+                    </Grid >
+                    <Grid item xs={2} style={{ direction: 'column' }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            startIcon={<AccountBoxIcon />}
+                            style={{ marginRight: '30px' }}
+                        >
+                            Your Blog (s)
                 </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<WorkIcon />}
-                        style={{ marginRight: '30px' }}
-                    >
-                        Job Review
+                    </Grid>
+                    <Grid item xs={2} style={{ direction: 'column' }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            startIcon={<WorkIcon />}
+                            style={{ marginRight: '30px' }}
+                        >
+                            Job Review
                 </Button>
-                </Grid >
+                    </Grid>
+                </Grid>
                 {/* <div className="columns">
                     <div className="column is-half is-offset-one-quarter" style={{ display: 'flex', justifyContent: 'center' }}>
                         <CommentBox handleAddComment={this.handleAddComment} />

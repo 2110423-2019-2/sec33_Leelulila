@@ -6,14 +6,7 @@ import { Redirect } from 'react-router-dom';
 import DatePicker from '../components/DatePicker';
 import CheckBox from '../components/CheckBox';
 import fire from '../config/firebase';
-<<<<<<< HEAD
-
-
-||||||| merged common ancestors
-
-=======
 import CryptoJS from "crypto-js";
->>>>>>> 0cb7a0a627869c39bf7c731ffdb0ff02876eb62a
 class CreateJobForm extends Component {
 
     constructor(props) {
@@ -168,11 +161,6 @@ class CreateJobForm extends Component {
 
     render() {
         const { redirect } = this.state;
-<<<<<<< HEAD
-        //console.log(this.Workkey);
-||||||| merged common ancestors
-        console.log(this.Workkey);
-=======
         console.log(this.Workkey);
         let today = new Date();
         let currentDate = new Date().toISOString();
@@ -181,7 +169,6 @@ class CreateJobForm extends Component {
         today.setHours(today.getHours() + 1);
         let nextTime = today.toTimeString().substr(0,5);
 
->>>>>>> 0cb7a0a627869c39bf7c731ffdb0ff02876eb62a
         if (redirect) {
             return <Redirect to='/Dashboard' />;
         }
