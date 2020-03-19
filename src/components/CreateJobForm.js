@@ -5,7 +5,9 @@ import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import DatePicker from '../components/DatePicker';
 import fire from '../config/firebase';
-
+import CryptoJS from "crypto-js";
+// var AES = require("react-native-crypto-js").AES;
+var AES = require("crypto-js/aes");
 class CreateJobForm extends Component {
 
     constructor(props) {
@@ -106,10 +108,12 @@ class CreateJobForm extends Component {
 
     mongoCreateJob(data) {
         //send request data to backend /newjob ***pull the lastest backend first***
+        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+        let sending_data = {data: ciphertext};
         fetch("/newjob", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+            body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
