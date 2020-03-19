@@ -29,6 +29,8 @@ import Dashboard from './Dashboard';
 import JobOwned from './JobOwned';
 import NoEditProfile from './NoEditProfile';
 import JobHistory from './JobHistory';
+import Blog from './Blog'
+import CreateBlog from './CreateBlog';
 
 
 const drawerWidth = 240;
@@ -158,6 +160,7 @@ export default function PersistentDrawerLeft() {
                     <ListItem><ListItemText><Button href='/Createjob'>CreateJob</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/JobOwned'>Job Management</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/JobHistory'>Job History</Button></ListItemText></ListItem>
+                    <ListItem><ListItemText><Button href='/Blog'>Blog</Button></ListItemText></ListItem>
                     {/* <ListItem><ListItemText><Button href='/Jobowned'>JobOwned</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Listingjob'>ListingJob</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/AboutUs'>AboutUs</Button></ListItemText></ListItem> */}
@@ -177,6 +180,8 @@ export default function PersistentDrawerLeft() {
                     {/* <Route path="/dashboard" component={Dashboard}/> */}
                     <Route path="/jobowned" component={JobOwned}/>
                     <Route path="/jobhistory" component={JobHistory}/>
+                    <Route path="/Blog" component={Blog}/>
+                    <Route path="/Createblog" component={CreateBlog}/>
 
                 </div>
             </Router>
