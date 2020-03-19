@@ -15,13 +15,8 @@
     "ably": "^1.1.24",
     "antd": "^4.0.2",
     "axios": "^0.19.2",
-<<<<<<< HEAD
     "compute-cosine-similarity": "^1.0.0",
     "crypto-js": "^4.0.0",
-||||||| merged common ancestors
-=======
-    "crypto-js": "^4.0.0",
->>>>>>> 0cb7a0a627869c39bf7c731ffdb0ff02876eb62a
     "date-fns": "^2.9.0",
     "firebase": "^7.8.1",
     "moment": "^2.24.0",
