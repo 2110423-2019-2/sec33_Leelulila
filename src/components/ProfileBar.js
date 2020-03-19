@@ -71,16 +71,10 @@ class ProfileBar extends Component {
     }
 
     handleClose() {
-        // var updatedUser = this.state.user;
-        // updatedUser.notification = this.state.user.notification.filter(n=>n.status < 1);
         this.setState({ 
-            // user: updatedUser,
             open: !this.state.open,
             notiBadge: 0
         });
-        this.getProfile();
-        // this.render();
-        //window.location.reload(true);
     }
 
     getProfile() {
@@ -114,16 +108,17 @@ class ProfileBar extends Component {
     render() {
         var user = fire.auth().currentUser;
         if (user) {
-            // var filteredNoti = this.state.user.notification.filter(n=>n.status < 1);
+            if (this.state.user.notification == undefined) return null
+            else
             return (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'right'}} id='profileNavName'>
-                { this.state.user.notification !==undefined && 
+                 
                 <IconButton onClick ={()=>this.handleClick()} style={{ marginTop: '0px',marginRight: '15px', fontSize: '1rem'}}>
                     <Badge  style={{ fontSize: '1rem'}} badgeContent={this.state.notiBadge} color="primary">
                             <MailIcon style = {{color: 'white'}}/>
                     </Badge>
                 </IconButton>
-                }
-                { this.state.user.notification !==undefined &&<NotificationList open={this.state.open} notifications = {this.state.user.notification} onClose={()=>this.handleClose()}/>}
+                
+                <NotificationList open={this.state.open} notifications = {this.state.user.notification} onClose={()=>this.handleClose()}/>
                 <Button variant="outlined" color="inherit" style={{ minWidth: '100px',marginRight: '15px', fontSize: '1rem'}} size='small' >{this.state.user.wallet || 0} ฿</Button>
                 <h3>{this.state.user.firstName}</h3>
                 

@@ -66,7 +66,6 @@ class Dashboard extends Component {
                 }
                 this.setState({
                      db: list2,
-                    //listing: db\\,
                     ready: false, 
                 })
                 console.log(this.state.listing)
@@ -152,13 +151,10 @@ class Dashboard extends Component {
         return (
             // <h1>Loading...</h1>
             this.state.db.map((notes, key) => {
-                //console.log(result);
-                console.log("eieie")
-                console.log(this.state)
 
                     
                     return (
-                        <Grid item xs={4}>
+                        <Grid item xs={4} key = {notes[1][0]}>
                             <ListingJobForm
                                 JobName={notes[0].JobName}
                                 JobDetail={notes[0].JobDetail}

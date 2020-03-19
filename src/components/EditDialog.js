@@ -25,6 +25,7 @@ export default function SimpleDialog(props) {
   const handleClose = () => {
     onClose();
   };
+  // "Received "+noti.wage+"฿ from "+noti.email+ " at "+ new Date(noti.timestamp).toLocaleString()
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
@@ -37,7 +38,7 @@ export default function SimpleDialog(props) {
                 {noti.status !==1 && <MailIcon />}
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={"Received "+noti.wage+"฿ from "+noti.email+ " at "+ new Date(noti.timestamp).toLocaleString()} />
+            <ListItemText primary={noti.string + " at " + new Date(noti.timestamp).toLocaleString()} />
           </ListItem>
         ))}
       </List>

@@ -67,17 +67,14 @@ class JobOwnedForm extends Component {
 }
 
 
- 
-
-  
 
   onPay(event) {
     event.preventDefault();
-    if (this.state.balance < this.Wages*this.Amount){
+    if (this.state.balance < this.Wages*this.CurrentAcceptedEmployee.length){
     const {OmiseCard} = window;
     var form = document.querySelector("#checkoutForm");
     OmiseCard.open({
-      amount: ((this.Wages*this.Amount)-this.state.balance)*100,
+      amount: ((this.Wages*this.CurrentAcceptedEmployee.length)-this.state.balance)*100,
       currency: "THB",
       defaultPaymentMethod: "credit_card",
       onCreateTokenSuccess: (nonce) => {

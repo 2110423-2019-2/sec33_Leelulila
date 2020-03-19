@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function DatePickers(props) {
   const classes = useStyles();
-  const currentDay= new Date().toISOString().substr(0, 10);
   return (
       <TextField
         id={props.id}
