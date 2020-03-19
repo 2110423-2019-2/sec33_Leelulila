@@ -57,15 +57,15 @@ export default function SimpleModal(props) {
             var k = props.title.toLowerCase()
             data[k] = v
             let self = this;   
-            fetch("/user/"+props._id, {
-                method: 'PUT',
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(data)
-            }).then(function (response) {
-                window.location.reload()
-            }).catch(function (err) {
-                console.log(err);
-            });
+            // fetch("/user/"+props._id, {
+            //     method: 'PUT',
+            //     headers: { 'Content-type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // }).then(function (response) {
+            //     window.location.reload()
+            // }).catch(function (err) {
+            //     console.log(err);
+            // });
             console.log('upppppp')
             setOpen(false);
     };
