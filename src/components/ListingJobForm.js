@@ -141,14 +141,8 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-<<<<<<< HEAD
                   DayAndTime = {this.state.dayandtime}
                   CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
-||||||| merged common ancestors
-                  DayAndTime = {this.state.dayandtime}
-=======
-                  DayAndTime={this.state.dayandtime}
->>>>>>> 03494b6294f0d0c692558faed60d18be2d18776f
                 />
 
               </Grid>
@@ -198,14 +192,8 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-<<<<<<< HEAD
                   DayAndTime = {this.state.dayandtime}
                   CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
-||||||| merged common ancestors
-                  DayAndTime = {this.state.dayandtime}
-=======
-                  DayAndTime={this.state.dayandtime}
->>>>>>> 03494b6294f0d0c692558faed60d18be2d18776f
                 />
               </Grid>
 
@@ -255,14 +243,8 @@ class ListingJobForm extends Component {
                   Employer={this.Employer}
                   WorkKey={this.WorkKey}
                   CurrentEmployee={this.CurrentEmployee}
-<<<<<<< HEAD
                   DayAndTime = {this.state.dayandtime}
                   CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
-||||||| merged common ancestors
-                  DayAndTime = {this.state.dayandtime}
-=======
-                  DayAndTime={this.state.dayandtime}
->>>>>>> 03494b6294f0d0c692558faed60d18be2d18776f
                 />
 
               </Grid>
