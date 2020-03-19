@@ -5,6 +5,11 @@ import ListingJobForm from '../components/ListingJobForm'
 import fire from '../config/firebase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import SuggestionPlane from '../components/SuggestionPlane'
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 
 import axios from 'axios';
@@ -14,28 +19,28 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            db:[],
+            db: [],
             listing: [],
             user: [],
-            ready:false,
-            search:""
+            ready: false,
+            search: ""
         }
         this.renderList = this.renderList.bind(this);
-        
+
     }
 
-    onChange = e =>{
-        this.setState({search: e.target.value});
+    onChange = e => {
+        this.setState({ search: e.target.value });
     }
-    
-    onSearch(event){
+
+    onSearch(event) {
         event.preventDefault();
-        if (this.state.db.length > this.state.listing.length) 
-        this.setState({
-            listing: this.state.db,
-            ready: true
-        })
-        let result = this.state.db.filter((note)=>{
+        if (this.state.db.length > this.state.listing.length)
+            this.setState({
+                listing: this.state.db,
+                ready: true
+            })
+        let result = this.state.db.filter((note) => {
             let jName = note[0].JobName.toLowerCase()
             return jName.indexOf(this.state.search.toLowerCase()) !== -1
         })
@@ -65,11 +70,10 @@ class Dashboard extends Component {
                     }
                 }
                 this.setState({
-                     db: list2,
+                    db: list2,
                     //listing: db\\,
-                    ready: false, 
+                    ready: false,
                 })
-                console.log(this.state.listing)
             })
             .catch((error) => {
                 console.log(error);
@@ -79,7 +83,6 @@ class Dashboard extends Component {
     getProfile() {
         var user = fire.auth().currentUser;
         let self = this;
-        console.log("/user/" + user.email)
         fetch("/useremail/" + user.email, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -90,121 +93,127 @@ class Dashboard extends Component {
             return response.json();
         }).then(function (jsonData) {
             self.setState({ user: jsonData });
-            console.log(self.state)
-            console.log(self.state.user)
         }).catch(function (err) {
             console.log(err);
         });
     }
 
-    renderList(){
-        if(this.state.ready){
-                if (this.state.listing.length==0){
-                    console.log(1);
-                    return (
-                        <h1> dont have any job</h1>
-                    )
-                }
-                
-                else if(this.state.listing[0]['_id'] == null){
-                    console.log(this.state.listing);
-                    //var result =this.state.listing;
-                    // if(this.state.search == "") {
-                    //     result=this.state.listing;
-                    // }
-                    // else {
-                    //     result = this.state.listing.filter(note=>note[0].JobName.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1)
-                        
-                    // }
-                    //console.log(result);
-                    return (
-                        this.state.listing.map((notes, key) => {
-                        //console.log(result);
-                        console.log("eieie")
-                        console.log(this.state)
+    renderList() {
+        if (this.state.ready) {
+            if (this.state.listing.length == 0) {
+                return (
+                    <h1> dont have any job</h1>
+                )
+            }
 
-                            
-                            return (
-                                <Grid item xs={4} key = {notes[1][0]}>
-                                    <ListingJobForm
-                                        JobName={notes[0].JobName}
-                                        JobDetail={notes[0].JobDetail}
-                                        Wages={notes[0].Wages}
-                                        Amount={notes[0].Amount}
-                                        Date={notes[0].Date}
-                                        BeginTime={notes[0].BeginTime}
-                                        EndTime={notes[0].EndTime}
-                                        Location={notes[0].Location}
-                                        Employer={notes[0].Employer}
-                                        CurrentEmployee={notes[0].CurrentEmployee}
-                                        CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
-                                        WorkKey={notes[1][0]}
-                                        currentJob={this.state.user.currentJob}
-                                        search={this.state.search}                                
-                                    />
-                                </Grid>
-                            )
-                        console.log("success")
-                        })
-                     )
-                }
+            else if (this.state.listing[0]['_id'] == null) {
+                //var result =this.state.listing;
+                // if(this.state.search == "") {
+                //     result=this.state.listing;
+                // }
+                // else {
+                //     result = this.state.listing.filter(note=>note[0].JobName.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1)
+
+                // }
+                //console.log(result);
+                return (
+                    this.state.listing.map((notes, key) => {
+                        return (
+                            <Grid item sm={4} key={notes[1][0]}>
+                                <ListingJobForm
+                                    JobName={notes[0].JobName}
+                                    JobDetail={notes[0].JobDetail}
+                                    Wages={notes[0].Wages}
+                                    Amount={notes[0].Amount}
+                                    Date={notes[0].Date}
+                                    BeginTime={notes[0].BeginTime}
+                                    EndTime={notes[0].EndTime}
+                                    Location={notes[0].Location}
+                                    Employer={notes[0].Employer}
+                                    CurrentEmployee={notes[0].CurrentEmployee}
+                                    CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
+                                    WorkKey={notes[1][0]}
+                                    currentJob={this.state.user.currentJob}
+                                    search={this.state.search}
+                                    TFvector={notes[0].TFvector}
+                                />
+                            </Grid>
+                        )
+                    })
+                )
+            }
         }
         return (
             // <h1>Loading...</h1>
             this.state.db.map((notes, key) => {
-                //console.log(result);
-                console.log("eieie")
-                console.log(this.state)
-
-                    
-                    return (
-                        <Grid item xs={4}>
-                            <ListingJobForm
-                                JobName={notes[0].JobName}
-                                JobDetail={notes[0].JobDetail}
-                                Wages={notes[0].Wages}
-                                Amount={notes[0].Amount}
-                                Date={notes[0].Date}
-                                BeginTime={notes[0].BeginTime}
-                                EndTime={notes[0].EndTime}
-                                Location={notes[0].Location}
-                                Employer={notes[0].Employer}
-                                CurrentEmployee={notes[0].CurrentEmployee}
-                                CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
-                                WorkKey={notes[1][0]}
-                                currentJob={this.state.user.currentJob}
-                                search={this.state.search}                                
-                            />
-                        </Grid>
-                         )
-                         console.log("success")
-                         })
+                console.log(notes[0].TFvector, 'db')
+                return (
+                    <Grid item sm={4}>
+                        <ListingJobForm
+                            JobName={notes[0].JobName}
+                            JobDetail={notes[0].JobDetail}
+                            Wages={notes[0].Wages}
+                            Amount={notes[0].Amount}
+                            Date={notes[0].Date}
+                            BeginTime={notes[0].BeginTime}
+                            EndTime={notes[0].EndTime}
+                            Location={notes[0].Location}
+                            Employer={notes[0].Employer}
+                            CurrentEmployee={notes[0].CurrentEmployee}
+                            CurrentAcceptedEmployee={notes[0].CurrentAcceptedEmployee}
+                            WorkKey={notes[1][0]}
+                            currentJob={this.state.user.currentJob}
+                            search={this.state.search}
+                            TFvector={notes[0].TFvector}
+                        />
+                    </Grid>
+                )
+            })
         )
-                        
+
 
     }
 
     render() {
+        if (this.state.db.length == 0 || this.state.user.length == 0) return null
+        else {
+            return (
+                <Grid style={{ display: 'flex' }}>
+                    <Grid item sm={9} container spacing={6} >
 
-        return (
-            <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
-                <h1>Find Job</h1>
-                <TextField id="Search" onChange={this.onChange}/>
-                <IconButton onClick={(event)=>this.onSearch(event)}>
-                <SearchIcon />
-                </IconButton>
-                <div>
-                    <Grid container spacing={3}>
-                        {this.renderList()}
+                        <div style={{ marginTop: '100px', marginLeft: '10%', marginRight: '0%', width: '85%', marginButtom: '100px', minHeight: '110vh' }}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <h1>All Jobs</h1>
+                                <ViewModuleIcon fontSize='large' color='action' />
+                            </div>
+                            <Container style={{ backgroundColor: '#EEEEEE', marginTop: '10px' }} >
+                                <TextField id="Search" onChange={this.onChange} style={{ marginTop: '20px' }} />
+                                <IconButton onClick={(event) => this.onSearch(event)} style={{ marginTop: '20px' }}>
+                                    <SearchIcon />
+                                </IconButton>
+                                <div style={{ marginTop: '20px' }}>
+
+                                    <Grid container spacing={3}>
+                                        {this.renderList()}
+                                    </Grid>
+                                </div>
+                            </Container>
+                        </div>
                     </Grid>
-                </div>
+                    <Grid item sm={2} style={{ marginTop: '90px', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <h1>Suggestion</h1>
+                            <WhatshotIcon fontSize='large' color='error' />
+                        </div>
+                        <Container maxWidth="sm" style={{ backgroundColor: '#EEEEEE' }} >
+                            <SuggestionPlane db={this.state.db} user={this.state.user} />
+                        </Container>
+                    </Grid>
 
-            </div>);
-
-
+                </Grid>
+            );
+        }
     }
 }
-
-
 
 export default Dashboard;
