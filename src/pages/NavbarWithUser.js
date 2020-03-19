@@ -181,7 +181,7 @@ export default function PersistentDrawerLeft() {
                     <Route path="/jobowned" component={JobOwned}/>
                     <Route path="/jobhistory" component={JobHistory}/>
                     <Route path="/Blog" component={Blog}/>
-                    <Route path="/Createblog" component={CreateBlog}/>
+                    {/* <Route path="/Createblog" component={CreateBlog}/> */}
 
                 </div>
             </Router>
