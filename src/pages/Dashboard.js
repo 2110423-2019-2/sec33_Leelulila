@@ -145,7 +145,8 @@ class Dashboard extends Component {
         return (
             // <h1>Loading...</h1>
             this.state.db.map((notes) => {
-                console.log(notes[0].TFvector, 'db')
+                // console.log(notes[0].TFvector, 'db')
+                // console.log(notes[0].JobName);
                 return (
                     <Grid item sm={4} key = {notes[1][0]}>
                         <ListingJobForm
