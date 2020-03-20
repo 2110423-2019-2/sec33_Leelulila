@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function DatePickers(props) {
   const classes = useStyles();
-
   return (
       <TextField
         id={props.id}
@@ -34,6 +33,7 @@ export default function DatePickers(props) {
         InputLabelProps={{
           shrink: true,
         }}
+        inputProps={props.inputProps}
         inputRef={props.inputRef}
       />
   );

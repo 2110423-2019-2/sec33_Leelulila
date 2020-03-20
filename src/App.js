@@ -26,6 +26,18 @@ class App extends Component {
                 this.setState({ user: null });
             }
         })
+
+        // fetch("/notifyincoming", {
+        //     method: 'PUT',
+        //     headers: { 'Content-Type': 'application/json' },
+        //   }).then(function (response) {
+        //     if (response.status >= 400) {
+        //       throw new Error("Bad response from server");
+        //     }
+        //     return response.json();
+        //   }).catch(function (err) {
+        //       console.log(err);
+        //   });
     }
 
     render() {

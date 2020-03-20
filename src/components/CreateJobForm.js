@@ -4,8 +4,9 @@ import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 // import fire from '../config/Fire';
 import { Redirect } from 'react-router-dom';
 import DatePicker from '../components/DatePicker';
+import CheckBox from '../components/CheckBox';
 import fire from '../config/firebase';
-
+import CryptoJS from "crypto-js";
 class CreateJobForm extends Component {
 
     constructor(props) {
@@ -18,8 +19,38 @@ class CreateJobForm extends Component {
             selectedEndtime: null,
             checkCreatejob: false,
             Workkey: '',
-            redirect: false
+            redirect: false,
+            tags: []
         }
+    }
+
+    check = order => {
+        //console.log(order)        
+        var i;
+        var tags = [0,0,0,0,0,0,0,0,0,0]
+        //console.log(order['Male'], 'maleeee')        
+        if (order['Male'] == true) tags[0] = 1;
+        else tags[0] = 0;
+        if (order['Female'] == true) tags[1] = 1;
+        else tags[1] = 0;
+        if (order['Day'] == true) tags[2] = 1;
+        else tags[2] = 0;
+        if (order['Night'] == true) tags[3] = 1;
+        else tags[3] = 0;
+        if (order['Food'] == true) tags[4] = 1;
+        else tags[4] = 0;
+        if (order['Academic'] == true) tags[5] = 1;
+        else tags[5] = 0;
+        if (order['TechMechanic'] == true) tags[6] = 1;
+        else tags[6] = 0;
+        if (order['ArtMusic'] == true) tags[7] = 1;
+        else tags[7] = 0;
+        if (order['Activity'] == true) tags[8] = 1;
+        else tags[8] = 0;
+        if (order['Others'] == true) tags[9] = 1;
+        else tags[9] = 0;
+        this.state.tags = tags
+        console.log(this.state, 'this.state')  
     }
 
     formatDate(date) {
@@ -87,7 +118,8 @@ class CreateJobForm extends Component {
             CurrentEmployee: [],
             CurrentAcceptedEmployee: [],
             Employer: fire.auth().currentUser.email,
-            Status: "Ready"
+            Status: "Ready",
+            TFvector: this.state.tags
         }
         if (data.JobName.length == 0 || data.JobDetail.length == 0 || data.Wages.length == 0 || data.Amount.length == 0 || data.Location.length == 0) {
             alert("Please fill the Empty Box")
@@ -106,10 +138,12 @@ class CreateJobForm extends Component {
 
     mongoCreateJob(data) {
         //send request data to backend /newjob ***pull the lastest backend first***
+        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+        let sending_data = {data: ciphertext};
         fetch("/newjob", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+            body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
@@ -127,7 +161,16 @@ class CreateJobForm extends Component {
 
     render() {
         const { redirect } = this.state;
+
+        //console.log(this.Workkey);
         console.log(this.Workkey);
+        let today = new Date();
+        let currentDate = new Date().toISOString();
+        let currentDay = currentDate.substr(0, 10);
+        let currentTime = today.toTimeString().substr(0,5);
+        today.setHours(today.getHours() + 1);
+        let nextTime = today.toTimeString().substr(0,5);
+
         if (redirect) {
             return <Redirect to='/Dashboard' />;
         }
@@ -156,7 +199,8 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedBegintime}
                                     // onChange={this.handleBeginTimeChange}
-                                    defaultValue={'08:00'}
+                                    defaultValue={currentTime}
+                                    inputProps={{ min: '07:00' }}
                                 />
 
                                 <h3>to</h3>
@@ -166,7 +210,8 @@ class CreateJobForm extends Component {
                                     type='time'
                                     // value={this.state.selectedEndtime}
                                     // onChange={this.handleEndTimeChange}
-                                    defaultValue={'09:00'}
+                                    defaultValue={nextTime}
+                                    inputProps={{ min: '08:00' }}
                                 />
                                 <TextField name='location' color="primary" id='location' label="Location" variant="outlined" style={{ marginLeft: '25px' }} />
                             </Grid>
@@ -176,15 +221,21 @@ class CreateJobForm extends Component {
                                     id='workDate'
                                     label="Select Work Date"
                                     type='date'
-                                    defaultValue={'2020-02-02'}
+                                    defaultValue={currentDay}
+                                    inputProps={{ min: currentDay }}
 
                                 />
                                 <TextField name='wages' color="primary" id='wages' label="Wages (Baht)" variant="outlined" type='number' style={{ marginLeft: '27px' }} />
                             </Grid>
+                            <CheckBox
+                                id='CheckBox'
+                                check={this.check}
+                            />
                             <Grid style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
                                 <Button variant="contained" color='primary' style={{ backgroundColor: '#2a3649' }} onClick={this.onCreatejob} >Submit</Button>
                             </Grid>
                         </Grid>
+
                     </form>
                 </div>
 
