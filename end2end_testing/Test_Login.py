@@ -33,10 +33,7 @@ class Test_Login(unittest.TestCase):
         except:
             print('alert fail')
             assert False == True
-
         
-        
-
     def test_login_success(self):
         driver = self.driver
         driver.get("http://localhost:3000/login")
@@ -51,14 +48,12 @@ class Test_Login(unittest.TestCase):
         driver.find_element_by_id('loginBtn').click()
         time.sleep(5)
         
-        
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.close()
         cls.driver.quit()
         print("complete")
-        
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()

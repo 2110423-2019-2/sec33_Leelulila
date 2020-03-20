@@ -158,6 +158,7 @@ export default function RegisterPage() {
             </Grid>
           </Grid>
           <Button
+            id="registerBtn"
             type="submit"
             fullWidth
             variant="contained"
