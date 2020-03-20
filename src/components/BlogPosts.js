@@ -19,8 +19,10 @@ class BlogPosts extends Component {
             checkgetBlogalready: false,
             currentBlogs: [],
             listing: [],
+            ready: false,
 
         }
+        this.getAllBlog = this.getAllBlog.bind(this)
     }
 
     componentDidMount() {
@@ -28,19 +30,20 @@ class BlogPosts extends Component {
     }
 
     getAllBlog() {
+        let self = this;
         axios.get('http://localhost:9000/allblog')
             .then(response => {
                 console.log('success');
-                this.setState({
+                self.setState({
                     listing: response.data,
                 })
                 var list2 = [];
-                for (var x in this.state.listing) {
-                    if (this.state.listing[x]['Status'] == "Ready") {
+                for (var x in self.state.listing) {
+                    if (self.state.listing[x]['Status'] == "Ready") {
                         list2.push(x);
                     }
                 }
-                this.setState({
+                self.setState({
                     currentBlogs: list2,
                     ready: false,
                 })
@@ -52,7 +55,7 @@ class BlogPosts extends Component {
 
 
     render() {
-        console.log(this.currentBlogs)
+        console.log(this.state.currentBlogs)
         return (
             <div>
                 <h1>test</h1>
