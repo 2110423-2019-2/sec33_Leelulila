@@ -51,7 +51,7 @@ class EmployeeListTable extends Component {
          method: 'PUT',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(data)
-      }).then(this.onDeclineEmployee(email))
+      }).then(window.location.reload(false));
 
    }
 

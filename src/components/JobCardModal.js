@@ -233,7 +233,7 @@ class JobCardModal extends Component {
           <p>Date : {this.Date}</p>
           <p>Time : {this.BeginTime} - {this.EndTime}</p>
           <p>Employer : {this.Employer}</p>
-          <Button variant="contained" color='primary' onClick={this.onGetjob}>Apply</Button>
+          <Button variant="contained" color='primary' onClick={()=>this.onGetjob()}>Apply</Button>
 
         </Modal>
       </div>
