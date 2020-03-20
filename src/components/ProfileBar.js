@@ -126,8 +126,8 @@ class ProfileBar extends Component {
             </div>);
         }
         return (<div style={{ display: 'flex', flexDirection: 'row' }} id='proBarRegLog'>
-            <Button href='/Register' variant='outlined' color='inherit'>Register</Button>
-            <Button href='/login' variant='outlined' color='inherit' id='loginBut'>Login</Button>
+            <Button href='/Register' id='registerBtn' variant='outlined' color='inherit'>Register</Button>
+            <Button href='/login' id='loginBtn' variant='outlined' color='inherit' id='loginBut'>Login</Button>
         </div>);
     }
 }

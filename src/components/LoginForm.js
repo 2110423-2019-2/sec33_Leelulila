@@ -54,7 +54,7 @@ class LoginForm extends Component {
             
           </Grid>
             <Grid direction='row' style={{float:'right',marginTop:'15px'}}>
-              <Button variant='contained' color='primary' style={{ marginLeft: '10px', backgroundColor:'#2a3649', width: '150px' }} flip onClick={this.onLogin}>Login</Button>
+              <Button variant='contained' id='loginBtn' color='primary' style={{ marginLeft: '10px', backgroundColor:'#2a3649', width: '150px' }} flip onClick={this.onLogin}>Login</Button>
             </Grid>
           </Grid>
           <Grid item style={{ marginTop: '80px' }}>

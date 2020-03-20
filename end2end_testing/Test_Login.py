@@ -58,6 +58,7 @@ class Test_Login(unittest.TestCase):
         cls.driver.close()
         cls.driver.quit()
         print("complete")
+        
 
-if __name__ == '__main__':
-    unittest.main()
+    if __name__ == '__main__':
+        unittest.main()
