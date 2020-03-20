@@ -70,7 +70,6 @@ class CreateBlogForm extends Component {
             return response.json();
         }).then(function (resData) {
             // console.log(resData); 
-            alert("Success!!");
 
         }).catch(function (err) {
             console.log(err);
@@ -82,36 +81,37 @@ class CreateBlogForm extends Component {
         const { redirect } = this.state;
         if (redirect) {
             return <Redirect to='/Blog' />;
+        } else {
+
+            return (
+
+                <div>
+                    <h1>Create Blog</h1>
+                    <form>
+
+                        <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
+                            <h3> Title :</h3>
+                            <TextField inputProps={{ maxLength: 30 }} name='Blogname' id="blogname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '250px' }} />
+                            <h3 style={{ "padding-left": "40px" }}>Topic :</h3>
+                            <TextField inputProps={{ maxLength: 20 }} name='Topic' color="primary" id='topic' variant="outlined" margin='dense' style={{ marginLeft: '16px', width: '200px' }} />
+                        </Grid>
+                        <Grid style={{ margin: '16px' }}>
+                            <h3> Image (URL) : </h3>
+                            <TextField name='image' id="image" color="primary" variant="outlined" margin='dense' style={{ width: '620px' }} />
+                        </Grid>
+                        <Grid style={{ margin: '16px' }}>
+                            <h3> Body :</h3>
+                            <TextField multiline={true} rows={10} color="primary" name='detail' id="detail" variant="outlined" margin='dense' style={{ width: '620px' }} />
+                        </Grid>
+                        <Grid style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
+                            <Button variant="contained" color='primary' style={{ backgroundColor: '#2a3649' }} onClick={this.onCreateBlog} >Create Blog</Button>
+                        </Grid>
+
+                    </form>
+                </div>
+
+            );
         }
-
-        return (
-
-            <div>
-                <h1>Create Blog</h1>
-                <form>
-
-                    <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
-                        <h3> Title :</h3>
-                        <TextField inputProps={{ maxLength: 30 }} name='Blogname' id="blogname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '250px' }} />
-                        <h3 style={{ "padding-left": "40px" }}>Topic :</h3>
-                        <TextField inputProps={{ maxLength: 20 }} name='Topic' color="primary" id='topic' variant="outlined" margin='dense' style={{ marginLeft: '16px', width: '200px' }} />
-                    </Grid>
-                    <Grid style={{ margin: '16px' }}>
-                        <h3> Image (URL) : </h3>
-                        <TextField name='image' id="image" color="primary" variant="outlined" margin='dense' style={{ width: '620px' }} />
-                    </Grid>
-                    <Grid style={{ margin: '16px' }}>
-                        <h3> Body :</h3>
-                        <TextField multiline={true} rows={10} color="primary" name='detail' id="detail" variant="outlined" margin='dense' style={{ width: '620px' }} />
-                    </Grid>
-                    <Grid style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
-                        <Button variant="contained" color='primary' style={{ backgroundColor: '#2a3649' }} onClick={this.onCreateBlog} >Create Blog</Button>
-                    </Grid>
-
-                </form>
-            </div>
-
-        );
     }
 }
 

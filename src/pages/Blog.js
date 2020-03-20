@@ -7,6 +7,7 @@ import WorkIcon from '@material-ui/icons/Work';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import CreateBlogModal from '../components/CreateBlogModal'
+import BlogPosts from '../components/BlogPosts'
 
 class Blog extends Component {
     constructor(props) {
@@ -84,6 +85,11 @@ class Blog extends Component {
                         <Comments comments={this.state.comments} />
                     </div>
                 </div> */}
+                {/* <img
+                    src="https://www.thumbsup.in.th/wp-content/uploads/2019/09/roll-safe-thinking-meme-704x400.jpg"
+                    alt="new"
+                /> */}
+                <BlogPosts/>
             </div>
 
         );

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Grid } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import CreateBlgForm from './CreateBlogForm'
+import CreateBlogForm from './CreateBlogForm'
 
 function getModalStyle() {
     const top = 50;
@@ -65,7 +65,7 @@ export default function SimpleModal() {
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <CreateBlgForm />
+                    <CreateBlogForm />
                 </div>
             </Modal>
         </div >
