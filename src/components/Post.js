@@ -3,15 +3,7 @@ import { InputLabel, InputBase, Card, Grid, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
-import JobCardModal from '../components/JobCardModal'
 import fire from '../config/firebase';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
-import StarsIcon from '@material-ui/icons/Stars';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import BeenhereIcon from '@material-ui/icons/Beenhere';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 class Post extends Component {
 
@@ -32,42 +24,45 @@ class Post extends Component {
         ev.target.src = 'https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big-768x432.png'
     }
 
+    convertTime() {
+        // var t = new Date(this.timestamp * 1000);
+        // var formatted = ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
+        // console.log(formatted)
+        // return formatted;
+        var t = new Date(this.timestamp);
+        return t.toLocaleString()
+    }
 
     render() {
-
         return (
-            <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '50px', marginTop: '50px', height: '600px', backgroundColor: 'white', opacity: '80%', borderRadius: '3%', alignItems: 'center' }}>
+            <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', borderRadius: '3%', alignItems: 'center' }}>
                 <div>
-                    <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Grid item md={12}>
 
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <h2>{this.BlogName}</h2>
-                            </div>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p>Topic : {this.BlogTopic}</p>
-                            </div>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img
-                                    src={this.BlogImage}
-                                    alt="new"
-                                    style={{ width: 400, height: 300 }}
-                                    onError={this.addDefaultSrc}
-                                />
-                            </div>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p>{this.BlogDetail}</p>
-                            </div>
-                            {/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p> : {this.timestamp}</p>
-                            </div> */}
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p>Writer : {this.Employer}</p>
-                            </div>
 
-                        </Grid>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <h1>{this.BlogName}</h1>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'left' }}>
+                        <h3>Topic : {this.BlogTopic}</h3>
+                    </div>
+                    <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white', borderRadius: '3%' }}>
+                        <div style={{ marginTop: '30px', marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <img
+                                style={{ width: '60%', height: '60%' }}
+                                src={this.BlogImage}
+                                alt="new"
+                                onError={this.addDefaultSrc}
 
-                    </Grid>
+                            />
+                        </div>
+                        <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
+                            <h4>{this.BlogDetail}</h4>
+                        </div>
+                    </Card>
+                    <div style={{ marginTop: '30px'}}> 
+                        <p>Posted on {this.convertTime()} by {this.Employer}</p>
+                    </div>
+
                 </div>
             </Card>
         );

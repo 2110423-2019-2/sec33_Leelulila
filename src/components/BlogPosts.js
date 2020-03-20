@@ -62,7 +62,7 @@ class BlogPosts extends Component {
 
                 return (
 
-                    <Grid xs={12} key={notes._id}>
+                    <div key={notes._id} style={{ display: 'flex', justifyContent: 'center' }}>
                         <Post BlogName={notes.BlogName}
                             BlogDetail={notes.BlogDetail}
                             BlogTopic={notes.BlogTopic}
@@ -70,7 +70,7 @@ class BlogPosts extends Component {
                             Employer={notes.Employer}
                             timestamp={notes.timestamp}
                         />
-                    </Grid>
+                    </div>
 
                 );
             })
