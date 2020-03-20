@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <div>
             <Paper square elevation={0} fullWidth style={{ backgroundColor: '#191e25', marginTop:'48px' }}>
-                <Grid container spacing={2} id='FooterGrid'>
+                <Grid container style={{ width: 'auto'}} id='FooterGrid'>
                     <Grid container id="FooterGrid1" item xs={12} sm={12} md={6}>
                         <Grid item md={12} xs={12}><h1 id='white'>About Us</h1></Grid>
                         <Grid id='white' item md={8} xs={12}>

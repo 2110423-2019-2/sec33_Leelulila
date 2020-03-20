@@ -11,7 +11,7 @@ import ListingJobForm from '../components/ListingJobForm'
 
 const gridListStyle = {
     width: 350,
-    height: 600,
+    height: 730,
     backgroundColor: '#EEEEEE'
 };
 
@@ -102,7 +102,7 @@ class SuggestionPlane extends Component {
                     <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
                         <h1></h1>
                     </GridListTile>
-                    <GridListTile cols={1} style={{ height: '10' }}>
+                    <GridListTile cols={1} style={{ height: '10', paddingRight: '24px' }}>
                         {this.renderList()}
                     </GridListTile>
                 </GridList>
