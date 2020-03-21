@@ -83,7 +83,7 @@ class Post extends Component {
 
 
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <h1>{this.BlogName.toUpperCase()}</h1>
+                            <h1>{this.BlogName}</h1>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
                             <h3>Topic : {this.BlogTopic}</h3>
@@ -121,7 +121,7 @@ class Post extends Component {
                         <Grid style={{ display: 'flex', direction: 'column' }}>
 
                             <Grid xs={11} style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                                <h1>{this.BlogName.toUpperCase()}</h1>
+                                <h1>{this.BlogName}</h1>
                             </Grid>
                             <Grid xs={1} style={{ marginTop: '30px' }} >
                                 <PostActionMenu id={this.id} />
