@@ -34,19 +34,24 @@ class Test_Register(unittest.TestCase):
         #     print('alert fail')
         #     assert False == True
         
-    # def test_login_success(self):
-    #     driver = self.driver
-    #     driver.get("http://localhost:3000/login")
-    #     time.sleep(2)
+    def test_register_success(self):
+        
+        driver = self.driver
+        driver.get("http://localhost:3000/register")
+        time.sleep(2)
 
-    #     driver.find_element_by_id('email').send_keys('drive@hotmail.com')
-    #     time.sleep(2)
+        driver.find_element_by_id('email').send_keys('drive@hotmail.com')
+        time.sleep(2)
 
-    #     driver.find_element_by_id('pass').send_keys('123456')
-    #     time.sleep(2)
+        driver.find_element_by_id('pass').send_keys('123456')
+        time.sleep(2)
+        print(driver.find_elements_by_class_name().text)
 
-    #     driver.find_element_by_id('loginBtn').click()
-    #     time.sleep(5)
+        driver.find_element_by_id('confirm-password').send_keys('123456')
+        time.sleep(2)
+
+        driver.find_element_by_id('loginBtn').click()
+        time.sleep(5)
         
 
     @classmethod

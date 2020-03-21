@@ -92,7 +92,7 @@ class RegisterForm extends Component {
             {/* <Grid item><InputBase  type='date' id="standard" label="Date" style={{marginLeft:'10px',marginTop:'10px'}}/></Grid> */}
             <Grid item><TextField name="fname" variant="outlined" color="secondary" id="name" fullWidth label="Name" /></Grid>
             <Grid item><TextField name="sname" variant="outlined" color="secondary" id="sname" fullWidth label="Surname" /></Grid>
-            <Button id='registerBtn' variant='contained' size='small' style={{ marginTop: '10px' }} color='primary'
+            <Button variant='contained' size='small' style={{ marginTop: '10px' }} color='primary'
               onClick={this.insertData} >Submit</Button>
           </Grid>
         </div>
