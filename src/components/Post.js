@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
 import fire from '../config/firebase';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import IconButton from '@material-ui/core/IconButton';
 
 class Post extends Component {
 
@@ -18,6 +20,11 @@ class Post extends Component {
         this.timestamp = props.timestamp;
 
         this.render = this.render.bind(this)
+        this.getProfile.bind(this)
+
+        this.state = {
+            user: '',
+        }
     }
 
     addDefaultSrc(ev) {
@@ -33,6 +40,39 @@ class Post extends Component {
         return t.toLocaleString()
     }
 
+    getProfile() {
+        let self = this;
+        fetch("/useremail/" + self.Employer, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function (jsonData) {
+            // console.log(jsonData.firstName)
+            var user2 = fire.auth().currentUser.email;
+            console.log(user2)
+            if (user2 == self.Employer) {
+                self.setState({ user: 'Me' })
+            } else {
+                self.setState({ user: jsonData.firstName });
+            }
+
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+
+    componentDidMount() {
+        this.getProfile();
+    }
+
+    onViewProfile(email) {
+        window.location.href = `/noeditprofile?email=${email}`;
+    }
+
     render() {
         return (
             <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', borderRadius: '3%', alignItems: 'center' }}>
@@ -42,7 +82,7 @@ class Post extends Component {
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <h1>{this.BlogName}</h1>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'left' }}>
+                    <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
                         <h3>Topic : {this.BlogTopic}</h3>
                     </div>
                     <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white', borderRadius: '3%' }}>
@@ -59,9 +99,13 @@ class Post extends Component {
                             <h4>{this.BlogDetail}</h4>
                         </div>
                     </Card>
-                    <div style={{ marginTop: '30px'}}> 
-                        <p>Posted on {this.convertTime()} by {this.Employer}</p>
-                    </div>
+                    <Grid style={{ display: 'flex', marginTop: '30px', direction: 'column' }}>
+                        <p>Posted on {this.convertTime()} by</p>
+                        <IconButton onClick={() => this.onViewProfile(this.Employer)}>
+                            <AccountCircleIcon />
+                        </IconButton>
+                        <p>{this.state.user}</p>
+                    </Grid>
 
                 </div>
             </Card>

@@ -39,7 +39,7 @@ class BlogPosts extends Component {
                     listing: response.data,
                 })
                 var list2 = [];
-                for (var x in self.state.listing) {
+                for (var x in self.state.listing.reverse()) {
                     if (self.state.listing[x]['Status'] == "Ready") {
                         list2.push(self.state.listing[x]);
                     }
