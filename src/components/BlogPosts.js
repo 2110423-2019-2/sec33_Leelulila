@@ -4,6 +4,7 @@ import '../style.css';
 import axios from 'axios';
 import Post from './Post';
 import { Button, Grid } from '@material-ui/core';
+import fire from '../config/firebase';
 
 class BlogPosts extends Component {
 
@@ -16,12 +17,14 @@ class BlogPosts extends Component {
         // this.BlogImage = props.BlogImage;
         // this.Employer = props.Employer;
         // this.timestamp = props.timestamp;
+        this.yourPage = props.yourPage;
 
         this.state = {
             // checkgetBlogalready: false,
             currentBlogs: [],
             listing: [],
             ready: false,
+            yourBlog: [],
 
         }
         this.getAllBlog = this.getAllBlog.bind(this)
@@ -39,14 +42,20 @@ class BlogPosts extends Component {
                     listing: response.data,
                 })
                 var list2 = [];
+                var list3 = [];
+                var user = fire.auth().currentUser.email;
                 for (var x in self.state.listing.reverse()) {
                     if (self.state.listing[x]['Status'] == "Ready") {
                         list2.push(self.state.listing[x]);
+                    }
+                    if (self.state.listing[x]['Employer'] == user) {
+                        list3.push(self.state.listing[x]);
                     }
                 }
                 self.setState({
                     currentBlogs: list2,
                     ready: false,
+                    yourBlog: list3,
                 })
             })
             .catch((error) => {
@@ -55,26 +64,67 @@ class BlogPosts extends Component {
     }
 
     render() {
-        return (
-            this.state.currentBlogs.map((notes, key) => {
-                console.log(notes.BlogName)
-
-
+        if (!this.yourPage) {
+            if (this.state.currentBlogs.length==0) {
                 return (
-
-                    <div key={notes._id} style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Post BlogName={notes.BlogName}
-                            BlogDetail={notes.BlogDetail}
-                            BlogTopic={notes.BlogTopic}
-                            BlogImage={notes.BlogImage}
-                            Employer={notes.Employer}
-                            timestamp={notes.timestamp}
-                        />
-                    </div>
-
+                    <h2 style={{marginTop:'30px'}}>There is no blog...</h2>
                 );
-            })
-        );
+            } else {
+                return (
+                    this.state.currentBlogs.map((notes, key) => {
+                        // console.log(notes._id)
+
+
+                        return (
+
+                            <div key={notes._id} style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Post BlogName={notes.BlogName}
+                                    BlogDetail={notes.BlogDetail}
+                                    BlogTopic={notes.BlogTopic}
+                                    BlogImage={notes.BlogImage}
+                                    Employer={notes.Employer}
+                                    timestamp={notes.timestamp}
+                                    editable={false}
+                                    id={notes._id}
+                                />
+                            </div>
+
+                        );
+                    })
+                );
+            }
+
+        } else {
+            if (this.state.yourBlog.length==0){
+                return (
+                    <h2 style={{marginTop:'30px'}}>You don't have any blog...</h2>
+                );
+            }else{
+                return (
+                    this.state.yourBlog.map((notes, key) => {
+                        console.log(notes._id)
+    
+    
+                        return (
+    
+                            <div key={notes._id} style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Post BlogName={notes.BlogName}
+                                    BlogDetail={notes.BlogDetail}
+                                    BlogTopic={notes.BlogTopic}
+                                    BlogImage={notes.BlogImage}
+                                    Employer={notes.Employer}
+                                    timestamp={notes.timestamp}
+                                    editable={true}
+                                    id={notes._id}
+                                />
+                            </div>
+    
+                        );
+                    })
+                );
+            }
+            
+        }
     }
 }
 export default BlogPosts;

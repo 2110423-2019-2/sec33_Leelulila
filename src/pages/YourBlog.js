@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import CommentBox from '../components/CommentBox';
 import Comments from '../components/Comments';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import WorkIcon from '@material-ui/icons/Work';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import CreateBlogModal from '../components/CreateBlogModal'
 import BlogPosts from '../components/BlogPosts'
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 class Blog extends Component {
     constructor(props) {
@@ -62,11 +62,11 @@ class Blog extends Component {
                         <Button
                             variant="contained"
                             color="primary"
-                            startIcon={<AccountBoxIcon />}
+                            startIcon={<DashboardIcon />}
                             style={{ marginRight: '30px' }}
-                            href='/yourBlog'
+                            href='/Blog'
                         >
-                            Your Blog (s)
+                            Blogs Feeds
                 </Button>
                     </Grid>
                     <Grid item xs={2} style={{ direction: 'column' }}>
@@ -86,7 +86,7 @@ class Blog extends Component {
                         <Comments comments={this.state.comments} />
                     </div>
                 </div> */}
-                <BlogPosts yourPage={false}/>
+                <BlogPosts yourPage={true}/>
             </div>
 
         );

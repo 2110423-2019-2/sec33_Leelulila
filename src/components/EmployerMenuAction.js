@@ -29,7 +29,7 @@ const StyledMenu = withStyles({
       horizontal: 'center',
     }}
     {...props}
-    
+
   />
 ));
 
@@ -46,29 +46,29 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 function onDeletejob(WorkKey) {
-    fetch("/job/" + WorkKey, {
-      method: 'DELETE',
+  fetch("/job/" + WorkKey, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  }).then(window.location.reload(false))
+  // window.location.reload(false);
+}
+
+function onConfirm(WorkKey, Num) {
+  console.log(Num);
+  var data = { Status: 'Confirm' };
+  if (Num > 0) {
+    fetch("/jobstatus/" + WorkKey, {
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-    }).then(window.location.reload(false))
-    // window.location.reload(false);
+      body: JSON.stringify(data),
+    }).then(window.location.reload(false));
+  }
+  else {
+    alert("No Employee In Job");
   }
 
-function onConfirm(WorkKey,Num){
-    console.log(Num);
-    var data = { Status: 'Confirm' };
-    if(Num>0){
-        fetch("/jobstatus/" + WorkKey, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          }).then(window.location.reload(false));
-    }
-    else{
-        alert("No Employee In Job");
-    }
-    
-    
-  }
+
+}
 
 
 
@@ -101,15 +101,15 @@ export default function CustomizedMenus(props) {
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <ListItemText primary="Delete" onClick={() => onDeletejob(props.WorkKey)}/>
+          <ListItemText primary="Delete" onClick={() => onDeletejob(props.WorkKey)} />
         </StyledMenuItem>
         <StyledMenuItem>
-          <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey,props.CurrentAcceptedEmployee.length)} />
+          <ListItemText primary="Start" onClick={() => onConfirm(props.WorkKey, props.CurrentAcceptedEmployee.length)} />
         </StyledMenuItem>
-        <EmployeeListModal WorkKey={props.WorkKey} Amount={props.Amount}/>
-        <AcceptedEmployeeListModal WorkKey={props.WorkKey}/>
+        <EmployeeListModal WorkKey={props.WorkKey} Amount={props.Amount} />
+        <AcceptedEmployeeListModal WorkKey={props.WorkKey} />
         {console.log(props.WorkKey[0])}
-        <EditJobOwnedForm _id = {props._id} Wages={props.Wages} Detail={props.JobDetail} Location={props.Location} WorkDate={props.Date} TimeBegin={props.BeginTime} TimeEnd={props.EndTime} WorkKey={props.WorkKey[0]}/>
+        <EditJobOwnedForm _id={props._id} Wages={props.Wages} Detail={props.JobDetail} Location={props.Location} WorkDate={props.Date} TimeBegin={props.BeginTime} TimeEnd={props.EndTime} WorkKey={props.WorkKey[0]} />
       </StyledMenu>
     </div>
   );
