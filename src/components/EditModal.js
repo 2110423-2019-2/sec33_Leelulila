@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Profile from '../pages/Profile';
+import CryptoJS from "crypto-js";
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -56,16 +57,18 @@ export default function SimpleModal(props) {
             var data = {}
             var k = props.title.toLowerCase()
             data[k] = v
-            let self = this;   
-            // fetch("/user/"+props._id, {
-            //     method: 'PUT',
-            //     headers: { 'Content-type': 'application/json' },
-            //     body: JSON.stringify(data)
-            // }).then(function (response) {
-            //     window.location.reload()
-            // }).catch(function (err) {
-            //     console.log(err);
-            // });
+            let self = this;
+            let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+            let sending_data = {data: ciphertext};   
+            fetch("/user/"+props._id, {
+                method: 'PUT',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(sending_data)
+            }).then(function (response) {
+                window.location.reload()
+            }).catch(function (err) {
+                console.log(err);
+            });
             console.log('upppppp')
             setOpen(false);
     };
