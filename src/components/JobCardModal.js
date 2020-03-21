@@ -5,6 +5,7 @@ import { Button, Grid } from '@material-ui/core';
 import axios from 'axios';
 import fire from '../config/firebase';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+import CryptoJS from "crypto-js";
 
 const customStyles = {
   content: {
@@ -95,10 +96,14 @@ class JobCardModal extends Component {
     if(!boo){
       var email = fire.auth().currentUser.email;
       var data = { Email: email };
+
+      let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+      let sending_data = {data: ciphertext};
+
       fetch("/job/addemployee/" + this.WorkKey, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(sending_data)
       }).then(function (response) {
         if (response.status >= 400) {
           throw new Error("Bad response from server");
