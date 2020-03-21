@@ -31,7 +31,8 @@ class JobHistory extends Component {
           var list2 = [];
 
           for (var x in this.state.listing) {
-            if(this.state.listing[x]['job']['Status']=="Finish"){
+              console.log(this.state.listing[x]['job'])
+            if(this.state.listing[x]['job']['Status']=="Finish" && fire.auth().currentUser.email==this.state.listing[x]['job']['Employer']){
                     list2.push([this.state.listing[x]['job'],[this.state.listing[x]['_id']]]);
             }
               

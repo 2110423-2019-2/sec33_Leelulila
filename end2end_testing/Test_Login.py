@@ -6,7 +6,10 @@ class Test_Login(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome("/Users/thusk/Documents/CP/Project/SE/sec33_Leelulila/end2end_testing/chromedriver")
+       try:
+            cls.driver = webdriver.Chrome("./chromedriver")
+        except:
+            cls.driver = webdriver.Chrome("./chromedriver.exe")
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 
@@ -39,15 +42,17 @@ class Test_Login(unittest.TestCase):
         driver.get("http://localhost:3000/login")
         time.sleep(2)
 
-        driver.find_element_by_id('email').send_keys('drive@hotmail.com')
+        driver.find_element_by_id('email').send_keys('e2etest@hotmail.com')
         time.sleep(2)
 
         driver.find_element_by_id('pass').send_keys('123456')
         time.sleep(2)
 
         driver.find_element_by_id('loginBtn').click()
-        time.sleep(5)
+        time.sleep(2)
         
+        assert 'All Jobs' == driver.find_element_by_id('dashboard-title').text
+        time.sleep(5)
 
     @classmethod
     def tearDownClass(cls):

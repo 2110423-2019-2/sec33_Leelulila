@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
+import CryptoJS from "crypto-js";
 
 function getModalStyle() {
     const top = 50;
@@ -108,23 +109,19 @@ export default function SimpleModal(props) {
             var WorkDate = document.getElementById("WorkDate").value;
             var TimeBegin = document.getElementById("TimeBegin").value;
             var TimeEnd = document.getElementById("TimeEnd").value;
-            // var k1 = .toLowerCase()
-            // var k2 = props.wages.toLowerCase()
-            // var k3 = props.location.toLowerCase()
-            // var k4 = props.workDate.toLowerCase()
-            // var k5 = props.timeBegin.toLowerCase()
-            // var k6 = props.timeEnd.toLowerCase()
             data["JobDetail"] = Detail
             data["Wages"] = Wages
             data["Location"] = Location
             data["Date"] = WorkDate
             data["BeginTime"] = TimeBegin
             data["EndTime"] = TimeEnd
-            let self = this;   
+            let self = this;
+            let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+            let sending_data = {data: ciphertext};
             fetch("/jobUpdate/"+WorkKey, {
                 method: 'PUT',
                 headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify(sending_data)
             }).then(function (response) {
                 console.log(response);
                 window.location.reload()

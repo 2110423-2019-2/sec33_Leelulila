@@ -64,6 +64,7 @@ class Blog extends Component {
                             color="primary"
                             startIcon={<AccountBoxIcon />}
                             style={{ marginRight: '30px' }}
+                            href='/yourBlog'
                         >
                             Your Blog (s)
                 </Button>
@@ -85,11 +86,7 @@ class Blog extends Component {
                         <Comments comments={this.state.comments} />
                     </div>
                 </div> */}
-                {/* <img
-                    src="https://www.thumbsup.in.th/wp-content/uploads/2019/09/roll-safe-thinking-meme-704x400.jpg"
-                    alt="new"
-                /> */}
-                <BlogPosts/>
+                <BlogPosts yourPage={false}/>
             </div>
 
         );

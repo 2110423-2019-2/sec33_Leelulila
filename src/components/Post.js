@@ -75,9 +75,9 @@ class Post extends Component {
         console.log(this.state, 'state')
 
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{ display: 'flex',justifyContent: 'center', alignItems: 'center' }}>
                 <Card alignItems='center' id="ListingJobForm" style={{
-                    marginBottom: '50px', marginTop: '50px', height: 'auto', width: '50%',
+                    marginBottom: '50px', marginTop: '50px', height: 'auto', width: '60%',
                     backgroundColor: '#FFFFFF', opacity: '80%', alignItems: 'center', padding: '0px'
                 }}>
                     <div>

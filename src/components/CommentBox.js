@@ -75,7 +75,7 @@ class CommentBox extends Component {
 
   render() {
     return (
-      <div>        
+      <div>         
         <Divider />
         <p style={{ fontSize: '13px' }}>
           <Grid style={{ display: 'flex' }}>
