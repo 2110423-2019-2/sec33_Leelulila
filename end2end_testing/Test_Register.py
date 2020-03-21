@@ -6,7 +6,10 @@ class Test_Register(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome("/Users/thusk/Documents/CP/Project/SE/sec33_Leelulila/end2end_testing/chromedriver")
+        try:
+            cls.driver = webdriver.Chrome("./chromedriver")
+        except:
+            cls.driver = webdriver.Chrome("./chromedriver.exe")
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 

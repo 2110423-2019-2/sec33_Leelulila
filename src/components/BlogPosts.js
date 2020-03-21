@@ -39,7 +39,7 @@ class BlogPosts extends Component {
                     listing: response.data,
                 })
                 var list2 = [];
-                for (var x in self.state.listing) {
+                for (var x in self.state.listing.reverse()) {
                     if (self.state.listing[x]['Status'] == "Ready") {
                         list2.push(self.state.listing[x]);
                     }
@@ -62,7 +62,7 @@ class BlogPosts extends Component {
 
                 return (
 
-                    <Grid xs={12} key={notes._id}>
+                    <div key={notes._id} style={{ display: 'flex', justifyContent: 'center' }}>
                         <Post BlogName={notes.BlogName}
                             BlogDetail={notes.BlogDetail}
                             BlogTopic={notes.BlogTopic}
@@ -70,7 +70,7 @@ class BlogPosts extends Component {
                             Employer={notes.Employer}
                             timestamp={notes.timestamp}
                         />
-                    </Grid>
+                    </div>
 
                 );
             })

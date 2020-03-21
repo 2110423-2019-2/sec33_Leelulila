@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 // import fire from '../config/Fire';
-import { Redirect } from 'react-router-dom';
 import fire from '../config/firebase';
+import TopicSelecter from './TopicSelector';
 
 class CreateBlogForm extends Component {
 
@@ -39,7 +39,7 @@ class CreateBlogForm extends Component {
             Status: "Ready"
         }
         console.log(data)
-        if (data.BlogName.length == 0 || data.BlogDetail.length == 0 || data.BlogTopic.length == 0 || data.BlogImage.length == 0) {
+        if (data.BlogName.length == 0 || data.BlogDetail.length == 0 || data.BlogImage.length == 0 || data.BlogTopic.length == 0) {
             alert("Please fill the Empty Box")
         }
         else if (!this.validURL(document.getElementById('image').value)) {
@@ -80,7 +80,7 @@ class CreateBlogForm extends Component {
     render() {
         const { redirect } = this.state;
         if (redirect) {
-            return <Redirect to='/Blog' />;
+            window.location.reload();
         } else {
 
             return (
@@ -92,8 +92,9 @@ class CreateBlogForm extends Component {
                         <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                             <h3> Title :</h3>
                             <TextField inputProps={{ maxLength: 30 }} name='Blogname' id="blogname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '250px' }} />
-                            <h3 style={{ "padding-left": "40px" }}>Topic :</h3>
+                            <h3 style={{ "padding-left": "20px" }}>Topic :</h3>
                             <TextField inputProps={{ maxLength: 20 }} name='Topic' color="primary" id='topic' variant="outlined" margin='dense' style={{ marginLeft: '16px', width: '200px' }} />
+                            {/* <TopicSelecter id='topic' /> */}
                         </Grid>
                         <Grid style={{ margin: '16px' }}>
                             <h3> Image (URL) : </h3>
