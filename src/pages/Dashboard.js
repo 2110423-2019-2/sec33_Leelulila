@@ -183,7 +183,7 @@ class Dashboard extends Component {
 
                         <div style={{ marginTop: '100px', marginLeft: '10%', marginRight: '0%', width: '85%', marginButtom: '100px', minHeight: '110vh' }}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <h1>All Jobs</h1>
+                                <h1 id='dashboard-title'>All Jobs</h1>
                                 <ViewModuleIcon fontSize='large' color='action' />
                             </div>
                             <Container style={{ backgroundColor: '#EEEEEE', marginTop: '10px' }} >

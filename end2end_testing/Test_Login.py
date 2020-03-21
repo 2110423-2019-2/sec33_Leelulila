@@ -42,15 +42,17 @@ class Test_Login(unittest.TestCase):
         driver.get("http://localhost:3000/login")
         time.sleep(2)
 
-        driver.find_element_by_id('email').send_keys('drive@hotmail.com')
+        driver.find_element_by_id('email').send_keys('e2etest@hotmail.com')
         time.sleep(2)
 
         driver.find_element_by_id('pass').send_keys('123456')
         time.sleep(2)
 
         driver.find_element_by_id('loginBtn').click()
-        time.sleep(5)
+        time.sleep(2)
         
+        assert 'All Jobs' == driver.find_element_by_id('dashboard-title').text
+        time.sleep(5)
 
     @classmethod
     def tearDownClass(cls):
