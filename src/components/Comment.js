@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Grid } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 
 class Comment extends Component {
   render() {
@@ -11,10 +14,19 @@ class Comment extends Component {
         </figure> */}
         <div className="media-content">
           <div className="content">
-            <p>
-              <strong>{this.props.comment.name}</strong>
-              <br />
-              {this.props.comment.comment}
+            
+          <Divider />
+            <p style={{ fontSize: '13px' }}>
+              <Grid style={{ display: 'flex' }}>
+                <Grid style={{ marginRight: '10px' }}>
+                  <AccountCircleIcon fontSize='large' />
+                </Grid>
+                <Grid>
+                  <strong>{this.props.comment.name}</strong>
+                  <br />
+                  {this.props.comment.comment}
+                </Grid>
+              </Grid>
             </p>
           </div>
         </div>

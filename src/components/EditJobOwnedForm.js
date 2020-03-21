@@ -131,12 +131,10 @@ export default function SimpleModal(props) {
             }).catch(function (err) {
                 console.log(err);
             });
-            console.log('upppppp')
             setOpen(false);
     };
 
     const handleOpen = () => {
-        console.log("vaaaaaaaaaaaaaaaaaaaaaaa")
         console.log(props.value)
         //console.log(props.value[0])
         setOpen(true);

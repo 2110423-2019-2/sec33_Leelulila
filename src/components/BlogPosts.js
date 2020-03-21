@@ -69,6 +69,8 @@ class BlogPosts extends Component {
                             BlogImage={notes.BlogImage}
                             Employer={notes.Employer}
                             timestamp={notes.timestamp}
+                            comments={notes.comments}
+                            id={notes._id}
                         />
                     </Grid>
 
