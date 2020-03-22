@@ -8,6 +8,8 @@ import fire from '../config/firebase';
 import {useHistory} from 'react-router-dom'
 import validator from 'validator';
 import CryptoJS from "crypto-js";
+// import {RegistrationSchema} from '../config/Schema';
+// import {Formik} from 'formik';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -46,6 +48,7 @@ export default function RegisterPage() {
     var surname = data.lastName;
     var gender = data.gender;
     var birthday = data.birthday;
+
 
     if (email === '' || password === '' || confirmPassword === '' || name === '' || surname === '' || gender === '' || birthday === '') {
       alert('Please fill in the information completely!!')

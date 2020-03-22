@@ -11,7 +11,6 @@ import SendIcon from '@material-ui/icons/Send';
 import EmployeeListModal from './EmployeeListModal';
 import AcceptedEmployeeListModal from './AcceptedEmployeeListModal';
 import EditJobOwnedForm from './EditJobOwnedForm';
-import { Alert } from 'antd';
 
 const StyledMenu = withStyles({
   paper: {
