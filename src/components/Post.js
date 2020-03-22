@@ -88,11 +88,12 @@ class Post extends Component {
         }).then(function (jsonData) {
             // console.log(jsonData.firstName)
             var user2 = fire.auth().currentUser.email;
-            if (user2 == self.Employer) {
-                self.setState({ user: 'Me' })
-            } else {
-                self.setState({ user: jsonData.firstName });
-            }
+            // if (user2 == self.Employer) {
+            //     self.setState({ user: 'Me' })
+            // } else {
+            //     self.setState({ user: jsonData.firstName + ' ' + jsonData.lastName });
+            // }
+            self.setState({ user: jsonData.firstName + ' ' + jsonData.lastName });
 
         }).catch(function (err) {
             console.log(err);

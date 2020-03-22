@@ -65,8 +65,8 @@ class CommentBox extends Component {
       return response.json();
     }).then(function (jsonData) {
       self.setState({ user: jsonData });
-      console.log(self.state.user)
-      console.log(self.state.user.firstName)
+      // console.log(self.state.user)
+      // console.log(self.state.user.firstName)
     }).catch(function (err) {
       console.log(err);
     });

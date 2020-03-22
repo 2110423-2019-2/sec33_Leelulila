@@ -3,8 +3,8 @@ import Comment from './Comment';
 import Divider from '@material-ui/core/Divider';
 
 class Comments extends Component {
-  render() {
 
+  render() {
     if (this.props.comments.length > 0){
       return (
         <section className="section">

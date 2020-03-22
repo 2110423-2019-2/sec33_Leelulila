@@ -4,7 +4,14 @@ import { Grid } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
 class Comment extends Component {
+
+  convertTime() {
+    var t = new Date(this.props.comment.timestamp);
+    return t.toLocaleString()
+  }
+
   render() {
+    console.log(this.props.comment.timestamp)
     return (
       <article className="media">
         {/* <figure className="media-left">
@@ -14,8 +21,8 @@ class Comment extends Component {
         </figure> */}
         <div className="media-content">
           <div className="content">
-            
-          <Divider />
+
+            <Divider />
             <p style={{ fontSize: '13px' }}>
               <Grid style={{ display: 'flex' }}>
                 <Grid style={{ marginRight: '10px' }}>
@@ -25,6 +32,7 @@ class Comment extends Component {
                   <strong>{this.props.comment.name}</strong>
                   <br />
                   {this.props.comment.comment}
+                  <h5>Commented on {this.convertTime()}</h5>
                 </Grid>
               </Grid>
             </p>
