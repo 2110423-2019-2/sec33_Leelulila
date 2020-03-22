@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import fire from '../config/firebase';
 import '../style.css';
 import NotificationList from './EditDialog'
-
+import CryptoJS from "crypto-js";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -55,10 +55,13 @@ class ProfileBar extends Component {
         this.setState({ open: !this.state.open });
         let self = this;
         var user = fire.auth().currentUser;
+        var data = {Email: user.email} 
+        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+        let sending_data = {data: ciphertext};
         fetch("/read" , {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({Email: user.email})
+            body: JSON.stringify(sending_data)
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
