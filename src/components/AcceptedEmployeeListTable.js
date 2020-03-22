@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Grid } from '@material-ui/core';
-
+import CryptoJS from "crypto-js";
 
 class AcceptedEmployeeListTable extends Component {
    constructor(props) {
@@ -17,26 +17,30 @@ class AcceptedEmployeeListTable extends Component {
 
    onDeclineEmployee(email) {
 
-    var data = { Email: email };
-
-    fetch("/employeelist/" + this.WorkKey, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }).then(window.location.reload(false))
-    // window.location.reload(false);
+      var data = { Email: email };
+      //let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+      //let sending_data = {data: ciphertext};
+   
+      fetch("/employeelist/" + this.WorkKey, {
+         method: 'DELETE',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(data),
+      }).then(window.location.reload(false))
+      // window.location.reload(false);
   }
 
-    onAcceptEmployee(email) {
+   onAcceptEmployee(email) {
 
-        var data = { Email: email };
+      var data = { Email: email };
+      //let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+      //let sending_data = {data: ciphertext};
 
-        fetch("/employeelist/" + this.WorkKey, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        }).then(window.location.reload(false))
-        // window.location.reload(false);
+      fetch("/employeelist/" + this.WorkKey, {
+         method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(data),
+      }).then(window.location.reload(false))
+      // window.location.reload(false);
     }
 
    renderTableData() {
