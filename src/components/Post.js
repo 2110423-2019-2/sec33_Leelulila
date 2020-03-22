@@ -11,6 +11,7 @@ import PostActionMenu from './PostActionMenu';
 import CommentBox from '../components/CommentBox'
 import Comments from '../components/Comments'
 import InsertCommentIcon from '@material-ui/icons/InsertComment';
+import CryptoJS from "crypto-js";
 
 class Post extends Component {
 
@@ -44,10 +45,12 @@ class Post extends Component {
     addComment(comment) {
         console.log('addcomment')
         let self = this;
+        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(comment), '123456').toString();
+        let sending_data = {data: ciphertext};
         fetch("/blog/newcomment/" + this.id, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(comment)
+            body: JSON.stringify(sending_data)
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");

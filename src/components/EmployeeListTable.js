@@ -3,7 +3,7 @@ import { Button, Grid } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import IconButton from '@material-ui/core/IconButton';
-
+import CryptoJS from "crypto-js";
 
 
 
@@ -33,11 +33,12 @@ class EmployeeListTable extends Component {
    onDeclineEmployee(email) {
 
       var data = { Email: email };
-
+      let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+      let sending_data = {data: ciphertext};
       fetch("/job/CurrentEmployee/" + this.WorkKey, {
          method: 'DELETE',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(data),
+         body: JSON.stringify(sending_data),
       }).then(window.location.reload(false));
 
       // window.location.reload(false);
@@ -46,11 +47,12 @@ class EmployeeListTable extends Component {
    onAcceptEmployee(email) {
       console.log(this.WorkKey)
       var data = { Email: email };
-
+      let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+      let sending_data = {data: ciphertext};
       fetch("/job/addacceptedemployee/" + this.WorkKey, {
          method: 'PUT',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(data)
+         body: JSON.stringify(sending_data)
       }).then(window.location.reload(false));
 
    }
