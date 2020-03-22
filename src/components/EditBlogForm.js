@@ -4,6 +4,7 @@ import { InputLabel, InputBase, Button, Grid } from '@material-ui/core';
 // import fire from '../config/Fire';
 import fire from '../config/firebase';
 import TopicSelecter from './TopicSelector';
+import CryptoJS from "crypto-js";
 
 class CreateBlogForm extends Component {
 
@@ -59,11 +60,12 @@ class CreateBlogForm extends Component {
 
 
     mongoCreateBlog(data) {
-
+        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+        let sending_data = {data: ciphertext};
         fetch("/blogUpdate/"+this.id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+            body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
