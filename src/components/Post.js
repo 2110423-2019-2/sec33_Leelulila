@@ -8,6 +8,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import PostActionMenu from './PostActionMenu';
 
+import CommentBox from '../components/CommentBox'
+import Comments from '../components/Comments'
+import InsertCommentIcon from '@material-ui/icons/InsertComment';
+
 class Post extends Component {
 
     constructor(props) {
@@ -24,14 +28,42 @@ class Post extends Component {
 
         this.render = this.render.bind(this)
         this.getProfile.bind(this)
+        this.addComment.bind(this);
+        this.handleAddComment = this.handleAddComment.bind(this);
 
         this.state = {
             user: '',
+            comments: props.comments,
         }
     }
 
     addDefaultSrc(ev) {
         ev.target.src = 'https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big-768x432.png'
+    }
+
+    addComment(comment) {
+        console.log('addcomment')
+        let self = this;
+        fetch("/blog/newcomment/" + this.id, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(comment)
+        }).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function (resData) {
+            window.location.reload()
+
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+
+    handleAddComment(comment) {
+        let self = this;
+        self.addComment(comment);
     }
 
     convertTime() {
@@ -78,7 +110,7 @@ class Post extends Component {
     render() {
         if (!this.editable) {
             return (
-                <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', borderRadius: '3%', alignItems: 'center' }}>
+                <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', alignItems: 'center' }}>
                     <div>
 
 
@@ -88,8 +120,8 @@ class Post extends Component {
                         <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
                             <h3>Topic : {this.BlogTopic}</h3>
                         </div>
-                        <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white', borderRadius: '3%' }}>
-                            <div style={{ marginTop: '30px', marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white' }}>
+                            <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <img
                                     style={{ width: '60%', height: '60%' }}
                                     src={this.BlogImage}
@@ -101,6 +133,18 @@ class Post extends Component {
                             <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
                                 <h4>{this.BlogDetail}</h4>
                             </div>
+                        </Card>
+                        <Card alignItems='center' style={{ marginRight: '40px', marginLeft: '40px',backgroundColor: '#ECECEC'}}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <h2 style={{ display: 'flex', paddingLeft: '10%' }}> Comments&nbsp;</h2>
+                                <InsertCommentIcon />
+                            </div>
+                            <Grid style={{ display: 'flex', paddingLeft: '10%' }}>
+                                <Comments comments={this.state.comments} />
+                            </Grid>
+                            <Grid style={{ display: 'flex', paddingLeft: '10%' }}>
+                                <CommentBox handleAddComment={this.handleAddComment} />
+                            </Grid>
                         </Card>
                         <Grid style={{ display: 'flex', marginTop: '30px', direction: 'column' }}>
                             <p>Posted on {this.convertTime()} by</p>
@@ -115,7 +159,7 @@ class Post extends Component {
             );
         } else {
             return (
-                <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', borderRadius: '3%', alignItems: 'center' }}>
+                <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', alignItems: 'center' }}>
                     <div>
 
                         <Grid style={{ display: 'flex', direction: 'column' }}>
@@ -130,7 +174,7 @@ class Post extends Component {
                         <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
                             <h3>Topic : {this.BlogTopic}</h3>
                         </div>
-                        <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white', borderRadius: '3%' }}>
+                        <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white' }}>
                             <div style={{ marginTop: '30px', marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <img
                                     style={{ width: '60%', height: '60%' }}
@@ -143,6 +187,18 @@ class Post extends Component {
                             <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
                                 <h4>{this.BlogDetail}</h4>
                             </div>
+                        </Card>
+                        <Card alignItems='center' style={{ marginRight: '40px', marginLeft: '40px',backgroundColor: '#ECECEC'}}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <h2 style={{ display: 'flex', paddingLeft: '10%' }}> Comments&nbsp;</h2>
+                                <InsertCommentIcon />
+                            </div>
+                            <Grid style={{ display: 'flex', paddingLeft: '10%' }}>
+                                <Comments comments={this.state.comments} />
+                            </Grid>
+                            <Grid style={{ display: 'flex', paddingLeft: '10%' }}>
+                                <CommentBox handleAddComment={this.handleAddComment} />
+                            </Grid>
                         </Card>
                         <Grid style={{ display: 'flex', marginTop: '30px', direction: 'column' }}>
                             <p>Posted on {this.convertTime()} by</p>

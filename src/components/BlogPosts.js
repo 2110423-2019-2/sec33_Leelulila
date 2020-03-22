@@ -86,6 +86,7 @@ class BlogPosts extends Component {
                                     timestamp={notes.timestamp}
                                     editable={false}
                                     id={notes._id}
+                                    comments={notes.comments}
                                 />
                             </div>
 
@@ -115,6 +116,7 @@ class BlogPosts extends Component {
                                     Employer={notes.Employer}
                                     timestamp={notes.timestamp}
                                     editable={true}
+                                    comments={notes.comments}
                                     id={notes._id}
                                 />
                             </div>
