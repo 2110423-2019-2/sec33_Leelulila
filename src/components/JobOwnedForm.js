@@ -66,8 +66,6 @@ class JobOwnedForm extends Component {
     });
 }
 
-
-
   onPay(event) {
     event.preventDefault();
     if (this.state.balance < this.Wages*this.CurrentAcceptedEmployee.length){
@@ -184,7 +182,9 @@ class JobOwnedForm extends Component {
                   <input type="hidden" name="omiseToken"/>
                   <input type="hidden" name="omiseSource"/>
                   <input type="hidden" name="jobID"/>
-                  {(this.CurrentAcceptedEmployee.length > 0) && <Button variant="contained" color="primary" id = "checkout-button" type = "submit" onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>}
+                  {(this.CurrentAcceptedEmployee.length > 0) &&
+                   <Button variant="contained" color="primary" id = "checkout-button" type = "submit" 
+                   onClick = {(event)=>this.onPay(event)} style={{ height: '40px', marginTop: '10%'}}>Pay</Button>}
                 </form>
                 
               </Grid>

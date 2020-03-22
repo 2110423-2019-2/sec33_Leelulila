@@ -1,3 +1,3 @@
 import { Realtime } from 'ably/browser/static/ably-commonjs.js';
  
-window.Ably = new Realtime('Xm1ePA.Xj9OOQ:LUnYOTHEEixHsqZ1'); // ADD YOUR API KEY HERE 
+window.Ably = new Realtime('X7lvog.n4Cw5g:RDMMLCGl4Gb0X7it'); // ADD YOUR API KEY HERE 
