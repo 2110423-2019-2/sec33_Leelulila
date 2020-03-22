@@ -3,130 +3,159 @@ import { InputLabel, InputBase, Card, Grid, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import '../style.css';
 import { Redirect } from 'react-router-dom';
-import JobCardModal from '../components/JobCardModal'
-import CommentBox from '../components/CommentBox'
-import Comments from '../components/Comments'
 import fire from '../config/firebase';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
-import StarsIcon from '@material-ui/icons/Stars';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import BeenhereIcon from '@material-ui/icons/Beenhere';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import InsertCommentIcon from '@material-ui/icons/InsertComment';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import IconButton from '@material-ui/core/IconButton';
+import PostActionMenu from './PostActionMenu';
 
 class Post extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            comments: props.comments
-        }
-        this.id = props.id;
+
         this.BlogName = props.BlogName;
         this.BlogDetail = props.BlogDetail;
         this.BlogTopic = props.BlogTopic;
         this.BlogImage = props.BlogImage;
         this.Employer = props.Employer;
         this.timestamp = props.timestamp;
+        this.editable = props.editable;
+        this.id = props.id;
 
-        this.render = this.render.bind(this);
-        this.addComment.bind(this);
-        this.handleAddComment = this.handleAddComment.bind(this);
-    }
+        this.render = this.render.bind(this)
+        this.getProfile.bind(this)
 
-    componentDidMount() {
+        this.state = {
+            user: '',
+        }
     }
 
     addDefaultSrc(ev) {
         ev.target.src = 'https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big-768x432.png'
     }
 
-    addComment(comment) {
-        console.log('addcomment')
+    convertTime() {
+        // var t = new Date(this.timestamp * 1000);
+        // var formatted = ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
+        // console.log(formatted)
+        // return formatted;
+        var t = new Date(this.timestamp);
+        return t.toLocaleString()
+    }
+
+    getProfile() {
         let self = this;
-        fetch("/blog/newcomment/" + this.id, {
-            method: 'POST',
+        fetch("/useremail/" + self.Employer, {
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(comment)
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
             }
             return response.json();
-        }).then(function (resData) {
-            window.location.reload()
+        }).then(function (jsonData) {
+            // console.log(jsonData.firstName)
+            var user2 = fire.auth().currentUser.email;
+            if (user2 == self.Employer) {
+                self.setState({ user: 'Me' })
+            } else {
+                self.setState({ user: jsonData.firstName });
+            }
 
         }).catch(function (err) {
             console.log(err);
         });
     }
 
-    handleAddComment(comment) {
-        let self = this;
-        self.addComment(comment);
+    componentDidMount() {
+        this.getProfile();
     }
 
-
+    onViewProfile(email) {
+        window.location.href = `/noeditprofile?email=${email}`;
+    }
 
     render() {
-
-        console.log(this.state, 'state')
-
-        return (
-            <div style={{ display: 'flex',justifyContent: 'center', alignItems: 'center' }}>
-                <Card alignItems='center' id="ListingJobForm" style={{
-                    marginBottom: '50px', marginTop: '50px', height: 'auto', width: '60%',
-                    backgroundColor: '#FFFFFF', opacity: '80%', alignItems: 'center', padding: '0px'
-                }}>
+        if (!this.editable) {
+            return (
+                <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', borderRadius: '3%', alignItems: 'center' }}>
                     <div>
-                        <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Grid item md={10}>
 
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <h2>{this.BlogName}</h2>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <p>Topic : {this.BlogTopic}</p>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <img
-                                        src={this.BlogImage}
-                                        alt="new"
-                                        style={{ width: 400, height: 300 }}
-                                        onError={this.addDefaultSrc}
-                                    />
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <p>{this.BlogDetail}</p>
-                                </div>
-                                {/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p> : {this.timestamp}</p>
-                            </div> */}
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <p>Writer : {this.Employer}</p>
-                                </div>
 
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <h1>{this.BlogName}</h1>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
+                            <h3>Topic : {this.BlogTopic}</h3>
+                        </div>
+                        <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white', borderRadius: '3%' }}>
+                            <div style={{ marginTop: '30px', marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img
+                                    style={{ width: '60%', height: '60%' }}
+                                    src={this.BlogImage}
+                                    alt="new"
+                                    onError={this.addDefaultSrc}
+
+                                />
+                            </div>
+                            <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
+                                <h4>{this.BlogDetail}</h4>
+                            </div>
+                        </Card>
+                        <Grid style={{ display: 'flex', marginTop: '30px', direction: 'column' }}>
+                            <p>Posted on {this.convertTime()} by</p>
+                            <IconButton onClick={() => this.onViewProfile(this.Employer)}>
+                                <AccountCircleIcon />
+                            </IconButton>
+                            <p>{this.state.user}</p>
+                        </Grid>
+
+                    </div>
+                </Card>
+            );
+        } else {
+            return (
+                <Card id="ListingJobForm" style={{ marginTop: '60px', width: '800px', backgroundColor: '#EEEEEE', borderRadius: '3%', alignItems: 'center' }}>
+                    <div>
+
+                        <Grid style={{ display: 'flex', direction: 'column' }}>
+
+                            <Grid xs={11} style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                                <h1>{this.BlogName}</h1>
+                            </Grid>
+                            <Grid xs={1} style={{ marginTop: '30px' }} >
+                                <PostActionMenu id={this.id} />
                             </Grid>
                         </Grid>
-                    </div>
-                    <Card alignItems='center' style={{ backgroundColor: '#E6E6E6', marginTop: '10px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <h2 style={{ display: 'flex', paddingLeft: '10%' }}> Comments &nbsp;</h2>
-                            <InsertCommentIcon />
+                        <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
+                            <h3>Topic : {this.BlogTopic}</h3>
                         </div>
-                        <Grid style={{ display: 'flex', paddingLeft: '10%' }}>
-                            <Comments comments={this.state.comments} />
-                        </Grid>
-                        <Grid style={{ display: 'flex', paddingLeft: '10%' }}>
-                            <CommentBox handleAddComment={this.handleAddComment} />
-                        </Grid>
-                    </Card>
-                </Card>
-            </div>
-        );
+                        <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white', borderRadius: '3%' }}>
+                            <div style={{ marginTop: '30px', marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img
+                                    style={{ width: '60%', height: '60%' }}
+                                    src={this.BlogImage}
+                                    alt="new"
+                                    onError={this.addDefaultSrc}
 
+                                />
+                            </div>
+                            <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
+                                <h4>{this.BlogDetail}</h4>
+                            </div>
+                        </Card>
+                        <Grid style={{ display: 'flex', marginTop: '30px', direction: 'column' }}>
+                            <p>Posted on {this.convertTime()} by</p>
+                            <IconButton onClick={() => this.onViewProfile(this.Employer)}>
+                                <AccountCircleIcon />
+                            </IconButton>
+                            <p>{this.state.user}</p>
+                        </Grid>
+
+                    </div>
+                </Card>
+            );
+        }
     }
 
 }
