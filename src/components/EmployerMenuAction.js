@@ -11,6 +11,7 @@ import SendIcon from '@material-ui/icons/Send';
 import EmployeeListModal from './EmployeeListModal';
 import AcceptedEmployeeListModal from './AcceptedEmployeeListModal';
 import EditJobOwnedForm from './EditJobOwnedForm';
+import CryptoJS from "crypto-js";
 
 const StyledMenu = withStyles({
   paper: {
@@ -56,11 +57,13 @@ function onDeletejob(WorkKey) {
 function onConfirm(WorkKey, Num) {
   console.log(Num);
   var data = { Status: 'Confirm' };
+  let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+  let sending_data = {data: ciphertext};
   if (Num > 0) {
     fetch("/jobstatus/" + WorkKey, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(sending_data),
     }).then(window.location.reload(false));
   }
   else {
