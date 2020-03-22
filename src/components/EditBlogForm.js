@@ -32,7 +32,7 @@ class CreateBlogForm extends Component {
         let timer = null;
         //get all data from element below
         var data = {
-            BlogName: document.getElementById('blogname').value.toUpperCase()+'   (Edited)',
+            BlogName: document.getElementById('blogname').value+'   (Edited)',
             BlogDetail: document.getElementById('detail').value,
             BlogTopic: document.getElementById('topic').value,
             BlogImage: document.getElementById('image').value,

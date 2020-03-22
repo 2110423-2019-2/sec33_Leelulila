@@ -6,10 +6,10 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import WorkIcon from '@material-ui/icons/Work';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import CreateBlogModal from '../components/CreateBlogModal'
-import BlogPosts from '../components/BlogPosts'
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import Reviews from '../components/Reviews'
 
-class Blog extends Component {
+class Review extends Component {
     constructor(props) {
         super(props);
 
@@ -53,39 +53,47 @@ class Blog extends Component {
         return (
 
             <div className="container" style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
-                <h1>Blog</h1>
+                <h1>Job Review</h1>
                 <Grid container>
                     <Grid item xs={2} style={{ direction: 'column' }}>
-                        <CreateBlogModal />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            startIcon={<AddCircleIcon />}
+                            style={{ marginRight: '30px' }}
+                            href='/JobHistory'
+                        >
+                            Write Review
+                </Button>
                     </Grid >
+                    <Grid item xs={2} style={{ direction: 'column' }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            startIcon={<DashboardIcon />}
+                            style={{ marginRight: '30px' }}
+                            href='/Blog'
+                        >
+                            Blogs Feeds
+                </Button>
+                    </Grid>
                     <Grid item xs={2} style={{ direction: 'column' }}>
                         <Button
                             variant="contained"
                             color="primary"
                             startIcon={<AccountBoxIcon />}
                             style={{ marginRight: '30px' }}
-                            href='/yourBlog'
+                            href='/YourReview'
                         >
-                            Your Blog (s)
-                </Button>
-                    </Grid>
-                    <Grid item xs={2} style={{ direction: 'column' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            startIcon={<WorkIcon />}
-                            style={{ marginRight: '30px' }}
-                            href='/Review'
-                        >
-                            Job Review
+                            Your Review (s)
                 </Button>
                     </Grid>
                 </Grid>
-                <BlogPosts yourPage={false}/>
+                <Reviews yourPage={false} />
             </div>
 
         );
     }
 }
 
-export default Blog;
+export default Review;

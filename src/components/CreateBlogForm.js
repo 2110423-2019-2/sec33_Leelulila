@@ -32,7 +32,7 @@ class CreateBlogForm extends Component {
         let timer = null;
         //get all data from element below
         var data = {
-            BlogName: document.getElementById('blogname').value.toUpperCase(),
+            BlogName: document.getElementById('blogname').value,
             BlogDetail: document.getElementById('detail').value,
             BlogTopic: document.getElementById('topic').value,
             BlogImage: document.getElementById('image').value,
@@ -59,12 +59,12 @@ class CreateBlogForm extends Component {
 
 
     mongoCreateBlog(data) {
-        let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
-        let sending_data = {data: ciphertext};
+        // let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+        // let sending_data = {data: ciphertext};
         fetch("/newblog", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
+            body: JSON.stringify(data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
         }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");

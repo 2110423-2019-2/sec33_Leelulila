@@ -6,8 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton'
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import ConfirmDeleteModal from './ConfirmDeleteModal'
-import EditBlogModal from './EditBlogModal';
+import ConfirmDeleteReview from './ConfirmDeleteReview'
+import EditReviewModal from './EditReviewModal';
 
 const StyledMenu = withStyles({
     paper: {
@@ -71,8 +71,8 @@ export default function CustomizedMenus(props) {
                 onClose={handleClose}
 
             >
-                <EditBlogModal id={props.id} />
-                <ConfirmDeleteModal id={props.id} />
+                <EditReviewModal JobName={props.JobName} id={props.id} />
+                <ConfirmDeleteReview id={props.id} />
             </StyledMenu>
         </div>
     );

@@ -6,7 +6,7 @@ import '../style.css';
 import EmployeeListModal from '../components/EmployeeListModal';
 import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
 import EmployerMenuAction from './EmployerMenuAction';
-
+import CreateReviewModal from './CreateReviewModal';
 import EditJobOwnedForm from '../components/EditJobOwnedForm';
 
 class JobHistoryForm extends Component {
@@ -51,27 +51,29 @@ class JobHistoryForm extends Component {
     //   var email = fire.auth().currentUser.email;
     //   var indexofat = email.indexOf('@');
     //   var subemail = email.substring(0,indexofat);
-    console.log(this.status)
-    
-      return (
-        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>
-          <div>
-            <Grid style={{ display: 'flex' }}>
-              <Grid item md={10}>
-                <h2>Title : {this.JobName}</h2>
-                <p>Detail : {this.JobDetail}</p>
-                <p>Wages : {this.Wages} ฿</p>
-                <p>Location : {this.Location}</p>
-                <p>Date : {this.Date}</p>
-                <p>Time : {this.BeginTime} - {this.EndTime}</p>
+
+    return (
+      <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '300px' }}>
+        <div>
+          <Grid style={{ display: 'flex', marginLeft: '30px' }}>
+            <Grid item xs={12}>
+              <h2>Title : {this.JobName}</h2>
+              <p>Detail : {this.JobDetail}</p>
+              <p>Wages : {this.Wages} ฿</p>
+              <p>Location : {this.Location}</p>
+              <p>Date : {this.Date}</p>
+              <p>Time : {this.BeginTime} - {this.EndTime}</p>
+              <Grid xs={12} style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                <CreateReviewModal JobName={this.JobName} />
               </Grid>
             </Grid>
-  
-  
-          </div>
-        </Card>
-      );
-    
+          </Grid>
+
+
+        </div>
+      </Card>
+    );
+
   }
 
 

@@ -32,6 +32,8 @@ import JobHistory from './JobHistory';
 import Blog from './Blog'
 import CreateBlog from './CreateBlog';
 import YourBlog from './YourBlog';
+import Review from './Review';
+import yourReview from './YourReview';
 
 
 const drawerWidth = 240;
@@ -183,6 +185,8 @@ export default function PersistentDrawerLeft() {
                     <Route path="/jobhistory" component={JobHistory}/>
                     <Route path="/Blog" component={Blog}/>
                     <Route path="/yourBlog" component={YourBlog}/>
+                    <Route path="/Review" component={Review}/>
+                    <Route path="/YourReview" component={yourReview}/>
                     {/* <Route path="/Createblog" component={CreateBlog}/> */}
 
                 </div>
