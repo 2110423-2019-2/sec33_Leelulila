@@ -60,6 +60,7 @@ class CreateBlogForm extends Component {
 
 
     mongoCreateBlog(data) {
+        
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
         let sending_data = {data: ciphertext};
         fetch("/blogUpdate/"+this.id, {
