@@ -70,7 +70,7 @@ class ReviewPost extends Component {
 
 
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <h1>{this.JobName}</h1>
+                            <h1 class='titlename'>{this.JobName}</h1>
                         </div>
                         <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white' }}>
                             <Grid style={{ display: 'flex', direction: 'column', marginLeft: '20px' }}>

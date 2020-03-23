@@ -57,7 +57,7 @@ class JobHistoryForm extends Component {
         <div>
           <Grid style={{ display: 'flex', marginLeft: '30px' }}>
             <Grid item xs={12}>
-              <h2>Title : {this.JobName}</h2>
+              <h2 class='title'>Title : {this.JobName}</h2>
               <p>Detail : {this.JobDetail}</p>
               <p>Wages : {this.Wages} ฿</p>
               <p>Location : {this.Location}</p>
