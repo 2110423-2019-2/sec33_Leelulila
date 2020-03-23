@@ -15,7 +15,7 @@ class Create_Job():
 
         driver.find_element_by_id('jobname').send_keys('testbyselenium')                
         
-        driver.find_element_by_id('amount').send_keys('1')
+        driver.find_element_by_id('amount').send_keys('5')
 
         driver.find_element_by_id('jobdescription').send_keys('testbyselenium')
 

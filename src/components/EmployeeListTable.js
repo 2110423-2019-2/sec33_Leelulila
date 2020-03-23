@@ -85,8 +85,8 @@ class EmployeeListTable extends Component {
                      <td>{lname}</td>
                      <td>{sex}</td>
                      {console.log(email)}
-                     <td><Button variant="contained" color="primary" onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
-                     <td><Button variant="contained" color="secondary" onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
+                     <td><Button class='acceptBtn' variant="contained" color="primary" onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
+                     <td><Button class='declineBtn' variant="contained" color="secondary" onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
                </tr>
             )
          }

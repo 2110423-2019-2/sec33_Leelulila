@@ -27,7 +27,7 @@ class Test_Profile(unittest.TestCase):
         driver.find_element_by_id('loginBtn').click()
         time.sleep(2)
 
-        ran = int(random.random()*100000)
+        ran = int(random.random()*100)
 
         ran = str(ran)
 
@@ -50,7 +50,7 @@ class Test_Profile(unittest.TestCase):
 
         newtext = oldtext+ran
 
-        # assert driver.find_element_by_id('about-text').text == newtext
+        assert driver.find_element_by_id('about-text').text == newtext
 
     def test_02_edit_discard_Btn(self):
         
@@ -60,7 +60,7 @@ class Test_Profile(unittest.TestCase):
 
         
 
-        ran = int(random.random()*100000)
+        ran = int(random.random()*100)
 
         ran = str(ran)
 

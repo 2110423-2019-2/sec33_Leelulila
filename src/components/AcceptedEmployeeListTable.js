@@ -56,7 +56,7 @@ class AcceptedEmployeeListTable extends Component {
 
        return (
            
-          <tr style={{paddingLeft:'200px'}}>
+          <tr class = 'accepted-employee' style={{paddingLeft:'200px'}}>
              <td>{fname}</td>
              <td>{lname}</td>
              <td>{sex}</td>

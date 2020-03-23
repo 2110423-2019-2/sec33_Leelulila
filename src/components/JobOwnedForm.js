@@ -168,7 +168,7 @@ class JobOwnedForm extends Component {
           <div>
             <Grid style={{ display: 'flex' }}>
               <Grid item md={10}>
-                <h2>Start</h2>
+                <h2 class='start'>Start</h2>
                 <h2>Title : {this.JobName}</h2>
                 <p>Detail : {this.JobDetail}</p>
                 <p>Wages : {this.Wages} ฿</p>
