@@ -6,7 +6,7 @@ class Test_Login(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-       try:
+        try:
             cls.driver = webdriver.Chrome("./chromedriver")
         except:
             cls.driver = webdriver.Chrome("./chromedriver.exe")

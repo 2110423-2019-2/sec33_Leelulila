@@ -32,7 +32,7 @@ class ProfileForm extends Component {
                             <Grid style={{ display: 'flex' }}>
                                 <Grid item md={12}>
                                     <h4>About:</h4>
-                                    <p>{this.props.about}</p>
+                                    <p id='about-text'>{this.props.about}</p>
                                 </Grid>
                                 <Grid item md={1}>
                                     <EditModal title="About" _id = {this.props._id} value ={this.props.about}/>

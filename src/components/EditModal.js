@@ -107,10 +107,10 @@ export default function SimpleModal(props) {
                             />
                         </form>
                     </p>
-                    <button style={{ float: "right" }} type="button" onClick={handlesave}>
+                    <button id ='saveBtn' style={{ float: "right" }} type="button" onClick={handlesave}>
                         Save
          </button>
-                    <button style={{ float: "right" }} type="button" onClick={handleClose} style={{ marginLeft: '320px' }}>
+                    <button id = 'discardBtn' style={{ float: "right" }} type="button" onClick={handleClose} style={{ marginLeft: '320px' }}>
                         Discard
          </button>
                 </div>
