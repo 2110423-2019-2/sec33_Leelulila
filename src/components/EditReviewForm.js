@@ -7,13 +7,14 @@ import TopicSelecter from './TopicSelector';
 import CryptoJS from "crypto-js";
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class EditReviewForm extends Component {
 
     constructor(props) {
         super(props);
         this.JobName = props.JobName;
+        this.ReviewDetail = props.ReviewDetail;
         this.onCreateReview = this.onCreateReview.bind(this);
         this.id = props.id
         this.state = {
@@ -27,8 +28,12 @@ class EditReviewForm extends Component {
     onCreateReview() {
         let timer = null;
         //get all data from element below
+        var tmp = this.JobName;
+        if (tmp.slice(-11) != '   (Edited)') {
+            tmp = tmp + '   (Edited)'
+        }
         var data = {
-            JobName: this.JobName+'   (Edited)',
+            JobName: tmp,
             ReviewDetail: document.getElementById('detail').value,
             Rating: this.state.rating,
             Writer: fire.auth().currentUser.email,
@@ -53,7 +58,7 @@ class EditReviewForm extends Component {
     mongoCreateReview(data) {
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
         let sending_data = { data: ciphertext };
-        fetch("/reviewUpdate/"+this.id, {
+        fetch("/reviewUpdate/" + this.id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
@@ -78,6 +83,7 @@ class EditReviewForm extends Component {
                 <h3>Rate this job :</h3>
                 <Box component="fieldset" mb={3} borderColor="transparent">
                     <Rating
+                        // defaultValue={this.Rating}
                         name="simple-controlled"
                         size="large"
                         id='rating'
@@ -97,7 +103,7 @@ class EditReviewForm extends Component {
         if (redirect) {
             return <Redirect to='/Review' />
         } else {
-            console.log(this.id)
+            console.log(this.Rating)
             return (
 
                 <div>
@@ -106,7 +112,7 @@ class EditReviewForm extends Component {
                         <Grid style={{ margin: '10px' }}>
                             {this.SimpleRating()}
                             <h3> Detail :</h3>
-                            <TextField multiline={true} rows={10} color="primary" name='detail' id="detail" variant="outlined" margin='dense' style={{ width: '620px' }} />
+                            <TextField defaultValue={this.ReviewDetail} multiline={true} rows={10} color="primary" name='detail' id="detail" variant="outlined" margin='dense' style={{ width: '620px' }} />
                         </Grid>
                         <Grid style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
                             <Button variant="contained" color='primary' style={{ backgroundColor: '#2a3649' }} onClick={this.onCreateReview} >Submit Change</Button>

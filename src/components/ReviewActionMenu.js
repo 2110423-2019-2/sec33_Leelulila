@@ -71,7 +71,7 @@ export default function CustomizedMenus(props) {
                 onClose={handleClose}
 
             >
-                <EditReviewModal JobName={props.JobName} id={props.id} />
+                <EditReviewModal JobName={props.JobName} id={props.id} Rating={props.Rating} ReviewDetail={props.ReviewDetail} />
                 <ConfirmDeleteReview id={props.id} />
             </StyledMenu>
         </div>

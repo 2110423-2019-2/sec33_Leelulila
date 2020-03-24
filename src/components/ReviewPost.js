@@ -103,7 +103,7 @@ class ReviewPost extends Component {
                                 <h1>{this.JobName}</h1>
                             </Grid>
                             <Grid xs={1} style={{ marginTop: '30px' }} >
-                                <ReviewActionMenu JobName={this.JobName} id={this.id} />
+                                <ReviewActionMenu JobName={this.JobName} id={this.id} Rating={this.Rating} ReviewDetail={this.ReviewDetail} />
                             </Grid>
                         </Grid>
                         <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white' }}>

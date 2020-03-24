@@ -71,7 +71,7 @@ export default function CustomizedMenus(props) {
                 onClose={handleClose}
 
             >
-                <EditBlogModal id={props.id} />
+                <EditBlogModal id={props.id} BlogName={props.BlogName} BlogTopic={props.BlogTopic} BlogImage={props.BlogImage} BlogDetail={props.BlogDetail} />
                 <ConfirmDeleteModal id={props.id} />
             </StyledMenu>
         </div>

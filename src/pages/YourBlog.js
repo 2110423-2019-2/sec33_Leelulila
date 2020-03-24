@@ -75,6 +75,7 @@ class Blog extends Component {
                             color="primary"
                             startIcon={<WorkIcon />}
                             style={{ marginRight: '30px' }}
+                            href='./Review'
                         >
                             Job Review
                 </Button>

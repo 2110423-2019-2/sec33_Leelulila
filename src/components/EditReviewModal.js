@@ -63,7 +63,7 @@ export default function SimpleModal(props) {
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <EditReviewForm JobName={props.JobName} id={props.id} />
+                    <EditReviewForm JobName={props.JobName} id={props.id} Rating={props.Rating} ReviewDetail={props.ReviewDetail} />
                 </div>
             </Modal>
         </div >

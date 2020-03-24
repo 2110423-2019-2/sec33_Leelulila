@@ -63,7 +63,7 @@ export default function SimpleModal(props) {
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <EditBlogForm id={props.id} />
+                    <EditBlogForm id={props.id} BlogName={props.BlogName} BlogTopic={props.BlogTopic} BlogImage={props.BlogImage} BlogDetail={props.BlogDetail} />
                 </div>
             </Modal>
         </div >
