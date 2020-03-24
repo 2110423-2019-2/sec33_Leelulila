@@ -46,6 +46,9 @@ class Test_Job_History(unittest.TestCase):
         driver.find_elements_by_class_name('MuiButton-label')[-1].click()
         time.sleep(2)
         
+        driver.switch_to.alert.accept()
+        time.sleep(2)
+        
         assert driver.find_elements_by_class_name('titlename')[0].text == title_job
 
 
