@@ -11,6 +11,10 @@ class CreateBlogForm extends Component {
     constructor(props) {
         super(props);
         this.id = props.id;
+        this.BlogName = props.BlogName;
+        this.BlogTopic = props.BlogTopic;
+        this.BlogImage = props.BlogImage;
+        this.BlogDetail = props.BlogDetail;
         this.onCreateBlog = this.onCreateBlog.bind(this);
         this.state = {
             User: {},
@@ -31,9 +35,13 @@ class CreateBlogForm extends Component {
     //push data to mongoDB
     onCreateBlog() {
         let timer = null;
+        var tmp = document.getElementById('blogname').value;
+        if (tmp.slice(-11) != '   (Edited)') {
+            tmp = tmp + '   (Edited)'
+        }
         //get all data from element below
         var data = {
-            BlogName: document.getElementById('blogname').value+'   (Edited)',
+            BlogName: tmp,
             BlogDetail: document.getElementById('detail').value,
             BlogTopic: document.getElementById('topic').value,
             BlogImage: document.getElementById('image').value,
@@ -60,10 +68,10 @@ class CreateBlogForm extends Component {
 
 
     mongoCreateBlog(data) {
-        
+
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
-        let sending_data = {data: ciphertext};
-        fetch("/blogUpdate/"+this.id, {
+        let sending_data = { data: ciphertext };
+        fetch("/blogUpdate/" + this.id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string
@@ -95,18 +103,18 @@ class CreateBlogForm extends Component {
 
                         <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
                             <h3> Title :</h3>
-                            <TextField inputProps={{ maxLength: 30 }} name='Blogname' id="blogname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '250px' }} />
+                            <TextField defaultValue={this.BlogName} inputProps={{ maxLength: 30 }} name='Blogname' id="blogname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '250px' }} />
                             <h3 style={{ "padding-left": "20px" }}>Topic :</h3>
-                            <TextField inputProps={{ maxLength: 20 }} name='Topic' color="primary" id='topic' variant="outlined" margin='dense' style={{ marginLeft: '16px', width: '200px' }} />
+                            <TextField defaultValue={this.BlogTopic} inputProps={{ maxLength: 20 }} name='Topic' color="primary" id='topic' variant="outlined" margin='dense' style={{ marginLeft: '16px', width: '200px' }} />
                             {/* <TopicSelecter id='topic' /> */}
                         </Grid>
                         <Grid style={{ margin: '16px' }}>
                             <h3> Image (URL) : </h3>
-                            <TextField name='image' id="image" color="primary" variant="outlined" margin='dense' style={{ width: '620px' }} />
+                            <TextField defaultValue={this.BlogImage} name='image' id="image" color="primary" variant="outlined" margin='dense' style={{ width: '620px' }} />
                         </Grid>
                         <Grid style={{ margin: '16px' }}>
                             <h3> Body :</h3>
-                            <TextField multiline={true} rows={10} color="primary" name='detail' id="detail" variant="outlined" margin='dense' style={{ width: '620px' }} />
+                            <TextField defaultValue={this.BlogDetail} multiline={true} rows={10} color="primary" name='detail' id="detail" variant="outlined" margin='dense' style={{ width: '620px' }} />
                         </Grid>
                         <Grid style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
                             <Button variant="contained" color='primary' style={{ backgroundColor: '#2a3649' }} onClick={this.onCreateBlog} >Submit Change</Button>

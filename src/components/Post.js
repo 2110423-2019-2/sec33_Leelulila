@@ -172,7 +172,7 @@ class Post extends Component {
                                 <h1>{this.BlogName}</h1>
                             </Grid>
                             <Grid xs={1} style={{ marginTop: '30px' }} >
-                                <PostActionMenu id={this.id} />
+                                <PostActionMenu id={this.id} BlogName={this.BlogName} BlogTopic={this.BlogTopic} BlogImage={this.BlogImage} BlogDetail={this.BlogDetail} />
                             </Grid>
                         </Grid>
                         <div style={{ display: 'flex', justifyContent: 'left', marginLeft: '30px' }}>
