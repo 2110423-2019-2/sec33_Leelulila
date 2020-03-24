@@ -20,7 +20,7 @@ class EditReviewForm extends Component {
         this.state = {
             User: {},
             redirect: false,
-            rating: 0,
+            rating: props.Rating,
         }
     }
 
