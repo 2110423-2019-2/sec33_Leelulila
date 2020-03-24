@@ -49,11 +49,15 @@ class Test_Dashboard(unittest.TestCase):
             driver.find_elements_by_class_name('MuiButton-label')[i].click()
             time.sleep(2)      
             if('APPLY' == driver.find_elements_by_class_name('MuiButton-label')[-1].text):
+                print('break')
                 break
             i+=1
             driver.get('http://localhost:3000/Dashboard')
             time.sleep(2)
 
+        driver.get('http://localhost:3000/Dashboard')
+        time.sleep(2)
+        
         driver.find_elements_by_class_name('MuiButton-label')[i].click()
         time.sleep(2) 
 
