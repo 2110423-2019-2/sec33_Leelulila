@@ -8,6 +8,9 @@ import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
 import EmployerMenuAction from './EmployerMenuAction';
 import CreateReviewModal from './CreateReviewModal';
 import EditJobOwnedForm from '../components/EditJobOwnedForm';
+import axios from 'axios';
+import fire from '../config/firebase';
+import GradeIcon from '@material-ui/icons/Grade';
 
 class JobHistoryForm extends Component {
 
@@ -28,57 +31,113 @@ class JobHistoryForm extends Component {
 
     this.state = {
       checkgetjobalready: false,
+      listing: [],
+      reviewed: false,
 
     }
-
-    // this.onGetjob = this.onGetjob.bind(this);
-
-    // this.onStartjob = this.onStartjob.bind(this);
+    this.componentDidMount.bind(this);
 
   }
 
-  // onStartjob(){
-  //   var firebaseRef = fire.database().ref('ListingJob')
+  componentDidMount() {
+    axios.get('http://localhost:9000/allreview')
+      .then(response => {
 
-  //   firebaseRef.child(this.Workkey).update({
-  //     Status:'In Duty'
-  //   })
-  //   window.location.reload(false);
-  // }
+        this.setState({
+          listing: response.data,
+        })
+
+        var list2 = [];
+        var user = fire.auth().currentUser.email
+
+        for (var x in this.state.listing) {
+          if (this.state.listing[x]['Writer'] == user) {
+            if (this.state.listing[x]['JobName'].slice(-11) == '   (Edited)') {
+              list2.push(this.state.listing[x]['JobName'].slice(0, -11))
+            } else {
+              list2.push(this.state.listing[x]['JobName'])
+            }
+          }
+
+        }
+
+        this.setState({
+          listing: list2,
+          ready: true,
+        })
+
+        if (this.state.listing.includes(this.JobName)) {
+          // console.log(tmp)
+          this.setState({
+            reviewed: true
+          })
+        }
+
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 
 
   render() {
-    //   var email = fire.auth().currentUser.email;
-    //   var indexofat = email.indexOf('@');
-    //   var subemail = email.substring(0,indexofat);
-
-    return (
-      <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '300px' }}>
-        <div>
-          <Grid style={{ display: 'flex', marginLeft: '30px' }}>
-            <Grid item xs={12}>
-              <h2 class='title'>Title : {this.JobName}</h2>
-              <p>Detail : {this.JobDetail}</p>
-              <p>Wages : {this.Wages} ฿</p>
-              <p>Location : {this.Location}</p>
-              <p>Date : {this.Date}</p>
-              <p>Time : {this.BeginTime} - {this.EndTime}</p>
-              <Grid xs={12} style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-                <CreateReviewModal JobName={this.JobName} />
+    if (this.state.reviewed) {
+      return (
+        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '300px' }}>
+          <div>
+            <Grid style={{ display: 'flex', marginLeft: '30px' }}>
+              <Grid item xs={12}>
+                <h2 class='title'>Title : {this.JobName}</h2>
+                <p>Detail : {this.JobDetail}</p>
+                <p>Wages : {this.Wages} ฿</p>
+                <p>Location : {this.Location}</p>
+                <p>Date : {this.Date}</p>
+                <p>Time : {this.BeginTime} - {this.EndTime}</p>
+                <Grid xs={12} style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<GradeIcon />}
+                    style={{ marginRight: '30px' }}
+                    disabled
+                  >
+                    Already reviewed
+                </Button>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
 
 
-        </div>
-      </Card>
-    );
+          </div>
+        </Card>
+      );
+    } else {
+      return (
+        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '300px' }}>
+          <div>
+            <Grid style={{ display: 'flex', marginLeft: '30px' }}>
+              <Grid item xs={12}>
+                <h2 class='title'>Title : {this.JobName}</h2>
+                <p>Detail : {this.JobDetail}</p>
+                <p>Wages : {this.Wages} ฿</p>
+                <p>Location : {this.Location}</p>
+                <p>Date : {this.Date}</p>
+                <p>Time : {this.BeginTime} - {this.EndTime}</p>
+                <Grid xs={12} style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+                  <CreateReviewModal JobName={this.JobName} />
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+          </div>
+        </Card>
+      );
+    }
+
 
   }
-
-
-
-
 
 }
 

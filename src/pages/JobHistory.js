@@ -43,7 +43,7 @@ class JobHistory extends Component {
               listing: list2,
               ready:true,
           })
-          console.log(this.state.listing)
+        //   console.log(this.state.listing)
 
       })
       .catch((error) => {
