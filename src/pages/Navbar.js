@@ -126,7 +126,7 @@ export default function PersistentDrawerLeft(props) {
           >
             <MenuIcon />
           </IconButton> */}
-          <Button style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px',backgroundColor:'#2a3649'}} disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
+          <Button id='NavBarLogo' style={{maxWidth: '140px', maxHeight: '50px', minWidth: '140px', minHeight: '50px',backgroundColor:'#2a3649'}} disableElevation variant='contained' color='primary' href='/' >CU PART-TIME</Button>
           
           <ProfileBar /> 
         </Toolbar>
