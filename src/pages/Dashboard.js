@@ -200,7 +200,7 @@ class Dashboard extends Component {
                             </Container>
                         </div>
                     </Grid>
-                    <Grid item sm={2} style={{ marginTop: '90px', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
+                    <Grid id="suggestionPlane" item sm={2} style={{ marginTop: '90px', width: '80%', marginButtom: '100px', minHeight: '110vh' }}>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <h1>Suggestion</h1>
                             <WhatshotIcon fontSize='large' color='error' />
