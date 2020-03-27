@@ -125,7 +125,7 @@ class ProfileBar extends Component {
                 <Button variant="outlined" color="inherit" style={{ minWidth: '100px',marginRight: '15px', fontSize: '1rem'}} size='small' >{this.state.user.wallet || 0} ฿</Button>
                 <h3>{this.state.user.firstName}</h3>
                 
-                <Button variant="outlined" color="inherit" style={{ marginLeft: '15px'}}
+                <Button id='logout' variant="outlined" color="inherit" style={{ marginLeft: '15px'}}
                     onClick={this.onLogout} href='/' size='small' >Logout</Button>
 
             </div>);
