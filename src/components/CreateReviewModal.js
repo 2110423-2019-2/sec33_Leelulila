@@ -54,7 +54,6 @@ export default function SimpleModal(props) {
                 variant="contained"
                 color="primary"
                 startIcon={<GradeIcon />}
-                style={{ marginRight: '30px' }}
                 onClick={handleOpen}
             >
                 Write your review

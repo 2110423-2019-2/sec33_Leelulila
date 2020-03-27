@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import MailIcon from '@material-ui/icons/Mail';
 import { blue } from '@material-ui/core/colors';
+import CreateReviewModal from '../components/CreateReviewModal'
 
 const useStyles = makeStyles({
   avatar: {
@@ -35,10 +36,11 @@ export default function SimpleDialog(props) {
           <ListItem button key={noti}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                {noti.status !==1 && <MailIcon />}
+                {noti.status != 0 && <MailIcon />}
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={noti.string + " at " + new Date(noti.timestamp).toLocaleString()} />
+            {noti.status == 2 && <CreateReviewModal JobName={noti.string.slice(7,-1)} />}
           </ListItem>
         ))}
       </List>

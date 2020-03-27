@@ -94,7 +94,7 @@ class CreateReviewForm extends Component {
     render() {
         const { redirect } = this.state;
         if (redirect) {
-            return <Redirect to='/Review' />
+            window.location.reload();
         } else {
 
             return (
