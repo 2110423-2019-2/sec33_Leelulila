@@ -69,7 +69,7 @@ export default function RegisterPage() {
     <Container component="main" maxWidth="sm" style={{ marginTop: "70px", minHeight: '520px', paddingBottom: '50px' }}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5" style={{ marginTop: "5%", fontWeight: "bold" }}>
+        <Typography id="title" component="h1" variant="h5" style={{ marginTop: "5%", fontWeight: "bold" }}>
           Sign up for CU PART-TIME
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)} >
