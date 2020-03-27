@@ -221,6 +221,8 @@ export default function RegisterPage() {
             }
             return response.json();
         }).then(function(resData) {
+            console.log(resData);
+            
             history.push("/");
             // console.log(resData);      
         }).catch(function(err) {

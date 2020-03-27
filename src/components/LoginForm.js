@@ -3,6 +3,26 @@ import TextField from '@material-ui/core/TextField';
 import { Button, Grid, Link } from '@material-ui/core';
 import fire from '../config/firebase';
 import  {withRouter} from 'react-router-dom'
+import CryptoJS from 'crypto-js';
+
+function mongoUserLogin(data){
+  let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
+  let sending_data = {data: ciphertext};
+  fetch("/userlogin", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(sending_data)
+  }).then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+  }).then(function(resData) {
+      console.log(resData);    
+  }).catch(function(err) {
+      console.log(err);
+  });
+}
 
 class LoginForm extends Component {
 
@@ -15,8 +35,8 @@ class LoginForm extends Component {
   onLogin() {
     var email = document.getElementById('email').value;
     var pass = document.getElementById('pass').value;
-    console.log(email);
     const auth = fire.auth();
+    mongoUserLogin({ email, pass });
 
     auth.signInWithEmailAndPassword(email, pass).then((u) => {
       this.props.history.push('/Dashboard');
@@ -30,8 +50,8 @@ class LoginForm extends Component {
     if (event.key === 'Enter') {
       var email = document.getElementById('email').value;
       var pass = document.getElementById('pass').value;
-      console.log(pass);
       const auth = fire.auth();
+      mongoUserLogin({ email, pass });
 
       auth.signInWithEmailAndPassword(email, pass).then((u) => {
         this.props.history.push('/Dashboard');
@@ -67,7 +87,7 @@ class LoginForm extends Component {
     )
 
 
-  }
+  };
 
 }
 export default withRouter(LoginForm);
