@@ -105,6 +105,19 @@ class ProfileBar extends Component {
 
     onLogout() {
         fire.auth().signOut();
+        fetch("/userlogout", {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        response.json();
+        }).then(function(resData) {
+            console.log(resData);    
+        }).catch(function(err) {
+            console.log(err);
+        });
         return (<Redirect to='/' />)
     }
 
