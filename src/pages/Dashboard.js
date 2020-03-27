@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
-
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -86,8 +85,12 @@ class Dashboard extends Component {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         }).then(function (response) {
-            if (response.status >= 400) {
+            if (response.status > 401) {
                 throw new Error("Bad response from server");
+            } else if (response.status === 401) {
+                fire.auth().signOut();
+                window.location = "http://localhost:3000/login";
+                throw new Error('You are not logged in! Please log in to get access');
             }
             return response.json();
         }).then(function (jsonData) {
