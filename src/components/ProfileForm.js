@@ -65,7 +65,7 @@ class ProfileForm extends Component {
                                     <Grid style={{ display: 'flex' }}>
                                         <Grid item md={9}>
                                             <h4>Education:</h4>
-                                            <p>{this.props.education}</p>
+                                            <p id='education-text'>{this.props.education}</p>
                                         </Grid>
                                         <Grid item md={0}>
                                             <EditModal title='Education' _id = {this.props._id} value ={this.props.education}/>
@@ -82,7 +82,7 @@ class ProfileForm extends Component {
                                     <Grid style={{ display: 'flex' }}>
                                         <Grid item md={9}>
                                             <h4>Skill:</h4>
-                                            <p>{this.props.skill}</p>
+                                            <p id='skill-text'>{this.props.skill}</p>
                                         </Grid>
                                         <Grid item md={0}>
                                             <EditModal title="Skill" _id = {this.props._id} value ={this.props.skill} />
