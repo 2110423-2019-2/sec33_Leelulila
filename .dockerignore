@@ -1,1 +1,5 @@
 node_modules
+Dockerfile
+npm-debug.log
+end2end_testing
+README.md
