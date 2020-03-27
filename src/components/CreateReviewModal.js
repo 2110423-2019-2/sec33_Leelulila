@@ -54,7 +54,7 @@ export default function SimpleModal(props) {
                 <Button
                     variant="outlined"
                     color="primary"
-                    startIcon={<GradeIcon />}
+                    // startIcon={<GradeIcon />}
                     onClick={handleOpen}
                     size='small'
                     disabled

@@ -75,7 +75,7 @@ class ReviewPost extends Component {
                         <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white' }}>
                             <Grid style={{ display: 'flex', direction: 'column', marginLeft: '20px' }}>
                                 <h4>Rating :</h4>
-                                <Rating name="read-only" value={this.Rating} readOnly style={{ marginLeft: '10px', marginTop: '15px' }} />
+                                <Rating name="read-only" precision={0.5} value={this.Rating} readOnly style={{ marginLeft: '10px', marginTop: '15px' }} />
                             </Grid>
                             <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
                                 <h4>{this.ReviewDetail}</h4>
@@ -109,7 +109,7 @@ class ReviewPost extends Component {
                         <Card style={{ marginRight: '40px', marginLeft: '40px', backgroundColor: 'white' }}>
                             <Grid style={{ display: 'flex', direction: 'column', marginLeft: '20px' }}>
                                 <h4>Rating :</h4>
-                                <Rating name="read-only" value={this.Rating} readOnly style={{ marginLeft: '10px', marginTop: '15px' }} />
+                                <Rating name="read-only" precision={0.5} value={this.Rating} readOnly style={{ marginLeft: '10px', marginTop: '15px' }} />
                             </Grid>
                             <div style={{ marginRight: '20px', marginLeft: '20px', display: 'flex', justifyContent: 'left' }}>
                                 <h4>{this.ReviewDetail}</h4>

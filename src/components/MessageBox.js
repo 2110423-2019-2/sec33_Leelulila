@@ -37,7 +37,7 @@ export default function SimpleDialog(props) {
           <ListItem button key={noti}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                {noti.status == 1 && <MailIcon />}
+                {noti.status == 0 && <MailIcon />}
                 {noti.status == 2 && <GradeIcon />}
               </Avatar>
             </ListItemAvatar>
