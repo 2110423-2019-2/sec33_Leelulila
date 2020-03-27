@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import fire from '../config/firebase';
 import '../style.css';
-import NotificationList from './EditDialog'
+import NotificationList from './MessageBox'
 import CryptoJS from "crypto-js";
 
 const useStyles = makeStyles(theme => ({
