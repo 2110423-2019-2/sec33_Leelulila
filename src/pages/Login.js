@@ -50,14 +50,6 @@ class Login extends Component{
                 </Container>
             </div>);
         }
-        
-        
-
-
-
-       
-
-        
     }
 }
 

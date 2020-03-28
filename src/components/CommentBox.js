@@ -91,7 +91,7 @@ class CommentBox extends Component {
                 </div>
                 <div className="field">
                   <div className="control">
-                    <button style={{ height: '30px', width: '80px', fontSize: '15px', marginBottom: '10px', }} className="button is-primary">Submit</button>
+                    <button id='submit' style={{ height: '30px', width: '80px', fontSize: '15px', marginBottom: '10px', }} className="button is-primary">Submit</button>
                   </div>
                 </div>
               </form>

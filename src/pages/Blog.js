@@ -60,6 +60,7 @@ class Blog extends Component {
                     </Grid >
                     <Grid item xs={2} style={{ direction: 'column' }}>
                         <Button
+                            id = 'yourblog'
                             variant="contained"
                             color="primary"
                             startIcon={<AccountBoxIcon />}

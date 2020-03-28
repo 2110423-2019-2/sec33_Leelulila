@@ -48,27 +48,46 @@ export default function SimpleModal(props) {
         setOpen(false);
     };
 
-    return (
-        <div>
-            <Button
-                variant="contained"
-                color="primary"
-                startIcon={<GradeIcon />}
-                style={{ marginRight: '30px' }}
-                onClick={handleOpen}
-            >
-                Write your review
+    if (props.reviewed.includes(props.JobName)) {
+        return (
+            <div>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    // startIcon={<GradeIcon />}
+                    onClick={handleOpen}
+                    size='small'
+                    disabled
+                >
+                    Reviewed
                 </Button>
-            <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={open}
-                onClose={handleClose}
-            >
-                <div style={modalStyle} className={classes.paper}>
-                    <CreateReviewForm JobName={props.JobName} />
-                </div>
-            </Modal>
-        </div >
-    );
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    startIcon={<GradeIcon />}
+                    onClick={handleOpen}
+                    size='small'
+                >
+                    Review
+                    </Button>
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <div style={modalStyle} className={classes.paper}>
+                        <CreateReviewForm JobName={props.JobName} />
+                    </div>
+                </Modal>
+            </div >
+        );
+    }
+
+
 }

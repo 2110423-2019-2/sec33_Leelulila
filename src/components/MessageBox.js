@@ -10,6 +10,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import MailIcon from '@material-ui/icons/Mail';
 import { blue } from '@material-ui/core/colors';
+import CreateReviewModal from '../components/CreateReviewModal'
+import GradeIcon from '@material-ui/icons/Grade';
 
 const useStyles = makeStyles({
   avatar: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles({
     color: blue[600],
   },
 });
+
 
 export default function SimpleDialog(props) {
   const classes = useStyles();
@@ -26,7 +29,6 @@ export default function SimpleDialog(props) {
     onClose();
   };
   // "Received "+noti.wage+"฿ from "+noti.email+ " at "+ new Date(noti.timestamp).toLocaleString()
-
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Message Box</DialogTitle>
@@ -35,10 +37,12 @@ export default function SimpleDialog(props) {
           <ListItem button key={noti}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                {noti.status !==1 && <MailIcon />}
+                {noti.status == 0 && <MailIcon />}
+                {noti.status == 2 && <GradeIcon />}
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={noti.string + " at " + new Date(noti.timestamp).toLocaleString()} />
+            {noti.status == 2 && <CreateReviewModal reviewed={props.reviewed} JobName={noti.string.slice(11, -1)} />}
           </ListItem>
         ))}
       </List>

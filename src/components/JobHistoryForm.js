@@ -82,60 +82,25 @@ class JobHistoryForm extends Component {
 
 
   render() {
-    if (this.state.reviewed) {
-      return (
-        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '300px' }}>
-          <div>
-            <Grid style={{ display: 'flex', marginLeft: '30px' }}>
-              <Grid item xs={12}>
-                <h2 class='title'>Title : {this.JobName}</h2>
-                <p>Detail : {this.JobDetail}</p>
-                <p>Wages : {this.Wages} ฿</p>
-                <p>Location : {this.Location}</p>
-                <p>Date : {this.Date}</p>
-                <p>Time : {this.BeginTime} - {this.EndTime}</p>
-                <Grid xs={12} style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<GradeIcon />}
-                    style={{ marginRight: '30px' }}
-                    disabled
-                  >
-                    Already reviewed
-                </Button>
-                </Grid>
-              </Grid>
+
+    return (
+      <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '250px' }}>
+        <div>
+          <Grid style={{ display: 'flex', marginLeft: '30px' }}>
+            <Grid item xs={12}>
+              <h2 class='title'>Title : {this.JobName}</h2>
+              <p>Detail : {this.JobDetail}</p>
+              <p>Wages : {this.Wages} ฿</p>
+              <p>Location : {this.Location}</p>
+              <p>Date : {this.Date}</p>
+              <p>Time : {this.BeginTime} - {this.EndTime}</p>
             </Grid>
+          </Grid>
 
 
-          </div>
-        </Card>
-      );
-    } else {
-      return (
-        <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '300px' }}>
-          <div>
-            <Grid style={{ display: 'flex', marginLeft: '30px' }}>
-              <Grid item xs={12}>
-                <h2 class='title'>Title : {this.JobName}</h2>
-                <p>Detail : {this.JobDetail}</p>
-                <p>Wages : {this.Wages} ฿</p>
-                <p>Location : {this.Location}</p>
-                <p>Date : {this.Date}</p>
-                <p>Time : {this.BeginTime} - {this.EndTime}</p>
-                <Grid xs={12} style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-                  <CreateReviewModal JobName={this.JobName} />
-                </Grid>
-              </Grid>
-            </Grid>
-
-
-          </div>
-        </Card>
-      );
-    }
-
+        </div>
+      </Card>
+    );
 
   }
 
