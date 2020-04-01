@@ -44,7 +44,7 @@ class ProfileBar extends Component {
     }
 
     checkReview() {
-        axios.get('http://localhost:9000/allreview')
+        axios.get('http://cupt_backend:9000/allreview')
             .then(response => {
 
                 this.setState({
