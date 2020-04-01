@@ -9,6 +9,8 @@ import NotificationList from './MessageBox'
 import CryptoJS from "crypto-js";
 import axios from 'axios';
 
+import cookie from 'react-cookie'
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -36,6 +38,8 @@ class ProfileBar extends Component {
         this.isLogin = props.isLogin;
         this.getProfile.bind(this);
         this.handleClick.bind(this);
+
+        this.token = 'Bearer '.concat(cookie.load('jwt'));
     }
 
     componentDidMount() {
@@ -44,7 +48,13 @@ class ProfileBar extends Component {
     }
 
     checkReview() {
-        axios.get('http://cupt_backend:9000/allreview')
+        axios.get('http://localhost:9000/allreview',
+        {
+            "headers": {
+                'Authorization': this.token
+            }
+        }
+        )
             .then(response => {
 
                 this.setState({

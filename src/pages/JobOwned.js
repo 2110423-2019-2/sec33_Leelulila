@@ -6,6 +6,8 @@ import axios from 'axios';
 import fire from '../config/firebase';
 import JobOwnedForm from '../components/JobOwnedForm';
 
+import cookie from 'react-cookie'
+
 class JobOwned extends Component {
 
     constructor(props) {
@@ -15,13 +17,20 @@ class JobOwned extends Component {
             ready:false,
         }
         this.renderList = this.renderList.bind(this);
+
+        this.token = 'Bearer '.concat(cookie.load('jwt'));
         
     }
 
-    
 
     componentDidMount(){
-        axios.get('http://localhost:9000/getalljob')
+        axios.get('http://localhost:9000/getalljob',
+        {
+            "headers": {
+                'Authorization': this.token
+            }
+        }
+        )
         .then(response => {
           
             this.setState({

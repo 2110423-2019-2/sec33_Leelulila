@@ -109,6 +109,8 @@ export default function SimpleModal(props) {
             var WorkDate = document.getElementById("WorkDate").value;
             var TimeBegin = document.getElementById("TimeBegin").value;
             var TimeEnd = document.getElementById("TimeEnd").value;
+            console.log('--------------------------------------------')
+            console.log(TimeBegin)
             data["JobDetail"] = Detail
             data["Wages"] = Wages
             data["Location"] = Location
@@ -209,10 +211,10 @@ export default function SimpleModal(props) {
                             />
                         </form>
                     </p>
-                    <button style={{ float: "right" }} type="button" onClick={handlesave}>
+                    <button id='Save' style={{ float: "right" }} type="button" onClick={handlesave}>
                         Save
          </button>
-                    <button style={{ float: "right" }} type="button" onClick={handleClose} style={{ marginLeft: '320px' }}>
+                    <button id='Discard' style={{ float: "right" }} type="button" onClick={handleClose} style={{ marginLeft: '320px' }}>
                         Discard
          </button>
                 </div>

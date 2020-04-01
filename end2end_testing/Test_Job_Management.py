@@ -27,9 +27,9 @@ class Test_Job_Management(unittest.TestCase):
         driver.get("http://localhost:3000/login")
         time.sleep(2)
 
-        driver.find_element_by_id('email').send_keys('thus@hotmail.com')
+        driver.find_element_by_id('email').send_keys('waris46842@hotmail.com')
 
-        driver.find_element_by_id('pass').send_keys('123456')
+        driver.find_element_by_id('pass').send_keys('4684246842')
 
         driver.find_element_by_id('loginBtn').click()
         time.sleep(2)
@@ -105,6 +105,107 @@ class Test_Job_Management(unittest.TestCase):
 
         driver.find_elements_by_class_name('MuiButton-label')[10].click()
         time.sleep(2)
+
+        driver.get("http://localhost:3000/JobHistory")
+
+    def test_04_management_edit_Btn_Discard(self):
+
+        ran = int(random.random()*100)
+
+        ran1 = str(ran)
+
+        ran2 = str(ran)
+
+        ran3 = str(ran)
+
+        list1 = ['01-01-2020','02-02-2020','03-03-2020','04-04-2020','05-05-2020','06-06-2020','07-07-2020','08-08-2020','09-09-2020','10-10-2020','11-11-2020','12-12-2020',]
+
+        list2 = ['01:1010','02:1010','03:1010','04:1010','05:1010','06:1010']
+
+        list3 = ['02:1020','03:1020','04:1020','05:1020','06:1020','07:1020']
+
+        driver = self.driver
+
+        driver.get("http://localhost:3000/JobOwned")
+        time.sleep(2)
+
+        x = driver.find_element_by_id('detail')
+
+        driver.find_elements_by_class_name('MuiButton-label')[10].click()
+        time.sleep(2)
+
+        driver.find_elements_by_class_name('MuiListItemText-root')[11].click()
+        time.sleep(2)
+
+        driver.find_element_by_id('Detail').send_keys(ran1)
+        time.sleep(2)
+        driver.find_element_by_id('Wages').send_keys(ran2)
+        time.sleep(2)
+        driver.find_element_by_id('Location').send_keys(ran3)
+        time.sleep(2)
+        driver.find_element_by_id('WorkDate').send_keys(random.choice(list1))
+        time.sleep(2)
+        driver.find_element_by_id('TimeBegin').send_keys(random.choice(list2))
+        time.sleep(2)
+        driver.find_element_by_id('TimeEnd').send_keys(random.choice(list3))
+        time.sleep(5)
+
+        driver.find_element_by_id('Discard').click()
+
+        y = driver.find_element_by_id('detail')
+
+        assert x==y
+
+    def test_05_management_edit_Btn_Save(self):
+
+        ran = int(random.random()*100)
+
+        ran1 = str(ran)
+
+        ran2 = str(ran)
+
+        ran3 = str(ran)
+
+        list1 = ['01-01-2020','02-02-2020','03-03-2020','04-04-2020','05-05-2020','06-06-2020','07-07-2020','08-08-2020','09-09-2020','10-10-2020','11-11-2020','12-12-2020',]
+
+        list2 = ['01:1010','02:1010','03:1010','04:1010','05:1010','06:1010']
+
+        list3 = ['02:1020','03:1020','04:1020','05:1020','06:1020','07:1020']
+
+
+        driver = self.driver
+
+        driver.get("http://localhost:3000/JobOwned")
+
+        x = driver.find_element_by_id('detail')
+
+        driver.find_elements_by_class_name('MuiButton-label')[10].click()
+        time.sleep(2)
+
+        driver.find_elements_by_class_name('MuiListItemText-root')[11].click()
+        time.sleep(2)
+
+        driver.find_element_by_id('Detail').send_keys(ran1)
+        time.sleep(2)
+        driver.find_element_by_id('Wages').send_keys(ran2)
+        time.sleep(2)
+        driver.find_element_by_id('Location').send_keys(ran3)
+        time.sleep(2)
+        driver.find_element_by_id('WorkDate').send_keys(random.choice(list1))
+        time.sleep(2)
+        driver.find_element_by_id('TimeBegin').send_keys(random.choice(list2))
+        time.sleep(2)
+        driver.find_element_by_id('TimeEnd').send_keys(random.choice(list3))
+        time.sleep(5)
+
+        driver.find_element_by_id('Save').click()
+
+        driver.get("http://localhost:3000/JobOwned")
+        time.sleep(2)
+
+        y = driver.find_element_by_id('detail')
+
+        assert x!=y
 
 
 

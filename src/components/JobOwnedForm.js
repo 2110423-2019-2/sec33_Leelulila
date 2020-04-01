@@ -134,7 +134,7 @@ class JobOwnedForm extends Component {
             <Grid style={{ display: 'flex' }}>
               <Grid item md={10}>
                 <h2>Title : {this.JobName}</h2>
-                <p>Detail : {this.JobDetail}</p>
+                <p id='detail'>Detail : {this.JobDetail}</p>
                 <p>Wages : {this.Wages} ฿</p>
                 <p>Location : {this.Location}</p>
                 <p>Date : {this.Date}</p>
@@ -170,7 +170,7 @@ class JobOwnedForm extends Component {
               <Grid item md={10}>
                 <h2 class='start'>Start</h2>
                 <h2>Title : {this.JobName}</h2>
-                <p>Detail : {this.JobDetail}</p>
+                <p id='detail'>Detail : {this.JobDetail}</p>
                 <p>Wages : {this.Wages} ฿</p>
                 <p>Location : {this.Location}</p>
                 <p>Date : {this.Date}</p>

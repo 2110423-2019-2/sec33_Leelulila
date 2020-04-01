@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import '../style.css';
 import axios from 'axios';
-import { Button, Grid } from '@material-ui/core';
+// import { Button, Grid } from '@material-ui/core';
 import fire from '../config/firebase';
 import ReviewPost from './ReviewPost'
-import Review from '../pages/Review';
+// import Review from '../pages/Review';
+
+import cookie from 'react-cookie'
 
 class Reviews extends Component {
 
@@ -29,6 +31,8 @@ class Reviews extends Component {
 
         }
         this.getAllReview = this.getAllReview.bind(this)
+
+        this.token = 'Bearer '.concat(cookie.load('jwt'));
     }
 
     componentDidMount() {
@@ -37,7 +41,13 @@ class Reviews extends Component {
 
     getAllReview() {
         let self = this;
-        axios.get('http://localhost:9000/allreview')
+        axios.get('http://localhost:9000/allreview',
+        {
+            "headers": {
+                'Authorization': this.token
+            }
+        }
+        )
             .then(response => {
                 self.setState({
                     listing: response.data,
