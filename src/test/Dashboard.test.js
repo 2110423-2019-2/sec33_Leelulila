@@ -10,24 +10,24 @@ const mockDb = [
 const mockSearch = "สอน";
 const mockListing = [{"_id":{"$numberInt":"162"},"job":{"JobName":"สอนเลข ขอพี่ชาย","JobDetail":"สอนเลขให้กับน้อง","Wages":"1000","Amount":"5","Location":"สยาม","BeginTime":"08:00","EndTime":"09:00","Date":"2020-02-04","CurrentEmployee":["teetiwatanatada@gmail.com","teemo@gmail.com","dragonmaster@eiei.com"],"CurrentAcceptedEmployee":["thus3@hotmail.com"],"Employer":"thus2@hotmail.com","Status":"Ready","TFvector":[{"$numberInt":"1"},{"$numberInt":"0"},{"$numberInt":"0"},{"$numberInt":"1"},{"$numberInt":"0"},{"$numberInt":"1"},{"$numberInt":"0"},{"$numberInt":"0"},{"$numberInt":"0"},{"$numberInt":"0"}]},"notify1":[],"notify2":[],"notify3":["thus3@hotmail.com"]}]; 
 
-// describe('<Dashboard />', () => {
-//     it('should render without throwing an error', () => {
-//       const component = shallow(<Dashboard />);
-//       component.setState({
-//           db: mockDb,
-//           search: mockSearch,
-//           user:"thus@hotmail.com",
-//           ready: true,
-//           listing: mockListing
-//       })
-//       expect(component.find(ListingJobForm).length).toBe(1);
-//     });
-//     it('should mount in a full DOM', () => {
-//       const component = mount(<Dashboard />);
-//       expect(component.find('#suggestionPlane').length).toBe(1);
-//     });
-//     it('should render to static HTML', () => {
-//       const component = render(<Dashboard />);
-//       expect(component.text()).toEqual('All Jobs');
-//     });
-//   });
+describe('<Dashboard />', () => {
+    it('should render without throwing an error', () => {
+      const component = shallow(<Dashboard />);
+      component.setState({
+          db: mockDb,
+          search: mockSearch,
+          user:"thus@hotmail.com",
+          ready: true,
+          listing: mockListing
+      })
+      expect(component.find(ListingJobForm).length).toBe(1);
+    });
+    it('should mount in a full DOM', () => {
+      const component = mount(<Dashboard />);
+      expect(component.find('#suggestionPlane').length).toBe(1);
+    });
+    it('should render to static HTML', () => {
+      const component = render(<Dashboard />);
+      expect(component.text()).toEqual('All Jobs');
+    });
+  });

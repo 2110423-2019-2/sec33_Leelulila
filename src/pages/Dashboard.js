@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 import axios from 'axios';
+import cookie from 'react-cookie'
 
 class Dashboard extends Component {
 
@@ -25,7 +26,8 @@ class Dashboard extends Component {
             search: ""
         }
         this.renderList = this.renderList.bind(this);
-
+        // this.token = cookie.load('jwt');
+        this.token = 'Bearer '.concat(cookie.load('jwt'));
     }
 
     onChange = e => {
@@ -57,7 +59,17 @@ class Dashboard extends Component {
     }
 
     getalljob() {
-        axios.get('http://localhost:9000/getalljob')
+        axios.get('http://localhost:9000/getalljob',
+        {
+            "headers": {
+                'Authorization': this.token
+            }
+        }
+        // { params:{}, headers: { 'Authorization': this.token } }
+        // {
+        //     withCredentials: true
+        // }
+        )
             .then(response => {
                 this.setState({
                     listing: response.data,

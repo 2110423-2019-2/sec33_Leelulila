@@ -13,6 +13,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
 
+import cookie from 'react-cookie'
+
 
 const customStyles = {
   content: {
@@ -93,12 +95,18 @@ class AcceptedEmployeeListModal extends Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-
+    this.token = 'Bearer '.concat(cookie.load('jwt'));
   }
 
   componentDidMount(){
     
-    axios.get('http://localhost:9000/job/'+ this.WorkKey[0])
+    axios.get('http://localhost:9000/job/'+ this.WorkKey[0],
+    {
+      "headers": {
+          'Authorization': this.token
+      }
+    }
+    )
     .then(response => {
         console.log(response.data.job.CurrentAcceptedEmployee)
         this.setState({
@@ -110,7 +118,13 @@ class AcceptedEmployeeListModal extends Component {
             console.log(x)
             console.log(this.state.listing[x])
             console.log(this.state.listing)
-            axios.get('http://localhost:9000/useremail/'+ this.state.listing[x])
+            axios.get('http://localhost:9000/useremail/'+ this.state.listing[x],
+            {
+              "headers": {
+                  'Authorization': this.token
+              }
+            }
+            )
             .then(response => {
               console.log(response.data)
               list2.push([response.data.firstName,response.data.lastName,response.data.gender,response.data.email])
