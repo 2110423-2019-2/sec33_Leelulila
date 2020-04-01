@@ -191,7 +191,7 @@ class Dashboard extends Component {
                             </div>
                             <Container style={{ backgroundColor: '#EEEEEE', marginTop: '10px' }} >
                                 <TextField id="Search" placeholder="Search job here" variant="outlined" onChange={this.onChange} style={{ marginTop: '20px' }} />
-                                <IconButton onClick={(event) => this.onSearch(event)} style={{ marginTop: '25px' }}>
+                                <IconButton id="SearchButton" onClick={(event) => this.onSearch(event)} style={{ marginTop: '25px' }}>
                                     <SearchIcon />
                                 </IconButton>
                                 <div style={{ marginTop: '20px' }}>

@@ -22,6 +22,7 @@
     "global": "^4.4.0",
     "mocha": "^7.1.1",
     "moment": "^2.24.0",
+    "python": "0.0.4",
     "react": "^16.12.0",
     "react-big-calendar": "^0.24.0",
     "react-dom": "^16.12.0",

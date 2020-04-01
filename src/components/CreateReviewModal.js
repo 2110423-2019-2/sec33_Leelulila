@@ -2,9 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Grid } from '@material-ui/core';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CreateReviewForm from './CreateReviewForm'
-import GradeIcon from '@material-ui/icons/Grade';
 
 function getModalStyle() {
     const top = 50;
@@ -69,7 +67,6 @@ export default function SimpleModal(props) {
                 <Button
                     variant="outlined"
                     color="primary"
-                    startIcon={<GradeIcon />}
                     onClick={handleOpen}
                     size='small'
                 >
