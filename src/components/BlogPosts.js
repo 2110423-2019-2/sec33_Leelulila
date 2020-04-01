@@ -6,6 +6,8 @@ import Post from './Post';
 import { Button, Grid } from '@material-ui/core';
 import fire from '../config/firebase';
 
+import cookie from 'react-cookie'
+
 class BlogPosts extends Component {
 
     constructor(props) {
@@ -28,6 +30,7 @@ class BlogPosts extends Component {
 
         }
         this.getAllBlog = this.getAllBlog.bind(this)
+        this.token = 'Bearer '.concat(cookie.load('jwt'));
     }
 
     componentDidMount() {
@@ -36,7 +39,13 @@ class BlogPosts extends Component {
 
     getAllBlog() {
         let self = this;
-        axios.get('http://localhost:9000/allblog')
+        axios.get('http://localhost:9000/allblog',
+        {
+            "headers": {
+                'Authorization': this.token
+            }
+        }
+        )
             .then(response => {
                 self.setState({
                     listing: response.data,

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { InputLabel, InputBase, Card, Grid, Button } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+// import { styled } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import '../style.css';
-import EmployeeListModal from '../components/EmployeeListModal';
-import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
-import EmployerMenuAction from './EmployerMenuAction';
-import CreateReviewModal from './CreateReviewModal';
-import EditJobOwnedForm from '../components/EditJobOwnedForm';
+// import EmployeeListModal from '../components/EmployeeListModal';
+// import AcceptedEmployeeListModal from '../components/AcceptedEmployeeListModal';
+// import EmployerMenuAction from './EmployerMenuAction';
+// import CreateReviewModal from './CreateReviewModal';
+// import EditJobOwnedForm from '../components/EditJobOwnedForm';
 import axios from 'axios';
 import fire from '../config/firebase';
-import GradeIcon from '@material-ui/icons/Grade';
+// import GradeIcon from '@material-ui/icons/Grade';
+
+import cookie from 'react-cookie'
 
 class JobHistoryForm extends Component {
 
@@ -37,10 +39,17 @@ class JobHistoryForm extends Component {
     }
     this.componentDidMount.bind(this);
 
+    this.token = 'Bearer '.concat(cookie.load('jwt'));
   }
 
   componentDidMount() {
-    axios.get('http://localhost:9000/allreview')
+    axios.get('http://localhost:9000/allreview',
+    {
+      "headers": {
+          'Authorization': this.token
+      }
+    }
+    )
       .then(response => {
 
         this.setState({
