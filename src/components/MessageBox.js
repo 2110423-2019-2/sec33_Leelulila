@@ -42,7 +42,7 @@ export default function SimpleDialog(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={noti.string + " at " + new Date(noti.timestamp).toLocaleString()} />
-            {noti.status == 2 && <CreateReviewModal reviewed={props.reviewed} JobName={noti.string.slice(11, -1)} />}
+            {noti.status == 2 && <CreateReviewModal reviewed={props.reviewed} JobName={noti.string.slice(7, -1)} />}
           </ListItem>
         ))}
       </List>
