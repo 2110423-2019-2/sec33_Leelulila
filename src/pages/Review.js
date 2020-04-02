@@ -59,17 +59,6 @@ class Review extends Component {
                         <Button
                             variant="contained"
                             color="primary"
-                            startIcon={<AddCircleIcon />}
-                            style={{ marginRight: '30px' }}
-                            href='/JobHistory'
-                        >
-                            Write Review
-                </Button>
-                    </Grid >
-                    <Grid item xs={2} style={{ direction: 'column' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
                             startIcon={<DashboardIcon />}
                             style={{ marginRight: '30px' }}
                             href='/Blog'

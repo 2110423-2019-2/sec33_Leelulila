@@ -41,7 +41,7 @@ class App extends Component {
     }
 
     render() {
-    
+        // fire.auth().signOut()
         var user = fire.auth().currentUser;
         if (this.state.user === "") return null;
         else if (user) {
