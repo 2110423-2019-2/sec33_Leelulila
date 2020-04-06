@@ -59,18 +59,16 @@ class Dashboard extends Component {
     }
 
     getalljob() {
-        axios.get('http://localhost:9000/getalljob',
+        axios.get('http://localhost:9000/api/jobs',
         {
             "headers": {
                 'Authorization': this.token
             }
         }
-        // { params:{}, headers: { 'Authorization': this.token } }
-        // {
-        //     withCredentials: true
-        // }
         )
             .then(response => {
+                console.log(this.token);
+                
                 this.setState({
                     listing: response.data,
                 })
@@ -93,7 +91,7 @@ class Dashboard extends Component {
     getProfile() {
         var user = fire.auth().currentUser;
         let self = this;
-        fetch("/useremail/" + user.email, {
+        fetch("/api/users/useremail/" + user.email, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         }).then(function (response) {

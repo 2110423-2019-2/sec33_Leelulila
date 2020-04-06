@@ -100,7 +100,7 @@ class JobCardModal extends Component {
       let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
       let sending_data = {data: ciphertext};
 
-      fetch("/job/addemployee/" + this.WorkKey, {
+      fetch("api/jobs/" + this.WorkKey + "/employee", {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sending_data)

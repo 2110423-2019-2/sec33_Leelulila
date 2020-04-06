@@ -24,7 +24,7 @@ class JobOwned extends Component {
 
 
     componentDidMount(){
-        axios.get('http://localhost:9000/getalljob',
+        axios.get('http://localhost:9000/api/jobs',
         {
             "headers": {
                 'Authorization': this.token

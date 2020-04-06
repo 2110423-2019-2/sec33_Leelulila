@@ -57,7 +57,7 @@ class JobCardList extends Component {
 
   getJobByID(id) {
     let self = this;
-    fetch("/job/" + id, {
+    fetch("/api/jobs/" + id, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).then(function (response) {

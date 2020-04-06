@@ -47,7 +47,7 @@ export default function SimpleModal(props) {
     };
 
     const onDelete = () =>{
-        fetch("/review/" + props.id, {
+        fetch("/api/reviews/" + props.id, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
           }).then(window.location.reload(true))

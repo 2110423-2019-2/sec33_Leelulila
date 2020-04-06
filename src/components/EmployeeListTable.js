@@ -35,7 +35,7 @@ class EmployeeListTable extends Component {
       var data = { Email: email };
       let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
       let sending_data = {data: ciphertext};
-      fetch("/job/CurrentEmployee/" + this.WorkKey, {
+      fetch("/api/jobs/employee/" + this.WorkKey, {
          method: 'DELETE',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(sending_data),
@@ -49,7 +49,7 @@ class EmployeeListTable extends Component {
       var data = { Email: email };
       let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
       let sending_data = {data: ciphertext};
-      fetch("/job/addacceptedemployee/" + this.WorkKey, {
+      fetch("/api/jobs/" + this.WorkKey + "/addAcceptedEmployee", {
          method: 'PUT',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(sending_data)

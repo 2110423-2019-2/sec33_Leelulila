@@ -51,7 +51,7 @@ class JobOwnedForm extends Component {
 
   getProfile() {
     let self = this;
-    fetch("/useremail/" + this.Employer, {
+    fetch("/api/users/useremail/" + this.Employer, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then(function (response) {
@@ -81,7 +81,7 @@ class JobOwnedForm extends Component {
           } else {
               form.omiseSource.value = nonce;
           };
-          fetch("/wallet/job/" + this.WorkKey, {
+          fetch("/api/wallet/job/" + this.WorkKey, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
           }).then(function (response) {
@@ -100,7 +100,7 @@ class JobOwnedForm extends Component {
     });
   }
   else{
-    fetch("/wallet/job/" + this.WorkKey, {
+    fetch("/api/wallet/job/" + this.WorkKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     }).then(function (response) {

@@ -37,7 +37,7 @@ class ReviewPost extends Component {
 
     getProfile() {
         let self = this;
-        fetch("/useremail/" + self.Writer, {
+        fetch("/api/users/useremail/" + self.Writer, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         }).then(function (response) {

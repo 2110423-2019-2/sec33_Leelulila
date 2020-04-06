@@ -52,7 +52,7 @@ class CreateReviewForm extends Component {
     mongoCreateReview(data) {
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
         let sending_data = { data: ciphertext };
-        fetch("/newreview", {
+        fetch("/api/reviews", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(sending_data) //To push data via htmlRequest, data must be send in form of string so use Stringify to make obj to string

@@ -25,7 +25,7 @@ class Profile extends Component {
   getProfile() {
     var user = fire.auth().currentUser;
     let self = this;
-    fetch("/useremail/" + user.email, {
+    fetch("/api/users/useremail/" + user.email, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).then(function (response) {

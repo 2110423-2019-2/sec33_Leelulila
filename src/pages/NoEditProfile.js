@@ -24,7 +24,7 @@ class NoEditProfile extends Component {
   getProfile() {
     let self = this;
     console.log("/user/" + self.state.email)
-    fetch("/useremail/"+self.state.email, {
+    fetch("/api/users/useremail/"+self.state.email, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).then(function (response) {

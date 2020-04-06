@@ -100,7 +100,7 @@ class AcceptedEmployeeListModal extends Component {
 
   componentDidMount(){
     
-    axios.get('http://localhost:9000/job/'+ this.WorkKey[0],
+    axios.get('http://localhost:9000/api/jobs/'+ this.WorkKey[0],
     {
       "headers": {
           'Authorization': this.token
@@ -118,7 +118,7 @@ class AcceptedEmployeeListModal extends Component {
             console.log(x)
             console.log(this.state.listing[x])
             console.log(this.state.listing)
-            axios.get('http://localhost:9000/useremail/'+ this.state.listing[x],
+            axios.get('http://localhost:9000/api/users/useremail/'+ this.state.listing[x],
             {
               "headers": {
                   'Authorization': this.token

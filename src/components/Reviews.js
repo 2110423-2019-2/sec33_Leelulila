@@ -41,7 +41,7 @@ class Reviews extends Component {
 
     getAllReview() {
         let self = this;
-        axios.get('http://localhost:9000/allreview',
+        axios.get('http://localhost:9000/api/reviews',
         {
             "headers": {
                 'Authorization': this.token

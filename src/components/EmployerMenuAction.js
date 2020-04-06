@@ -47,7 +47,7 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 function onDeletejob(WorkKey) {
-  fetch("/job/" + WorkKey, {
+  fetch("/api/jobs/" + WorkKey, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   }).then(window.location.reload(false))
@@ -60,7 +60,7 @@ function onConfirm(WorkKey, Num) {
   let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
   let sending_data = {data: ciphertext};
   if (Num > 0) {
-    fetch("/jobstatus/" + WorkKey, {
+    fetch("/api/jobs/jobstatus/" + WorkKey, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sending_data),

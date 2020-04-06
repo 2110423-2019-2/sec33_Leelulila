@@ -120,7 +120,7 @@ export default function SimpleModal(props) {
             let self = this;
             let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
             let sending_data = {data: ciphertext};
-            fetch("/jobUpdate/"+WorkKey, {
+            fetch("/api/jobs/"+WorkKey, {
                 method: 'PUT',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(sending_data)

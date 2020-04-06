@@ -47,7 +47,7 @@ class Post extends Component {
         let self = this;
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(comment), '123456').toString();
         let sending_data = {data: ciphertext};
-        fetch("/blog/newcomment/" + this.id, {
+        fetch("/api/blogs" + this.id, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(sending_data)
@@ -80,7 +80,7 @@ class Post extends Component {
 
     getProfile() {
         let self = this;
-        fetch("/useremail/" + self.Employer, {
+        fetch("/api/users/useremail/" + self.Employer, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         }).then(function (response) {
