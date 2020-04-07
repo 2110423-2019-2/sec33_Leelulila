@@ -93,6 +93,8 @@ class JobOwnedForm extends Component {
             if (jsonData.status === 1) console.log("Notify Users")
           }).then(
             window.location.reload(false)
+          ).then(
+            alert("Payment Success")
           ).catch(function (err) {
             console.log(err);
           });
@@ -112,6 +114,8 @@ class JobOwnedForm extends Component {
       if (jsonData.status === 1) console.log("Notify Users")
     }).then(
       window.location.reload(false)
+    ).then(
+      alert("Payment Success")
     ).catch(function (err) {
       console.log(err);
     });

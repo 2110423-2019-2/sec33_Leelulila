@@ -47,7 +47,7 @@ class Post extends Component {
         let self = this;
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(comment), '123456').toString();
         let sending_data = {data: ciphertext};
-        fetch("/api/blogs" + this.id, {
+        fetch("/api/blogs/" + this.id + "/comments", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(sending_data)

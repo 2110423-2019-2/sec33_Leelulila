@@ -89,75 +89,44 @@ class CommentBox extends Component {
 
 
   render() {
-    return ( <
-      div >
-      <
-      Divider / >
-      <
-      p style = {
-        {
-          fontSize: '13px'
-        }
-      } >
-      <
-      Grid style = {
-        {
-          display: 'flex'
-        }
-      } >
-      <
-      Grid style = {
-        {
-          marginRight: '10px'
-        }
-      } >
-      <
-      AccountCircleIcon fontSize = 'large' / >
-      <
-      /Grid> <
-      Grid >
-      <
-      form onSubmit = {
-        this.addComment
-      } >
-      <
-      div className = "field" >
-      <
-      div className = "control" >
-      <
-      textarea style = {
-        {
-          height: '35px',
-          width: '400px',
-          fontSize: '15px'
-        }
-      }
-      className = "textarea"
-      name = "comment"
-      placeholder = " Add a comment" > < /textarea> < /
-      div > <
-      /div> <
-      div className = "field" >
-      <
-      div className = "control" >
-      <
-      button id = 'submit'
-      style = {
-        {
-          height: '30px',
-          width: '80px',
-          fontSize: '15px',
-          marginBottom: '10px',
-        }
-      }
-      className = "button is-primary" > Submit < /button> < /
-      div > <
-      /div> < /
-      form > <
-      /Grid> < /
-      Grid > <
-      /p> < /
-      div >
+    return ( 
+      <div>
+        <Divider/>
+        <p style = {{fontSize: '13px'}}>
+          <Grid style = {{display: 'flex'}} >
+            <Grid style = {{marginRight: '10px'}} >
+               <AccountCircleIcon fontSize = 'large'/>
+            </Grid> 
+            <Grid>
+              <form onSubmit = {this.addComment}>
+                <div className = "field" >
+                  <div className = "control">
+                    <textarea 
+                      style = {{height: '35px', width: '400px', fontSize: '15px'}}
+                      className = "textarea"
+                      name = "comment"
+                      placeholder = " Add a comment" > 
+                    </textarea> 
+                  </div> 
+                </div> 
+                <div className = "field" >
+                  <div className = "control" >
+                      <button 
+                      id = 'submit'
+                      style = {{
+                        height: '30px',
+                        width: '80px',
+                        fontSize: '15px',
+                        marginBottom: '10px',
+                      }}
+                      className = "button is-primary" > Submit </button> 
+                  </div> 
+                </div> 
+              </form > 
+            </Grid> 
+          </Grid >
+        </p>
+      </div >
     );
   }
 }
