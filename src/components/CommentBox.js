@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import fire from '../config/firebase';
-import { Grid } from '@material-ui/core';
+import {
+  Grid
+} from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Divider from '@material-ui/core/Divider';
 
@@ -32,7 +36,10 @@ class CommentBox extends Component {
 
     // Make sure name and comment boxes are filled
     if (name && comment) {
-      const commentObject = { name, comment };
+      const commentObject = {
+        name,
+        comment
+      };
 
       console.log(commentObject)
       this.props.handleAddComment(commentObject)
@@ -44,9 +51,13 @@ class CommentBox extends Component {
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user });
+        this.setState({
+          user
+        });
       } else {
-        this.setState({ user: null });
+        this.setState({
+          user: null
+        });
       }
     })
   }
@@ -57,14 +68,18 @@ class CommentBox extends Component {
     console.log("/user/" + user.email)
     fetch("/api/users/useremail/" + user.email, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json'
+      },
     }).then(function (response) {
       if (response.status >= 400) {
         throw new Error("Bad response from server");
       }
       return response.json();
     }).then(function (jsonData) {
-      self.setState({ user: jsonData });
+      self.setState({
+        user: jsonData
+      });
       // console.log(self.state.user)
       // console.log(self.state.user.firstName)
     }).catch(function (err) {
@@ -74,31 +89,75 @@ class CommentBox extends Component {
 
 
   render() {
-    return (
-      <div>         
-        <Divider />
-        <p style={{ fontSize: '13px' }}>
-          <Grid style={{ display: 'flex' }}>
-            <Grid style={{ marginRight: '10px' }}>
-              <AccountCircleIcon fontSize='large' />
-            </Grid>
-            <Grid>
-              <form onSubmit={this.addComment}>
-                <div className="field">
-                  <div className="control">
-                    <textarea style={{ height: '35px', width: '400px', fontSize: '15px' }} className="textarea" name="comment" placeholder=" Add a comment"></textarea>
-                  </div>
-                </div>
-                <div className="field">
-                  <div className="control">
-                    <button id='submit' style={{ height: '30px', width: '80px', fontSize: '15px', marginBottom: '10px', }} className="button is-primary">Submit</button>
-                  </div>
-                </div>
-              </form>
-            </Grid>
-          </Grid>
-        </p>
-      </div>
+    return ( <
+      div >
+      <
+      Divider / >
+      <
+      p style = {
+        {
+          fontSize: '13px'
+        }
+      } >
+      <
+      Grid style = {
+        {
+          display: 'flex'
+        }
+      } >
+      <
+      Grid style = {
+        {
+          marginRight: '10px'
+        }
+      } >
+      <
+      AccountCircleIcon fontSize = 'large' / >
+      <
+      /Grid> <
+      Grid >
+      <
+      form onSubmit = {
+        this.addComment
+      } >
+      <
+      div className = "field" >
+      <
+      div className = "control" >
+      <
+      textarea style = {
+        {
+          height: '35px',
+          width: '400px',
+          fontSize: '15px'
+        }
+      }
+      className = "textarea"
+      name = "comment"
+      placeholder = " Add a comment" > < /textarea> < /
+      div > <
+      /div> <
+      div className = "field" >
+      <
+      div className = "control" >
+      <
+      button id = 'submit'
+      style = {
+        {
+          height: '30px',
+          width: '80px',
+          fontSize: '15px',
+          marginBottom: '10px',
+        }
+      }
+      className = "button is-primary" > Submit < /button> < /
+      div > <
+      /div> < /
+      form > <
+      /Grid> < /
+      Grid > <
+      /p> < /
+      div >
     );
   }
 }
