@@ -101,7 +101,7 @@ export default function CustomizedMenus(props) {
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClick={handleClose}
       >
         <StyledMenuItem>
           <ListItemText primary="Delete" onClick={() => onDeletejob(props.WorkKey)} />
