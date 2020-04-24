@@ -36,7 +36,7 @@ class SuggestionPlane extends Component {
         var jobOwn = this.state.user['jobOwn']
         var jobs = this.state.db
         var userVector = this.state.TFvector
-        console.log(jobOwn, 'jobOwn')
+        // console.log(jobOwn, 'jobOwn')
         var similarity = require('compute-cosine-similarity');
         var noZrJobs = []
         jobs.forEach(function (job) {
@@ -50,13 +50,13 @@ class SuggestionPlane extends Component {
             return b[0]['CosineValue'] - a[0]['CosineValue']
         })
         this.state.suggestJob = noZrJobs
-        console.log(this.state.suggestJob, 'suggest job')
+        // console.log(this.state.suggestJob, 'suggest job')
         this.setState({ ready: true })
     }
 
     renderList() {
         if (this.state.ready && this.state.suggestJob.length > 0) {
-            console.log(this.state.suggestJob.length)
+            // console.log(this.state.suggestJob.length)
             return (
                 this.state.suggestJob.map((notes, key) => {
                     var score = parseInt(notes[0]['CosineValue']*100)
@@ -81,12 +81,12 @@ class SuggestionPlane extends Component {
                             />
                         </div>
                     )
-                    console.log("success")
+                    // console.log("success")
                 })
             )
         }
         else {
-            console.log('No Suggestion')
+            // console.log('No Suggestion')
             return (
                 <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
                     <ListSubheader component="div">No suggestion, Try to apply some more jobs.</ListSubheader>

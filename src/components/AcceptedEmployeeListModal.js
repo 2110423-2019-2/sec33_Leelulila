@@ -83,7 +83,6 @@ class AcceptedEmployeeListModal extends Component {
     this.Location = props.Location;
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
-    console.log(this.WorkKey);
     // this.Currentnumber = props.Currentnumber;
     this.CurrentEmployee = props.CurrentEmployee;
 
@@ -108,16 +107,12 @@ class AcceptedEmployeeListModal extends Component {
     }
     )
     .then(response => {
-        console.log(response.data.job.CurrentAcceptedEmployee)
         this.setState({
             listing: response.data.job.CurrentAcceptedEmployee,
           })
           
           var list2=[]
           for (var x in this.state.listing) {
-            console.log(x)
-            console.log(this.state.listing[x])
-            console.log(this.state.listing)
             axios.get('http://localhost:9000/api/users/useremail/'+ this.state.listing[x],
             {
               "headers": {
@@ -126,21 +121,17 @@ class AcceptedEmployeeListModal extends Component {
             }
             )
             .then(response => {
-              console.log(response.data)
               list2.push([response.data.firstName,response.data.lastName,response.data.gender,response.data.email])
             })
-          
-            console.log(this.state.listing)
            
       }
             this.setState({
               listing: list2,
             })
-            console.log(this.state.listing)
-  })
-  .catch((error) => {
-    console.log(error);
-  })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
 }
 
   // onGetjob() {
@@ -203,7 +194,6 @@ class AcceptedEmployeeListModal extends Component {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            {console.log(this.state.listing)}
             <AcceptedEmployeeListTable
             EmployeeList={this.state.listing}
             />

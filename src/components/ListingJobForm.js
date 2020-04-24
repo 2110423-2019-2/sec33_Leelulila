@@ -49,8 +49,8 @@ class ListingJobForm extends Component {
         0: 'Male', 1: 'Female', 2: 'Day', 3: 'Night', 4: 'Food'
         , 5: 'Academic', 6: 'Tech&Mechanic', 7: 'Art&Music', 8: 'Activity', 9: 'Others'
       }
-      console.log(tfvdict[0])
-      console.log(tfv)
+      // console.log(tfvdict[0])
+      // console.log(tfv)
       var i;
       for (i = 0; i < tfv.length; i++) {
         if (tfv[i] == 1) str = str+ tfvdict[i] + ' '

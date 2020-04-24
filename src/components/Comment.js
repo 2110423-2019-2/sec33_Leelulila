@@ -11,7 +11,6 @@ class Comment extends Component {
   }
 
   render() {
-    console.log(this.props.comment.timestamp)
     return (
       <article className="media">
         {/* <figure className="media-left">

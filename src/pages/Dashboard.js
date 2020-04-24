@@ -67,7 +67,7 @@ class Dashboard extends Component {
         }
         )
             .then(response => {
-                console.log(this.token);
+                // console.log(this.token);
                 
                 this.setState({
                     listing: response.data,

@@ -65,7 +65,7 @@ class MyCalendar extends Component {
           n += 1
           i = parseInt(notes.BeginTime.slice(0, 2))-1
           dummyEvents.push({ hexColor: getRandomColor(i), end: new Date(notes.Date + ' ' + notes.EndTime), start: new Date(notes.Date + ' ' + notes.BeginTime), title: notes.JobName })
-          console.log(i)
+          // console.log(i)
         })
 
       )

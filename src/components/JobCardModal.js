@@ -44,7 +44,7 @@ class JobCardModal extends Component {
     this.Employer = props.Employer;
     this.WorkKey = props.WorkKey;
     this.DayAndTime = props.DayAndTime
-    console.log(this.WorkKey);
+    // console.log(this.WorkKey);
     // this.Currentnumber = props.Currentnumber;
     this.CurrentEmployee = props.CurrentEmployee;
     this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
@@ -67,24 +67,24 @@ class JobCardModal extends Component {
     if (day != undefined) {
       var re = false;
       day.forEach(function (tuple) {
-        console.log(newBeginTime, tuple[0], newEndTime, tuple[1])
+        // console.log(newBeginTime, tuple[0], newEndTime, tuple[1])
         if (newBeginTime <= tuple[0] && newEndTime >= tuple[0]) {
-          console.log('left')
+          // console.log('left')
           re = true
         } else if (newBeginTime >= tuple[0] && newEndTime <= tuple[1]) {
-          console.log('in')
+          // console.log('in')
           re = true
         } else if (newBeginTime <= tuple[0] && newEndTime >= tuple[1]) {
-          console.log('out')
+          // console.log('out')
           re = true
         } else if (newBeginTime <= tuple[1] && newEndTime >= tuple[1]) {
-          console.log('right')
+          // console.log('right')
           re = true
         }
       });
       return re
     } else {
-      console.log(day)
+      // console.log(day)
       return false
     }
   }
@@ -118,7 +118,7 @@ class JobCardModal extends Component {
           return response.json();
         }).then(window.location.reload(false))
         .catch(function (err) {
-          console.log(err);
+          // ZZ
         });
     } else {
       alert('You cannot work at another job at the same time!');

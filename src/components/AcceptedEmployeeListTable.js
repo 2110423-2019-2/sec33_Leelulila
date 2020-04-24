@@ -5,7 +5,6 @@ import CryptoJS from "crypto-js";
 class AcceptedEmployeeListTable extends Component {
    constructor(props) {
       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
-      console.log(props)
       this.EmployeeList = props.EmployeeList;
       
       this.state = {
@@ -49,7 +48,6 @@ class AcceptedEmployeeListTable extends Component {
        var lname = Employee[1]
        var sex = Employee[2]
        var email = Employee[3]
-       console.log(fname)
 
         
 

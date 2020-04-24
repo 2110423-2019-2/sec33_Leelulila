@@ -55,7 +55,7 @@ function onDeletejob(WorkKey) {
 }
 
 function onConfirm(WorkKey, Num) {
-  console.log(Num);
+  // console.log(Num);
   var data = { Status: 'Confirm' };
   let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
   let sending_data = {data: ciphertext};
@@ -77,7 +77,7 @@ function onConfirm(WorkKey, Num) {
 
 export default function CustomizedMenus(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  console.log(props.WorkKey);
+  // console.log(props.WorkKey);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -111,7 +111,7 @@ export default function CustomizedMenus(props) {
         </StyledMenuItem>
         <EmployeeListModal WorkKey={props.WorkKey} Amount={props.Amount} />
         <AcceptedEmployeeListModal WorkKey={props.WorkKey} />
-        {console.log(props.WorkKey[0])}
+        {/* {console.log(props.WorkKey[0])} */}
         <EditJobOwnedForm _id={props._id} Wages={props.Wages} Detail={props.JobDetail} Location={props.Location} WorkDate={props.Date} TimeBegin={props.BeginTime} TimeEnd={props.EndTime} WorkKey={props.WorkKey[0]} />
       </StyledMenu>
     </div>

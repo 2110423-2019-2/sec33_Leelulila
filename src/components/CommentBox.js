@@ -41,7 +41,6 @@ class CommentBox extends Component {
         comment
       };
 
-      console.log(commentObject)
       this.props.handleAddComment(commentObject)
       e.target.elements.comment.value = '';
       e.target.elements.name.value = '';
@@ -65,7 +64,6 @@ class CommentBox extends Component {
   getProfile() {
     var user = fire.auth().currentUser;
     let self = this;
-    console.log("/user/" + user.email)
     fetch("/api/users/useremail/" + user.email, {
       method: 'GET',
       headers: {

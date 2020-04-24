@@ -10,7 +10,7 @@ import CryptoJS from "crypto-js";
 class EmployeeListTable extends Component {
    constructor(props) {
       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
-      console.log(props)
+      // console.log(props)
       this.WorkKey = props.WorkKey
       this.EmployeeList = props.EmployeeList;
       this.Amount = props.Amount;
@@ -45,7 +45,7 @@ class EmployeeListTable extends Component {
    }
 
    onAcceptEmployee(email) {
-      console.log(this.WorkKey)
+      // console.log(this.WorkKey)
       var data = { Email: email };
       let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '123456').toString();
       let sending_data = {data: ciphertext};
@@ -58,7 +58,7 @@ class EmployeeListTable extends Component {
    }
 
    onViewProfile(email) {
-      console.log('view')
+      // console.log('view')
       //window.location.href = `/noeditprofile`;
       window.location.href = `/noeditprofile?email=${email}`;
    }
@@ -69,7 +69,7 @@ class EmployeeListTable extends Component {
          var lname = Employee[1]
          var sex = Employee[2]
          var email = Employee[3]
-         console.log(this.CurrentedAcceptEmployee)
+         // console.log(this.CurrentedAcceptEmployee)
 
 
          if(this.CurrentAcceptedEmployee.length < this.Amount){
@@ -84,7 +84,7 @@ class EmployeeListTable extends Component {
                      <td>{fname}</td>
                      <td>{lname}</td>
                      <td>{sex}</td>
-                     {console.log(email)}
+                     {/* {console.log(email)} */}
                      <td><Button class='acceptBtn' variant="contained" color="primary" onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
                      <td><Button class='declineBtn' variant="contained" color="secondary" onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
                </tr>
@@ -101,7 +101,7 @@ class EmployeeListTable extends Component {
                   <td>{fname}</td>
                   <td>{lname}</td>
                   <td>{sex}</td>
-                  {console.log(email)}
+                  {/* {console.log(email)} */}
                   <td><Button variant="contained" color="primary" disabled onClick={() => this.onAcceptEmployee(email)} style={{ height: '30px', width: '50px' }}>Accept</Button></td>
                   <td><Button variant="contained" color="secondary" disabled onClick={() => this.onDeclineEmployee(email)} style={{ height: '30px', width: '50px' }}>Decline</Button></td>
             </tr>
@@ -125,7 +125,7 @@ class EmployeeListTable extends Component {
 
 
    render() { //Whenever our class runs, render method will be called automatically, it may have already defined in the constructor behind the scene.
-                  console.log(this.state.EmployeeList.length)
+      // console.log(this.state.EmployeeList.length)
       if (this.state.EmployeeList.length == 0) {
          return (
                <div>

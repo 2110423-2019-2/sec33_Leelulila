@@ -13,7 +13,7 @@ class NoEditProfileForm extends Component {
     }
 
     componentDidMount() {     
-        console.log(this.props.gender)
+        // console.log(this.props.gender)
     }
 
     render() {

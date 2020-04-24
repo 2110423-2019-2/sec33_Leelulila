@@ -112,7 +112,7 @@ class Reviews extends Component {
             }else{
                 return (
                     this.state.yourReview.map((notes, key) => {
-                        console.log(notes._id)
+                        // console.log(notes._id)
     
     
                         return (

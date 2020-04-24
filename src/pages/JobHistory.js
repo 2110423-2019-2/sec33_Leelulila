@@ -61,7 +61,7 @@ class JobHistory extends Component {
     }
 
     renderList(){
-        console.log(this.state.ready);
+        // console.log(this.state.ready);
         if(this.state.ready){
             if (this.state.listing.length==0){
                 return (

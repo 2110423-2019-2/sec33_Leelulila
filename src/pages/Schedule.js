@@ -54,7 +54,7 @@ class Profile extends Component {
   render() {
     if (this.state.user.currentJob === undefined || this.state.user.pendingJob === undefined) return null
     else
-      console.log(this.state.user.pendingJob + ' propstransfer')
+      // console.log(this.state.user.pendingJob + ' propstransfer')
     return (
       <div >
         <Grid style={{ display: 'flex' }}>

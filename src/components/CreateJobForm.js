@@ -50,7 +50,6 @@ class CreateJobForm extends Component {
         if (order['Others'] == true) tags[9] = 1;
         else tags[9] = 0;
         this.state.tags = tags
-        console.log(this.state, 'this.state')  
     }
 
     formatDate(date) {
@@ -85,20 +84,6 @@ class CreateJobForm extends Component {
         })
     }
 
-
-
-
-    onCreatejob() {
-        // var jobname = document.getElementById('jobname').value;
-        // var jobdes = document.getElementById('jobdescription').value;
-        // var wages = document.getElementById('wages').value;
-        // var amount = document.getElementById('amount').value;
-        // var location = document.getElementById('location').value;
-        // var begintime = document.getElementById('timebegin').value;
-        // var endtime = document.getElementById('timeend').value;
-        // var date = this.state.selectedDate;
-        console.log("Create Job success");
-    }
 
 
 
@@ -162,8 +147,6 @@ class CreateJobForm extends Component {
     render() {
         const { redirect } = this.state;
 
-        //console.log(this.Workkey);
-        console.log(this.Workkey);
         let today = new Date();
         let currentDate = new Date().toISOString();
         let currentDay = currentDate.substr(0, 10);

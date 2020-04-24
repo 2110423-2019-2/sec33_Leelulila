@@ -109,8 +109,8 @@ export default function SimpleModal(props) {
             var WorkDate = document.getElementById("WorkDate").value;
             var TimeBegin = document.getElementById("TimeBegin").value;
             var TimeEnd = document.getElementById("TimeEnd").value;
-            console.log('--------------------------------------------')
-            console.log(TimeBegin)
+            // console.log('--------------------------------------------')
+            // console.log(TimeBegin)
             data["JobDetail"] = Detail
             data["Wages"] = Wages
             data["Location"] = Location
@@ -125,7 +125,7 @@ export default function SimpleModal(props) {
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(sending_data)
             }).then(function (response) {
-                console.log(response);
+                // console.log(response);
                 window.location.reload()
             }).catch(function (err) {
                 console.log(err);
@@ -134,7 +134,7 @@ export default function SimpleModal(props) {
     };
 
     const handleOpen = () => {
-        console.log(props.value)
+        // console.log(props.value)
         //console.log(props.value[0])
         setOpen(true);
     };

@@ -41,7 +41,7 @@ class PendingJobCardList extends Component {
       return (
         this.state.pendingJobs.map((notes) => {
           n += 1
-          console.log(notes)
+          // console.log(notes)
           return (<JobList JobName={notes.JobName} JobDetail={notes.JobDetail}
             Wages={notes.Wages} Location={notes.Location}
             BeginTime={notes.BeginTime} EndTime={notes.EndTime} Date={notes.Date} Employer={notes.Employer} />)
@@ -49,7 +49,7 @@ class PendingJobCardList extends Component {
       )
     }
     else {
-      console.log('empty')
+      // console.log('empty')
       return (
         <Typography variant='body2' gutterBottom align='center'>
           Empty
@@ -68,7 +68,7 @@ class PendingJobCardList extends Component {
       }
       return response.json();
     }).then(function (jsonData) {
-      console.log(jsonData['job'] + 'intgetjob')
+      // console.log(jsonData['job'] + 'intgetjob')
       self.state.pendingJobs.push(jsonData['job'])
       self.setState({ ready: true })
     }).catch(function (err) {
@@ -77,8 +77,8 @@ class PendingJobCardList extends Component {
   }
 
   render() {
-    console.log('render')
-    console.log(this.state)
+    // console.log('render')
+    // console.log(this.state)
     return (
       <div style={{ marginTop: '10px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
         <Card >

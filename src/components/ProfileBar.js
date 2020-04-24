@@ -133,7 +133,7 @@ class ProfileBar extends Component {
         var user = fire.auth().currentUser;
         //console.log(user);
         let self = this;
-        console.log("/user/" + user.email)
+        // console.log("/user/" + user.email)
         fetch("/api/users/useremail/" + user.email, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -163,7 +163,7 @@ class ProfileBar extends Component {
             }
             response.json();
         }).then(function (resData) {
-            console.log(resData);
+            // console.log(resData);
         }).catch(function (err) {
             console.log(err);
         });

@@ -16,14 +16,14 @@ class NoEditProfile extends Component {
   componentDidMount() {
     var url = new URL(window.location.href);
     var email = url.searchParams.get('email');
-    console.log(email +' email')
+    // console.log(email +' email')
     this.state.email = email
     this.getProfile();
   }
 
   getProfile() {
     let self = this;
-    console.log("/user/" + self.state.email)
+    // console.log("/user/" + self.state.email)
     fetch("/api/users/useremail/"+self.state.email, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -34,8 +34,8 @@ class NoEditProfile extends Component {
       return response.json();
     }).then(function (jsonData) {
       self.setState({ user: jsonData });
-      console.log(self.state.user+' userrrrrrrrrrrrrrrrr')
-      console.log(self.state.user.firstName)
+      // console.log(self.state.user+' userrrrrrrrrrrrrrrrr')
+      // console.log(self.state.user.firstName)
     }).catch(function (err) {
       console.log(err);
     });

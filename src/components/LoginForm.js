@@ -18,7 +18,7 @@ function mongoUserLogin(data){
       }
       return response.json();
   }).then(function(resData) {
-      console.log(resData);    
+      // console.log(resData);    
   }).catch(function(err) {
       console.log(err);
   });

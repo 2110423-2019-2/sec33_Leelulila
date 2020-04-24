@@ -103,7 +103,7 @@ class EditReviewForm extends Component {
         if (redirect) {
             return <Redirect to='/Review' />
         } else {
-            console.log(this.Rating)
+            // console.log(this.Rating)
             return (
 
                 <div>

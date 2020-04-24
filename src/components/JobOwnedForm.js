@@ -90,7 +90,7 @@ class JobOwnedForm extends Component {
             }
             return response.json();
           }).then(function (jsonData) {
-            if (jsonData.status === 1) console.log("Notify Users")
+            if (jsonData.status === 1) console.log("")
           }).then(
             window.location.reload(false)
           ).then(
@@ -111,7 +111,7 @@ class JobOwnedForm extends Component {
       }
       return response.json();
     }).then(function (jsonData) {
-      if (jsonData.status === 1) console.log("Notify Users")
+      if (jsonData.status === 1) console.log("")
     }).then(
       window.location.reload(false)
     ).then(
@@ -130,7 +130,7 @@ class JobOwnedForm extends Component {
 
 
   render() {
-    console.log(this.status)
+    // console.log(this.status)
     if(this.Status == 'Ready'){
       return (
         <Card alignItems="left" id="ListingJobForm" style={{ marginBottom: '20px', height: '270px' }}>

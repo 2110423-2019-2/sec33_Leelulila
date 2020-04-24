@@ -36,10 +36,10 @@ class JobCardList extends Component {
 
   renderList() {
     if (this.state.ready) {
-      console.log(this.state, 'state before map')
+      // console.log(this.state, 'state before map')
       return (
         this.state.currentJobs.map((notes) => {
-          console.log(notes)
+          // console.log(notes)
           return (<JobList JobName={notes.JobName} JobDetail={notes.JobDetail}
             Wages={notes.Wages} Location={notes.Location}
             BeginTime={notes.BeginTime} EndTime={notes.EndTime} Date={notes.Date} Employer={notes.Employer} />)
@@ -47,7 +47,7 @@ class JobCardList extends Component {
       )
     }
     else {
-      console.log('empty')
+      // console.log('empty')
       return (
         <Typography variant='body2' gutterBottom align='center'>
           Empty
@@ -66,18 +66,18 @@ class JobCardList extends Component {
       }
       return response.json();
     }).then(function (jsonData) {
-      console.log(jsonData['job'] + 'intgetjob')
+      // console.log(jsonData['job'] + 'intgetjob')
       self.state.currentJobs.push(jsonData['job'])
       self.setState({ ready: true })
-      console.log(self.state.currentJobs+'222')
+      // console.log(self.state.currentJobs+'222')
     }).catch(function (err) {
       console.log(err);
     })
   }
 
   render() {
-    console.log('render')
-    console.log(this.state)
+    // console.log('render')
+    // console.log(this.state)
     return (
         <div style={{ marginTop: '100px', marginLeft: '10%', width: '80%', marginButtom: '100px' }}>
           <Card >

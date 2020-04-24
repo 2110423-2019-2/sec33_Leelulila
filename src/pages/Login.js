@@ -39,10 +39,10 @@ class Login extends Component{
     
         
         if (user){
-            console.log('login');
+            // console.log('login');
         }
         else{
-            console.log('Notlogin');
+            // console.log('Notlogin');
             return (<div>
                 <Container>
                     <h1>Login</h1>

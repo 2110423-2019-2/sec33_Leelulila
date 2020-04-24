@@ -112,7 +112,6 @@ class BlogPosts extends Component {
             }else{
                 return (
                     this.state.yourBlog.map((notes, key) => {
-                        console.log(notes._id)
     
     
                         return (

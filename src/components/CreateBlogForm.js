@@ -39,7 +39,6 @@ class CreateBlogForm extends Component {
             Employer: fire.auth().currentUser.email,
             Status: "Ready"
         }
-        console.log(data)
         if (data.BlogName.length == 0 || data.BlogDetail.length == 0 || data.BlogImage.length == 0 || data.BlogTopic.length == 0) {
             alert("Please fill the Empty Box")
         }

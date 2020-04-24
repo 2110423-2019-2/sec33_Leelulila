@@ -31,7 +31,7 @@ class Profile extends Component {
   getProfile() {
     var user = fire.auth().currentUser;
     let self = this;
-    console.log("/user/" + user.email)
+    // console.log("/user/" + user.email)
     fetch("/api/users/useremail/"+user.email, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -42,8 +42,8 @@ class Profile extends Component {
       return response.json();
     }).then(function (jsonData) {
       self.setState({ user: jsonData });
-      console.log(self.state.user)
-      console.log(self.state.user.firstName)
+      // console.log(self.state.user)
+      // console.log(self.state.user.firstName)
     }).catch(function (err) {
       console.log(err);
     });

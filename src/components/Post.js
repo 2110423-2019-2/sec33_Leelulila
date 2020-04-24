@@ -43,7 +43,7 @@ class Post extends Component {
     }
 
     addComment(comment) {
-        console.log('addcomment')
+        // console.log('addcomment')
         let self = this;
         let ciphertext = CryptoJS.AES.encrypt(JSON.stringify(comment), '123456').toString();
         let sending_data = {data: ciphertext};
