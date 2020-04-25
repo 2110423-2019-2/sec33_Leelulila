@@ -24,7 +24,7 @@ class JobHistory extends Component {
     
 
     componentDidMount(){
-        axios.get('http://localhost:9000/api/jobs',
+        axios.get('/api/jobs',
         {
             "headers": {
                 'Authorization': this.token

@@ -48,7 +48,7 @@ class ProfileBar extends Component {
     }
 
     checkReview() {
-        axios.get('http://localhost:9000/api/reviews',
+        axios.get('/api/reviews',
         {
             "headers": {
                 'Authorization': this.token

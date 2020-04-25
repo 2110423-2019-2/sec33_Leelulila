@@ -39,7 +39,7 @@ class BlogPosts extends Component {
 
     getAllBlog() {
         let self = this;
-        axios.get('http://localhost:9000/api/blogs',
+        axios.get('/api/blogs',
         {
             "headers": {
                 'Authorization': this.token

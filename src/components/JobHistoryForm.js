@@ -43,7 +43,7 @@ class JobHistoryForm extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:9000/api/reviews',
+    axios.get('/api/reviews',
     {
       "headers": {
           'Authorization': this.token

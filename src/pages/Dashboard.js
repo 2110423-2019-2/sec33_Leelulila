@@ -59,7 +59,7 @@ class Dashboard extends Component {
     }
 
     getalljob() {
-        axios.get('http://localhost:9000/api/jobs',
+        axios.get('/api/jobs',
         {
             "headers": {
                 'Authorization': this.token
@@ -99,7 +99,7 @@ class Dashboard extends Component {
                 throw new Error("Bad response from server");
             } else if (response.status === 401) {
                 fire.auth().signOut();
-                window.location = "http://localhost:3000/login";
+                window.location.href = "/login";
                 throw new Error('You are not logged in! Please log in to get access');
             }
             return response.json();
