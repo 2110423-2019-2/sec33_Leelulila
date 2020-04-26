@@ -42,8 +42,14 @@ class CommentBox extends Component {
       };
 
       this.props.handleAddComment(commentObject)
-      e.target.elements.comment.value = '';
-      e.target.elements.name.value = '';
+      try{
+        e.target.elements.comment.value = '';
+        e.target.elements.name.value = '';
+      }
+      catch{
+        alert('Timeout please login')
+        fire.auth().signOut();
+      }
     }
   }
 
