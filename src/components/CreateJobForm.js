@@ -109,6 +109,8 @@ class CreateJobForm extends Component {
         if (data.JobName.length == 0 || data.JobDetail.length == 0 || data.Wages.length == 0 || data.Amount.length == 0 || data.Location.length == 0) {
             alert("Please fill the Empty Box")
         }
+        else if(data.Amount < 1) alert("Amount of employees must be more than 1 person")
+        else if(data.EndTime < data.BeginTime) alert("Job end time must be more than Job start time")
         else {
             alert("Your job is being added!")
             //this function will push data to db
