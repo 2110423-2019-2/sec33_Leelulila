@@ -94,8 +94,8 @@ class CreateJobForm extends Component {
         var data = {
             JobName: document.getElementById('jobname').value,
             JobDetail: document.getElementById('jobdescription').value,
-            Wages: parseInt(document.getElementById('wages').value),
-            Amount: parseInt(document.getElementById('amount').value),
+            Wages: (document.getElementById('wages').value),
+            Amount: (document.getElementById('amount').value),
             Location: document.getElementById('location').value,
             BeginTime: document.getElementById('timebegin').value,
             EndTime: document.getElementById('timeend').value,
@@ -107,7 +107,7 @@ class CreateJobForm extends Component {
             TFvector: this.state.tags
         }
 
-        var invalidInput = ["null", "undefined"]
+        var invalidInput = ["null", "undefined"];
         if (data.JobName.length == 0 || data.JobDetail.length == 0 || data.Wages.length == 0 || data.Amount.length == 0 || data.Location.length == 0) {
             alert("Please fill the Empty Box")
         }
@@ -115,8 +115,8 @@ class CreateJobForm extends Component {
         else if(data.JobName.length > 30 || data.JobDetail.length > 100 || data.Location.length > 30) alert("Jobname length must be less than 30");
         else if(data.JobDetail.length > 100) alert("Job detail length must be less than 100");
         else if(data.Location.length > 30) alert("Job location length must be less than 30");
-        else if((data.Wages < 1 && data.Wages > 10001) || (typeof data.Wages !== "number")) alert("Wage must be in range of 1-10,000 Baht")
-        else if((data.Amount < 1 && data.Amount > 101) || (typeof data.Amount !== "number")) alert("Amount of employees must be in range of 1-100 people/job")
+        else if((parseInt(data.Wages) < 1 && parseInt(data.Wages) > 10001) || (typeof parseInt(data.Wages) !== "number")) alert("Wage must be in range of 1-10,000 Baht")
+        else if((parseInt(data.Amount) < 1 && parseInt(data.Amount) > 101) || (typeof parseInt(data.Amount) !== "number")) alert("Amount of employees must be in range of 1-100 people/job")
         else if(data.EndTime <= data.BeginTime) alert("Job end time must be more than Job start time")
         else {
             alert("Your job is being added!")
