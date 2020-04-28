@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import ProfileBar from '../components/ProfileBar';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 //import Listingjob from './Listingjob';
-import CreateJob from './CreateJob';
+import CreateJob from './Createjob';
 import Profile from './Profile'
 import Schedule from './Schedule'
 import Footer from '../components/Footer';
@@ -160,7 +160,7 @@ export default function PersistentDrawerLeft() {
                     <ListItem><ListItemText><Button href='/Dashboard'>Home</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Profile'>Profile</Button></ListItemText></ListItem>                    
                     <ListItem><ListItemText><Button href='/Schedule'>My Schedule</Button></ListItemText></ListItem>
-                    <ListItem><ListItemText><Button href='/Createjob'>CreateJob</Button></ListItemText></ListItem>
+                    <ListItem><ListItemText><Button href='/CreateJob'>CreateJob</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/JobOwned'>Job Management</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/JobHistory'>Job History</Button></ListItemText></ListItem>
                     <ListItem><ListItemText><Button href='/Blog'>Blog</Button></ListItemText></ListItem>
@@ -174,7 +174,7 @@ export default function PersistentDrawerLeft() {
             <Router>
                 <div>
                     {/* <Route exact path="/" component={Landing}/> */}
-                    <Route path="/Createjob" component={CreateJob} />
+                    <Route path="/CreateJob" component={CreateJob} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/noeditprofile" component={NoEditProfile} />
                     <Route path="/Schedule" component={Schedule} />

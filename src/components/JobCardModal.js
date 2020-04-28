@@ -48,6 +48,7 @@ class JobCardModal extends Component {
     // this.Currentnumber = props.Currentnumber;
     this.CurrentEmployee = props.CurrentEmployee;
     this.CurrentAcceptedEmployee = props.CurrentAcceptedEmployee;
+    this.TFvector = props.TFvector;
 
     this.state = {
       modalIsOpen: false
@@ -223,6 +224,13 @@ class JobCardModal extends Component {
         } - {
           this.EndTime
         } < /p> <
+        p > Employer: {
+          this.Employer
+        } < /p> 
+        <
+        p > Tag: {
+          this.TFvector
+        } < /p> <
         Button variant = "contained"
         disabled > Owned < /Button> < /
         Modal > <
@@ -305,6 +313,10 @@ class JobCardModal extends Component {
         } < /p> <
         p > Employer: {
           this.Employer
+        } < /p> 
+        <
+        p > Tag: {
+          this.TFvector
         } < /p> <
         Button variant = "contained"
         disabled > Already Apply < /Button> < /
@@ -391,7 +403,12 @@ class JobCardModal extends Component {
       } < /p> <
       p > Employer: {
         this.Employer
-      } < /p> <
+      } < /p> 
+      <
+        p > Tag: {
+          this.TFvector
+        } < /p>
+      <
       Button variant = "contained"
       color = 'primary'
       onClick = {
