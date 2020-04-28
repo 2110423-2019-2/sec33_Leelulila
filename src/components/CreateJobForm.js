@@ -94,8 +94,8 @@ class CreateJobForm extends Component {
         var data = {
             JobName: document.getElementById('jobname').value,
             JobDetail: document.getElementById('jobdescription').value,
-            Wages: document.getElementById('wages').value,
-            Amount: document.getElementById('amount').value,
+            Wages: parseInt(document.getElementById('wages').value),
+            Amount: parseInt(document.getElementById('amount').value),
             Location: document.getElementById('location').value,
             BeginTime: document.getElementById('timebegin').value,
             EndTime: document.getElementById('timeend').value,
@@ -173,9 +173,9 @@ class CreateJobForm extends Component {
                     <h1>Create Job</h1>
                     <form>
                         <Grid xs={12} md={8}>
-                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column' }}>
+                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column' , width: "780px"}}>
                                 <h3> Jobname : </h3>
-                                <TextField inputProps={{ maxLength: 30 }} name='Jobname' id="jobname" color="primary" variant="outlined" margin='dense' style={{ marginLeft: '20px', width: '300px' }} />
+                                <TextField inputProps={{ maxLength: 30 }} name='Jobname' id="jobname" color="primary" variant="outlined" style={{ marginLeft: '20px', width: '300px' }} />
                                 <h3 style={{ "padding-left": "20px" }}>Number of Employee :</h3>
                                 <TextField name='people' color="primary" id='amount' label="Limited Person" variant="outlined" type='number' style={{ marginLeft: '16px', width: '178px' }} />
                             </Grid>
@@ -183,7 +183,7 @@ class CreateJobForm extends Component {
                                 <h3>Details :</h3>
                                 <TextField multiline={true} rows={5} color="primary" name='detail' id="jobdescription" variant="outlined" margin='dense' style={{ width: 794 }} />
                             </Grid>
-                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column', marginTop: '40px' }}>
+                            <Grid style={{ margin: '16px', display: 'flex', direction: 'column', marginTop: '40px', marginRight: "14px" }}>
                                 <h3>Time :</h3>
                                 <DatePicker
                                     id='timebegin'

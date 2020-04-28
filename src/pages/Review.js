@@ -71,7 +71,7 @@ class Review extends Component {
                             variant="contained"
                             color="primary"
                             startIcon={<AccountBoxIcon />}
-                            style={{ marginRight: '30px', fontOpticalSizing: "auto" }}
+                            style={{  fontOpticalSizing: "auto" }}
                             href='/YourReview'
                         >
                             Your Review (s)
