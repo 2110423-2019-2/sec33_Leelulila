@@ -117,16 +117,14 @@ class ListingJobForm extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <MonetizationOnOutlinedIcon />
                   <p> : {this.Wages} ฿</p>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <EventOutlinedIcon />
                   <p> : {this.Date}</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <LocationOnOutlinedIcon />
                   <p> : {this.Location}</p>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <LocalOfferIcon/>
-                  <p> : {this.tfvec2str(this.TFvector)}</p>
                 </div>
 
                 <JobCardModal
@@ -143,6 +141,7 @@ class ListingJobForm extends Component {
                   CurrentEmployee={this.CurrentEmployee}
                   DayAndTime = {this.state.dayandtime}
                   CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
+                  TFvector = {this.tfvec2str(this.TFvector)}
                 />
 
               </Grid>
@@ -168,6 +167,8 @@ class ListingJobForm extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <MonetizationOnOutlinedIcon />
                   <p> : {this.Wages} ฿</p>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <EventOutlinedIcon />
                   <p> : {this.Date}</p>
                 </div>
@@ -175,12 +176,8 @@ class ListingJobForm extends Component {
                   <LocationOnOutlinedIcon />
                   <p> : {this.Location}</p>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <LocalOfferIcon/>
-                  <p> : {this.tfvec2str(this.TFvector)}</p>
-                </div>
 
-                <JobCardModal
+                <JobCardModal style={{ marginBottom: '10px'}}
                   JobName={this.JobName}
                   JobDetail={this.JobDetail}
                   Wages={this.Wages}
@@ -194,6 +191,7 @@ class ListingJobForm extends Component {
                   CurrentEmployee={this.CurrentEmployee}
                   DayAndTime = {this.state.dayandtime}
                   CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
+                  TFvector = {this.tfvec2str(this.TFvector)}
                 />
               </Grid>
 
@@ -220,16 +218,14 @@ class ListingJobForm extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <MonetizationOnOutlinedIcon />
                   <p> : {this.Wages} ฿</p>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <EventOutlinedIcon />
                   <p> : {this.Date}</p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <LocationOnOutlinedIcon />
                   <p> : {this.Location}</p>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <LocalOfferIcon/>
-                  <p> : {this.tfvec2str(this.TFvector)}</p>
                 </div>
                 <JobCardModal
                   JobName={this.JobName}
@@ -245,6 +241,7 @@ class ListingJobForm extends Component {
                   CurrentEmployee={this.CurrentEmployee}
                   DayAndTime = {this.state.dayandtime}
                   CurrentAcceptedEmployee = {this.CurrentAcceptedEmployee}
+                  TFvector = {this.tfvec2str(this.TFvector)}
                 />
 
               </Grid>
