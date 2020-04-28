@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import ProfileBar from '../components/ProfileBar';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 //import Listingjob from './Listingjob';
-import CreateJob from './Createjob';
+import CreateJob from './CreateJob';
 import Profile from './Profile'
 import Schedule from './Schedule'
 import Footer from '../components/Footer';
