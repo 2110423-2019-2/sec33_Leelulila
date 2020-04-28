@@ -60,7 +60,7 @@ class Review extends Component {
                             variant="contained"
                             color="primary"
                             startIcon={<DashboardIcon />}
-                            style={{ marginRight: '30px' }}
+                            style={{ marginRight: '30px', fontOpticalSizing: "auto" }}
                             href='/Blog'
                         >
                             Blogs Feeds
@@ -71,7 +71,7 @@ class Review extends Component {
                             variant="contained"
                             color="primary"
                             startIcon={<AccountBoxIcon />}
-                            style={{ marginRight: '30px' }}
+                            style={{ marginRight: '30px', fontOpticalSizing: "auto" }}
                             href='/YourReview'
                         >
                             Your Review (s)
