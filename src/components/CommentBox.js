@@ -44,7 +44,7 @@ class CommentBox extends Component {
       this.props.handleAddComment(commentObject)
       try{
         e.target.elements.comment.value = '';
-        e.target.elements.name.value = '';
+        // e.target.elements.name.value = '';
       }
       catch{
         alert('Timeout please login')

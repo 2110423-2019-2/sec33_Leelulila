@@ -105,7 +105,7 @@ class ListingJobForm extends Component {
     //own
     if (fire.auth().currentUser.email == this.Employer) {
       return (
-        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#D1D1D1', opacity: '80%', borderRadius: '3%', alignItems: 'center' }}>
+        <Card alignItems='center' id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#EEA8FF', opacity: '80%', borderRadius: '3%', alignItems: 'center' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
@@ -156,7 +156,7 @@ class ListingJobForm extends Component {
     else if (this.CurrentEmployee.includes(fire.auth().currentUser.email) || this.CurrentAcceptedEmployee.includes(fire.auth().currentUser.email)) {
       return (
 
-        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#D1D1D1', opacity: '80%', borderRadius: '3%' }}>
+        <Card id="ListingJobForm" style={{ marginBottom: '10px', height: '290px', backgroundColor: '#86FDD9', opacity: '80%', borderRadius: '3%' }}>
           <div>
             <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item md={12}>
