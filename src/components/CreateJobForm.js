@@ -106,10 +106,15 @@ class CreateJobForm extends Component {
             Status: "Ready",
             TFvector: this.state.tags
         }
+
+        var invalidInput = ["null", "undefined"]
         if (data.JobName.length == 0 || data.JobDetail.length == 0 || data.Wages.length == 0 || data.Amount.length == 0 || data.Location.length == 0) {
             alert("Please fill the Empty Box")
         }
-        else if(data.Amount < 1) alert("Amount of employees must be more than 1 person")
+        else if(invalidInput.includes(data.JobName) || invalidInput.includes(data.JobDetail) || invalidInput.includes(data.Location)) alert("Input can't be null or undefined")
+        else if(data.JobName.length > 30 || data.JobDetail.length > 100 || data.Location.length > 50) alert("Invalid Input")
+        else if((data.Wages < 1 && data.Wages > 10001) || (typeof data.Wages !== "number")) alert("Wage must be in range of 1-10,000 Baht")
+        else if((data.Amount < 1 && data.Amount > 101) || (typeof data.Amount !== "number")) alert("Amount of employees must be in range of 1-100 people/job")
         else if(data.EndTime <= data.BeginTime) alert("Job end time must be more than Job start time")
         else {
             alert("Your job is being added!")
