@@ -1,4 +1,4 @@
-# sec33_Leelulila_Server
+# sec33_Leelulila
 
 sec33_Leelulila is a frontend repository for sec33_Leelulila_Server repository which is CUPARTTIME PROJECT.
 
